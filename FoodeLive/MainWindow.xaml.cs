@@ -1,7 +1,9 @@
-﻿using FoodeLive.Database;
+﻿using FoodeLive.Auth;
+using FoodeLive.Database;
 using FoodeLive.Windows.Auth;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,31 +27,26 @@ namespace FoodeLive
         public MainWindow()
         {
             InitializeComponent();
-            AuthUser();
+            DBConnection.Connect();
+            if (!AuthState.IsLoggedIn)
+                StayWindow();
         }
 
-        void AuthUser()
+        void StayWindow()
         {
-            bool isCompleted = DBConnection.Connect();
-            if (isCompleted)
+            Login login = new Login();
+            login.ShowDialog();
+            if (!AuthState.IsLoggedIn)
             {
-                MessageBox.Show("Perfect");
-            }
-            else
-            {
-                Login LoginDialog = new Login();
-                LoginDialog.ShowDialog();
-                DBConnection.ConnectionState = false;
-                if (!DBConnection.ConnectionState)
+                MessageBoxResult dialogResult = MessageBox.Show("Bạn vẫn chưa đăng nhập được. Bạn muốn thoát chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (dialogResult == MessageBoxResult.No)
                 {
-                    MessageBoxResult dialogResult = MessageBox.Show("Bạn vẫn chưa đăng nhập được. Bạn muốn thoát chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (dialogResult == MessageBoxResult.No)
-                        AuthUser();
-                    else
-                        this.Close();
+                    login.Close();
+                    StayWindow();
                 }
+                else
+                    Close();
             }
         }
-
     }
 }

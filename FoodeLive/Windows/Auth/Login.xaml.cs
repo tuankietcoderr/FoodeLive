@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FoodeLive.Auth;
+using FoodeLive.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,20 @@ namespace FoodeLive.Windows.Auth
         public Login()
         {
             InitializeComponent();
+        }
+
+        public static string username { get; set; }
+        public static string password { get; set; }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            username = login_username.Text;
+            password = login_password.Password;
+            if (AuthLogin.StartSession(username, password))
+            {
+                MessageBox.Show("OK!");
+                this.Close();
+            }
         }
     }
 }

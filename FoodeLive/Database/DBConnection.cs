@@ -15,8 +15,13 @@ namespace FoodeLive.Database
         #endregion
 
         static string _SQLConnectionString() => SQLConnectionString;
-        static SqlConnection _SQLConnection { get; set; }
+        public static SqlConnection _SQLConnection { get; set; }
         public static bool ConnectionState { get; set; }
+
+        static DBConnection()
+        {
+            ConnectionState= false;
+        }
 
         public static bool Connect()
         {
@@ -24,7 +29,7 @@ namespace FoodeLive.Database
             {
                 _SQLConnection = new SqlConnection(SQLConnectionString);
                 _SQLConnection.Open();
-                ConnectionState = true;
+                ConnectionState= true;
                 return true;
             }
             catch (Exception ex)

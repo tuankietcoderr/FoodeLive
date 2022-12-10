@@ -81,6 +81,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Auth\AuthLogin.cs" />
+    <Compile Include="Auth\AuthSignUp.cs" />
+    <Compile Include="Auth\AuthState.cs" />
     <Compile Include="Windows\Auth\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

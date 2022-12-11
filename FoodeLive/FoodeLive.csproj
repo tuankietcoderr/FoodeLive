@@ -84,6 +84,9 @@
     <Compile Include="Auth\AuthLogin.cs" />
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
+    <Compile Include="MenuPage\AddToMenu.xaml.cs">
+      <DependentUpon>AddToMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuPage\Demo.cs" />
     <Compile Include="MenuPage\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
@@ -116,6 +119,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MenuPage\AddToMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MenuPage\MenuP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +178,7 @@
     <Resource Include="src\logo_foode_live_big.png" />
     <Resource Include="src\logo_foode_live_small.png" />
     <Resource Include="MenuPage\fooddome.png" />
+    <Resource Include="MenuPage\food.png" />
     <Content Include="utils\QUANLYNHAHANG.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

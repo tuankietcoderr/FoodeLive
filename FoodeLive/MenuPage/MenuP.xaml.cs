@@ -68,6 +68,10 @@ namespace FoodeLive.MenuPage
 
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MenuPage.AddToMenu addToMenu = new MenuPage.AddToMenu();
+            addToMenu.Show();
+        }
     }
 }

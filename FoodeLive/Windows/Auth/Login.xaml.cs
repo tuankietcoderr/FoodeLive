@@ -31,13 +31,18 @@ namespace FoodeLive.Windows.Auth
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            username = login_username.Text;
-            password = login_password.Password;
+            //username = login_username.Text;
+            //password = login_password.Password;
             if (AuthLogin.StartSession(username, password))
             {
                 MessageBox.Show("OK!");
                 this.Close();
             }
+        }
+
+        private void LoginToSignUp_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

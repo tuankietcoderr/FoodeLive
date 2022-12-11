@@ -84,6 +84,9 @@
     <Compile Include="Auth\AuthLogin.cs" />
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
+    <Compile Include="UserControls\LabelInput.xaml.cs">
+      <DependentUpon>LabelInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Auth\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\LabelInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Auth\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,13 +153,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
     <Folder Include="MVVM\ViewModel\" />
     <Folder Include="MVVM\View\" />
     <Folder Include="Pages\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="src\icon_foode_live.png" />
+    <Resource Include="src\logo_foode_live_big.png" />
+    <Resource Include="src\logo_foode_live_small.png" />
     <Content Include="utils\QUANLYNHAHANG.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

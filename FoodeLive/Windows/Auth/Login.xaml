@@ -5,13 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodeLive.Windows.Auth"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Windows.Auth.Login"
+        xmlns:ucli="clr-namespace:FoodeLive.UserControls"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Login" Height="450" Width="800">
+        Title="Đăng nhập" Height="500" Width="800"
+        Icon="/src/icon_foode_live.png"
+        >
     <Grid>
-        <ui:TextBox x:Name="login_username" PlaceholderText="Tên người dùng" PlaceholderEnabled="True" HorizontalAlignment="Left" Margin="185,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ui:PasswordBox x:Name="login_password" Password="" PlaceholderEnabled="True" PlaceholderText="Nhập mật khẩu của bạn" HorizontalAlignment="Left" Margin="185,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ui:Button Click="Button_Click" Content="Button" Margin="263,322,0,0" VerticalAlignment="Top"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="/src/logo_foode_live_big.png" Grid.Row="0" />
+        <TextBlock Text="Đăng nhập" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+        <!--<ui:TextBox x:Name="login_username" PlaceholderText="Tên người dùng" PlaceholderEnabled="True" HorizontalAlignment="Left" Margin="185,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <ui:PasswordBox x:Name="login_password" Password="" PlaceholderEnabled="True" PlaceholderText="Nhập mật khẩu của bạn" HorizontalAlignment="Left" Margin="185,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <ui:Button Click="Button_Click" Content="Button" Margin="263,322,0,0" VerticalAlignment="Top"/>-->
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Name="LoginStackPanel" Width="400">
+            <ucli:LabelInput Width="{Binding Width, ElementName=LoginStackPanel}" Grid.Column="1" Placeholder="Nhập tên tài khoản" Icon="Person24" Label="Tên tài khoản" />
+            <ucli:LabelInput Width="{Binding Width, ElementName=LoginStackPanel}" Grid.Column="1" Placeholder="Nhập mật khẩu" Icon="Person24" Label="Mật khẩu" />
+            <ui:Button Content="Đăng nhập" Margin="0,0,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" />
+            <TextBlock TextAlignment="Center">
+                Bạn chưa có tài khoản? <Span Foreground="Blue" FontWeight="SemiBold" Cursor="Hand" PreviewMouseDown="LoginToSignUp_PreviewMouseDown" Name="LoginToSignUp">Đăng ký ngay</Span>
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </Window>

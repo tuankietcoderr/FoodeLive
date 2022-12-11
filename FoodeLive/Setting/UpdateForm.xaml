@@ -1,0 +1,37 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodeLive.Setting"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Setting.UpdateForm"
+        mc:Ignorable="d"
+        Title="UpdateForm" Height="627" Width="357">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="285*"/>
+            <ColumnDefinition Width="34*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Cập nhật thông tin" Height="47" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+            <TextBlock Text="Họ và tên" Height="34" FontSize="20" FontWeight="Bold"/>
+            <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhập vào họ và tên" x:Name="Name" Height="34" VerticalAlignment="Top"  />
+            <TextBlock Text="Địa chỉ" Height="34" FontSize="20" FontWeight="Bold"/>
+            <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhập vào địa chỉ" x:Name="adress" Height="34" VerticalAlignment="Top"  />
+            <TextBlock Text="Chọn ảnh đại diện" Height="34" FontSize="20" FontWeight="Bold"/>
+            <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhấp vào để chọn hình ảnh" x:Name="pic" Height="34" VerticalAlignment="Top" IsReadOnly="True" MouseDoubleClick="chose_pic" />
+            <TextBlock Text="Số điện thoại" Height="34" FontSize="20" FontWeight="Bold"/>
+            <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhập vào số điện thoại" x:Name="number" Height="34" VerticalAlignment="Top"  />
+            <TextBlock Text="Ngày sinh" Height="34" FontSize="20" FontWeight="Bold"/>
+            <DatePicker/>
+            <TextBlock Text="Giới tính" Height="34" FontSize="20" FontWeight="Bold"/>
+            <WrapPanel Height="74">
+                <RadioButton FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Height="41" Width="97" IsChecked="True">Nam</RadioButton>
+                <RadioButton FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Height="41" Width="97">Nữ</RadioButton>
+            </WrapPanel>
+            <ui:Button HorizontalAlignment="Right" Content="Cập nhật" Background="#ff7a00" Foreground="White" Width="111"></ui:Button>
+            
+        </StackPanel>
+    </Grid>
+</Window>

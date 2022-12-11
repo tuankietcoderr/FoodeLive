@@ -84,6 +84,19 @@
     <Compile Include="Auth\AuthLogin.cs" />
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
+    <Compile Include="MenuPage\AddToMenu.xaml.cs">
+      <DependentUpon>AddToMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPage\Demo.cs" />
+    <Compile Include="MenuPage\MenuP.xaml.cs">
+      <DependentUpon>MenuP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\SettingP.xaml.cs">
+      <DependentUpon>SettingP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\UpdateForm.xaml.cs">
+      <DependentUpon>UpdateForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\LabelInput.xaml.cs">
       <DependentUpon>LabelInput.xaml</DependentUpon>
     </Compile>
@@ -112,6 +125,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MenuPage\AddToMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MenuPage\MenuP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Setting\SettingP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Setting\UpdateForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\LabelInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +191,10 @@
     <Resource Include="src\icon_foode_live.png" />
     <Resource Include="src\logo_foode_live_big.png" />
     <Resource Include="src\logo_foode_live_small.png" />
+    <Resource Include="MenuPage\fooddome.png" />
+    <Resource Include="MenuPage\food.png" />
+    <Resource Include="MenuPage\edit.png" />
+    <Resource Include="Setting\person.png" />
     <Content Include="utils\QUANLYNHAHANG.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

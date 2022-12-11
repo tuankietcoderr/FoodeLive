@@ -27,14 +27,14 @@ namespace FoodeLive
         public MainWindow()
         {
             InitializeComponent();
-            DBConnection.Connect();
+            /*DBConnection.Connect();
             if (!AuthState.IsLoggedIn)
-                StayWindow();
+                StayWindow();*/
         }
 
         void StayWindow()
         {
-            Login login = new Login();
+            /*Login login = new Login();
             login.ShowDialog();
             if (!AuthState.IsLoggedIn)
             {
@@ -46,7 +46,7 @@ namespace FoodeLive
                 }
                 else
                     Close();
-            }
+            }*/
         }
     }
 }

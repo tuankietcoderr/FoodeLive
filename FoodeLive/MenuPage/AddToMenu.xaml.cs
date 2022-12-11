@@ -27,12 +27,31 @@ namespace FoodeLive.MenuPage
         private void click_open(object sender, MouseButtonEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.ShowDialog();
+
+            dialog.Filter = "Pic (.jpg)| *.jpg*";
+            bool ? result = dialog.ShowDialog();
+
+            if(result == true)
+            {
+                string filename = dialog.FileName;
+                MessageBox.Show(filename);
+
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void mouse_on(object sender, MouseEventArgs e)
+        {
+            //pic_add.Source = new BitmapImage(new Uri (@"\\FoodeLive\MenuPage\edit.png"));
+        }
+
+        private void mouse_leave(object sender, MouseEventArgs e)
+        {
+           // pic_add.Source = new BitmapImage(new Uri());
         }
     }
 }

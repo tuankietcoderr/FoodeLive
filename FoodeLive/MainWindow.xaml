@@ -10,6 +10,6 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBlock Text="Hello" />
-        <Frame Source="/MenuPage/MenuP.xaml" />
+        <Frame Source="/Setting/SettingP.xaml" />
     </Grid>
 </Window>

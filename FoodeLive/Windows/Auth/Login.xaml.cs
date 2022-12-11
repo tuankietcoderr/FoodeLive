@@ -24,25 +24,31 @@ namespace FoodeLive.Windows.Auth
         public Login()
         {
             InitializeComponent();
+            DBConnection.Connect();
         }
 
         public static string username { get; set; }
         public static string password { get; set; }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //username = login_username.Text;
-            //password = login_password.Password;
-            if (AuthLogin.StartSession(username, password))
-            {
-                MessageBox.Show("OK!");
-                this.Close();
-            }
-        }
-
         private void LoginToSignUp_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+            SignUp signUp = new SignUp();
+            this.Close();
+            signUp.ShowDialog();
+        }
 
+        private void HandleLogin_Click(object sender, RoutedEventArgs e)
+        {
+            username = login_username.Text;
+            password = login_password.Password;
+            if (AuthLogin.StartSession(username, password))
+            {
+                MainWindow mainWindow = new MainWindow();
+                this.Close();
+                mainWindow.Show();
+            }
+            else
+                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

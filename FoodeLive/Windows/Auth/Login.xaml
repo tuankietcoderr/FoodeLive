@@ -19,13 +19,13 @@
         </Grid.RowDefinitions>
         <Image Source="/src/logo_foode_live_big.png" Grid.Row="0" />
         <TextBlock Text="Đăng nhập" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
-        <!--<ui:TextBox x:Name="login_username" PlaceholderText="Tên người dùng" PlaceholderEnabled="True" HorizontalAlignment="Left" Margin="185,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <ui:PasswordBox x:Name="login_password" Password="" PlaceholderEnabled="True" PlaceholderText="Nhập mật khẩu của bạn" HorizontalAlignment="Left" Margin="185,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <ui:Button Click="Button_Click" Content="Button" Margin="263,322,0,0" VerticalAlignment="Top"/>-->
         <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Name="LoginStackPanel" Width="400">
-            <ucli:LabelInput Width="{Binding Width, ElementName=LoginStackPanel}" Grid.Column="1" Placeholder="Nhập tên tài khoản" Icon="Person24" Label="Tên tài khoản" />
-            <ucli:LabelInput Width="{Binding Width, ElementName=LoginStackPanel}" Grid.Column="1" Placeholder="Nhập mật khẩu" Icon="Person24" Label="Mật khẩu" />
-            <ui:Button Content="Đăng nhập" Margin="0,0,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" />
+            <ucli:LabelInput x:Name="login_username" Width="{Binding Width, ElementName=LoginStackPanel}" Grid.Column="1" Placeholder="Nhập tên tài khoản" Icon="Person24" Label="Tên tài khoản" />
+            <StackPanel Width="{Binding Width, ElementName=LoginStackPanel}">
+                <TextBlock Text="Mật khẩu" FontSize="14" FontWeight="SemiBold" Margin="0,0,0, 4"/>
+                <ui:PasswordBox x:Name="login_password"  Grid.Column="1" PlaceholderText="Nhập mật khẩu" Icon="Key32" />
+            </StackPanel>
+            <ui:Button Content="Đăng nhập" x:Name="HandleLogin" Click="HandleLogin_Click" Margin="0,10,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" MouseOverBackground="#FF7A11" BorderThickness="0" PressedForeground="#FF7A11" Cursor="Hand" />
             <TextBlock TextAlignment="Center">
                 Bạn chưa có tài khoản? <Span Foreground="Blue" FontWeight="SemiBold" Cursor="Hand" PreviewMouseDown="LoginToSignUp_PreviewMouseDown" Name="LoginToSignUp">Đăng ký ngay</Span>
             </TextBlock>

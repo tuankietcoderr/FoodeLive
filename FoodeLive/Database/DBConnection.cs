@@ -14,7 +14,7 @@ namespace FoodeLive.Database
         public const string SQLConnectionString = @"Data Source=TUANKIET\SQLEXPRESS;Initial Catalog=QUANLYNHAHANG;Integrated Security=True";
         #endregion
 
-        static string _SQLConnectionString() => SQLConnectionString;
+        static readonly string _SQLConnectionString = SQLConnectionString;
         public static SqlConnection _SQLConnection { get; set; }
         public static bool ConnectionState { get; set; }
 
@@ -27,7 +27,7 @@ namespace FoodeLive.Database
         {
             try
             {
-                _SQLConnection = new SqlConnection(SQLConnectionString);
+                _SQLConnection = new SqlConnection(_SQLConnectionString);
                 _SQLConnection.Open();
                 ConnectionState= true;
                 return true;

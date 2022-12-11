@@ -27,26 +27,7 @@ namespace FoodeLive
         public MainWindow()
         {
             InitializeComponent();
-            /*DBConnection.Connect();
-            if (!AuthState.IsLoggedIn)
-                StayWindow();*/
         }
 
-        void StayWindow()
-        {
-            /*Login login = new Login();
-            login.ShowDialog();
-            if (!AuthState.IsLoggedIn)
-            {
-                MessageBoxResult dialogResult = MessageBox.Show("Bạn vẫn chưa đăng nhập được. Bạn muốn thoát chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (dialogResult == MessageBoxResult.No)
-                {
-                    login.Close();
-                    StayWindow();
-                }
-                else
-                    Close();
-            }*/
-        }
     }
 }

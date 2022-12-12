@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodeLive.Pages.Menu
 {
-    internal class Demo
+    public class Demo
     {
         public string Image { get; set; }
         public string Name { get; set; }

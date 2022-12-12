@@ -37,38 +37,18 @@
 
         <Separator Background="LightGray" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="3" Margin="0,0,0,1"/>
 
-        <ScrollViewer x:Name="ScrollViewLists" ScrollViewer.VerticalScrollBarVisibility="Auto" Padding="0,0,0,0" CanContentScroll="True" Grid.ColumnSpan="6" Visibility="Visible" Grid.Row="5" Grid.Column="1" >
-            <ItemsControl x:Name="FoodControl" ItemsSource="{Binding}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="10">
-                                <StackPanel>
-                                    <TextBlock Height="8"></TextBlock>
-                                    <Border Height="160" Width="185" BorderThickness="1" CornerRadius="8">
-                                        <Border.Background>
-                                            <ImageBrush x:Name="FoodImage" ImageSource="{Binding Image}" Stretch="Fill" />
-                                        </Border.Background>
-                                    </Border>
-                                    <TextBlock x:Name="Foodname"  HorizontalAlignment="Center"  TextTrimming="CharacterEllipsis" Text="{Binding Name}" VerticalAlignment="Top" Height="30" Width="193" Foreground="Black" FontSize="20" FontWeight="Bold" TextAlignment="Left" Grid.RowSpan="2" Margin="10,0,0,0"/>
-                                    <TextBlock x:Name="Price" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{Binding Price}" VerticalAlignment="Center" Height="35" Width="193" Foreground="Gray" FontSize="30" FontWeight="Bold" TextAlignment="Left" Margin="10,0,0,20"/>
-                                    <TextBlock></TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel>
-
-                        </WrapPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>
-
-
+        <ui:VirtualizingGridView x:Name="FoodControl" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Padding="0,0,0,0" Grid.Row="5" Grid.Column="1" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ui:CardColor Width="150" Subtitle="{Binding Price}" SubtitleFontSize="20" Title="{Binding Name}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                        <ui:CardColor.Brush>
+                            <ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill" />
+                        </ui:CardColor.Brush>
+                    </ui:CardColor>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ui:VirtualizingGridView>
+        
         <ui:Button Content="Thêm món" Icon="Add20" IconForeground="White" Foreground="White" Background="#ff7a00" Grid.Column="4" Grid.Row="6" VerticalAlignment="Top" Height="34" Width="122" FontSize="14" Grid.ColumnSpan="2" Click="Button_Click" />
 
         <WrapPanel Grid.Row="1" Grid.Column="1">

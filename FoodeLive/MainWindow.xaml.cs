@@ -1,6 +1,7 @@
 ﻿using FoodeLive.Auth;
 using FoodeLive.Database;
 using FoodeLive.Pages.Setting;
+using FoodeLive.utils;
 using FoodeLive.Windows.Auth;
 using FoodeLive.Windows.TableDetail;
 using System;

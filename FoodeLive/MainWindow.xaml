@@ -9,76 +9,76 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized"
+        DataContext="{StaticResource WindowUtils}"
         >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="{Binding NavWidth}" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Border BorderThickness="0,0,1,0" BorderBrush="LightGray">
-            
-        <StackPanel Grid.Column="0">
-            <Image Source="/src/logo_foode_live_big.png" />
-            <ListBox BorderThickness="0" Margin="0, 20,0,0" x:Name="navbar" SelectionChanged="navbar_SelectionChanged" Padding="0">
-                <ListBox.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="FontWeight" Value="SemiBold" />
-                    </Style>
-                </ListBox.Resources>
-                <ListBoxItem x:Name="home" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
-                    <Grid x:Name="navItem" Height="40" VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ui:SymbolIcon Symbol="Home24" Grid.Column="0"/>
-                        <TextBlock Text="Trang chủ" Grid.Column="1" />
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem x:Name="menu" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
-                    <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ui:SymbolIcon Symbol="List24" Grid.Column="0"/>
-                        <TextBlock Text="Thực đơn" Grid.Column="1" />
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem x:Name="history" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
-                    <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ui:SymbolIcon Symbol="History48" Grid.Column="0"/>
-                        <TextBlock Text="Lịch sử đơn hàng" Grid.Column="1" />
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem x:Name="report" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
-                    <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ui:SymbolIcon Symbol="ChartMultiple20" Grid.Column="0"/>
-                        <TextBlock Text="Báo cáo" Grid.Column="1" />
-                    </Grid>
-                </ListBoxItem>
-                <Separator />
-                <ListBoxItem x:Name="setting" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
-                    <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ui:SymbolIcon Symbol="Settings20" Grid.Column="0"/>
-                        <TextBlock Text="Cài đặt" Grid.Column="1" />
-                    </Grid>
-                </ListBoxItem>
-            </ListBox>
-        </StackPanel>
+            <StackPanel Grid.Column="0">
+                <Image Source="/src/logo_foode_live_big.png" />
+                <ListBox BorderThickness="0" Margin="0, 20,0,0" x:Name="navbar" SelectionChanged="navbar_SelectionChanged" Padding="0">
+                    <ListBox.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="SemiBold" />
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBoxItem x:Name="home" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
+                        <Grid x:Name="navItem" Height="40" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ui:SymbolIcon Symbol="Home24" Grid.Column="0"/>
+                            <TextBlock Text="Trang chủ" Grid.Column="1" />
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="menu" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
+                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ui:SymbolIcon Symbol="List24" Grid.Column="0"/>
+                            <TextBlock Text="Thực đơn" Grid.Column="1" />
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="history" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
+                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ui:SymbolIcon Symbol="History48" Grid.Column="0"/>
+                            <TextBlock Text="Lịch sử đơn hàng" Grid.Column="1" />
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="report" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
+                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ui:SymbolIcon Symbol="ChartMultiple20" Grid.Column="0"/>
+                            <TextBlock Text="Báo cáo" Grid.Column="1" />
+                        </Grid>
+                    </ListBoxItem>
+                    <Separator />
+                    <ListBoxItem x:Name="setting" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
+                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ui:SymbolIcon Symbol="Settings20" Grid.Column="0"/>
+                            <TextBlock Text="Cài đặt" Grid.Column="1" />
+                        </Grid>
+                    </ListBoxItem>
+                </ListBox>
+            </StackPanel>
         </Border>
 
         <Frame Grid.Column="1" x:Name="navframe" Padding="40,30,40,15"/>

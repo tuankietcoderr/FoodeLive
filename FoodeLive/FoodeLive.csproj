@@ -109,6 +109,12 @@
     <Compile Include="Pages\Home\Using.xaml.cs">
       <DependentUpon>Using.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderOrBook\Book.xaml.cs">
+      <DependentUpon>Book.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderOrBook\Order.xaml.cs">
+      <DependentUpon>Order.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Report\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
@@ -124,6 +130,7 @@
     <Compile Include="UserControls\LabelInput.xaml.cs">
       <DependentUpon>LabelInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="utils\WindowUtils.cs" />
     <Compile Include="Windows\Auth\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -136,6 +143,9 @@
     <Compile Include="Windows\TableDetail\Table_Foods.cs" />
     <Compile Include="Windows\TableDetail\Table_FoodDetail.xaml.cs">
       <DependentUpon>Table_FoodDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\OrderOrBook.xaml.cs">
+      <DependentUpon>OrderOrBook.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -192,15 +202,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Setting\PasswordChange.xaml">
+    <Page Include="Pages\OrderOrBook\Book.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrderOrBook\Order.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Setting\PasswordChange.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Setting\SettingP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Setting\UpdateForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Data.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Effect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,13 +242,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\TableDetail\Table_AddFood.xaml">
+    <Page Include="Windows\OrderOrBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\TableDetail\Table_FoodDetail.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Windows\TableDetail\Table_AddFood.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\TableDetail\Table_FoodDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -255,7 +285,6 @@
   <ItemGroup>
     <Folder Include="MVVM\ViewModel\" />
     <Folder Include="MVVM\View\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Windows\TableDetail\hamburgers.jpg" />

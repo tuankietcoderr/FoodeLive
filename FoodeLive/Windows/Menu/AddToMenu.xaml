@@ -3,15 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FoodeLive.Pages.Menu"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Pages.Menu.AddToMenu"
+        xmlns:local="clr-namespace:FoodeLive.Windows.Menu"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Windows.Menu.AddToMenu"
         mc:Ignorable="d"
         Title="AddToMenu" Height="400" Width="675"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
         >
-    <Border >
-        <Grid HorizontalAlignment="Center" Width="675">
+    <Border BorderThickness="2" BorderBrush="#ff7a00">
+        <Grid Background="Transparent" HorizontalAlignment="Center" Width="675">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="38*"/>
                 <ColumnDefinition Width="210*"/>

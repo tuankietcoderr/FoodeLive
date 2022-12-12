@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FoodeLive.Pages.Menu
+namespace FoodeLive.Windows.Menu
 {
     /// <summary>
     /// Interaction logic for AddToMenu.xaml
@@ -23,7 +23,7 @@ namespace FoodeLive.Pages.Menu
         {
             InitializeComponent();
         }
-
+        string filename;
         private void click_open(object sender, MouseButtonEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
@@ -33,9 +33,9 @@ namespace FoodeLive.Pages.Menu
 
             if(result == true)
             {
-                string filename = dialog.FileName;
+                filename = dialog.FileName;
                 MessageBox.Show(filename);
-
+                pic_add.Source = new BitmapImage(new Uri(filename));
             }
         }
 
@@ -46,12 +46,12 @@ namespace FoodeLive.Pages.Menu
 
         private void mouse_on(object sender, MouseEventArgs e)
         {
-           // pic_add.Source = new BitmapImage(new Uri (@"\\FoodeLive\MenuPage\edit.png"));
+           
         }
 
         private void mouse_leave(object sender, MouseEventArgs e)
         {
-           // pic_add.Source = new BitmapImage(new Uri());
+           
         }
     }
 }

@@ -84,6 +84,7 @@
     <Compile Include="Auth\AuthLogin.cs" />
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
+    <Compile Include="Windows\Menu\AddToMenu.xaml.cs">
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\VMOrderOrBook.cs" />
     <Compile Include="Pages\Menu\AddToMenu.xaml.cs">
@@ -120,13 +121,13 @@
     <Compile Include="Pages\Report\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setting\PasswordChange.xaml.cs">
+    <Compile Include="Windows\Setting\PasswordChange.xaml.cs">
       <DependentUpon>PasswordChange.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\SettingP.xaml.cs">
       <DependentUpon>SettingP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setting\UpdateForm.xaml.cs">
+    <Compile Include="Windows\Setting\UpdateForm.xaml.cs">
       <DependentUpon>UpdateForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LabelInput.xaml.cs">
@@ -168,7 +169,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Menu\AddToMenu.xaml">
+    <Page Include="Windows\Menu\AddToMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,7 +213,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Setting\PasswordChange.xaml">
+    <Page Include="Windows\Setting\PasswordChange.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -220,7 +221,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Setting\UpdateForm.xaml">
+    <Page Include="Windows\Setting\UpdateForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

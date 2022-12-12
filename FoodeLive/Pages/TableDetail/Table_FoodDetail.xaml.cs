@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodeLive.Windows.TableDetail;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,14 +11,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FoodeLive.Windows.TableDetail
+namespace FoodeLive.Pages.TableDetail
 {
     /// <summary>
     /// Interaction logic for Table_FoodDetail.xaml
     /// </summary>
-    public partial class Table_FoodDetail : Window
+    public partial class Table_FoodDetail : Page
     {
         public Table_FoodDetail()
         {
@@ -28,6 +30,7 @@ namespace FoodeLive.Windows.TableDetail
                 FoodControl.ItemsSource = foodsOfTable;
             }
         }
+
         private List<Table_Foods> foodsOfTable = new List<Table_Foods>();
         private List<Table_Foods> GetFood()
         {

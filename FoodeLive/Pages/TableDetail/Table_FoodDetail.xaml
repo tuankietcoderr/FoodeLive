@@ -1,13 +1,15 @@
-﻿<Window x:Class="FoodeLive.Windows.TableDetail.Table_FoodDetail"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FoodeLive.Windows.TableDetail"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
-        mc:Ignorable="d"
-        Title="Table_FoodDetail" Height="700" Width="1230" WindowStartupLocation="CenterScreen">
-    <Grid>
+﻿<Page x:Class="FoodeLive.Pages.TableDetail.Table_FoodDetail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FoodeLive.Pages.TableDetail"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"   
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Table_FoodDetail">
+
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -55,16 +57,16 @@
 
         <Grid Grid.Row="2" VerticalAlignment="Top" Margin="0, 5, 0, 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="12*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="1" Text="Số món: 2" Foreground="#FF7C7676" FontWeight="Medium" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <TextBlock Grid.Column="2" Text="Tổng tiền: 40,000 VND" Foreground="#FF7C7676" FontWeight="Medium" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <ui:Button x:Name="AddFoodBtn" Grid.Column="3" Content="Thêm món" FontWeight="Medium"  Foreground="White" Background="#ff7a00"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="34" Width="122" FontSize="14" Click="AddFoodBtn_Click"/>
-            <ui:Button Grid.Column="4" Content="Thông báo" FontWeight="Medium" Foreground="Black" Background="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Height="34" Width="122" FontSize="14"/>
+            <ui:Button x:Name="AddFoodBtn" Grid.Column="3" Content="Thêm món" FontWeight="Medium"  Foreground="White" Background="#ff7a00"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="34" Width="100" FontSize="14" Click="AddFoodBtn_Click"/>
+            <ui:Button Grid.Column="4" Content="Thông báo" FontWeight="Medium" Foreground="Black" Background="White"  VerticalAlignment="Center" HorizontalAlignment="Left" Height="34" Width="100" FontSize="14"/>
         </Grid>
     </Grid>
-</Window>
+</Page>

@@ -44,7 +44,7 @@ namespace FoodeLive.utils
         {
             get
             {
-                return 150;
+                return 200;
             }
         }
 

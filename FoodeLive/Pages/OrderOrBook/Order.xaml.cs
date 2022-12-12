@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodeLive.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace FoodeLive.Pages.OrderOrBook
         public Order()
         {
             InitializeComponent();
+        }
+
+        public VMOrderOrBook ViewModel
+        {
+            get;
+        }
+
+        public Order(VMOrderOrBook viewModel)
+        {
+            ViewModel= viewModel;
+            InitializeComponent();
+            this.DataContext = ViewModel;
         }
     }
 }

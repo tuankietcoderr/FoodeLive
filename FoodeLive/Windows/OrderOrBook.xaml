@@ -8,12 +8,9 @@
         Icon="/src/icon_foode_live.png"
         WindowStartupLocation="CenterScreen"
         Title="Order/Đặt bàn" Height="450" Width="800">
-    <Window.DataContext>
-        <Binding Source="{StaticResource WindowUtils}"/>
-    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding NavWidth}"/>
+            <ColumnDefinition Width="{Binding NavWidth}" DataContext="{StaticResource WindowUtils}"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Border BorderThickness="0,0,1,0" BorderBrush="LightGray">

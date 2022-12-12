@@ -15,7 +15,7 @@ namespace FoodeLive.MVVM.Model
             MaBanAn = string.Empty;
             Loai = string.Empty;
         }
-        MBanAn(string MaBanAn, string Loai)
+        public MBanAn(string MaBanAn, string Loai)
         {
             this.MaBanAn = MaBanAn;
             this.Loai = Loai;

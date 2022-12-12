@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FoodeLive.Pages.Menu
+namespace FoodeLive.Windows.Menu
 {
     /// <summary>
     /// Interaction logic for AddToMenu.xaml

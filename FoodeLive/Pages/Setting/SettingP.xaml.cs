@@ -27,13 +27,13 @@ namespace FoodeLive.Pages.Setting
 
         private void click_upd_inf(object sender, MouseButtonEventArgs e)
         {
-            Setting.UpdateForm updateForm = new Setting.UpdateForm();
+            Windows.Setting.UpdateForm updateForm = new Windows.Setting.UpdateForm();
             updateForm.Show();
         }
 
         private void chang_pass(object sender, MouseButtonEventArgs e)
         {
-            Pages.Setting.PasswordChange passwordChange = new PasswordChange();
+            Windows.Setting.PasswordChange passwordChange = new Windows.Setting.PasswordChange();
             passwordChange.Show();
         }
 

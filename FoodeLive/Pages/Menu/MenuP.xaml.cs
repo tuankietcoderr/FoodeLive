@@ -70,7 +70,7 @@ namespace FoodeLive.Pages.Menu
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Pages.Menu.AddToMenu addToMenu = new Pages.Menu.AddToMenu();
+            Windows.Menu.AddToMenu addToMenu = new Windows.Menu.AddToMenu();
             addToMenu.Show();
         }
     }

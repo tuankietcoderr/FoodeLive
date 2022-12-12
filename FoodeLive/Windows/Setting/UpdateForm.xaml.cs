@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FoodeLive.Pages.Setting
+namespace FoodeLive.Windows.Setting
 {
     /// <summary>
     /// Interaction logic for UpdateForm.xaml

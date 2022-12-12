@@ -23,7 +23,7 @@ namespace FoodeLive.Windows.Menu
         {
             InitializeComponent();
         }
-
+        string filename;
         private void click_open(object sender, MouseButtonEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
@@ -33,9 +33,9 @@ namespace FoodeLive.Windows.Menu
 
             if(result == true)
             {
-                string filename = dialog.FileName;
+                filename = dialog.FileName;
                 MessageBox.Show(filename);
-
+                pic_add.Source = new BitmapImage(new Uri(filename));
             }
         }
 
@@ -46,12 +46,12 @@ namespace FoodeLive.Windows.Menu
 
         private void mouse_on(object sender, MouseEventArgs e)
         {
-           // pic_add.Source = new BitmapImage(new Uri (@"\\FoodeLive\MenuPage\edit.png"));
+           
         }
 
         private void mouse_leave(object sender, MouseEventArgs e)
         {
-           // pic_add.Source = new BitmapImage(new Uri());
+           
         }
     }
 }

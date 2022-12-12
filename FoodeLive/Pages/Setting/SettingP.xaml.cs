@@ -42,36 +42,66 @@ namespace FoodeLive.Pages.Setting
 
         }
 
+
+
+
         private void on_mouse(object sender, MouseEventArgs e)
         {
             update.FontStyle = FontStyles.Oblique;
+            update.TextDecorations = TextDecorations.Underline;
         }
 
         private void on_mouse1(object sender, MouseEventArgs e)
         {
             change.FontStyle = FontStyles.Oblique;
+            change.TextDecorations = TextDecorations.Underline;
         }
 
         private void on_mouse2(object sender, MouseEventArgs e)
         {
             logout.FontStyle = FontStyles.Oblique;
+            logout.TextDecorations = TextDecorations.Underline;
+        }
+        private void on_mouse3(object sender, MouseEventArgs e)
+        {
+            static_.FontStyle = FontStyles.Oblique;
+            static_.TextDecorations = TextDecorations.Underline;
+        }
+        private void on_mouse4(object sender, MouseEventArgs e)
+        {
+            problem.FontStyle = FontStyles.Oblique;
+            problem.TextDecorations = TextDecorations.Underline;
         }
 
-        
 
         private void l_m(object sender, MouseEventArgs e)
         {
             update.FontStyle = FontStyles.Normal;
+            update.TextDecorations = null;
         }
 
         private void l_m1(object sender, MouseEventArgs e)
         {
             change.FontStyle = FontStyles.Normal;
+            change.TextDecorations = null;
         }
 
         private void l_m2(object sender, MouseEventArgs e)
         {
             logout.FontStyle = FontStyles.Normal;
+            logout.TextDecorations = null;
+        }
+
+        private void l_m3(object sender, MouseEventArgs e)
+        {
+            static_.FontStyle = FontStyles.Normal;
+            static_.TextDecorations = null;
+        }
+
+        private void l_m4(object sender, MouseEventArgs e)
+        {
+            problem.FontStyle = FontStyles.Normal;
+            problem.TextDecorations = null;
         }
     }
 }

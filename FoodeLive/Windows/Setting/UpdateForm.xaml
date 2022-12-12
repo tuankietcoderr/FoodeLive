@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="UpdateForm" Height="660" Width="360"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
     >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,22 +23,30 @@
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="38,4,34,0"  >
             <TextBlock Text="Cập nhật thông tin" Height="47" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
             <TextBlock Height="32"></TextBlock>
+            
             <TextBlock Text="Họ và tên" Height="34" FontSize="20" FontWeight="Bold"/>
             <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhập vào họ và tên" x:Name="Name" Height="34" VerticalAlignment="Top" SelectionBrush="#FFFF7A00"  />
+            
             <TextBlock Text="Địa chỉ" Height="34" FontSize="20" FontWeight="Bold"/>
             <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhập vào địa chỉ" x:Name="adress" Height="34" VerticalAlignment="Top" SelectionBrush="#FFFF7A00"  />
+            
             <TextBlock Text="Chọn ảnh đại diện" Height="34" FontSize="20" FontWeight="Bold"/>
             <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhấp đôi vào để chọn hình ảnh" x:Name="pic" Height="34" VerticalAlignment="Top" IsReadOnly="True" MouseDoubleClick="chose_pic" SelectionBrush="#FFFF7A00" />
+            
             <TextBlock Text="Số điện thoại" Height="34" FontSize="20" FontWeight="Bold"/>
             <ui:TextBox Background="WhiteSmoke" Foreground="Gray"  PlaceholderText="Nhập vào số điện thoại" x:Name="number" Height="34" VerticalAlignment="Top" SelectionBrush="#FFFF7A00"  />
             <TextBlock Text="Ngày sinh" Height="34" FontSize="20" FontWeight="Bold"/>
+            
             <DatePicker/>
+            
             <TextBlock Text="Giới tính" Height="34" FontSize="20" FontWeight="Bold"/>
+            
             <WrapPanel Height="74">
                 <RadioButton FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Height="41" Width="97" IsChecked="True" Background="#FFFF7A00">Nam</RadioButton>
                 <RadioButton FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Height="41" Width="97" Background="#FFFF7A00">Nữ</RadioButton>
             </WrapPanel>
-            <ui:Button HorizontalAlignment="Right" Content="Cập nhật" Background="#ff7a00" Foreground="White" Width="111"></ui:Button>
+            
+            <ui:Button HorizontalAlignment="Right" Content="Cập nhật" Background="#ff7a00" Foreground="White" Width="111" Click="Button_Click"></ui:Button>
 
         </StackPanel>
     </Grid>

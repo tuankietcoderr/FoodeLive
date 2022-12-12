@@ -9,9 +9,10 @@
         Title="AddToMenu" Height="400" Width="675"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
         >
-    <Border >
-        <Grid HorizontalAlignment="Center" Width="675">
+    <Border BorderThickness="2" BorderBrush="#ff7a00">
+        <Grid Background="Transparent" HorizontalAlignment="Center" Width="675">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="38*"/>
                 <ColumnDefinition Width="210*"/>

@@ -2,6 +2,7 @@
 using FoodeLive.Database;
 using FoodeLive.Pages.Setting;
 using FoodeLive.Windows.Auth;
+using FoodeLive.Windows.TableDetail;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

@@ -1,5 +1,6 @@
 ﻿using FoodeLive.Auth;
 using FoodeLive.Database;
+using FoodeLive.Pages.Setting;
 using FoodeLive.Windows.Auth;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,36 @@ namespace FoodeLive
         public MainWindow()
         {
             InitializeComponent();
+            home.IsSelected = true;
         }
 
+        private void navbar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBoxItem selected = navbar.SelectedItem as ListBoxItem;
+            if (selected == null)
+                return;
+            string name = selected.Name;
+            switch (name)
+            {
+                case "home":
+                    navframe.Navigate(new Pages.Home.Container());
+                    break;
+                case "menu":
+                    navframe.Navigate(new Pages.Menu.All());
+                    break;
+                case "history":
+                    navframe.Navigate(new Pages.History.All());
+                        break;
+                case "report":
+                    navframe.Navigate(new Pages.Report.All());
+                    break;
+                case "setting":
+                    navframe.Navigate(new Pages.Setting.SettingP());
+                    break;
+                default:
+                    navframe.Navigate(new Pages.Home.All());
+                    break;
+            }
+        }
     }
 }

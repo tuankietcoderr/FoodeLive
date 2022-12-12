@@ -48,7 +48,12 @@ namespace FoodeLive.Windows.Auth
 
             if(CheckSuccessValidate(password_case) && CheckSuccessValidate(password_length) && CheckSuccessValidate(password_match) && CheckSuccessValidate (password_specha))
             {
-                AuthSignUp.CreateAccount(username, password);
+                if(AuthSignUp.CreateAccount(username, password))
+                {
+                    MainWindow mainWindow = new MainWindow(); ;
+                    this.Close();
+                    mainWindow.Show();
+                }
             }
             else
                 System.Windows.MessageBox.Show("Vui lòng điền phù hợp", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);

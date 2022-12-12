@@ -91,10 +91,34 @@
     <Compile Include="MenuPage\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Setting\SettingP.xaml.cs">
+    <Compile Include="Pages\History\All.xaml.cs">
+      <DependentUpon>All.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home\All.xaml.cs">
+      <DependentUpon>All.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home\Booked.xaml.cs">
+      <DependentUpon>Booked.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home\Container.xaml.cs">
+      <DependentUpon>Container.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home\Empty.xaml.cs">
+      <DependentUpon>Empty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home\Using.xaml.cs">
+      <DependentUpon>Using.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\All.xaml.cs">
+      <DependentUpon>All.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Report\All.xaml.cs">
+      <DependentUpon>All.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\SettingP.xaml.cs">
       <DependentUpon>SettingP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Setting\UpdateForm.xaml.cs">
+    <Compile Include="Pages\Setting\UpdateForm.xaml.cs">
       <DependentUpon>UpdateForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LabelInput.xaml.cs">
@@ -133,11 +157,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Setting\SettingP.xaml">
+    <Page Include="Pages\History\All.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Setting\UpdateForm.xaml">
+    <Page Include="Pages\Home\All.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home\Booked.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home\Container.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home\Empty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home\Using.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\All.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Report\All.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Setting\SettingP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Setting\UpdateForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,7 +240,6 @@
   <ItemGroup>
     <Folder Include="MVVM\ViewModel\" />
     <Folder Include="MVVM\View\" />
-    <Folder Include="Pages\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
@@ -194,7 +249,7 @@
     <Resource Include="MenuPage\fooddome.png" />
     <Resource Include="MenuPage\food.png" />
     <Resource Include="MenuPage\edit.png" />
-    <Resource Include="Setting\person.png" />
+    <Resource Include="Pages\Setting\person.png" />
     <Content Include="utils\QUANLYNHAHANG.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

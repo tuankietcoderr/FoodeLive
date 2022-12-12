@@ -3,8 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FoodeLive.Setting"
-      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Setting.SettingP"
+      xmlns:local="clr-namespace:FoodeLive.Pages.Setting"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Pages.Setting.SettingP"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingP">
@@ -29,7 +29,7 @@
 
         <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="LightGray" CornerRadius="10">
             <Border.Background>
-                <ImageBrush ImageSource="/Setting/person.png"/>
+                <ImageBrush ImageSource="./person.png"/>
             </Border.Background>
         </Border>
 

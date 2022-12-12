@@ -23,6 +23,12 @@ namespace FoodeLive.Windows
     {
         public string MaBanAn { get; set; }
 
+        public OrderOrBook()
+        {
+            InitializeComponent();
+            order.IsSelected= true;
+        }
+
         public VMOrderOrBook ViewModel
         {
             get;

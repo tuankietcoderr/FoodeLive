@@ -44,7 +44,7 @@ namespace FoodeLive
                     navframe.Navigate(new Pages.Home.Container());
                     break;
                 case "menu":
-                    navframe.Navigate(new Pages.Menu.All());
+                    navframe.Navigate(new Pages.Menu.MenuP());
                     break;
                 case "history":
                     navframe.Navigate(new Pages.History.All());

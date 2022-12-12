@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FoodeLive.MenuPage
+namespace FoodeLive.Pages.Menu
 {
     /// <summary>
     /// Interaction logic for MenuP.xaml
@@ -36,14 +36,14 @@ namespace FoodeLive.MenuPage
         {
             return new List<Demo>()
             {
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND"),
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND"),
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND"),
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND"),
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND"),
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND"),
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND"),
-                new Demo("/MenuPage/fooddome.png","Demo1","20,000 VND")
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND"),
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND"),
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND"),
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND"),
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND"),
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND"),
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND"),
+                new Demo("/Pages/Menu/fooddome.png","Demo1","20,000 VND")
             };
         }
         bool isClick = false;
@@ -70,7 +70,7 @@ namespace FoodeLive.MenuPage
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MenuPage.AddToMenu addToMenu = new MenuPage.AddToMenu();
+            Pages.Menu.AddToMenu addToMenu = new Pages.Menu.AddToMenu();
             addToMenu.Show();
         }
     }

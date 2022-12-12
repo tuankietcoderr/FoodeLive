@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wu="clr-namespace:FoodeLive.utils"
+                    xmlns:obvm="clr-namespace:FoodeLive.MVVM.ViewModel"
                     >
 
     <wu:WindowUtils x:Key="WindowUtils"/>
+    <obvm:VMOrderOrBook x:Key="VMOrderOrBook" />
 </ResourceDictionary>

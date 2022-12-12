@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FoodeLive.MVVM.ViewModel;
 using FoodeLive.Pages.OrderOrBook;
 
 namespace FoodeLive.Windows
@@ -20,8 +21,21 @@ namespace FoodeLive.Windows
     /// </summary>
     public partial class OrderOrBook : Window
     {
+        public string MaBanAn { get; set; }
+
         public OrderOrBook()
         {
+            InitializeComponent();
+            order.IsSelected= true;
+        }
+
+        public VMOrderOrBook ViewModel
+        {
+            get;
+        }
+        public OrderOrBook(VMOrderOrBook viewModel)
+        {
+            ViewModel = viewModel;
             InitializeComponent();
             order.IsSelected= true;
         }
@@ -36,7 +50,7 @@ namespace FoodeLive.Windows
             switch (name)
             {
                 case "order":
-                    navframe.Navigate(new Order());
+                    navframe.Navigate(new Order(ViewModel));
                     break;
                 case "book":
                     navframe.Navigate(new Book());

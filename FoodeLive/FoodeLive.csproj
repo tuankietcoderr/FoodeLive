@@ -85,6 +85,9 @@
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
     <Compile Include="Windows\Menu\AddToMenu.xaml.cs">
+    <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\VMOrderOrBook.cs" />
+    <Compile Include="Pages\Menu\AddToMenu.xaml.cs">
       <DependentUpon>AddToMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu\Demo.cs" />
@@ -283,7 +286,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MVVM\ViewModel\" />
     <Folder Include="MVVM\View\" />
   </ItemGroup>
   <ItemGroup>

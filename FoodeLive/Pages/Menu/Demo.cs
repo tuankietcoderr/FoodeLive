@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodeLive.MenuPage
+namespace FoodeLive.Pages.Menu
 {
     internal class Demo
     {

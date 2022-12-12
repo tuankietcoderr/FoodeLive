@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FoodeLive.Pages.Menu
+namespace FoodeLive.Pages.Setting
 {
     /// <summary>
-    /// Interaction logic for All.xaml
+    /// Interaction logic for PasswordChange.xaml
     /// </summary>
-    public partial class All : Page
+    public partial class PasswordChange : Window
     {
-        public All()
+        public PasswordChange()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

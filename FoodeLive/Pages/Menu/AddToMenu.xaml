@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FoodeLive.MenuPage"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.MenuPage.AddToMenu"
+        xmlns:local="clr-namespace:FoodeLive.Pages.Menu"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Pages.Menu.AddToMenu"
         mc:Ignorable="d"
         Title="AddToMenu" Height="400" Width="675"
         WindowStyle="None"
@@ -33,7 +33,7 @@
 
             <TextBlock Grid.ColumnSpan="3" Grid.Column="1" Text="Thêm món ăn" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Height="40" Grid.Row="1"/>
 
-            <Image x:Name="pic_add" Source="/MenuPage/food.png" HorizontalAlignment="Center" Height="184" VerticalAlignment="Top" Width="210" MouseDown="click_open" OpacityMask="#FFCF1919" Grid.Column="1" Grid.RowSpan="2" Grid.Row="2" Margin="0,10,0,0" MouseEnter="mouse_on" MouseLeave="mouse_leave" />
+            <Image x:Name="pic_add" Source="/Pages/Menu/food.png" HorizontalAlignment="Center" Height="184" VerticalAlignment="Top" Width="210" MouseDown="click_open" OpacityMask="#FFCF1919" Grid.Column="1" Grid.RowSpan="2" Grid.Row="2" Margin="0,10,0,0" MouseEnter="mouse_on" MouseLeave="mouse_leave" />
 
             <ui:TextBox Background="WhiteSmoke" Grid.Column="3" Foreground="Gray"  PlaceholderText="Tên món ăn" x:Name="name" Grid.Row="2" Height="34" Margin="0,47,1,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.RowSpan="2"  />
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace FoodeLive.Pages.Home
 {
@@ -23,6 +24,15 @@ namespace FoodeLive.Pages.Home
         public Empty()
         {
             InitializeComponent();
+        }
+        private void empty_table_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Card card = all_table.SelectedItem as Card;
+            if (card == null)
+                return;
+            Windows.OrderOrBook orderOrBook = new Windows.OrderOrBook();
+            orderOrBook.ShowDialog();
+
         }
     }
 }

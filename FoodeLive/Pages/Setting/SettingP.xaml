@@ -25,7 +25,7 @@
             <RowDefinition Height="108*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Tài khoản" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold" Width="173" Height="34"/>
+        <TextBlock Text="Tài khoản" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold" Width="173" Height="34"/>
 
         <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="LightGray" CornerRadius="10">
             <Border.Background>

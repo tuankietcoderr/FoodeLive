@@ -84,11 +84,11 @@
     <Compile Include="Auth\AuthLogin.cs" />
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
-    <Compile Include="MenuPage\AddToMenu.xaml.cs">
+    <Compile Include="Pages\Menu\AddToMenu.xaml.cs">
       <DependentUpon>AddToMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MenuPage\Demo.cs" />
-    <Compile Include="MenuPage\MenuP.xaml.cs">
+    <Compile Include="Pages\Menu\Demo.cs" />
+    <Compile Include="Pages\Menu\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\History\All.xaml.cs">
@@ -109,11 +109,11 @@
     <Compile Include="Pages\Home\Using.xaml.cs">
       <DependentUpon>Using.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Menu\All.xaml.cs">
-      <DependentUpon>All.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Report\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\PasswordChange.xaml.cs">
+      <DependentUpon>PasswordChange.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\SettingP.xaml.cs">
       <DependentUpon>SettingP.xaml</DependentUpon>
@@ -149,11 +149,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuPage\AddToMenu.xaml">
+    <Page Include="Pages\Menu\AddToMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MenuPage\MenuP.xaml">
+    <Page Include="Pages\Menu\MenuP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,11 +181,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Menu\All.xaml">
+    <Page Include="Pages\Report\All.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Report\All.xaml">
+    <Page Include="Pages\Setting\PasswordChange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,9 +246,9 @@
     <Resource Include="src\icon_foode_live.png" />
     <Resource Include="src\logo_foode_live_big.png" />
     <Resource Include="src\logo_foode_live_small.png" />
-    <Resource Include="MenuPage\fooddome.png" />
-    <Resource Include="MenuPage\food.png" />
-    <Resource Include="MenuPage\edit.png" />
+    <Resource Include="Pages\Menu\fooddome.png" />
+    <Resource Include="Pages\Menu\food.png" />
+    <Resource Include="Pages\Menu\edit.png" />
     <Resource Include="Pages\Setting\person.png" />
     <Content Include="utils\QUANLYNHAHANG.sql" />
   </ItemGroup>

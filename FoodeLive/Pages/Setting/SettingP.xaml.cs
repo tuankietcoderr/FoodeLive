@@ -33,7 +33,8 @@ namespace FoodeLive.Pages.Setting
 
         private void chang_pass(object sender, MouseButtonEventArgs e)
         {
-
+            Pages.Setting.PasswordChange passwordChange = new PasswordChange();
+            passwordChange.Show();
         }
 
         private void LogOut(object sender, MouseButtonEventArgs e)
@@ -43,17 +44,17 @@ namespace FoodeLive.Pages.Setting
 
         private void on_mouse(object sender, MouseEventArgs e)
         {
-            update.FontStyle = FontStyles.Italic;
+            update.FontStyle = FontStyles.Oblique;
         }
 
         private void on_mouse1(object sender, MouseEventArgs e)
         {
-            change.FontStyle = FontStyles.Italic;
+            change.FontStyle = FontStyles.Oblique;
         }
 
         private void on_mouse2(object sender, MouseEventArgs e)
         {
-            logout.FontStyle = FontStyles.Italic;
+            logout.FontStyle = FontStyles.Oblique;
         }
 
         

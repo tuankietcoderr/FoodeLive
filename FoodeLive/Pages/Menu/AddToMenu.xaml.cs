@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FoodeLive.MenuPage
+namespace FoodeLive.Pages.Menu
 {
     /// <summary>
     /// Interaction logic for AddToMenu.xaml
@@ -46,7 +46,7 @@ namespace FoodeLive.MenuPage
 
         private void mouse_on(object sender, MouseEventArgs e)
         {
-            //pic_add.Source = new BitmapImage(new Uri (@"\\FoodeLive\MenuPage\edit.png"));
+           // pic_add.Source = new BitmapImage(new Uri (@"\\FoodeLive\MenuPage\edit.png"));
         }
 
         private void mouse_leave(object sender, MouseEventArgs e)

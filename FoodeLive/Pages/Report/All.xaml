@@ -4,11 +4,98 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FoodeLive.Pages.Report"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="All">
 
-    <Grid>
-        
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="month" Grid.Column="1" BorderBrush="#ff7a00" HorizontalAlignment="Left"  Width="218" Height="53">
+                <ComboBoxItem FontFamily="Bold" Content="Tháng" IsSelected="True" Visibility="Hidden"></ComboBoxItem>
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+                <ComboBoxItem>5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+                <ComboBoxItem>11</ComboBoxItem>
+                <ComboBoxItem>12</ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="year" Grid.Column="1" Margin="100, 0, 0, 0" Grid.ColumnSpan="2"  BorderBrush="#ff7a00" HorizontalAlignment="Left"  Width="218" Height="53">
+                <ComboBoxItem>2019</ComboBoxItem>
+                <ComboBoxItem>2020</ComboBoxItem>
+                <ComboBoxItem>2021</ComboBoxItem>
+                <ComboBoxItem>2022</ComboBoxItem>
+                <ComboBoxItem FontFamily="Bold" Content="Năm" IsSelected="True" Visibility="Hidden"></ComboBoxItem>
+            </ComboBox>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="1" Background="#FF6CB570" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.3*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Tổng doanh thu" FontSize="20" FontWeight="Medium" Opacity="0.8" VerticalAlignment="Center" Margin="30, 0,0, 0"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="30.000.000 VND" FontSize="40" FontWeight="Medium" Opacity="0.8" HorizontalAlignment="Center" VerticalAlignment="Top" ></TextBlock>
+                </Grid>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2" Background="#FF6CB570" Margin="10" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Doanh thu tháng trước" FontSize="20" FontWeight="Medium" Opacity="0.8" VerticalAlignment="Center" Margin="30, 0,0, 0"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="30.000.000 VND" FontSize="40" FontWeight="Medium" Opacity="0.8" HorizontalAlignment="Center" VerticalAlignment="Top" ></TextBlock>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" Background="#FF6CB570" Margin="10" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Chênh lệch" FontSize="20" FontWeight="Medium" Opacity="0.8" VerticalAlignment="Center" Margin="30, 0,0, 0"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="0 VND" FontSize="40" FontWeight="Medium" Opacity="0.8" HorizontalAlignment="Center" VerticalAlignment="Top" ></TextBlock>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2" Background="#FF6CB570" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Trung bình một ngày" FontSize="20" FontWeight="Medium" Opacity="0.8" VerticalAlignment="Center" Margin="30, 0,0, 0"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="3.000.000 VND" FontSize="40" FontWeight="Medium" Opacity="0.8" HorizontalAlignment="Center" VerticalAlignment="Top" ></TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Page>

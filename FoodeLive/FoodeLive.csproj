@@ -130,6 +130,13 @@
     <Compile Include="Windows\Auth\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\TableDetail\Table_AddFood.xaml.cs">
+      <DependentUpon>Table_AddFood.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TableDetail\Table_Foods.cs" />
+    <Compile Include="Windows\TableDetail\Table_FoodDetail.xaml.cs">
+      <DependentUpon>Table_FoodDetail.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -209,6 +216,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\TableDetail\Table_AddFood.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TableDetail\Table_FoodDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -243,6 +258,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Windows\TableDetail\hamburgers.jpg" />
     <Resource Include="src\icon_foode_live.png" />
     <Resource Include="src\logo_foode_live_big.png" />
     <Resource Include="src\logo_foode_live_small.png" />

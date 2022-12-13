@@ -32,7 +32,7 @@ namespace FoodeLive
         {
             InitializeComponent();
             home.IsSelected = true;
-            MessageBox.Show(DataProvider.Ins.DB.BanAns.ToList().First().MaBanAn);
+            MessageBox.Show(DataProvider.Ins.DB.MonAns.ToList().First().MaMonAn);
         }
 
         ~MainWindow() { }

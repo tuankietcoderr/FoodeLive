@@ -3,12 +3,79 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FoodeLive.Pages.History"
+      xmlns:local="clr-namespace:FoodeLive.Pages.History" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="All">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid VerticalAlignment="Center" Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                   
+                    <ui:Button Icon="CalendarArrowRight16"
+                        Grid.Column="0" 
+                               Content="Ngày hóa đơn" 
+                               Background="#FF7A00" 
+                               Foreground="#fff" 
+                               FontSize="12" 
+                               Height="{Binding Height, ElementName=search_tb}" 
+                               Padding="20,0" 
+                               HorizontalAlignment="Right" 
+                               PressedBorderBrush="Transparent" 
+                               PressedForeground="#FF7A00" 
+                               MouseOverBackground="#FF7A00" 
+                               BorderThickness="0"/>
+
+                </Grid>
+                 <Grid Grid.Column="2" VerticalAlignment="Center" Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <ui:TextBox Icon="Search20" PlaceholderText="Bàn 31, bàn 32..." x:Name="search_tb" Height="35"/>
+                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" Height="{Binding Height, ElementName=search_tb}" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0"/>
+                </Grid>
+            </Grid>
+            <Separator Background="LightGray" />
+            
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="ddf" 
+                   Foreground="Black" 
+                   Grid.Row="1" 
+                   x:Name="time_title" 
+                   FontWeight="Bold" 
+                   FontSize="20" />
+            <ListView>
+                <ListViewItem>
+                    <StackPanel Orientation="Vertical">
+                           <TextBlock>Green</TextBlock>
+                        <TextBlock>hii</TextBlock>
+                        <Button>
+                            
+                        </Button>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+            
+
+        </StackPanel>
         
+
+
     </Grid>
 </Page>

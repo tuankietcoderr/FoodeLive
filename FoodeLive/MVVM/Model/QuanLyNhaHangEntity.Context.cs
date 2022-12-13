@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FoodeLive
+namespace FoodeLive.MVVM.Model
 {
     using System;
     using System.Data.Entity;

@@ -13,10 +13,10 @@
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView x:Name="all_table" ItemsSource="{Binding ListBanAn}" Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
+        <ui:VirtualizingGridView x:Name="all_table" ItemsSource="{Binding ListBanAn}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Tag="{Binding MaBanAn}" Background="#fff" BorderThickness="0" Width="150" PreviewMouseDown="table_PreviewMouseDown">
+                    <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Tag="{Binding MaBanAn}" Background="#fff" BorderThickness="0" Width="150">
                         <Grid HorizontalAlignment="Left" Height="100">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.5*" />

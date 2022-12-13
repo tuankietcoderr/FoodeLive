@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Icon="/src/icon_foode_live.png"
         WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource TableViewModel}"
+        x:Name="OrderWindow"
         Title="Order/Đặt bàn" Height="720" Width="1280">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -56,7 +58,7 @@
                 </ListBox>
             </StackPanel>
         </Border>
-        <ui:Button x:Name="delete_table" Click="delete_table_Click" Margin="0 10" Content="Xóa bàn" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="Red" Foreground="#fff" BorderThickness="0" Icon="Delete28" IconForeground="#fff" Padding="30 6" PressedForeground="Red"/>
+        <ui:Button Command="{Binding DeleteTableCommand}" CommandParameter="{Binding ElementName=OrderWindow}" x:Name="delete_table" Margin="0 10" Content="Xóa bàn" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="Red" Foreground="#fff" BorderThickness="0" Icon="Delete28" IconForeground="#fff" Padding="30 6" PressedForeground="Red"/>
         <Frame x:Name="navframe" Grid.Column="1" Margin="20 10"/>
     </Grid>
 </Window>

@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wu="clr-namespace:FoodeLive.utils"
                     xmlns:ovm="clr-namespace:FoodeLive.MVVM.ViewModel.VMTableSlice"
-                    xmlns:tableviewmodel="clr-namespace:FoodeLive.MVVM.ViewModel"
+                    xmlns:viewmodel="clr-namespace:FoodeLive.MVVM.ViewModel"
                     >
 
     <wu:WindowUtils x:Key="WindowUtils"/>
@@ -10,5 +10,6 @@
     <ovm:VMOrder x:Key="VMOrder" />
     <ovm:VMBook x:Key="VMBook" />
     <ovm:VMBookDetailOrder x:Key="VMBookDetailOrder" />
-    <tableviewmodel:TableViewModel x:Key="TableViewModel"/>
+    <viewmodel:TableViewModel x:Key="TableViewModel"/>
+    <viewmodel:FoodViewModel x:Key="FoodViewModel" />
 </ResourceDictionary>

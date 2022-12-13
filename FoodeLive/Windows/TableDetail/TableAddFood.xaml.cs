@@ -25,7 +25,7 @@ namespace FoodeLive.Windows.TableDetail
             foodsOfTable = GetFood();
             if (foodsOfTable.Count > 0)
             {
-                FoodControl.ItemsSource = foodsOfTable;
+                //FoodControl.ItemsSource = foodsOfTable;
             }
         }
 

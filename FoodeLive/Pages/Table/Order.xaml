@@ -6,6 +6,7 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{StaticResource TableViewModel}"
       Title="Order">
 
     <Grid>
@@ -16,7 +17,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <TextBlock Text="Bàn " FontSize="44" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Margin="6,0,0,0" Padding="0, 0, 0, 20">
-                    <TextBlock Text="{Binding MaBanAn}"/>
+                    <TextBlock Text="{Binding MaBanAn, Mode=OneTime}"/>
                 </TextBlock>
             <Separator Width="200" HorizontalAlignment="Left"/>
         </StackPanel>

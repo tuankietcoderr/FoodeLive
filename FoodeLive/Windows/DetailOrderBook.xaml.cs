@@ -86,17 +86,5 @@ namespace FoodeLive.Windows
                     break;
             }
         }
-
-        void DeleteTable()
-        {
-            
-        }
-
-        private void delete_table_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult msgRes = MessageBox.Show("Bạn chắc chắn muốn xóa bàn này chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (msgRes == MessageBoxResult.Yes)
-                DeleteTable();
-        }
     }
 }

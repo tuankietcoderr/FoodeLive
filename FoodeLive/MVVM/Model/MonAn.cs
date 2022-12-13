@@ -7,28 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FoodeLive
+namespace FoodeLive.MVVM.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class HoaDon
+    public partial class MonAn
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HoaDon()
+        public MonAn()
         {
             this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
     
-        public int SoHoaDon { get; set; }
-        public Nullable<System.DateTime> NgayLapHoaDon { get; set; }
-        public string MaBanAn { get; set; }
-        public string MaNV { get; set; }
-        public Nullable<decimal> TriGia { get; set; }
+        public string MaMonAn { get; set; }
+        public string TenMonAn { get; set; }
+        public Nullable<decimal> Gia { get; set; }
+        public string ImgExtension { get; set; }
     
-        public virtual BanAn BanAn { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual NhanVien NhanVien { get; set; }
     }
 }

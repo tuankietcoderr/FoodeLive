@@ -28,23 +28,15 @@ namespace FoodeLive.Pages.Table
 
         ~Order() { }
 
-        public VMOrder ViewModel
-        {
-            get;
-        }
-
         public Order(VMOrder viewModel)
         {
-            ViewModel = viewModel;
             InitializeComponent();
-            this.DataContext = ViewModel;
         }
 
         private void AddFoodBtn_Click(object sender, RoutedEventArgs e)
         {
             Windows.TableDetail.TableAddFood tableAddFood = new Windows.TableDetail.TableAddFood();
             tableAddFood.ShowDialog();
-
         }
     }
 }

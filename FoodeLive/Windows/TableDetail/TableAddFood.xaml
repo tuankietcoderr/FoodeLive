@@ -14,55 +14,15 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="17*"/>
-                <ColumnDefinition Width="583*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Chọn món ăn"  FontSize="44" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Medium" Margin="6,0,0,0" Padding="0, 0, 0, 20" Grid.Column="1" Foreground="#FFF47E04"></TextBlock>
-            <Border BorderBrush="Black"  BorderThickness="0, 0, 0, 2" Width="150" HorizontalAlignment="Left" Margin="6,0,0,0" Grid.Column="1" RenderTransformOrigin="0.506,0.586"></Border>
-        </Grid>
-        <!--Items-->
-        <!--<ScrollViewer Grid.Row="1">
-            <ItemsControl x:Name="FoodControl" ItemsSource="{Binding}" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10">
-                                <StackPanel>
-                                    <TextBlock Height="8"></TextBlock>
-                                    <Border Width="185" Height="160" BorderThickness="1" CornerRadius="8">
-                                        <Border.Background>
-                                            <ImageBrush x:Name="FoodImage" ImageSource="{Binding Image}" Stretch="Fill"/>
-                                        </Border.Background>
-                                    </Border>
-                                    <TextBlock x:Name="Foodname" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{Binding Name}" VerticalAlignment="Top" Height="30" Width="193" Foreground="Black" FontSize="20" FontWeight="Bold" TextAlignment="Left" Margin="10,0,0,0"/>
-                                    <TextBlock x:Name="Price" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{Binding Price}" VerticalAlignment="Center" Height="35" Width="193" Foreground="Gray" FontSize="30" FontWeight="Bold" TextAlignment="Left" Margin="10,0,0,20"/>
-                                    <TextBlock></TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel>
-                        </WrapPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>-->
 
         <ui:VirtualizingGridView ItemsSource="{Binding ListMonAn}" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Padding="0,0,0,0" Grid.Row="1" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox>
-                        <ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
-                            <ui:CardColor.Brush>
-                                <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
-                            </ui:CardColor.Brush>
-                        </ui:CardColor>
-                    </CheckBox>
+                    <ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                        <ui:CardColor.Brush>
+                            <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
+                        </ui:CardColor.Brush>
+                    </ui:CardColor>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
@@ -76,8 +36,8 @@
                 <ColumnDefinition Width="4*"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="3" Text="Đã chọn: 2" Foreground="#FF7C7676" FontWeight="Medium" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <ui:Button Grid.Column="4" Content="Thêm món" FontWeight="Medium"  Foreground="White" Background="#ff7a00"  VerticalAlignment="Center" HorizontalAlignment="Left" Height="34" Width="122" FontSize="14"/>
+            <TextBlock Grid.Column="3" Text="Đã chọn: 2" Foreground="#FF7C7676" FontWeight="Medium" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <ui:Button Grid.Column="4" Content="Thêm món" FontWeight="Medium" Foreground="White" Background="#ff7a00"  VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 8" FontSize="14"/>
         </Grid>
     </Grid>
 </Window>

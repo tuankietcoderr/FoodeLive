@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FoodeLive.Windows.Auth" xmlns:ucli="clr-namespace:FoodeLive.UserControls" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        x:Name="SignUpWindow"
         Title="Đăng ký" Icon="/src/icon_foode_live.png" Height="700" Width="800">
     <Grid>
         <Grid.RowDefinitions>

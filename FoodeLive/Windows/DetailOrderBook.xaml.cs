@@ -26,7 +26,7 @@ namespace FoodeLive.Windows
         public DetailOrderBook()
         {
             InitializeComponent();
-            order.IsSelected = true;
+            detail.IsSelected = true;
         }
 
         ~DetailOrderBook() { }

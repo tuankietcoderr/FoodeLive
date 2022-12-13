@@ -35,7 +35,7 @@ namespace FoodeLive.MVVM.ViewModel
             }
         }
         private string _maBanAn;
-        public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); MessageBox.Show(_maBanAn.Length.ToString()); } }
+        public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged();} }
         private string _loai;
         public string Loai { get => _loai; set { _loai = value; OnPropertyChanged(); } }
 

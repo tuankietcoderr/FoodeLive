@@ -23,6 +23,11 @@
                             <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
                     </ui:CardColor>
+                    <ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                        <ui:CardColor.Brush>
+                            <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
+                        </ui:CardColor.Brush>
+                    </ui:CardColor>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>

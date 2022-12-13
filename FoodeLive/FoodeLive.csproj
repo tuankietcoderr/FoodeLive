@@ -89,6 +89,9 @@
     <Reference Include="Wpf.Ui, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WPF-UI.2.0.3\lib\net47\Wpf.Ui.dll</HintPath>
     </Reference>
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -174,6 +177,9 @@
     <Compile Include="Windows\CRUD\Table\AddTable.xaml.cs">
       <DependentUpon>AddTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Menu\AddToMenu.xaml.cs">
       <DependentUpon>AddToMenu.xaml</DependentUpon>
     </Compile>
@@ -224,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\CRUD\Table\AddTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Loading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -368,6 +378,7 @@
       <DependentUpon>QuanLyNhaHangEntity.edmx</DependentUpon>
       <LastGenOutput>QuanLyNhaHangEntity.cs</LastGenOutput>
     </Content>
+    <Resource Include="src\loading.gif" />
     <Content Include="utils\QUANLYNHAHANG.sql" />
   </ItemGroup>
   <ItemGroup>

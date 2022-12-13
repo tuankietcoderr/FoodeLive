@@ -7,61 +7,62 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{StaticResource FoodViewModel}"
       Title="MenuP">
 
-    <Grid Background="White">
-        <Grid.ColumnDefinitions>
-
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="71*"/>
-            <ColumnDefinition Width="24*"/>
-            <ColumnDefinition Width="67*"/>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="29*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Margin="10 0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="12*"></RowDefinition>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="19*"/>
-            <RowDefinition Height="339*"/>
-            <RowDefinition Height="44*"/>
+            <RowDefinition Height="80" />
+            <RowDefinition />
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <WrapPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Right"  Width="508">
-            <ui:TextBox Background="White" Icon="Search20" PlaceholderText="Hamberger,salad,.." IconForeground="Black" x:Name="search_tb" Height="32"   Width="390"  />
-            <ui:Button Content="Tìm kiếm" Foreground="White" Background="#ff7a00" x:Name="search" Width="98" Height="32" Margin="10,0,0,0" HorizontalAlignment="Center" />
-        </WrapPanel>
+        <StackPanel>
+            <Grid Grid.Row="0" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
 
-        <Separator Background="LightGray" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="3" Margin="0,0,0,1"/>
+                <WrapPanel Grid.Column="0" x:Name="foodControl" VerticalAlignment="Center">
+                    <ui:Button x:Name="all" Content="Tất cả" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Foreground="White" Background="#ff7a00" Width="94" Height="32" FontSize="14" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="type" FontWeight="Bold" FontSize="11" BorderBrush="#ff7a00" HorizontalAlignment="Left" Margin="5,0,0,0" Width="120">
+                        <ComboBoxItem>Súp</ComboBoxItem>
+                        <ComboBoxItem>Hản sản</ComboBoxItem>
+                        <ComboBoxItem>Món nướng</ComboBoxItem>
+                        <ComboBoxItem>Tráng miệng</ComboBoxItem>
+                        <ComboBoxItem Content="Phân loại" IsSelected="True" Visibility="Hidden"></ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+                <Grid Grid.Column="2" VerticalAlignment="Center" Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <ui:TextBox Icon="Search20" PlaceholderText="Bàn đông nhất, bàn VIP..." x:Name="search_tb" Height="35"/>
+                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="35" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
+                    </ui:Button>
+                </Grid>
+            </Grid>
+            <Separator Background="LightGray" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="3" Margin="0,0,0,1"/>
+        </StackPanel>
 
-        <ui:VirtualizingGridView x:Name="FoodControl" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Padding="0,0,0,0" Grid.Row="5" Grid.Column="1" >
+
+        <ui:VirtualizingGridView ItemsSource="{Binding ListMonAn}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:CardColor Width="150" Subtitle="{Binding Price}" SubtitleFontSize="20" Title="{Binding Name}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
-                            <ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill" />
+                            <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
                     </ui:CardColor>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
-        
-        <ui:Button Content="Thêm món" Icon="Add20" IconForeground="White" Foreground="White" Background="#ff7a00" Grid.Column="4" Grid.Row="6" VerticalAlignment="Top" Height="34" Width="122" FontSize="14" Grid.ColumnSpan="2" Click="Button_Click" />
 
-        <WrapPanel Grid.Row="1" Grid.Column="1">
-            <ui:Button x:Name="all" Content="Tất cả" Foreground="White" Background="#ff7a00" Width="94" Height="32" FontSize="14"  Click="all_Click" HorizontalAlignment="Center"/>
+        <ui:Button Content="Thêm món" BorderThickness="0" MouseOverBackground="#FF7A00" PressedForeground="#FF7A00" FontWeight="SemiBold" Icon="Add12" IconForeground="White" Foreground="White" Background="#ff7a00" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Height="34" Padding="20 8" Effect="{StaticResource DropShadow}" FontSize="14" Grid.ColumnSpan="2" />
 
-            <ComboBox x:Name="type" FontWeight="Bold" FontSize="11" BorderBrush="#ff7a00" HorizontalAlignment="Left" Margin="5,0,0,0" Width="159" Height="32">
-                <ComboBoxItem>Súp</ComboBoxItem>
-                <ComboBoxItem>Hản sản</ComboBoxItem>
-                <ComboBoxItem>Món nướng</ComboBoxItem>
-                <ComboBoxItem>Tráng miệng</ComboBoxItem>
-                <ComboBoxItem Content="Phân loại" IsSelected="True" Visibility="Hidden"></ComboBoxItem>
-            </ComboBox>
 
-        </WrapPanel>
     </Grid>
 </Page>

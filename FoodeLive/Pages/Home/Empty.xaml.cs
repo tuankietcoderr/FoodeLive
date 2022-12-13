@@ -1,5 +1,4 @@
-﻿using FoodeLive.Database;
-using FoodeLive.MVVM.Model;
+﻿using FoodeLive.MVVM.Model;
 using FoodeLive.MVVM.ViewModel.VMTableSlice;
 using System;
 using System.Collections.Generic;

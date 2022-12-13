@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FoodeLive.MVVM.Model
+namespace FoodeLive
 {
     using System;
     using System.Collections.Generic;

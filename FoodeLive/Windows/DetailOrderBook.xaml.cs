@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using FoodeLive.Database;
 using FoodeLive.MVVM.ViewModel.VMTableSlice;
 using FoodeLive.Pages.Table;
 
@@ -90,20 +89,7 @@ namespace FoodeLive.Windows
 
         void DeleteTable()
         {
-            string command = "delete from banan where mabanan=@id";
-            DBConnection.Connect();
-            SqlCommand sqlCommand = new SqlCommand(command, DBConnection._SQLConnection);
-            sqlCommand.Parameters.AddWithValue("@id", OrderViewModel.MaBanAn);
-
-            try
-            {
-                sqlCommand.ExecuteNonQuery();
-                MessageBox.Show("Xóa thành công!");
-                this.Close();
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void delete_table_Click(object sender, RoutedEventArgs e)

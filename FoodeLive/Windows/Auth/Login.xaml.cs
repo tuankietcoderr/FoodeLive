@@ -1,5 +1,4 @@
 ﻿using FoodeLive.Auth;
-using FoodeLive.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +23,6 @@ namespace FoodeLive.Windows.Auth
         public Login()
         {
             InitializeComponent();
-            DBConnection.Connect();
         }
 
         ~Login() { }
@@ -43,7 +41,7 @@ namespace FoodeLive.Windows.Auth
         {
             username = login_username.Text;
             password = login_password.Password;
-            if (AuthLogin.StartSession(username, password))
+            if (AuthLogin.HandleLogin(username, password))
             {
                 MainWindow mainWindow = new MainWindow();
                 this.Close();

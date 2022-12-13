@@ -1,5 +1,4 @@
 ﻿using FoodeLive.Auth;
-using FoodeLive.Database;
 using FoodeLive.MVVM.Model;
 using FoodeLive.Pages.Setting;
 using FoodeLive.utils;
@@ -32,7 +31,6 @@ namespace FoodeLive
         {
             InitializeComponent();
             home.IsSelected = true;
-            MessageBox.Show(DataProvider.Ins.DB.MonAns.ToList().First().MaMonAn);
         }
 
         ~MainWindow() { }

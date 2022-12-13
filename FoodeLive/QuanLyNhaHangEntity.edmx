@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QUANLYNHAHANgModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyNhaHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BanAn">
           <Key>
             <PropertyRef Name="MaBanAn" />
@@ -92,7 +92,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SOHD">
+        <Association Name="FK_SoHoaDon">
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
           <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -104,7 +104,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QUANLYNHAHANgModelStoreContainer">
+        <EntityContainer Name="QuanLyNhaHangModelStoreContainer">
           <EntitySet Name="BanAn" EntityType="Self.BanAn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
@@ -122,15 +122,16 @@
             <End Role="NhanVien" EntitySet="NhanVien" />
             <End Role="HoaDon" EntitySet="HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK_SOHD" Association="Self.FK_SOHD">
+          <AssociationSet Name="FK_SoHoaDon" Association="Self.FK_SoHoaDon">
             <End Role="HoaDon" EntitySet="HoaDon" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QUANLYNHAHANgModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QuanLyNhaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BanAn">
           <Key>
             <PropertyRef Name="MaBanAn" />
@@ -149,7 +150,7 @@
           <Property Name="MaMonAn" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" />
           <NavigationProperty Name="MonAn" Relationship="Self.FK_MAMONAN" FromRole="ChiTietHoaDon" ToRole="MonAn" />
-          <NavigationProperty Name="HoaDon" Relationship="Self.FK_SOHD" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
+          <NavigationProperty Name="HoaDon" Relationship="Self.FK_SoHoaDon" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
@@ -161,7 +162,7 @@
           <Property Name="MaNV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="TriGia" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="BanAn" Relationship="Self.FK_MABANAN" FromRole="HoaDon" ToRole="BanAn" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_SOHD" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_SoHoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
           <NavigationProperty Name="NhanVien" Relationship="Self.FK_MANV" FromRole="HoaDon" ToRole="NhanVien" />
         </EntityType>
         <EntityType Name="MonAn">
@@ -214,7 +215,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SOHD">
+        <Association Name="FK_SoHoaDon">
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
           <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -238,7 +239,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QUANLYNHAHANgEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QuanLyNhaHangEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BanAns" EntityType="Self.BanAn" />
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
@@ -252,7 +253,7 @@
             <End Role="MonAn" EntitySet="MonAns" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
-          <AssociationSet Name="FK_SOHD" Association="Self.FK_SOHD">
+          <AssociationSet Name="FK_SoHoaDon" Association="Self.FK_SoHoaDon">
             <End Role="HoaDon" EntitySet="HoaDons" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
@@ -266,9 +267,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QUANLYNHAHANgModelStoreContainer" CdmEntityContainer="QUANLYNHAHANgEntities1">
+        <EntityContainerMapping StorageEntityContainer="QuanLyNhaHangModelStoreContainer" CdmEntityContainer="QuanLyNhaHangEntities">
           <EntitySetMapping Name="BanAns">
-            <EntityTypeMapping TypeName="QUANLYNHAHANgModel.BanAn">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.BanAn">
               <MappingFragment StoreEntitySet="BanAn">
                 <ScalarProperty Name="MaBanAn" ColumnName="MaBanAn" />
                 <ScalarProperty Name="Loai" ColumnName="Loai" />
@@ -277,7 +278,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChiTietHoaDons">
-            <EntityTypeMapping TypeName="QUANLYNHAHANgModel.ChiTietHoaDon">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.ChiTietHoaDon">
               <MappingFragment StoreEntitySet="ChiTietHoaDon">
                 <ScalarProperty Name="SoHoaDon" ColumnName="SoHoaDon" />
                 <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
@@ -286,7 +287,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HoaDons">
-            <EntityTypeMapping TypeName="QUANLYNHAHANgModel.HoaDon">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
                 <ScalarProperty Name="SoHoaDon" ColumnName="SoHoaDon" />
                 <ScalarProperty Name="NgayLapHoaDon" ColumnName="NgayLapHoaDon" />
@@ -297,7 +298,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MonAns">
-            <EntityTypeMapping TypeName="QUANLYNHAHANgModel.MonAn">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.MonAn">
               <MappingFragment StoreEntitySet="MonAn">
                 <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
                 <ScalarProperty Name="TenMonAn" ColumnName="TenMonAn" />
@@ -307,7 +308,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NhanViens">
-            <EntityTypeMapping TypeName="QUANLYNHAHANgModel.NhanVien">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.NhanVien">
               <MappingFragment StoreEntitySet="NhanVien">
                 <ScalarProperty Name="MaNV" ColumnName="MaNV" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />

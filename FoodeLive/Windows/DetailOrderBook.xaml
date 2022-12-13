@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Icon="/src/icon_foode_live.png"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
-        Title="Order/Đặt bàn" Height="500" Width="800">
+        Title="Order/Đặt bàn" Height="720" Width="1280">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding NavWidth}" DataContext="{StaticResource WindowUtils}"/>

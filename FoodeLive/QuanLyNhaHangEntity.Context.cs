@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FoodeLive.MVVM.Model
+namespace FoodeLive
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuanLyNhaHang : DbContext
+    public partial class QuanLyNhaHangEntities : DbContext
     {
-        public QuanLyNhaHang()
-            : base("name=QuanLyNhaHang")
+        public QuanLyNhaHangEntities()
+            : base("name=QuanLyNhaHangEntities")
         {
         }
     

@@ -25,7 +25,7 @@
                 <TextBlock Text="Mật khẩu" FontSize="14" FontWeight="SemiBold" Margin="0,0,0, 4"/>
                 <ui:PasswordBox x:Name="login_password"  Grid.Column="1" PlaceholderText="Nhập mật khẩu" Icon="Key32" />
             </StackPanel>
-            <ui:Button Content="Đăng nhập" x:Name="HandleLogin" Click="HandleLogin_Click" Margin="0,10,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" MouseOverBackground="#FF7A11" BorderThickness="0" PressedForeground="#FF7A11" Cursor="Hand" />
+            <ui:Button IsDefault="True" Content="Đăng nhập" x:Name="HandleLogin" Click="HandleLogin_Click" Margin="0,10,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" MouseOverBackground="#FF7A11" BorderThickness="0" PressedForeground="#FF7A11" Cursor="Hand" />
             <TextBlock TextAlignment="Center">
                 Bạn chưa có tài khoản? <Span Foreground="Blue" FontWeight="SemiBold" Cursor="Hand" PreviewMouseDown="LoginToSignUp_PreviewMouseDown" Name="LoginToSignUp">Đăng ký ngay</Span>
             </TextBlock>

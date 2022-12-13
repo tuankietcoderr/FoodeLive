@@ -23,10 +23,10 @@ namespace FoodeLive.MVVM.Model
             }
         }
 
-        public QuanLyNhaHang DB;
+        public QuanLyNhaHangEntities DB;
         private DataProvider()
         {
-            DB = new QuanLyNhaHang();
+            DB = new QuanLyNhaHangEntities();
         }
     }
 }

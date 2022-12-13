@@ -1,4 +1,4 @@
-﻿using FoodeLive.Database;
+﻿using FoodeLive.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,31 +11,15 @@ namespace FoodeLive.Auth
 {
     public static class AuthLogin
     {
-        public static bool StartSession(string username, string password)
+        public static bool HandleLogin(string username, string password)
         {
-            string sqlCommand = @"select * from nhanvien where tennguoidung=@username and matkhau=@password";
-            var command = new SqlCommand();
-            command.CommandText = sqlCommand;
-            DBConnection.Connect();
-            command.Connection = DBConnection._SQLConnection;
-            command.Parameters.AddWithValue("@username", username);
-            command.Parameters.AddWithValue("@password", password);
-            bool flag = false;
-            try
+            var accCount = DataProvider.Ins.DB.NhanViens.Where(u => u.TenNguoiDung == username & u.MatKhau == password).Count();
+            if (accCount > 0)
             {
-                var result = command.ExecuteReader();
-                if (result.HasRows)
-                {
-                    AuthState.IsLoggedIn = true;
-                    flag = true;
-                }
+                AuthState.IsLoggedIn = true;
+                return true;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            DBConnection.Disconnect();
-            return flag;
+            return false;
         }
     }
 }

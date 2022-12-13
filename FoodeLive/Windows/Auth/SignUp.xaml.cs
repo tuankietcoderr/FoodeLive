@@ -1,5 +1,4 @@
 ﻿using FoodeLive.Auth;
-using FoodeLive.Database;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,8 +29,6 @@ namespace FoodeLive.Windows.Auth
         public SignUp()
         {
             InitializeComponent();
-            if (!DBConnection.ConnectionState)
-                DBConnection.Connect();
             Gray = password_length.Foreground;
         }
 

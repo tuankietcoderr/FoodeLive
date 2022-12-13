@@ -23,142 +23,33 @@
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView x:Name="all_table" 
-                                 SelectionChanged="empty_table_SelectionChanged" 
-                                 Height="auto" 
-                                 Grid.Row="0" 
-                                 ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                                 VerticalAlignment="Top" 
-                                 SpacingMode="BetweenItemsOnly" 
-                                 SelectionMode="Single">
-            <ui:Card x:Name="hehe" 
-                     Effect="{StaticResource DropShadow}" 
-                     Background="#fff" 
-                     BorderThickness="0" 
-                     Width="{Binding CardWidth}">
-                <Grid HorizontalAlignment="Left" Height="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="1"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Bàn 1" FontWeight="Bold" FontSize="16" />
-                    <Separator Grid.Row="1" Width="100" BorderBrush="Black" Opacity="0.5"/>
-                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                        <TextBlock FontSize="10" Foreground="#ABABAB">
+        <ui:VirtualizingGridView x:Name="all_table"  Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Tag="{Binding MaBanAn}" Background="#fff" BorderThickness="0" Width="150" PreviewMouseDown="table_PreviewMouseDown">
+                        <Grid HorizontalAlignment="Left" Height="100">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*" />
+                                <RowDefinition Height="1"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" FontSize="14" FontWeight="Bold">
+                                    Bàn 
+                                    <TextBlock Text="{Binding MaBanAn}" FontWeight="Bold" FontSize="16" />
+                                </TextBlock>
+                            <Separator Grid.Row="1" Width="70" BorderBrush="#000" Opacity="0.5"/>
+                            <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+                                <TextBlock FontSize="10" Foreground="#ABABAB">
                             Tình trạng: <TextBlock Text="Trống" />
                         </TextBlock>
-                        <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
-                            Loại bàn: <TextBlock Text="Thường" />
+                                <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
+                            Loại bàn: <TextBlock Text="{Binding Loai}" />
                         </TextBlock>
-                    </StackPanel>
-
-                </Grid>
-
-            </ui:Card>
-
-            <ui:Card Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="{Binding CardWidth}">
-                <Grid HorizontalAlignment="Left" Height="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="1"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Bàn 2" FontWeight="Bold" FontSize="16" />
-                    <Separator Grid.Row="1" Width="100" BorderBrush="#000" Opacity="0.5"/>
-                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                        <TextBlock FontSize="10" Foreground="#ABABAB">
-                            Tình trạng: <TextBlock Text="Trống" />
-                        </TextBlock>
-                        <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
-                            Loại bàn: <TextBlock Text="Thường" />
-                        </TextBlock>
-                    </StackPanel>
-                </Grid>
-            </ui:Card>
-
-            <ui:Card Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="{Binding CardWidth}">
-                <Grid HorizontalAlignment="Left" Height="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="1"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Bàn 4" FontWeight="Bold" FontSize="16" />
-                    <Separator Grid.Row="1" Width="100" BorderBrush="#000" Opacity="0.5"/>
-                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                        <TextBlock FontSize="10" Foreground="#ABABAB">
-                            Tình trạng: <TextBlock Text="Trống" />
-                        </TextBlock>
-                        <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
-                            Loại bàn: <TextBlock Text="Thường" />
-                        </TextBlock>
-                    </StackPanel>
-                </Grid>
-            </ui:Card>
-
-            <ui:Card Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="{Binding CardWidth}">
-                <Grid HorizontalAlignment="Left" Height="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="1"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Bàn 5" FontWeight="Bold" FontSize="16" />
-                    <Separator Grid.Row="1" Width="100" BorderBrush="#000" Opacity="0.5"/>
-                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                        <TextBlock FontSize="10" Foreground="#ABABAB">
-                            Tình trạng: <TextBlock Text="Trống" />
-                        </TextBlock>
-                        <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
-                            Loại bàn: <TextBlock Text="Thường" />
-                        </TextBlock>
-                    </StackPanel>
-                </Grid>
-            </ui:Card>
-
-            <ui:Card Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="{Binding CardWidth}">
-                <Grid HorizontalAlignment="Left" Height="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="1"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Bàn 7" FontWeight="Bold" FontSize="16" />
-                    <Separator Grid.Row="1" Width="100" BorderBrush="#000" Opacity="0.5"/>
-                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                        <TextBlock FontSize="10" Foreground="#ABABAB">
-                            Tình trạng: <TextBlock Text="Trống" />
-                        </TextBlock>
-                        <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
-                            Loại bàn: <TextBlock Text="Thường" />
-                        </TextBlock>
-                    </StackPanel>
-                </Grid>
-            </ui:Card>
-
-            <ui:Card Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="{Binding CardWidth}">
-                <Grid HorizontalAlignment="Left" Height="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="1"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Bàn 9" FontWeight="Bold" FontSize="16" />
-                    <Separator Grid.Row="1" Width="100" BorderBrush="#000" Opacity="0.5"/>
-                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                        <TextBlock FontSize="10" Foreground="#ABABAB">
-                            Tình trạng: <TextBlock Text="Trống" />
-                        </TextBlock>
-                        <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
-                            Loại bàn: <TextBlock Text="Thường" />
-                        </TextBlock>
-                    </StackPanel>
-                </Grid>
-            </ui:Card>
-
-
-
+                            </StackPanel>
+                        </Grid>
+                    </ui:Card>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
 
     </Grid>

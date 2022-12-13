@@ -9,6 +9,39 @@
       Title="Order">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Bàn " FontSize="44" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Margin="6,0,0,0" Padding="0, 0, 0, 20">
+                    <TextBlock Text="{Binding MaBanAn}"/>
+                </TextBlock>
+            <Separator Width="200" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <ui:VirtualizingGridView Grid.Row="1" x:Name="FoodControl" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Padding="0,0,0,0" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ui:CardColor Width="150" Subtitle="{Binding Price}" SubtitleFontSize="20" Title="{Binding Name}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                        <ui:CardColor.Brush>
+                            <ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill" />
+                        </ui:CardColor.Brush>
+                    </ui:CardColor>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ui:VirtualizingGridView>
+
+        <WrapPanel HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Top" Margin="0, 5, 0, 0">
+            <TextBlock Grid.Column="1" Text="Số món: " Foreground="#FF7C7676" FontWeight="Medium" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0">
+                    <TextBlock Text="{Binding SoMonAn}" />
+                </TextBlock>
+            <TextBlock Grid.Column="2" Text="Tổng tiền: " Foreground="#FF7C7676" FontWeight="Medium" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0">
+                    <TextBlock Text="{Binding TongTien}"/>
+                </TextBlock>
+            <ui:Button x:Name="AddFoodBtn" Effect="{StaticResource DropShadow}" Icon="Add12" IconForeground="#fff" Grid.Column="3" Content="Thêm món" FontWeight="Medium" MouseOverBackground="#FF7A00" BorderThickness="0" Foreground="White" Background="#ff7a00"  VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="16" Margin="20 0" Padding="20 8" Click="AddFoodBtn_Click"/>
+            <ui:Button Grid.Column="4" Effect="{StaticResource DropShadow}" Icon="Send28"  Content="Thông báo" FontWeight="Medium" Foreground="Black" Background="White" MouseOverBackground="#fff"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 8" FontSize="16">
+            </ui:Button>
+        </WrapPanel>
     </Grid>
 </Page>

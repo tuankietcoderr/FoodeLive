@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodeLive.Windows.Menu"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Windows.Menu.AddToMenu"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:ucli="clr-namespace:FoodeLive.UserControls" x:Class="FoodeLive.Windows.Menu.AddToMenu"
         mc:Ignorable="d"
         Title="AddToMenu" Height="400" Width="675"
         WindowStyle="None"
@@ -46,7 +46,6 @@
             <ui:Button BorderBrush="Transparent" Grid.Column="6" Content="x" FontSize="20" FontWeight="Bold" Height="44" Width="46" Click="Button_Click" HorizontalAlignment="Center" Grid.Row="1"/>
             <Label Grid.Column="3" Foreground="Black" FontSize="15" FontWeight="Bold" Content="Nhập tên món ăn: " HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" RenderTransformOrigin="0.096,0.086" Width="216" Height="28" Grid.ColumnSpan="3"/>
             <Label Grid.Column="3" Foreground="Black" FontSize="15" FontWeight="Bold" Content="Nhập giá món ăn: " HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.096,0.086" Width="216" Height="29" Grid.ColumnSpan="3" Margin="0,43,0,0"/>
-
         </Grid>
     </Border>
 </Window>

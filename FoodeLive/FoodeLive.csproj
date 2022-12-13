@@ -84,8 +84,12 @@
     <Compile Include="Auth\AuthLogin.cs" />
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
+    <Compile Include="Converter\CommandConverter.cs" />
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
-    <Compile Include="MVVM\ViewModel\VMOrderOrBook.cs" />
+    <Compile Include="MVVM\ViewModel\VMTableSlice\VMBook.cs" />
+    <Compile Include="MVVM\ViewModel\VMTableSlice\VMBookDetailOrder.cs" />
+    <Compile Include="MVVM\ViewModel\VMTableSlice\VMDetail.cs" />
+    <Compile Include="MVVM\ViewModel\VMTableSlice\VMOrder.cs" />
     <Compile Include="Pages\Menu\Demo.cs" />
     <Compile Include="Pages\Menu\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
@@ -111,14 +115,17 @@
     <Compile Include="Pages\OrderOrBook\Book.xaml.cs">
       <DependentUpon>Book.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderOrBook\Detail.xaml.cs">
+      <DependentUpon>Detail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrderOrBook\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Report\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TableDetail\Table_FoodDetail.xaml.cs">
-      <DependentUpon>Table_FoodDetail.xaml</DependentUpon>
+    <Compile Include="Windows\CRUD\AddTable.xaml.cs">
+      <DependentUpon>AddTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Menu\AddToMenu.xaml.cs">
       <DependentUpon>AddToMenu.xaml</DependentUpon>
@@ -168,6 +175,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\OrderOrBook\Detail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Converter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CRUD\AddTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\TableDetail\Table_FoodDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

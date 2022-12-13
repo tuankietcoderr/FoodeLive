@@ -1,9 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wu="clr-namespace:FoodeLive.utils"
-                    xmlns:obvm="clr-namespace:FoodeLive.MVVM.ViewModel"
+                    xmlns:ovm="clr-namespace:FoodeLive.MVVM.ViewModel.VMTableSlice"
                     >
 
     <wu:WindowUtils x:Key="WindowUtils"/>
-    <obvm:VMOrderOrBook x:Key="VMOrderOrBook" />
+    <ovm:VMDetail x:Key="VMDetail" />
+    <ovm:VMOrder x:Key="VMOrder" />
+    <ovm:VMBook x:Key="VMBook" />
+    <ovm:VMBookDetailOrder x:Key="VMBookDetailOrder" />
 </ResourceDictionary>

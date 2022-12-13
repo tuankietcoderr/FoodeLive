@@ -6,22 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace FoodeLive.MVVM.ViewModel
+namespace FoodeLive.MVVM.ViewModel.VMTableSlice
 {
-    public class VMOrderOrBook : BaseViewModel
+    public class VMBook : BaseViewModel
     {
-        private ICommand _OrderCommand;
         private ICommand _BookCommand;
 
         private string _MaBanAn;
         public string MaBanAn { get { return _MaBanAn; } set { _MaBanAn = value; OnPropertyChanged(); } }
-        
-        public ICommand OrderCommand { get; set; }
+
         public ICommand BookCommand { get; set; }
 
-        public VMOrderOrBook()
+        public VMBook()
         {
-            OrderCommand = new RelayCommand<string>((p) => p != string.Empty, p => OnPopUp(p));
+            BookCommand = new RelayCommand<string>((p) => p != string.Empty, p => OnPopUp(p));
+        }
+
+        public VMBook(string maBanAn)
+        {
+            MaBanAn = maBanAn;
         }
 
         void OnPopUp(string p)

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FoodeLive.Windows.CRUD;
 
 namespace FoodeLive.Pages.Home
 {
@@ -52,6 +53,12 @@ namespace FoodeLive.Pages.Home
                     home_navframe.Navigate(new All());
                     break;
             }
+        }
+
+        private void add_table_Click(object sender, RoutedEventArgs e)
+        {
+            AddTable addTable = new AddTable();
+            addTable.ShowDialog();
         }
     }
 }

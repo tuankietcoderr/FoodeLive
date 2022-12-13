@@ -17,23 +17,23 @@ using System.Windows.Shapes;
 namespace FoodeLive.Pages.OrderOrBook
 {
     /// <summary>
-    /// Interaction logic for Order.xaml
+    /// Interaction logic for Detail.xaml
     /// </summary>
-    public partial class Order : Page
+    public partial class Detail : Page
     {
-        public Order()
+        public Detail()
         {
             InitializeComponent();
         }
 
-        public VMOrder ViewModel
+        public VMDetail ViewModel
         {
             get;
         }
 
-        public Order(VMOrder viewModel)
+        public Detail(VMDetail viewModel)
         {
-            ViewModel= viewModel;
+            ViewModel = viewModel;
             InitializeComponent();
             this.DataContext = ViewModel;
         }

@@ -53,12 +53,16 @@
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
                     <ui:TextBox Icon="Search20" PlaceholderText="Bàn đông nhất, bàn VIP..." x:Name="search_tb" Height="35"/>
-                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="{Binding Height, ElementName=search_tb}" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0"/>
+                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="{Binding Height, ElementName=search_tb}" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
+                        
+                    </ui:Button>
                 </Grid>
             </Grid>
             <Separator Background="LightGray" />
         </StackPanel>
         <Frame Grid.Row="1" Padding="0,30,0,0" x:Name="home_navframe"/>
-        <ui:Button Content="Thêm bàn" Icon="Add12" Effect="{StaticResource DropShadow}" Grid.Row="2" Background="#FF7A00" Foreground="#fff" HorizontalAlignment="Right" Margin="20, 0" IconForeground="#fff" FontWeight="SemiBold" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Padding="20 8" Cursor="Hand"/>
+        <ui:Button Content="Thêm bàn" Icon="Add12" Effect="{StaticResource DropShadow}" x:Name="add_table" Click="add_table_Click" Grid.Row="2" Background="#FF7A00" Foreground="#fff" HorizontalAlignment="Right" Margin="20, 0" IconForeground="#fff" FontWeight="SemiBold" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Padding="20 8" Cursor="Hand">
+            
+        </ui:Button>
     </Grid>
 </Page>

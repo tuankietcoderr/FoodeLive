@@ -38,6 +38,7 @@ namespace FoodeLive.Windows.Auth
         private void HandleSignUp_Click(object sender, RoutedEventArgs e)
         {
             string username = signup_username.Text;
+            System.Windows.MessageBox.Show(username);
             string password = signup_password.Password;
             Regex usernameRegex = new Regex("^[a-zA-Z0-9]+$");
             if (!usernameRegex.IsMatch(username))

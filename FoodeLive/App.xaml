@@ -13,6 +13,7 @@
                 <ui:ControlsDictionary />
                 <ResourceDictionary Source="/Resources/Effect.xaml"/>
                 <ResourceDictionary Source="/Resources/Data.xaml"/>
+                <ResourceDictionary Source="/Resources/Converter.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -24,6 +24,8 @@ namespace FoodeLive.Windows.Setting
             InitializeComponent();
         }
 
+        ~PasswordChange() { }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             

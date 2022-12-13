@@ -26,6 +26,9 @@ namespace FoodeLive.UserControls
         {
             InitializeComponent();
         }
+
+        ~LabelInput() { }
+
         public SymbolRegular Icon
         {
             get

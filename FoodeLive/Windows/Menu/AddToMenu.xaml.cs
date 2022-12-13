@@ -23,6 +23,8 @@ namespace FoodeLive.Windows.Menu
         {
             InitializeComponent();
         }
+
+        ~AddToMenu() { }
         string filename;
         private void click_open(object sender, MouseButtonEventArgs e)
         {

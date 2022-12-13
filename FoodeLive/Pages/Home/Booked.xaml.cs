@@ -24,5 +24,7 @@ namespace FoodeLive.Pages.Home
         {
             InitializeComponent();
         }
+
+        ~Booked() { }
     }
 }

@@ -35,6 +35,7 @@ namespace FoodeLive.Pages.Home
             if (rows.Count > 0)
                 all_table.ItemsSource = rows;
         }
+        ~All() { }
 
         public static ObservableCollection<MBanAn> InitData()
         {
@@ -65,7 +66,7 @@ namespace FoodeLive.Pages.Home
             Card card = sender as Card;
             string MaBanAn = card.Tag.ToString();
             VMBookDetailOrder vMBookDetailOrder = new VMBookDetailOrder(MaBanAn);
-            Windows.OrderOrBook orderOrBook = new Windows.OrderOrBook(vMBookDetailOrder);
+            Windows.DetailOrderBook orderOrBook = new Windows.DetailOrderBook(vMBookDetailOrder);
             orderOrBook.ShowDialog();
         }
     }

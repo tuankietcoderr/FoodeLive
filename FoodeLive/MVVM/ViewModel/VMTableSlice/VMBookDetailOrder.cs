@@ -11,14 +11,14 @@ namespace FoodeLive.MVVM.ViewModel.VMTableSlice
 {
     public class VMBookDetailOrder : BaseViewModel
     {
-        private ICommand _BookDetailOrder;
+        private ICommand _bookDetailOrder;
 
-        private string _MaBanAn;
+        private string _maBanAn;
         private VMDetail _vMDetail;
         private VMOrder _vMOrder;
         private VMBook _vMBook;
 
-        public string MaBanAn { get { return _MaBanAn; } set { _MaBanAn = value; OnPropertyChanged(); } }
+        public string MaBanAn { get { return _maBanAn; } set { _maBanAn = value; OnPropertyChanged(); } }
         public VMDetail VMDetail { get { return _vMDetail; } set { _vMDetail = value; OnPropertyChanged(); } }
         public VMOrder VMOrder { get { return _vMOrder; } set { _vMOrder = value; OnPropertyChanged(); } }
         public VMBook VMBook { get { return _vMBook; } set { _vMBook = value; OnPropertyChanged(); } }
@@ -40,7 +40,7 @@ namespace FoodeLive.MVVM.ViewModel.VMTableSlice
 
         void OnPopUp(string p)
         {
-            _MaBanAn= p;
+            MaBanAn = p;
         }
     }
 }

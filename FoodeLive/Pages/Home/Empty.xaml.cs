@@ -1,6 +1,6 @@
 ﻿using FoodeLive.Database;
 using FoodeLive.MVVM.Model;
-using FoodeLive.MVVM.ViewModel;
+using FoodeLive.MVVM.ViewModel.VMTableSlice;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -33,6 +33,8 @@ namespace FoodeLive.Pages.Home
                 all_table.ItemsSource = rows;
         }
 
+        ~Empty() { }
+
         List<MBanAn> InitData()
         {
             string command = @"select * from banan";
@@ -62,11 +64,10 @@ namespace FoodeLive.Pages.Home
         {
             Card card = sender as Card;
             string MaBanAn = card.Tag.ToString();
-            VMOrderOrBook vMOrderOrBook = new VMOrderOrBook();
-            vMOrderOrBook.OrderCommand.Execute(MaBanAn);
-            Windows.OrderOrBook orderOrBook = new Windows.OrderOrBook(vMOrderOrBook);
+            VMBookDetailOrder vMOrderOrBook = new VMBookDetailOrder(MaBanAn);
+            Windows.DetailOrderBook orderOrBook = new Windows.DetailOrderBook(vMOrderOrBook);
             orderOrBook.ShowDialog();
         }
 
-        }
+    }
 }

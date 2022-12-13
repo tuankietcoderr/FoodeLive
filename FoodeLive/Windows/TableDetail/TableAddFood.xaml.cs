@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace FoodeLive.Windows.TableDetail
 {
     /// <summary>
-    /// Interaction logic for Table_AddFood.xaml
+    /// Interaction logic for TableAddFood.xaml
     /// </summary>
-    public partial class Table_AddFood : Window
+    public partial class TableAddFood : Window
     {
-        public Table_AddFood()
+        public TableAddFood()
         {
             InitializeComponent();
             foodsOfTable = GetFood();
@@ -28,6 +28,10 @@ namespace FoodeLive.Windows.TableDetail
                 FoodControl.ItemsSource = foodsOfTable;
             }
         }
+
+        ~TableAddFood() { }
+
+
         private List<Table_Foods> foodsOfTable = new List<Table_Foods>();
         private List<Table_Foods> GetFood()
         {

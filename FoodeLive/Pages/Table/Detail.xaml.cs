@@ -14,24 +14,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FoodeLive.Pages.OrderOrBook
+namespace FoodeLive.Pages.Table
 {
     /// <summary>
-    /// Interaction logic for Book.xaml
+    /// Interaction logic for Detail.xaml
     /// </summary>
-    public partial class Book : Page
+    public partial class Detail : Page
     {
-        public Book()
+        public Detail()
         {
             InitializeComponent();
         }
 
-        public VMBook ViewModel
+        ~Detail() { }
+
+        public VMDetail ViewModel
         {
             get;
         }
 
-        public Book(VMBook viewModel)
+        public Detail(VMDetail viewModel)
         {
             ViewModel = viewModel;
             InitializeComponent();

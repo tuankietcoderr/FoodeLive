@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FoodeLive.Pages.OrderOrBook
+namespace FoodeLive.Pages.Table
 {
     /// <summary>
     /// Interaction logic for Order.xaml
@@ -26,6 +26,8 @@ namespace FoodeLive.Pages.OrderOrBook
             InitializeComponent();
         }
 
+        ~Order() { }
+
         public VMOrder ViewModel
         {
             get;
@@ -36,6 +38,13 @@ namespace FoodeLive.Pages.OrderOrBook
             ViewModel= viewModel;
             InitializeComponent();
             this.DataContext = ViewModel;
+        }
+
+        private void AddFoodBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.TableDetail.TableAddFood tableAddFood = new Windows.TableDetail.TableAddFood();
+            tableAddFood.ShowDialog();
+
         }
     }
 }

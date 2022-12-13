@@ -25,6 +25,8 @@ namespace FoodeLive.Pages.Setting
             InitializeComponent();
         }
 
+        ~SettingP() { }
+
         private void click_upd_inf(object sender, MouseButtonEventArgs e)
         {
             Windows.Setting.UpdateForm updateForm = new Windows.Setting.UpdateForm();

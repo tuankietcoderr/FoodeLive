@@ -14,22 +14,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FoodeLive.Database;
 using FoodeLive.MVVM.ViewModel.VMTableSlice;
-using FoodeLive.Pages.OrderOrBook;
+using FoodeLive.Pages.Table;
 
 namespace FoodeLive.Windows
 {
     /// <summary>
     /// Interaction logic for OrderOrBook.xaml
     /// </summary>
-    public partial class OrderOrBook : Window
+    public partial class DetailOrderBook : Window
     {
 
-        public OrderOrBook()
+        public DetailOrderBook()
         {
             InitializeComponent();
             order.IsSelected = true;
         }
 
+        ~DetailOrderBook() { }
         public VMDetail DetailViewModel
         {
             get;
@@ -45,7 +46,7 @@ namespace FoodeLive.Windows
             get;
         }
 
-        public OrderOrBook(VMBookDetailOrder vMBookDetailOrder)
+        public DetailOrderBook(VMBookDetailOrder vMBookDetailOrder)
         {
             DetailViewModel = vMBookDetailOrder.VMDetail;
             OrderViewModel = vMBookDetailOrder.VMOrder;
@@ -54,7 +55,7 @@ namespace FoodeLive.Windows
             detail.IsSelected= true;
         }
 
-        public OrderOrBook(VMDetail vMDetail, VMOrder vMOrder, VMBook vMBook)
+        public DetailOrderBook(VMDetail vMDetail, VMOrder vMOrder, VMBook vMBook)
         {
             DetailViewModel = vMDetail;
             OrderViewModel = vMOrder;

@@ -30,6 +30,8 @@ namespace FoodeLive.Pages.Menu
             }
             
         }
+
+        ~MenuP() { }
         private List<Demo> demos = new List<Demo>();
         private List<Demo> GetFood()
 

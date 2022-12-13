@@ -24,5 +24,7 @@ namespace FoodeLive.Pages.Report
         {
             InitializeComponent();
         }
+
+        ~All() { }
     }
 }

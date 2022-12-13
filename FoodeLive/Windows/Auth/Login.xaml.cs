@@ -27,6 +27,8 @@ namespace FoodeLive.Windows.Auth
             DBConnection.Connect();
         }
 
+        ~Login() { }
+
         public static string username { get; set; }
         public static string password { get; set; }
 

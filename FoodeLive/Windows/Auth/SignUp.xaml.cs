@@ -35,6 +35,8 @@ namespace FoodeLive.Windows.Auth
             Gray = password_length.Foreground;
         }
 
+        ~SignUp() { }
+
         private void HandleSignUp_Click(object sender, RoutedEventArgs e)
         {
             string username = signup_username.Text;

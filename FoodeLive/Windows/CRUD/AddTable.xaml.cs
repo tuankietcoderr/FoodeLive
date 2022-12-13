@@ -36,6 +36,8 @@ namespace FoodeLive.Windows.CRUD
             table_id.Text = newId;
         }
 
+        ~AddTable() { }
+
         string GetNewMaBan()
         {
             string newMaBan = string.Empty;

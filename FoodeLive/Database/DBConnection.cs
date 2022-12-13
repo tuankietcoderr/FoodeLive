@@ -11,7 +11,7 @@ namespace FoodeLive.Database
     public static class DBConnection
     {
         #region SQL Connection String
-        public const string SQLConnectionString = @"Data Source=LAPTOP-9HTSBQGT;Initial Catalog=QUANLYNHAHANG;Integrated Security=True";
+        public const string SQLConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=QUANLYNHAHANG;Integrated Security=True";
         #endregion
 
         static readonly string _SQLConnectionString = SQLConnectionString;

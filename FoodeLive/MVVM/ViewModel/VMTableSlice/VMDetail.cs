@@ -10,10 +10,10 @@ namespace FoodeLive.MVVM.ViewModel.VMTableSlice
 {
     public class VMDetail : BaseViewModel
     {
-        private ICommand _DetailCommand;
+        private ICommand _detailCommand;
 
-        private string _MaBanAn;
-        public string MaBanAn { get { return _MaBanAn; } set { _MaBanAn = value; OnPropertyChanged(); } }
+        private string _maBanAn;
+        public string MaBanAn { get { return _maBanAn; } set { _maBanAn = value; OnPropertyChanged(); } }
 
         public ICommand DetailCommand { get; set; }
 
@@ -24,12 +24,12 @@ namespace FoodeLive.MVVM.ViewModel.VMTableSlice
 
         public VMDetail(string maBanAn)
         {
-            _MaBanAn = maBanAn;
+            MaBanAn = maBanAn;
         }
 
         void OnPopUp(string p)
         {
-            _MaBanAn = p;
+            MaBanAn = p;
         }
     }
 }

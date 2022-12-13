@@ -27,6 +27,8 @@ namespace FoodeLive.Pages.Home
             home_container_nav_all.IsSelected = true;
         }
 
+        ~Container() { }
+
         private void container_nav_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem selected = container_nav.SelectedItem as ListBoxItem;

@@ -24,6 +24,8 @@ namespace FoodeLive.Windows.Setting
             InitializeComponent();
         }
 
+        ~UpdateForm() { }
+
         private void chose_pic(object sender, MouseButtonEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();

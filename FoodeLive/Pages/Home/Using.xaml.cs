@@ -24,5 +24,6 @@ namespace FoodeLive.Pages.Home
         {
             InitializeComponent();
         }
+        ~Using() { }
     }
 }

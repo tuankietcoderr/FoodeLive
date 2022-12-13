@@ -33,6 +33,8 @@ namespace FoodeLive
             home.IsSelected = true;
         }
 
+        ~MainWindow() { }
+
         private void navbar_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem selected = navbar.SelectedItem as ListBoxItem;

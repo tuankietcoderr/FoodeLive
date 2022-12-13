@@ -24,5 +24,6 @@ namespace FoodeLive.Pages.History
         {
             InitializeComponent();
         }
+        ~All() { }
     }
 }

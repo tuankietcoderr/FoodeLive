@@ -28,37 +28,9 @@ namespace FoodeLive.Pages.Home
         public Empty()
         {
             InitializeComponent();
-            List<MBanAn> rows = InitData();
-            if (rows.Count > 0)
-                all_table.ItemsSource = rows;
         }
 
         ~Empty() { }
-
-        List<MBanAn> InitData()
-        {
-            string command = @"select * from banan";
-            SqlCommand sqlCommand = new SqlCommand();
-            DBConnection.Connect();
-            sqlCommand.Connection = DBConnection._SQLConnection;
-            sqlCommand.CommandText = command;
-
-            var reader = sqlCommand.ExecuteReader();
-
-            List<MBanAn> rows = new List<MBanAn>();
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    var maBanAn = reader["mabanan"];
-                    var loai = reader["loai"];
-                    if (App.ktList(maBanAn.ToString(), App.maBanAnDats))
-                        rows.Add(new MBanAn(maBanAn.ToString(), loai.ToString()));
-                }
-            }
-            DBConnection.Disconnect();
-            return rows;
-        }
 
         private void table_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {

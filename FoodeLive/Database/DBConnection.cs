@@ -11,7 +11,7 @@ namespace FoodeLive.Database
     public static class DBConnection
     {
         #region SQL Connection String
-        public const string SQLConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=QUANLYNHAHANG;Integrated Security=True";
+        public const string SQLConnectionString = @"Server=tcp:se-judge.database.windows.net,1433;Initial Catalog=QUANLYNHAHANG;Persist Security Info=False;User ID=tuankietcoder;Password=01629402815aA;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         #endregion
 
         static readonly string _SQLConnectionString = SQLConnectionString;

@@ -60,11 +60,20 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -90,7 +99,39 @@
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
     <Compile Include="Converter\CommandConverter.cs" />
+    <Compile Include="MVVM\Model\BanAn.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\ChiTietHoaDon.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\DataProvider.cs" />
+    <Compile Include="MVVM\Model\HoaDon.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\MonAn.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\NhanVien.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\QuanLyNhaHang.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyNhaHang.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\QuanLyNhaHang.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\QuanLyNhaHang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\TableViewModel.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMBook.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMBookDetailOrder.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMDetail.cs" />
@@ -171,11 +212,6 @@
     </Compile>
     <Compile Include="Database\DBConnection.cs" />
     <Compile Include="Database\DBQuery.cs" />
-    <Compile Include="MVVM\Model\MBanAn.cs" />
-    <Compile Include="MVVM\Model\MChiTietHoaDon.cs" />
-    <Compile Include="MVVM\Model\MHoaDon.cs" />
-    <Compile Include="MVVM\Model\MMonAn.cs" />
-    <Compile Include="MVVM\Model\MNhanVien.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -295,6 +331,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="MVVM\Model\QuanLyNhaHang.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyNhaHang.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MVVM\Model\QuanLyNhaHang.edmx.diagram">
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -316,7 +359,20 @@
     <Resource Include="Pages\Menu\food.png" />
     <Resource Include="Pages\Menu\edit.png" />
     <Resource Include="Pages\Setting\person.png" />
+    <Content Include="MVVM\Model\QuanLyNhaHang.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyNhaHang.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MVVM\Model\QuanLyNhaHang.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyNhaHang.cs</LastGenOutput>
+    </Content>
     <Content Include="utils\QUANLYNHAHANG.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

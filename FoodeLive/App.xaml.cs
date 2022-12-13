@@ -1,4 +1,5 @@
 ﻿using FoodeLive.Database;
+using FoodeLive.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,12 +15,12 @@ namespace FoodeLive
     /// </summary>
     public partial class App : Application
     {
-        public static List<string> maBanAnDats;
-        public static bool ktList(string s,List<string> liststring)
-        {
-            foreach (string s2 in liststring)
-                if (s == s2) return true;
-            return false;
-        }
+        //public static List<string> maBanAnDats;
+        //public static bool ktList(string s,List<string> liststring)
+        //{
+        //    foreach (string s2 in liststring)
+        //        if (s == s2) return true;
+        //    return false;
+        //}
     }
 }

@@ -53,6 +53,8 @@ namespace FoodeLive.Windows.CRUD
                     var maban = reader["mabanan"];
                     newMaBan = maban.ToString();
                 }
+            else
+                newMaBan = "B0";
 
             DBConnection.Disconnect();
             return newMaBan;

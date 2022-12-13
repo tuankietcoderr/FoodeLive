@@ -22,31 +22,8 @@ namespace FoodeLive.Windows.TableDetail
         public TableAddFood()
         {
             InitializeComponent();
-            foodsOfTable = GetFood();
-            if (foodsOfTable.Count > 0)
-            {
-                //FoodControl.ItemsSource = foodsOfTable;
-            }
         }
 
-        ~TableAddFood() { }
-
-
-        private List<Table_Foods> foodsOfTable = new List<Table_Foods>();
-        private List<Table_Foods> GetFood()
-        {
-            return new List<Table_Foods>
-            {
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-                new Table_Foods("/Windows/TableDetail/hamburgers.jpg", "Demo1", "20,000 VND"),
-            };
-        }
+        
     }
 }

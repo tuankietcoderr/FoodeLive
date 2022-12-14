@@ -72,7 +72,7 @@
                     <ListBoxItem x:Name="setting" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
                         <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" DataContext="{StaticResource WindowViewModel}">
                             <Grid.InputBindings>
-                                <MouseBinding Command="{Binding GetWindowCommand}" CommandParameter="{Binding ElementName=bruh, Mode=OneWayToSource}" MouseAction="LeftClick" />
+                                <MouseBinding Command="{Binding GetWindowCommand}" CommandParameter="{Binding ElementName=bruh, Mode=OneWay}" MouseAction="LeftClick" />
                             </Grid.InputBindings>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />

@@ -36,8 +36,7 @@ namespace FoodeLive.Windows.Menu
             if(result == true)
             {
                 filename = dialog.FileName;
-                MessageBox.Show(filename);
-                pic_add.Source = new BitmapImage(new Uri(filename));
+                MessageBox.Show(filename);    
             }
         }
 
@@ -45,15 +44,20 @@ namespace FoodeLive.Windows.Menu
         {
             this.Close();
         }
-
-        private void mouse_on(object sender, MouseEventArgs e)
+        private void chose_pic(object sender, MouseButtonEventArgs e)
         {
-           
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+
+            dialog.Filter = "Pic (.jpg)| *.jpg*";
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dialog.FileName;
+                pic.Text = filename;
+
+            }
         }
 
-        private void mouse_leave(object sender, MouseEventArgs e)
-        {
-           
-        }
     }
 }

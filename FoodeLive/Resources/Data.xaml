@@ -12,4 +12,5 @@
     <ovm:VMBookDetailOrder x:Key="VMBookDetailOrder" />
     <viewmodel:TableViewModel x:Key="TableViewModel"/>
     <viewmodel:FoodViewModel x:Key="FoodViewModel" />
+    <viewmodel:WindowViewModel x:Key="WindowViewModel"/>
 </ResourceDictionary>

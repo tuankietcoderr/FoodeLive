@@ -7,6 +7,7 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Pages.Setting.SettingP"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+        DataContext="{StaticResource WindowViewModel}"
       Title="SettingP">
 
     <Grid Background="White">
@@ -38,7 +39,7 @@
         <StackPanel Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2">
             <TextBlock x:Name="update" Text="Cập nhật thông tin" Foreground="gray" FontWeight="Bold" MouseDown="click_upd_inf" MouseEnter="on_mouse" MouseLeave="l_m"></TextBlock>
             <TextBlock x:Name="change" Text="Đổi mật khẩu" Foreground="gray" FontWeight="Bold" MouseDown="chang_pass" MouseEnter="on_mouse1" MouseLeave="l_m1" ></TextBlock>
-            <TextBlock x:Name="logout" Text="Đăng xuất" Foreground="red" FontWeight="Bold" MouseDown="LogOut" MouseEnter="on_mouse2" MouseLeave="l_m2"></TextBlock>
+            <ui:Button x:Name="logout" Command="{Binding LogOutCommand}" Content="Đăng xuất" BorderThickness="0" Padding="0" Foreground="red" FontWeight="SemiBold" MouseOverBackground="Transparent" PressedBackground="Transparent"></ui:Button>
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Left" Grid.Row="2" Grid.Column="3" Width="372">
@@ -67,7 +68,7 @@
                 <TextBlock Text="Giới tính:  " FontWeight="Bold"></TextBlock>
                 <TextBlock Text="Nam" ></TextBlock>
             </WrapPanel>
-            
+
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3">
@@ -80,10 +81,10 @@
                 <TextBlock Width="50"></TextBlock>
                 <TextBlock x:Name="problem" Text="Báo cáo sai sót"  Foreground="Gray" FontWeight="Bold" MouseEnter="on_mouse4" MouseLeave="l_m4" />
             </WrapPanel>
-            
-            
-            
+
+
+
         </StackPanel>
-        
+
     </Grid>
 </Page>

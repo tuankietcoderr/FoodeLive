@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:i="http://schemas.microsoft.com/expres"
         mc:Ignorable="d"
         Icon="/src/icon_foode_live.png"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized"
+        x:Name="bruh"
         DataContext="{StaticResource WindowUtils}"
         >
     <Grid>
@@ -68,13 +70,17 @@
                     </ListBoxItem>
                     <Separator />
                     <ListBoxItem x:Name="setting" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
-                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
+                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" DataContext="{StaticResource WindowViewModel}">
+                            <Grid.InputBindings>
+                                <MouseBinding Command="{Binding GetWindowCommand}" CommandParameter="{Binding ElementName=bruh, Mode=OneWayToSource}" MouseAction="LeftClick" />
+                            </Grid.InputBindings>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <ui:SymbolIcon Symbol="Settings20" Grid.Column="0"/>
-                            <TextBlock Text="Cài đặt" Grid.Column="1" />
+                            <TextBlock Text="Cài đặt" Grid.Column="1">
+                            </TextBlock>
                         </Grid>
                     </ListBoxItem>
                 </ListBox>

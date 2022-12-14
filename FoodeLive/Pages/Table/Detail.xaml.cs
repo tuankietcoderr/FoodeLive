@@ -27,17 +27,5 @@ namespace FoodeLive.Pages.Table
         }
 
         ~Detail() { }
-
-        public VMDetail ViewModel
-        {
-            get;
-        }
-
-        public Detail(VMDetail viewModel)
-        {
-            ViewModel = viewModel;
-            InitializeComponent();
-            this.DataContext = ViewModel;
-        }
     }
 }

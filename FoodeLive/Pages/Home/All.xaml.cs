@@ -39,7 +39,7 @@ namespace FoodeLive.Pages.Home
             Card card = sender as Card;
             string MaBanAn = card.Tag.ToString();
             VMBookDetailOrder vMBookDetailOrder = new VMBookDetailOrder(MaBanAn);
-            Windows.DetailOrderBook orderOrBook = new Windows.DetailOrderBook(vMBookDetailOrder);
+            Windows.DetailOrderBook orderOrBook = new Windows.DetailOrderBook();
             orderOrBook.ShowDialog();
         }
     }

@@ -15,15 +15,7 @@ namespace FoodeLive.MVVM.ViewModel
 
         private ObservableCollection<MonAn> _ListMonAn;
 
-        public ObservableCollection<MonAn> ListMonAn
-        {
-            get { return _ListMonAn; }
-            set
-            {
-                _ListMonAn = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<MonAn> ListMonAn { get; set; }
 
         public FoodViewModel()
         {

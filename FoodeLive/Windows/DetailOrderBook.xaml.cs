@@ -30,38 +30,6 @@ namespace FoodeLive.Windows
         }
 
         ~DetailOrderBook() { }
-        public VMDetail DetailViewModel
-        {
-            get;
-        }
-
-        public VMOrder OrderViewModel
-        {
-            get;
-        }
-
-        public VMBook BookViewModel
-        {
-            get;
-        }
-
-        public DetailOrderBook(VMBookDetailOrder vMBookDetailOrder)
-        {
-            DetailViewModel = vMBookDetailOrder.VMDetail;
-            OrderViewModel = vMBookDetailOrder.VMOrder;
-            BookViewModel = vMBookDetailOrder.VMBook;
-            InitializeComponent();
-            detail.IsSelected= true;
-        }
-
-        public DetailOrderBook(VMDetail vMDetail, VMOrder vMOrder, VMBook vMBook)
-        {
-            DetailViewModel = vMDetail;
-            OrderViewModel = vMOrder;
-            BookViewModel = vMBook;
-            InitializeComponent();
-            detail.IsSelected = true;
-        }
 
         private void orderOrBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -73,16 +41,16 @@ namespace FoodeLive.Windows
             switch (name)
             {
                 case "detail":
-                    navframe.Navigate(new Detail(DetailViewModel));
+                    navframe.Navigate(new Detail());
                     break;
                 case "order":
-                    navframe.Navigate(new Order(OrderViewModel));
+                    navframe.Navigate(new Order());
                     break;
                 case "book":
-                    navframe.Navigate(new Book(BookViewModel));
+                    navframe.Navigate(new Book());
                     break;
                 default:
-                    navframe.Navigate(new Detail(DetailViewModel));
+                    navframe.Navigate(new Detail());
                     break;
             }
         }

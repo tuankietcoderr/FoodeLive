@@ -20,5 +20,16 @@ namespace FoodeLive.MVVM.Model
     
         public virtual MonAn MonAn { get; set; }
         public virtual HoaDon HoaDon { get; set; }
+
+        public ChiTietHoaDon() { }
+
+        public ChiTietHoaDon(ChiTietHoaDon chiTietHoaDon)
+        {
+            SoHoaDon = chiTietHoaDon.SoHoaDon;
+            MaMonAn = chiTietHoaDon.MaMonAn;
+            SoLuong = chiTietHoaDon.SoLuong;
+            MonAn = chiTietHoaDon.MonAn;
+            HoaDon = chiTietHoaDon.HoaDon;
+        }
     }
 }

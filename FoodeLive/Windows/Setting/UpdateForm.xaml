@@ -39,7 +39,7 @@
 
             <DatePicker FontSize="12"/>
 
-            <TextBlock Text="Giới tính" Height="34" FontSize="20" FontWeight="Bold"/>
+            <TextBlock Text="Giới tính" Height="23" FontSize="14" FontWeight="DemiBold"/>
 
             <WrapPanel Height="74">
                 <RadioButton FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Height="41" Width="97" IsChecked="True" Background="#FFFF7A00">Nam</RadioButton>

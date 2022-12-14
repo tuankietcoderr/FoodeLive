@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1615b384e7da4697b9e39792fc61a448" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.BanAn" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.BanAn" Width="1.5" PointX="5.625" PointY="5" />
         <EntityTypeShape EntityType="QuanLyNhaHangModel.ChiTietHoaDon" Width="1.5" PointX="8.875" PointY="0.75" />
         <EntityTypeShape EntityType="QuanLyNhaHangModel.HoaDon" Width="1.5" PointX="5.5" PointY="0.875" />
         <EntityTypeShape EntityType="QuanLyNhaHangModel.MonAn" Width="1.5" PointX="10.25" PointY="4" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.NhanVien" Width="1.5" PointX="4.25" PointY="4.625" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.NhanVien" Width="1.5" PointX="1.875" PointY="0.75" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_MABANAN" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_MAMONAN" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_SoHoaDon" />

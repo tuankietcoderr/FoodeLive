@@ -66,6 +66,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -74,6 +77,9 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -141,7 +147,6 @@
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMBookDetailOrder.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMDetail.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMOrder.cs" />
-    <Compile Include="MVVM\ViewModel\WindowViewModel.cs" />
     <Compile Include="Pages\Menu\Demo.cs" />
     <Compile Include="Pages\Menu\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
@@ -163,6 +168,9 @@
     </Compile>
     <Compile Include="Pages\Home\Using.xaml.cs">
       <DependentUpon>Using.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Notification\All.xaml.cs">
+      <DependentUpon>All.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Table\Book.xaml.cs">
       <DependentUpon>Book.xaml</DependentUpon>
@@ -223,11 +231,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Notification\All.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Table\Detail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Converter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

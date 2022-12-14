@@ -11,25 +11,31 @@ namespace FoodeLive.MVVM.Model
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class ChiTietHoaDon
     {
         public int SoHoaDon { get; set; }
         public string MaMonAn { get; set; }
         public Nullable<int> SoLuong { get; set; }
-    
+
         public virtual MonAn MonAn { get; set; }
         public virtual HoaDon HoaDon { get; set; }
 
-        public ChiTietHoaDon() { }
-
-        public ChiTietHoaDon(ChiTietHoaDon chiTietHoaDon)
+        public ChiTietHoaDon()
         {
-            SoHoaDon = chiTietHoaDon.SoHoaDon;
-            MaMonAn = chiTietHoaDon.MaMonAn;
-            SoLuong = chiTietHoaDon.SoLuong;
-            MonAn = chiTietHoaDon.MonAn;
-            HoaDon = chiTietHoaDon.HoaDon;
+            this.MonAn = new MonAn();
+            this.HoaDon = new HoaDon();
+        }
+
+        public ChiTietHoaDon(int SoHoaDon, string MaMonAn, Nullable<int> SoLuong, MonAn monAn, HoaDon hoaDon)
+        {
+            this.MonAn = new MonAn();
+            this.HoaDon = new HoaDon();
+            this.SoHoaDon = SoHoaDon;
+            this.MaMonAn = MaMonAn;
+            this.SoLuong = SoLuong;
+            this.MonAn = monAn;
+            this.HoaDon = hoaDon;
         }
     }
 }

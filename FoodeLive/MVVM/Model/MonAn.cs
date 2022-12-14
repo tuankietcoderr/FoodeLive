@@ -28,12 +28,12 @@ namespace FoodeLive.MVVM.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
 
-        public MonAn(MonAn monAn)
+        public MonAn(string MaMonAn, string TenMonAn, Nullable<decimal> Gia, string ImgExtension)
         {
-            MaMonAn = monAn.MaMonAn;
-            TenMonAn = monAn.TenMonAn;
-            Gia = monAn.Gia;
-            ImgExtension = monAn.ImgExtension;
+            this.MaMonAn = MaMonAn;
+            this.TenMonAn = TenMonAn;
+            this.Gia = Gia;
+            this.ImgExtension = ImgExtension;
             this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
     }

@@ -49,7 +49,7 @@
         </StackPanel>
 
 
-        <ui:VirtualizingGridView ItemsSource="{Binding ListMonAn}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
+        <ui:VirtualizingGridView ItemContainerStyle="{StaticResource ClearOutlineListViewItem}" ItemsSource="{Binding ListMonAn}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">

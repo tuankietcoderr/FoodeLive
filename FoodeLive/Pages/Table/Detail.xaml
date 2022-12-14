@@ -10,16 +10,22 @@
       Title="Detail">
 
     <Grid>
-        <TextBlock Text="{Binding MaBanAn}" />
-        <ui:VirtualizingGridView ItemsSource="{Binding SelectedMonAns}" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Padding="0,0,0,0" Grid.Row="1" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock FontWeight="Bold" FontSize="44" Grid.Row="0" >
+            Bàn 
+        <TextBlock Text="{Binding MaBanAn}"/>
+        </TextBlock>
+        <ui:VirtualizingGridView ItemsSource="{Binding SelectedMonAns}" SpacingMode="BetweenItemsOnly" Padding="0,0,0,0" Grid.Row="1" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock  Text="{Binding MaMonAn}"/>
-                    <!--<ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
                             <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
-                    </ui:CardColor>-->
+                    </ui:CardColor>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>

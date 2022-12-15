@@ -34,27 +34,28 @@ CREATE TABLE BanAn
 	CONSTRAINT PK_MABANAN PRIMARY KEY (MABANAN),
 )
 
+alter table banan add constraint DF_BanAn_TrangThai DEFAULT N'Trống' for Trangthai 
+
 CREATE TABLE NguoiDung
 (
-	MANGUOIDUNG CHAR(4) NOT NULL,
 	HoTen NVARCHAR(40),
 	SoDienThoai VARCHAR(20),
-	CONSTRAINT PK_MANGUOIDUNG PRIMARY KEY (MANGUOIDUNG),
+	CONSTRAINT PK_MANGUOIDUNG PRIMARY KEY (TenNguoiDung),
 	TenNguoiDung VARCHAR(20) UNIQUE,
     MatKhau VARCHAR(30),
 )
-
-create table DONHANG
+SELECT * from NhanVien
+create table DonHang
 (
 	SoDonHang int NOT NULL ,
 	NgayLapDonHang SMALLDATETIME,
-	MANGUOIDUNG CHAR(4),
-	MaNV CHAR(4),
+	TenNguoiDung VARCHAR(20),
 	TriGia MONEY ,
 	TieuDe NVARCHAR(50),
 	GhiChu NVARCHAR(50),
+	MaNV CHAR(4),
 	CONSTRAINT PK_SoDonHang PRIMARY KEY (SoDonHang),
-	CONSTRAINT FK_MANGUOIDUNG FOREIGN KEY (MANGUOIDUNG) REFERENCES NGUOIDUNG (MANGUOIDUNG),
+	CONSTRAINT FK_TenNguoiDung FOREIGN KEY (TenNguoiDung) REFERENCES NGUOIDUNG (TenNguoiDung),
 	CONSTRAINT FK_MANV_DONHANG FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
 )
 
@@ -80,6 +81,11 @@ create table HoaDon
 	CONSTRAINT FK_MABANAN FOREIGN KEY (MaBanAn) REFERENCES BANAN (MaBanAn),
 	CONSTRAINT FK_MANV FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
 )
+
+ALTER TABLE HoaDon
+ADD CONSTRAINT DF_HoaDon_TriGia DEFAULT 0 FOR TriGia
+
+alter table banan drop CONSTRAINT DF__BanAn__TrangThai__29572725
 
 CREATE TABLE ChiTietHoaDon
 (
@@ -175,7 +181,6 @@ BEGIN
 END
 
 
-
 /*Trị giá của một hóa đơn là tổng thành tiền (số lượng*đơn giá) của các chi tiết thuộc hóa đơn đó.
 */
 
@@ -234,5 +239,19 @@ select * from ChiTietHoaDon
 select * from HoaDon
 
 
-select MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, TriGia from ChiTietHoaDon, HoaDon, BanAn
-where ChiTietHoaDon.SoHoaDon = HoaDon.SoHoaDon and HoaDon.MaBanAn = BanAn.MaBanAn
+select BanAn.TrangThai, MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, BanAn.MaBanAn from ChiTietHoaDon, HoaDon, BanAn
+where ChiTietHoaDon.SoHoaDon = HoaDon.SoHoaDon and BanAn.MaBanAn = HoaDon.MaBanAn
+
+-- Them mon an vao ban an => ghi vao hoa don
+DROP TRIGGER trg_del_ChiTietHoaDon;
+
+delete from ChiTietHoaDon
+delete from hoadon
+select * from ChiTietHoaDon
+
+select * from HoaDon
+select * from MonAn
+select distinct SoLuong,MaBanAn, TrangThai, MaMonAn from ChiTietHoaDon, BanAn
+where TrangThai=N'Có khách'
+update BanAn set TrangThai=N'Trống'
+

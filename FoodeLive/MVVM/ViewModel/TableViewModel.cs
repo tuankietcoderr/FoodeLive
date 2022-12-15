@@ -19,45 +19,13 @@ namespace FoodeLive.MVVM.ViewModel
         private string _maBanAn;
         public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); } }
         private string _loai;
-        public string Loai { get => _loai; set { _loai = value; OnPropertyChanged(); } }
+        public string Loai { get { return _loai; } set { _loai = value; OnPropertyChanged(); } }
 
         private int _soHoaDon;
         public int SoHoaDon { get => _soHoaDon; set { _soHoaDon = value; OnPropertyChanged(); } }
 
         private ObservableCollection<BanAn> _ListBanAn;
         public ObservableCollection<BanAn> ListBanAn { get => _ListBanAn; set { _ListBanAn = value; OnPropertyChanged(); } }
-
-        public ObservableCollection<HoaDon> ListHoaDon { get; set; }
-
-        public ObservableCollection<ChiTietHoaDon> ListChiTietHoaDon { get; set; }
-
-        public ObservableCollection<ChiTietHoaDon> SelectedChiTietHoaDons { get; set; }
-
-        public ObservableCollection<MonAn> SelectedMonAns { get; set; }
-
-        private BanAn _selectedItem;
-        public BanAn SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                _selectedItem = value;
-                OnPropertyChanged();
-                if (SelectedItem != null)
-                {
-                    SelectedMonAns.Clear();
-                    _maBanAn = SelectedItem.MaBanAn;
-                    foreach (var item in ListChiTietHoaDon)
-                        if (item.HoaDon.MaBanAn == _maBanAn)
-                        {
-                            SelectedChiTietHoaDons.Add(new ChiTietHoaDon(item.SoHoaDon, item.MaMonAn, item.SoLuong, item.MonAn, item.HoaDon));
-                            SelectedMonAns.Add(new MonAn(item.MonAn.MaMonAn, item.MonAn.TenMonAn, item.MonAn.Gia, item.MonAn.ImgExtension));
-                        }
-                    DetailOrderBook detailOrderBook = new DetailOrderBook();
-                    detailOrderBook.ShowDialog();
-                }
-            }
-        }
 
         public ICommand AddTableCommand { get; set; }
         public ICommand DeleteTableCommand { get; set; }
@@ -67,26 +35,11 @@ namespace FoodeLive.MVVM.ViewModel
         public TableViewModel()
         {
             _ListBanAn = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns);
-            ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons);
-            ListChiTietHoaDon = new ObservableCollection<ChiTietHoaDon>();
-            SelectedChiTietHoaDons = new ObservableCollection<ChiTietHoaDon>();
-            SelectedMonAns = new ObservableCollection<MonAn>();
-            var query = from ChiTietHoaDons in DataProvider.Ins.DB.ChiTietHoaDons
-                        select new
-                        {
-                            ChiTietHoaDons.MaMonAn,
-                            ChiTietHoaDons.SoLuong,
-                            ChiTietHoaDons.SoHoaDon,
-                            ChiTietHoaDons.MonAn,
-                            ChiTietHoaDons.HoaDon
-                        };
-            foreach (var cthd in query)
-                ListChiTietHoaDon.Add(new ChiTietHoaDon(cthd.SoHoaDon, cthd.MaMonAn, cthd.SoLuong, cthd.MonAn, cthd.HoaDon));
 
             // Add table
             AddTableCommand = new RelayCommand<Window>((p) =>
             {
-                if (string.IsNullOrEmpty(MaBanAn) || Loai == "Chọn loại bàn")
+                if (string.IsNullOrEmpty(_maBanAn) || _loai == "Chọn loại bàn" || _maBanAn[0] != 'B' || _maBanAn.Length > 4)
                     return false;
                 var ListMaBanAn = DataProvider.Ins.DB.BanAns.Where(b => b.MaBanAn == MaBanAn).ToList();
                 if (ListMaBanAn == null || ListMaBanAn.Count() != 0)
@@ -96,7 +49,8 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 try
                 {
-                    var banAn = new BanAn() { MaBanAn = MaBanAn, Loai = Loai };
+                    MessageBox.Show(_maBanAn);
+                    var banAn = new BanAn() { MaBanAn = MaBanAn, Loai = Loai, TrangThai = "Trống" };
                     DataProvider.Ins.DB.BanAns.Add(banAn);
                     DataProvider.Ins.DB.SaveChanges();
                     ListBanAn.Add(banAn);
@@ -110,14 +64,18 @@ namespace FoodeLive.MVVM.ViewModel
             });
 
             // Delete table
-            DeleteTableCommand = new RelayCommand<Window>((p) => { return true; },
+            DeleteTableCommand = new RelayCommand<Window>((p) =>
+            {
+                return _maBanAn != string.Empty;
+            },
             (p) =>
             {
                 try
                 {
+                    MessageBox.Show(_maBanAn);
                     foreach (BanAn item in DataProvider.Ins.DB.BanAns)
                     {
-                        if (item.MaBanAn == MaBanAn)
+                        if (item.MaBanAn == _maBanAn)
                         {
                             DataProvider.Ins.DB.BanAns.Remove(item);
                             ListBanAn.Remove(item);
@@ -139,7 +97,7 @@ namespace FoodeLive.MVVM.ViewModel
                 //ObservableCollection<BanAn>  _RefListBanAn = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns);
                 //_ListBanAn = _RefListBanAn;
                 //OnPropertyChanged("ListBanAn");
-                
+
             });
         }
     }

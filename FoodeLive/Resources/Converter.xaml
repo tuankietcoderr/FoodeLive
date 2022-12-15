@@ -3,4 +3,5 @@
                     xmlns:command="clr-namespace:FoodeLive.Converter"
                     >
     <command:CommandConverter x:Key="CommandConverter"/>
+    <command:MoneyConverter x:Key="MoneyConverter"/>
 </ResourceDictionary>

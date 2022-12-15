@@ -10,6 +10,7 @@
     <ovm:VMOrder x:Key="VMOrder" />
     <ovm:VMBook x:Key="VMBook" />
     <ovm:VMBookDetailOrder x:Key="VMBookDetailOrder" />
-    <viewmodel:TableViewModel x:Key="TableViewModel"/>
-    <viewmodel:FoodViewModel x:Key="FoodViewModel" />
+    <!--<viewmodel:TableViewModel x:Key="TableViewModel"/>
+    <viewmodel:FoodViewModel x:Key="FoodViewModel" />-->
+    <viewmodel:MainViewModel x:Key="MainViewModel" />
 </ResourceDictionary>

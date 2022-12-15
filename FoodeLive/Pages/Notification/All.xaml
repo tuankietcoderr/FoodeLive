@@ -20,7 +20,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TextBlock Text="Tất cả thông báo" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
-            <ui:Button Cursor="Hand" HorizontalAlignment="Right" Icon="DeleteDismiss28" Content="Xóa hết thông báo" Foreground="Gray" Padding="20 8" FontSize="12" IconForeground="Gray" PressedForeground="#000" BorderThickness="0" Background="Transparent" MouseOverBackground="#CECCCC" Grid.Column="1"/>
+            <ui:Button Cursor="Hand" HorizontalAlignment="Right" Icon="FilterDismiss20" Content="Xóa hết thông báo" Foreground="Gray" Padding="20 8" FontSize="12" IconForeground="Gray" PressedForeground="#000" BorderThickness="0" Background="Transparent" MouseOverBackground="#CECCCC" Grid.Column="1"/>
         </Grid>
         <ListView Grid.Row="1">
             <ItemsControl.ItemTemplate>

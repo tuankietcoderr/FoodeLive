@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FoodeLive.MVVM.ViewModel;
 using FoodeLive.MVVM.ViewModel.VMTableSlice;
 using FoodeLive.Pages.Table;
 
@@ -24,6 +25,12 @@ namespace FoodeLive.Windows
     {
 
         public DetailOrderBook()
+        {
+            InitializeComponent();
+            detail.IsSelected = true;
+        }
+
+        public DetailOrderBook(string MaBanAn, int SoHoaDon)
         {
             InitializeComponent();
             detail.IsSelected = true;

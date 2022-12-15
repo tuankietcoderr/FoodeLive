@@ -8,17 +8,17 @@
         WindowStartupLocation="CenterScreen"
         Icon="/src/icon_foode_live.png"
         ResizeMode="NoResize"
-        DataContext="{StaticResource TableViewModel}"
+        DataContext="{StaticResource MainViewModel}"
         x:Name="AddTableWindow"
         Title="Thêm bàn" Height="260" Width="400">
     <StackPanel Margin="20" VerticalAlignment="Center">
-        <ucli:LabelInput Placeholder="(bắt đầu với B)" Label="Mã bàn" Text="{Binding MaBanAn, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="table_id" FontSize="{Binding FontSize,ElementName=table_type}" />
+        <ucli:LabelInput Placeholder="(bắt đầu với B và có ít hơn 4 kí tự)" Label="Mã bàn" Text="{Binding TableViewModel.MaBanAn, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="table_id" FontSize="{Binding FontSize,ElementName=table_type}" />
         <TextBlock Text="Loại bàn" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,4"/>
-        <ComboBox FontSize="12" x:Name="table_type" Text="{Binding Loai, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+        <ComboBox FontSize="12" x:Name="table_type" Text="{Binding TableViewModel.Loai, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
             <ComboBoxItem FontSize="{Binding FontSize, ElementName=table_type}" IsSelected="True">Chọn loại bàn</ComboBoxItem>
             <ComboBoxItem FontSize="{Binding FontSize,ElementName=table_type}">Thường</ComboBoxItem>
             <ComboBoxItem FontSize="{Binding FontSize, ElementName=table_type}">VIP</ComboBoxItem>
         </ComboBox>
-        <ui:Button x:Name="add_table" Command="{Binding AddTableCommand}" CommandParameter="{Binding ElementName=AddTableWindow}" Content="Thêm" Background="#FF7A00" MouseOverBackground="#FF7A00" Foreground="#fff" PressedForeground="#FF7A00" Padding="30,7,30,7" Margin="0, 20,0,0" HorizontalAlignment="Right" BorderThickness="0" FontWeight="SemiBold" />
+        <ui:Button x:Name="add_table" Command="{Binding TableViewModel.AddTableCommand}" CommandParameter="{Binding ElementName=AddTableWindow}" Content="Thêm" Background="#FF7A00" MouseOverBackground="#FF7A00" Foreground="#fff" PressedForeground="#FF7A00" Padding="30,7,30,7" Margin="0, 20,0,0" HorizontalAlignment="Right" BorderThickness="0" FontWeight="SemiBold" />
     </StackPanel>
 </Window>

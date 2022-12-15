@@ -12,23 +12,25 @@ namespace FoodeLive.MVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class MonAn
+    public partial class DonHang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MonAn()
+        public DonHang()
         {
             this.ChiTietDonHangs = new HashSet<ChiTietDonHang>();
-            this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
     
-        public string MaMonAn { get; set; }
-        public string TenMonAn { get; set; }
-        public Nullable<decimal> Gia { get; set; }
-        public string ImgExtension { get; set; }
+        public int SoDonHang { get; set; }
+        public Nullable<System.DateTime> NgayLapDonHang { get; set; }
+        public string TenNguoiDung { get; set; }
+        public Nullable<decimal> TriGia { get; set; }
+        public string TieuDe { get; set; }
+        public string GhiChu { get; set; }
+        public string MaNV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        public virtual NhanVien NhanVien { get; set; }
+        public virtual NguoiDung NguoiDung { get; set; }
     }
 }

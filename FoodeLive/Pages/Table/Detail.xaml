@@ -10,14 +10,6 @@
       Title="Detail">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <TextBlock FontWeight="Bold" FontSize="44" Grid.Row="0" >
-            Bàn 
-        <TextBlock Text="{Binding MaBanAn}"/>
-        </TextBlock>
         <ui:VirtualizingGridView ItemsSource="{Binding SelectedMonAns}" SpacingMode="BetweenItemsOnly" Padding="0,0,0,0" Grid.Row="1" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

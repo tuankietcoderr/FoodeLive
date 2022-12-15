@@ -13,6 +13,17 @@ namespace FoodeLive.MVVM.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        public TableViewModel TableViewModel { get; set; }
+        public FoodViewModel FoodViewModel { get; set; }
+
+        private string _maBanAn;
+        public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); } }
         
+
+        public MainViewModel()
+        {
+            TableViewModel = new TableViewModel(_maBanAn);
+            FoodViewModel = new FoodViewModel(_maBanAn);
+        }
     }
 }

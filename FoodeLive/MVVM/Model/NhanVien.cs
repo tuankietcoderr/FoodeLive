@@ -17,6 +17,7 @@ namespace FoodeLive.MVVM.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhanVien()
         {
+            this.DonHangs = new HashSet<DonHang>();
             this.HoaDons = new HashSet<HoaDon>();
         }
     
@@ -31,6 +32,8 @@ namespace FoodeLive.MVVM.Model
         public string TenNguoiDung { get; set; }
         public string MatKhau { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonHang> DonHangs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
     }

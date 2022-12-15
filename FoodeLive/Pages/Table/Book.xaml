@@ -9,6 +9,5 @@
       Title="Book">
 
     <Grid>
-        <TextBlock Text="{Binding MaBanAn}"/> 
     </Grid>
 </Page>

@@ -50,10 +50,10 @@ namespace FoodeLive.MVVM.ViewModel
                     foreach (var item in ListChiTietHoaDon)
                         if (item.HoaDon.MaBanAn == _maBanAn)
                         {
-                            SelectedChiTietHoaDons.Add(new ChiTietHoaDon(item.SoHoaDon, item.MaMonAn, item.SoLuong, item.MonAn, item.HoaDon));
-                            SelectedMonAns.Add(new MonAn(item.MonAn.MaMonAn, item.MonAn.TenMonAn, item.MonAn.Gia, item.MonAn.ImgExtension));
+                            SelectedChiTietHoaDons.Add(new ChiTietHoaDon() { SoHoaDon = item.SoHoaDon, MaMonAn = item.MaMonAn, SoLuong = item.SoLuong, MonAn = item.MonAn, HoaDon = item.HoaDon });
+                            SelectedMonAns.Add(new MonAn() { MaMonAn = item.MonAn.MaMonAn,TenMonAn = item.MonAn.TenMonAn, Gia = item.MonAn.Gia, ImgExtension = item.MonAn.ImgExtension });
                         }
-                    DetailOrderBook detailOrderBook = new DetailOrderBook();
+                    DetailOrderBook detailOrderBook = new DetailOrderBook(_maBanAn , _soHoaDon);
                     detailOrderBook.ShowDialog();
                 }
             }
@@ -64,8 +64,9 @@ namespace FoodeLive.MVVM.ViewModel
         public ICommand RefreshCommand { get; set; }
 
 
-        public TableViewModel()
+        public TableViewModel(string MaBanAn)
         {
+            this._maBanAn = MaBanAn;
             _ListBanAn = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns);
             ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons);
             ListChiTietHoaDon = new ObservableCollection<ChiTietHoaDon>();
@@ -81,7 +82,7 @@ namespace FoodeLive.MVVM.ViewModel
                             ChiTietHoaDons.HoaDon
                         };
             foreach (var cthd in query)
-                ListChiTietHoaDon.Add(new ChiTietHoaDon(cthd.SoHoaDon, cthd.MaMonAn, cthd.SoLuong, cthd.MonAn, cthd.HoaDon));
+                ListChiTietHoaDon.Add(new ChiTietHoaDon() { SoHoaDon = cthd.SoHoaDon, MaMonAn = cthd.MaMonAn, SoLuong = cthd.SoLuong, MonAn = cthd.MonAn, HoaDon = cthd.HoaDon });
 
             // Add table
             AddTableCommand = new RelayCommand<Window>((p) =>

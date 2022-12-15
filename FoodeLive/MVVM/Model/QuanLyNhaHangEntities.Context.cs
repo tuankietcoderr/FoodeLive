@@ -26,9 +26,12 @@ namespace FoodeLive.MVVM.Model
         }
     
         public virtual DbSet<BanAn> BanAns { get; set; }
+        public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        public virtual DbSet<DonHang> DonHangs { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<MonAn> MonAns { get; set; }
+        public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
     }
 }

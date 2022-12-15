@@ -12,13 +12,13 @@ namespace FoodeLive.MVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietHoaDon
+    public partial class ChiTietDonHang
     {
-        public int SoHoaDon { get; set; }
+        public int SoDonHang { get; set; }
         public string MaMonAn { get; set; }
         public Nullable<int> SoLuong { get; set; }
     
         public virtual MonAn MonAn { get; set; }
-        public virtual HoaDon HoaDon { get; set; }
+        public virtual DonHang DonHang { get; set; }
     }
 }

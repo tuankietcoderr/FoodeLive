@@ -10,7 +10,6 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized"
-        x:Name="bruh"
         DataContext="{StaticResource WindowUtils}"
         >
     <Grid>
@@ -69,11 +68,19 @@
                         </Grid>
                     </ListBoxItem>
                     <Separator />
+                    <ListBoxItem x:Name="notification" Margin="0 10" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
+                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ui:SymbolIcon Symbol="Alert20" Grid.Column="0"/>
+                            <TextBlock Text="Thông báo" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                    </ListBoxItem>
                     <ListBoxItem x:Name="setting" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
-                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" DataContext="{StaticResource WindowViewModel}">
-                            <Grid.InputBindings>
-                                <MouseBinding Command="{Binding GetWindowCommand}" CommandParameter="{Binding ElementName=bruh, Mode=OneWay}" MouseAction="LeftClick" />
-                            </Grid.InputBindings>
+                        <Grid Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition />
@@ -83,6 +90,7 @@
                             </TextBlock>
                         </Grid>
                     </ListBoxItem>
+                    
                 </ListBox>
             </StackPanel>
         </Border>

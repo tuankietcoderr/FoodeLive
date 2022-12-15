@@ -51,9 +51,12 @@ namespace FoodeLive
                     break;
                 case "history":
                     navframe.Navigate(new Pages.History.All());
-                        break;
+                    break;
                 case "report":
                     navframe.Navigate(new Pages.Report.All());
+                    break;
+                case "notification":
+                    navframe.Navigate(new Pages.Notification.All());
                     break;
                 case "setting":
                     navframe.Navigate(new Pages.Setting.SettingP());

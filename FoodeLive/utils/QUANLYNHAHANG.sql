@@ -25,12 +25,47 @@ CREATE TABLE MonAn
 	CONSTRAINT PK_MAMONAN PRIMARY KEY (MAMONAN),
 )
 
+
 CREATE TABLE BanAn
 (
 	MaBanAn CHAR(4) NOT NULL,
 	Loai NVARCHAR(6),
     TrangThai NVARCHAR(10) DEFAULT N'Trống',
 	CONSTRAINT PK_MABANAN PRIMARY KEY (MABANAN),
+)
+
+CREATE TABLE NguoiDung
+(
+	MANGUOIDUNG CHAR(4) NOT NULL,
+	HoTen NVARCHAR(40),
+	SoDienThoai VARCHAR(20),
+	CONSTRAINT PK_MANGUOIDUNG PRIMARY KEY (MANGUOIDUNG),
+	TenNguoiDung VARCHAR(20) UNIQUE,
+    MatKhau VARCHAR(30),
+)
+
+create table DONHANG
+(
+	SoDonHang int NOT NULL ,
+	NgayLapDonHang SMALLDATETIME,
+	MANGUOIDUNG CHAR(4),
+	MaNV CHAR(4),
+	TriGia MONEY ,
+	TieuDe NVARCHAR(50),
+	GhiChu NVARCHAR(50),
+	CONSTRAINT PK_SoDonHang PRIMARY KEY (SoDonHang),
+	CONSTRAINT FK_MANGUOIDUNG FOREIGN KEY (MANGUOIDUNG) REFERENCES NGUOIDUNG (MANGUOIDUNG),
+	CONSTRAINT FK_MANV_DONHANG FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
+)
+
+CREATE TABLE ChiTietDonHang
+(
+	SoDonHang INT NOT NULL,
+	MaMonAn CHAR(4) NOT NULL,
+	SoLuong INT,
+	CONSTRAINT PK_SoDonHang_MAMONAN PRIMARY KEY (SoDonHang,MaMonAn),
+	CONSTRAINT FK_SoDonHang FOREIGN KEY (SoDonHang) REFERENCES DonHang (SoDonHang),
+	CONSTRAINT FK_MAMONAN_ChiTietDonHang FOREIGN KEY (MaMonAn) REFERENCES MONAN (MaMonAn),
 )
 
 
@@ -56,9 +91,20 @@ CREATE TABLE ChiTietHoaDon
 	CONSTRAINT FK_MAMONAN FOREIGN KEY (MaMonAn) REFERENCES MONAN (MaMonAn),
 )
 
+ALTER TABLE ChiTietHoaDon
+ADD SoLuong int DEFAULT 0
+
+ALTER TABLE ChiTietHoaDon
+DROP COLUMN SoLuong
+
+select * from NhanVien
+
 /*Giá bán của sản phẩm từ 0 đồng trở lên*/
 ALTER TABLE MONAN
 ADD CONSTRAINT GIA_CHECK CHECK(GIA>0)
+
+ALTER TABLE ChiTietHoaDon
+DROP CONSTRAINT SoLuong_CHECK
 
 ALTER TABLE NHANVIEN ADD CONSTRAINT ngayvaolam_CHECK CHECK(NgayVaoLam>NGaySINH)
 
@@ -163,4 +209,30 @@ INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B02',N'Thường')
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B03',N'Vip')
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B04',N'Thường')
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B05',N'Thường')
+INSERT INTO BANAN(MABANAN,LOAI, TrangThai) VALUES ('B06',N'Thường', N'Có khách')
+INSERT INTO BANAN(MABANAN,LOAI, TrangThai) VALUES ('B07',N'VIP', N'Đã đặt')
+INSERT INTO BANAN(MABANAN,LOAI, TrangThai) VALUES ('B08',N'VIP', N'Trống')
 select * from banan
+
+delete from banan
+where MaBanAn='b08'
+
+insert into HoaDon(SoHoaDon, MaBanAn, TriGia) values (1, 'B03', 10000)
+insert into HoaDon(SoHoaDon, MaBanAn, TriGia) values (2, 'B05', 10000)
+SELECT * from HoaDon
+
+insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M01', 1, 1)
+insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M02', 1, 1)
+insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M02', 2, 1)
+insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M04', 2, 3)
+
+select * from nhanvien
+
+
+delete from nhanvien where TenNguoiDung = 'tuankietcoderr1'
+select * from ChiTietHoaDon
+select * from HoaDon
+
+
+select MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, TriGia from ChiTietHoaDon, HoaDon, BanAn
+where ChiTietHoaDon.SoHoaDon = HoaDon.SoHoaDon and HoaDon.MaBanAn = BanAn.MaBanAn

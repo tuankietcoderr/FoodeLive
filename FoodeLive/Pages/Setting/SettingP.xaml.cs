@@ -39,13 +39,6 @@ namespace FoodeLive.Pages.Setting
             passwordChange.Show();
         }
 
-        private void LogOut(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-
-
-
         private void on_mouse(object sender, MouseEventArgs e)
         {
             update.FontStyle = FontStyles.Oblique;
@@ -60,7 +53,6 @@ namespace FoodeLive.Pages.Setting
 
         private void on_mouse2(object sender, MouseEventArgs e)
         {
-            logout.FontStyle = FontStyles.Oblique;
         }
         private void on_mouse3(object sender, MouseEventArgs e)
         {
@@ -88,7 +80,6 @@ namespace FoodeLive.Pages.Setting
 
         private void l_m2(object sender, MouseEventArgs e)
         {
-            logout.FontStyle = FontStyles.Normal;
         }
 
         private void l_m3(object sender, MouseEventArgs e)

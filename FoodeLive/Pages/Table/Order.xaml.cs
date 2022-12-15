@@ -21,6 +21,8 @@ namespace FoodeLive.Pages.Table
     /// </summary>
     public partial class Order : Page
     {
+
+        private Brush brush { get; set; }
         public Order()
         {
             InitializeComponent();
@@ -37,6 +39,32 @@ namespace FoodeLive.Pages.Table
         {
             Windows.TableDetail.TableAddFood tableAddFood = new Windows.TableDetail.TableAddFood();
             tableAddFood.ShowDialog();
+        }
+
+        private void ListViewItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            if (item != null && item.IsSelected)
+            {
+                MessageBox.Show(item.ToString());
+            }
+        }
+
+        private void card_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Wpf.Ui.Controls.CardColor item = sender as Wpf.Ui.Controls.CardColor;
+            if (item != null)
+            {
+                if (item.BorderBrush == Brushes.LightGreen)
+                {
+                    item.BorderBrush = brush;
+                }
+                else
+                {
+                    brush = item.BorderBrush;
+                    item.BorderBrush = Brushes.LightGreen;
+                }
+            }
         }
     }
 }

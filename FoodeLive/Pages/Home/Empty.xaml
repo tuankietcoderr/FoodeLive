@@ -23,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView x:Name="all_table"  Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
+        <ui:VirtualizingGridView x:Name="all_table" Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Tag="{Binding MaBanAn}" Background="#fff" BorderThickness="0" Width="150" PreviewMouseDown="table_PreviewMouseDown">
@@ -51,6 +51,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
-
     </Grid>
 </Page>

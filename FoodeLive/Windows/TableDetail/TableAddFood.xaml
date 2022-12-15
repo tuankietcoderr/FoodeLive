@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         DataContext="{StaticResource FoodViewModel}"
         Title="Table_AddFood" Height="700" Width="1230" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Margin="20 10">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>

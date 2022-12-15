@@ -34,6 +34,8 @@ CREATE TABLE BanAn
 	CONSTRAINT PK_MABANAN PRIMARY KEY (MABANAN),
 )
 
+alter table banan add constraint DF_BanAn_TrangThai DEFAULT N'Trống' for Trangthai 
+
 CREATE TABLE NguoiDung
 (
 	HoTen NVARCHAR(40),
@@ -82,6 +84,8 @@ create table HoaDon
 
 ALTER TABLE HoaDon
 ADD CONSTRAINT DF_HoaDon_TriGia DEFAULT 0 FOR TriGia
+
+alter table banan drop CONSTRAINT DF__BanAn__TrangThai__29572725
 
 CREATE TABLE ChiTietHoaDon
 (
@@ -175,7 +179,6 @@ BEGIN
 		ROLLBACK TRANSACTION
 	END
 END
-
 
 
 /*Trị giá của một hóa đơn là tổng thành tiền (số lượng*đơn giá) của các chi tiết thuộc hóa đơn đó.

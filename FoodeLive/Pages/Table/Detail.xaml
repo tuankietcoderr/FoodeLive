@@ -18,11 +18,14 @@
         <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SelectedItems}" SpacingMode="BetweenItemsOnly" Margin="0 20" Grid.Row="0" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:CardColor Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding ChiTietHoaDons.Count}"/>
+                        <ui:CardColor Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
                             <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
                     </ui:CardColor>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>

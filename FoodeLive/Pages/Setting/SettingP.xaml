@@ -11,25 +11,25 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="46*"/>
-            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="52*"/>
+            <ColumnDefinition Width="171*"/>
             <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="373*"/>
-            <ColumnDefinition Width="156*"/>
-            <ColumnDefinition Width="44*"/>
+            <ColumnDefinition Width="443*"/>
+            <ColumnDefinition Width="176*"/>
+            <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="44*"/>
             <RowDefinition Height="97*"/>
-            <RowDefinition Height="65*"/>
-            <RowDefinition Height="82*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="99*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="160*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Tài khoản" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"    FontSize="26" FontWeight="Bold" Width="173" Height="34"/>
+        <TextBlock Text="Tài khoản" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"    FontSize="26" FontWeight="Bold" Width="173" Height="34"/>
 
-        <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="LightGray" CornerRadius="10" Grid.RowSpan="2" Margin="0,0,0,10">
+        <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="LightGray" CornerRadius="10" Grid.RowSpan="2" Margin="0,0,9,0">
             <Image x:Name="Prf_pic" Source="/Pages/Setting/person.png"></Image>
         </Border>
 
@@ -40,7 +40,8 @@
             <TextBlock x:Name="change" Text="Đổi mật khẩu" Foreground="gray" FontWeight="Bold" MouseDown="chang_pass" MouseEnter="on_mouse1" MouseLeave="l_m1" ></TextBlock>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Left" Grid.Row="2" Grid.Column="3" Width="372">
+
+        <StackPanel HorizontalAlignment="Left" Grid.Row="2" Grid.Column="3" Width="369" Margin="1,0,0,0">
             <TextBlock Text="Trần Tuấn Kiệt" FontWeight="Bold" FontSize="30" Width="383"></TextBlock>
             <TextBlock Height="7"></TextBlock>
             <TextBlock Text="Là nhân viên từ 11/12/2022" Width="379"></TextBlock>
@@ -48,28 +49,28 @@
 
         <StackPanel Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3">
             <WrapPanel>
-                <TextBlock Text="Địa chỉ:  " FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Vinhomes Grand Park Quận 9, Nguyễn Xuyến, Long Thành Mỹ, quận 9, thành phố Hồ Chí Minh" ></TextBlock>
+                <TextBlock FontSize="15" Text="Địa chỉ:  " FontWeight="Bold"></TextBlock>
+                <TextBlock FontSize="15" Text="Vinhomes Grand Park Quận 9, Nguyễn Xuyến, Long Thành Mỹ, quận 9, thành phố Hồ Chí Minh" ></TextBlock>
             </WrapPanel>
 
             <WrapPanel>
-                <TextBlock Text="Số điện thoại:  " FontWeight="Bold"></TextBlock>
-                <TextBlock Text="0348071412" ></TextBlock>
+                <TextBlock FontSize="15" Text="Số điện thoại:  " FontWeight="Bold"></TextBlock>
+                <TextBlock FontSize="15" Text="0348071412" ></TextBlock>
             </WrapPanel>
 
             <WrapPanel>
-                <TextBlock Text="Ngày sinh:  " FontWeight="Bold"></TextBlock>
-                <TextBlock Text="11/02/2003" ></TextBlock>
+                <TextBlock FontSize="15" Text="Ngày sinh:  " FontWeight="Bold"></TextBlock>
+                <TextBlock FontSize="15" Text="11/02/2003" ></TextBlock>
             </WrapPanel>
 
             <WrapPanel>
-                <TextBlock Text="Giới tính:  " FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Nam" ></TextBlock>
+                <TextBlock FontSize="15" Text="Giới tính:  " FontWeight="Bold"></TextBlock>
+                <TextBlock FontSize="15" Text="Nam" ></TextBlock>
             </WrapPanel>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3">
+        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,175,0">
             <TextBlock></TextBlock>
             <TextBlock Text="Khác" FontSize="20" FontWeight="Bold"></TextBlock>
 

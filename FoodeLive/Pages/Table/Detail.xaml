@@ -5,15 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FoodeLive.Pages.Table" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
-      DataContext="{StaticResource TableViewModel}"
+      DataContext="{StaticResource MainViewModel}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Detail">
 
     <Grid>
-        <ui:VirtualizingGridView ItemsSource="{Binding SelectedMonAns}" SpacingMode="BetweenItemsOnly" Padding="0,0,0,0" Grid.Row="1" >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text=""/>
+        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SelectedItems}" SpacingMode="BetweenItemsOnly" Margin="0 20" Grid.Row="0" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:CardColor Width="150" Subtitle="{Binding Gia}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <ui:CardColor Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
                             <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
@@ -21,5 +26,14 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBlock Grid.Column="1" Text="Số món: " Foreground="#FF7C7676" FontWeight="Medium" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0">
+                    <TextBlock Text="{Binding FoodViewModel.SoMon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </TextBlock>
+            <TextBlock Grid.Column="2" Text="Tổng tiền: " Foreground="#FF7C7676" FontWeight="Medium" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0">
+                    <TextBlock Text="{Binding FoodViewModel.TongTien, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MoneyConverter}}"/>
+                </TextBlock>
+            <ui:Button Content="Thanh toán" Command="{Binding FoodViewModel.PayCommand}" Grid.Row="1" HorizontalAlignment="Right" Padding="20 8" Background="#FF7A00" PressedBackground="Transparent" BorderThickness="0" Foreground="#fff" PressedForeground="#FF7A00" Effect="{StaticResource DropShadow}"/>
+        </WrapPanel>
     </Grid>
 </Page>

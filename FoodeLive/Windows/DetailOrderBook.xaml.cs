@@ -30,14 +30,8 @@ namespace FoodeLive.Windows
             detail.IsSelected = true;
         }
 
-        public FoodViewModel viewModel
-        {
-            get;
-        }
-
         public DetailOrderBook(string MaBanAn, int SoHoaDon)
         {
-            viewModel = new FoodViewModel(MaBanAn, SoHoaDon);
             InitializeComponent();
             detail.IsSelected = true;
         }

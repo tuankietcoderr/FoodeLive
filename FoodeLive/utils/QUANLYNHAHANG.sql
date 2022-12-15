@@ -42,7 +42,7 @@ CREATE TABLE NguoiDung
 	TenNguoiDung VARCHAR(20) UNIQUE,
     MatKhau VARCHAR(30),
 )
-
+SELECT * from NhanVien
 create table DonHang
 (
 	SoDonHang int NOT NULL ,
@@ -51,8 +51,9 @@ create table DonHang
 	TriGia MONEY ,
 	TieuDe NVARCHAR(50),
 	GhiChu NVARCHAR(50),
+	MaNV CHAR(4),
 	CONSTRAINT PK_SoDonHang PRIMARY KEY (SoDonHang),
-	CONSTRAINT FK_MANGUOIDUNG FOREIGN KEY (MANGUOIDUNG) REFERENCES NGUOIDUNG (TenNguoiDung),
+	CONSTRAINT FK_TenNguoiDung FOREIGN KEY (TenNguoiDung) REFERENCES NGUOIDUNG (TenNguoiDung),
 	CONSTRAINT FK_MANV_DONHANG FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
 )
 
@@ -78,6 +79,9 @@ create table HoaDon
 	CONSTRAINT FK_MABANAN FOREIGN KEY (MaBanAn) REFERENCES BANAN (MaBanAn),
 	CONSTRAINT FK_MANV FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
 )
+
+ALTER TABLE HoaDon
+ADD CONSTRAINT DF_HoaDon_TriGia DEFAULT 0 FOR TriGia
 
 CREATE TABLE ChiTietHoaDon
 (
@@ -232,5 +236,19 @@ select * from ChiTietHoaDon
 select * from HoaDon
 
 
-select MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, TriGia from ChiTietHoaDon, HoaDon, BanAn
-where ChiTietHoaDon.SoHoaDon = HoaDon.SoHoaDon and HoaDon.MaBanAn = BanAn.MaBanAn
+select BanAn.TrangThai, MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, BanAn.MaBanAn from ChiTietHoaDon, HoaDon, BanAn
+where ChiTietHoaDon.SoHoaDon = HoaDon.SoHoaDon and BanAn.MaBanAn = HoaDon.MaBanAn
+
+-- Them mon an vao ban an => ghi vao hoa don
+DROP TRIGGER trg_del_ChiTietHoaDon;
+
+delete from ChiTietHoaDon
+delete from hoadon
+select * from ChiTietHoaDon
+
+select * from HoaDon
+select * from MonAn
+select distinct SoLuong,MaBanAn, TrangThai, MaMonAn from ChiTietHoaDon, BanAn
+where TrangThai=N'Có khách'
+update BanAn set TrangThai=N'Trống'
+

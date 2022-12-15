@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FoodeLive.Pages.Home" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d"
-      DataContext="{StaticResource TableViewModel}"
+      DataContext="{StaticResource MainViewModel}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="All">
     <Grid Margin="0,24,0,0">
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView x:Name="all_table" SelectionMode="Single" ItemsSource="{Binding ListBanAn,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly">
+        <ui:VirtualizingGridView x:Name="all_table" SelectionMode="Single" ItemsSource="{Binding TableViewModel.ListBanAn,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Tag="{Binding MaBanAn}" Background="#fff" BorderThickness="0" Width="150">

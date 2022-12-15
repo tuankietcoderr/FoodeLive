@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FoodeLive.Windows.TableDetail"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
         mc:Ignorable="d"
-        DataContext="{StaticResource FoodViewModel}"
+        DataContext="{StaticResource MainViewModel}"
         Title="Table_AddFood" Height="700" Width="1230" WindowStartupLocation="CenterScreen">
     <Grid Margin="20 10">
         <Grid.RowDefinitions>

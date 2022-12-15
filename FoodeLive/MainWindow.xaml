@@ -10,11 +10,11 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized"
-        DataContext="{StaticResource WindowUtils}"
+        DataContext="{StaticResource MainViewModel}"
         >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding NavWidth}" />
+            <ColumnDefinition Width="{Binding NavWidth}" DataContext="{StaticResource WindowUtils}"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Border BorderThickness="0,0,1,0" BorderBrush="LightGray">
@@ -90,7 +90,7 @@
                             </TextBlock>
                         </Grid>
                     </ListBoxItem>
-                    
+                    <ui:Button Content="Làm mới" Icon="ArrowClockwise12" Background="#FF7A00" HorizontalAlignment="Center" Command="{Binding RefreshCommand}"/>
                 </ListBox>
             </StackPanel>
         </Border>

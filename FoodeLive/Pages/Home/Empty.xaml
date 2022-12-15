@@ -7,26 +7,18 @@
       mc:Ignorable="d" 
        xmlns:c="clr-namespace:FoodeLive.utils"
      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    
+        DataContext="{StaticResource MainViewModel}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Empty">
-
-    <Page.Resources>
-        <c:WindowUtils x:Key="width" />
-    </Page.Resources>
-
-    <Page.DataContext>
-        <Binding Source="{StaticResource width}" />
-    </Page.DataContext>
 
     <Grid Margin="0,24,0,0">
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView x:Name="all_table" Height="auto" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
+        <ui:VirtualizingGridView  x:Name="all_table" Height="auto" ItemsSource="{Binding TableViewModel.EmptyTables, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Tag="{Binding MaBanAn}" Background="#fff" BorderThickness="0" Width="150" PreviewMouseDown="table_PreviewMouseDown">
+                    <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="150">
                         <Grid HorizontalAlignment="Left" Height="100">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.5*" />
@@ -35,15 +27,15 @@
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" FontSize="14" FontWeight="Bold">
                                     Bàn 
-                                    <TextBlock Text="{Binding MaBanAn}" FontWeight="Bold" FontSize="16" />
+                                    <TextBlock Text="{Binding MaBanAn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="16" />
                                 </TextBlock>
                             <Separator Grid.Row="1" Width="70" BorderBrush="#000" Opacity="0.5"/>
                             <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
                                 <TextBlock FontSize="10" Foreground="#ABABAB">
-                            Tình trạng: <TextBlock Text="Trống" />
+                            Tình trạng: <TextBlock Text="{Binding TrangThai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </TextBlock>
                                 <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
-                            Loại bàn: <TextBlock Text="{Binding Loai}" />
+                            Loại bàn: <TextBlock Text="{Binding Loai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </TextBlock>
                             </StackPanel>
                         </Grid>

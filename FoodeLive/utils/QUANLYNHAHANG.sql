@@ -207,6 +207,9 @@ INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M02',N'Rau bí xào',26000)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M03',N'Nộm rau má',26500)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M04',N'Khoai tây chiên',30000)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M05',N'Bánh bao chiên',30500)
+	INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M06',N'Bánh hỏi',30500)
+	INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M07',N'Gà rán',45000)
+	INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M08',N'Khoai tây chiên',25500)
 SELECT * FROM MONAN
 
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B01',N'Thường')
@@ -247,9 +250,11 @@ DROP TRIGGER trg_del_ChiTietHoaDon;
 
 delete from ChiTietHoaDon
 delete from hoadon
-select * from ChiTietHoaDon
 
-select * from HoaDon
+select MaMonAn,SoLuong, HoaDon.SoHoaDon, MaBanAn from ChiTietHoaDon, HoaDon
+where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon and MaBanAn='b14'
+
+select * from HoaDon	
 select * from MonAn
 select distinct SoLuong,MaBanAn, TrangThai, MaMonAn from ChiTietHoaDon, BanAn
 where TrangThai=N'Có khách'

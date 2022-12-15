@@ -15,17 +15,14 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <TextBlock Text=""/>
-        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SelectedItems}" SpacingMode="BetweenItemsOnly" Margin="0 20" Grid.Row="0" >
+        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpacingMode="BetweenItemsOnly" Margin="0 20" Grid.Row="0" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding ChiTietHoaDons.Count}"/>
-                        <ui:CardColor Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <ui:CardColor Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
-                            <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
+                            <ImageBrush ImageSource="{Binding ImgExtension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
                     </ui:CardColor>
-                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>

@@ -29,13 +29,13 @@ namespace FoodeLive.MVVM.ViewModel
         {
             get
             {
-                ObservableCollection<MonAn> temp = new ObservableCollection<MonAn>();
-                foreach (ChiTietHoaDon item in DataProvider.Ins.DB.ChiTietHoaDons.Where(cthd => cthd.SoHoaDon == _soHoaDon))
-                {
-                    MonAn monAn = item.MonAn;
-                    temp.Add(monAn);
-                };
-                _selectedItems = temp;
+                //ObservableCollection<MonAn> temp = new ObservableCollection<MonAn>();
+                //foreach (ChiTietHoaDon item in DataProvider.Ins.DB.ChiTietHoaDons.Where(cthd => cthd.SoHoaDon == _soHoaDon))
+                //{
+                //    MonAn monAn = item.MonAn;
+                //    temp.Add(monAn);
+                //};
+                //_selectedItems = temp;
                 return _selectedItems;
             }
             set
@@ -82,6 +82,8 @@ namespace FoodeLive.MVVM.ViewModel
 
         public ICommand AnnounceAddFood { get; set; }
         public ICommand PayCommand { get; set; }
+
+        public ICommand Test { get; set; }
 
         public FoodViewModel()
         {

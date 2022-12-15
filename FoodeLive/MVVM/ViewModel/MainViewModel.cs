@@ -4,6 +4,7 @@ using FoodeLive.Windows.Auth;
 using IT008_DoAnCuoiKi.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,7 @@ namespace FoodeLive.MVVM.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
-                    _maBanAn = SelectedItem.MaBanAn;
+                    _maBanAn =_selectedItem.MaBanAn;
                     if (DataProvider.Ins.DB.BanAns.ToList().Find(t => t.MaBanAn == _maBanAn).TrangThai != "Trống")
                         _soHoaDon = DataProvider.Ins.DB.HoaDons.ToList().Find(t => t.MaBanAn == _maBanAn).SoHoaDon;
                     else
@@ -46,14 +47,34 @@ namespace FoodeLive.MVVM.ViewModel
                     _foodViewModel.SoHoaDon = _soHoaDon;
                     DetailOrderBook detailOrderBook = new DetailOrderBook();
                     detailOrderBook.ShowDialog();
+                    SelectedItem = null;
                 }
             }
         }
+
+        public ICommand RefreshCommand { get; set; }
+
 
         public MainViewModel()
         {
             _tableViewModel = new TableViewModel();
             _foodViewModel = new FoodViewModel();
+            _tableViewModel.ListBanAn = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns);
+            _tableViewModel.EmptyTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Trống"));
+            _tableViewModel.UsingTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Có khách"));
+            _tableViewModel.BookedTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Đã đặt"));
+            _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns);
+
+            // khi bam them ban, ban moi se duoc push vao trong trong
+            // neu ban duoc order, 
+
+            //RefreshCommand = new RelayCommand<object>(p => true, p =>
+            //{
+            //    ObservableCollection<BanAn> _RefListBanAn = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Trống"));
+            //    _tableViewModel.EmptyTables = _RefListBanAn;
+            //    OnPropertyChanged("EmptyTables");
+
+            //});
         }
     }
 }

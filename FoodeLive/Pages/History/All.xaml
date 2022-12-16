@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:FoodeLive.Pages.History" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="All">
+      Title="All"
+       DataContext="{StaticResource OrderViewModel}"
+      >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -59,472 +61,45 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" VerticalAlignment="Bottom" FontWeight="Bold" >Chủ nhật, ngày 11 tháng 12 năm 2022</TextBlock>
-            <ListView Grid.Row="1">
-               
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">2,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">3,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">1,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">4,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">5,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">6,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">7,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">8,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">9,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">11,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">2,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">2,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">2,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem>
-                    <StackPanel Width="auto" Height="auto">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                <TextBlock Grid.Column="1" Foreground="Black">2,000,000</TextBlock>
-                            </Grid>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="10"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0">Mã hóa đơn</TextBlock>
-                                <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
-                                <TextBlock Grid.Column="2">Bàn 10</TextBlock>
-
-                            </Grid>
-
-                        </StackPanel>
-                        <TextBlock>11/12/2022 23:16</TextBlock>
-                        <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
-                    </StackPanel>
-                </ListViewItem>
-
+            <ListView Grid.Row="1" ItemsSource="{Binding ListHoaDon , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ListViewItem>
+                            <StackPanel Width="auto" Height="auto" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
+                                        <TextBlock Grid.Column="1" Foreground="Black" Text="{Binding TriGia}"></TextBlock>
+                                    </Grid>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="10"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="{Binding SoHoaDon}"></TextBlock>
+                                        <Separator Grid.Column="1" HorizontalAlignment="Center"></Separator>
+                                        <TextBlock Grid.Column="2" Text="{Binding MaBanAn}"></TextBlock>
+
+                                    </Grid>
+
+                                </StackPanel>
+                                <TextBlock Text="{Binding NgayLapHoaDon}"></TextBlock>
+                                <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
         </Grid>

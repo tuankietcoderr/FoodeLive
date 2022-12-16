@@ -151,6 +151,7 @@
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\FoodViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\OrderViewModel.cs" />
     <Compile Include="MVVM\ViewModel\TableViewModel.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMBook.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMBookDetailOrder.cs" />

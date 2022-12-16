@@ -27,21 +27,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
-                   
-                    <ui:Button Icon="CalendarArrowRight16"
-                        Grid.Column="0" 
-                               Content="Ngày hóa đơn" 
-                               Background="#FF7A00" 
-                               Foreground="#fff" 
-                               FontSize="12" 
-                               Height="{Binding Height, ElementName=search_tb}" 
-                               Padding="20,0" 
-                               HorizontalAlignment="Left" 
-                               PressedBorderBrush="Transparent" 
-                               PressedForeground="#FF7A00" 
-                               MouseOverBackground="#FF7A00" 
-                               BorderThickness="0"/>
+                    <DatePicker  HorizontalAlignment="Stretch" Margin="0 10" SelectedDate="{Binding NgayHoaDon,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+                  
                 </Grid>
                  <Grid Grid.Column="2" VerticalAlignment="Center" Height="60">
                     <Grid.ColumnDefinitions>
@@ -60,7 +48,7 @@
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" FontWeight="Bold" >Chủ nhật, ngày 11 tháng 12 năm 2022</TextBlock>
+            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" FontWeight="Bold" Text="{Binding NgayHoaDon,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
             <ListView Grid.Row="1" ItemsSource="{Binding ListHoaDon , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

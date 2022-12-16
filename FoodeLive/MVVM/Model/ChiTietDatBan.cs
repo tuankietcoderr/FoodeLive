@@ -14,13 +14,16 @@ namespace FoodeLive.MVVM.Model
     
     public partial class ChiTietDatBan
     {
-        public int MaDatBan { get; set; }
+        public string MaDatBan { get; set; }
         public string MaBan { get; set; }
         public string NguoiDat { get; set; }
         public string SoDienThoai { get; set; }
         public string GhiChu { get; set; }
         public Nullable<System.DateTime> NgayDat { get; set; }
+        public Nullable<byte> TrangThai { get; set; }
+        public string MaNV { get; set; }
     
         public virtual BanAn BanAn { get; set; }
+        public virtual NhanVien NhanVien { get; set; }
     }
 }

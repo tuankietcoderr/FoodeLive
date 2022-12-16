@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Icon="/src/icon_foode_live.png"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="600" Width="800"
         WindowState="Maximized"
         DataContext="{StaticResource MainViewModel}"
         >
@@ -18,9 +18,14 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Border BorderThickness="0,0,1,0" BorderBrush="LightGray">
-            <StackPanel Grid.Column="0">
-                <Image Source="/src/logo_foode_live_big.png" />
-                <ListBox BorderThickness="0" Margin="0, 20,0,0" x:Name="navbar" SelectionChanged="navbar_SelectionChanged" Padding="0">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition />
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Image Source="/src/logo_foode_live_big.png" Grid.Row="0" />
+                <ListBox Grid.Row="1" BorderThickness="0" Margin="0, 20,0,0" x:Name="navbar" SelectionChanged="navbar_SelectionChanged" Padding="0" VerticalAlignment="Stretch">
                     <ListBox.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center" />
@@ -90,9 +95,12 @@
                             </TextBlock>
                         </Grid>
                     </ListBoxItem>
-                    <ui:Button Content="Làm mới" Icon="ArrowClockwise12" Background="#FF7A00" HorizontalAlignment="Center" Command="{Binding RefreshCommand}"/>
                 </ListBox>
-            </StackPanel>
+                <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                    <ui:Button Content="Làm mới" Icon="ArrowClockwise12" FontWeight="SemiBold" Background="Transparent" BorderThickness="0" Foreground="#000" IconForeground="#000" HorizontalAlignment="Center" Command="{Binding RefreshCommand}"/>
+                    <ui:Button Content="Đăng xuất" Icon="DoorArrowLeft16" FontWeight="SemiBold" Background="Transparent" BorderThickness="0" Foreground="red" IconForeground="red" HorizontalAlignment="Center" Command="{Binding RefreshCommand}"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
         <Frame Grid.Column="1" x:Name="navframe" Padding="40,30,40,15"/>

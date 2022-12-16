@@ -25,6 +25,9 @@
                             <Setter Property="VerticalAlignment" Value="Center" />
                             <Setter Property="FontWeight" Value="SemiBold" />
                         </Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Style>
                     </ListBox.Resources>
                     <ListBoxItem x:Name="detail" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
                         <Grid x:Name="navItem" Height="40" VerticalAlignment="Center">
@@ -36,7 +39,7 @@
                             <TextBlock Text="Thông tin" Grid.Column="1" />
                         </Grid>
                     </ListBoxItem>
-                    <ListBoxItem x:Name="order" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00">
+                    <ListBoxItem x:Name="order" Height="{Binding Height, ElementName=navItem}" VerticalAlignment="Center" Background="#FF7A00" IsEnabled="{Binding TableViewModel.IsBooked, Converter={StaticResource BooleanReflectConverter},Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <Grid Height="40" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="All"
-       DataContext="{StaticResource OrderViewModel}"
+      DataContext="{StaticResource MainViewModel}"
       >
 
     <Grid>
@@ -19,29 +19,24 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <Grid VerticalAlignment="Center" Height="60">
+                <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="60">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
-                    <DatePicker  HorizontalAlignment="Stretch" Margin="0 10" SelectedDate="{Binding NgayHoaDon,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                  
-                </Grid>
-                 <Grid Grid.Column="2" VerticalAlignment="Center" Height="60">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="100" />
-                    </Grid.ColumnDefinitions>
-                    <ui:TextBox Icon="Search20" PlaceholderText="Bàn 31, bàn 32..." x:Name="search_tb" Height="35"/>
-                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" Height="{Binding Height, ElementName=search_tb}" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0"/>
+                    <ui:TextBox Icon="Search20" PlaceholderText="Bàn đông nhất, bàn VIP..." x:Name="search_tb" Height="35"/>
+                    <WrapPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <ui:Button Grid.Column="1" Margin="5 0" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="{Binding Height, ElementName=search_tb}" Padding="20 8" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
+                        </ui:Button>
+                        <ui:Button Grid.Column="1" Icon="ArrowClockwise12" Content="Tải lại" Background="Transparent" Foreground="#000" FontSize="12" FontWeight="SemiBold" Height="{Binding Height, ElementName=search_tb}" Padding="20 8" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="LightGray" BorderThickness="0">
+                        </ui:Button>
+                    </WrapPanel>
                 </Grid>
             </Grid>
             <Separator Background="LightGray" />
-            
+
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -54,6 +49,7 @@
                     <DataTemplate>
                         <ListViewItem>
                             <StackPanel Width="auto" Height="auto" HorizontalAlignment="Left">
+                                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" FontWeight="Bold" Text="{Binding NgayLapHoaDon}" />
                                 <StackPanel Orientation="Horizontal">
                                     <Grid >
                                         <Grid.ColumnDefinitions>
@@ -61,13 +57,11 @@
                                             <ColumnDefinition></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <ui:SymbolIcon Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Left"></ui:SymbolIcon>
-                                        <TextBlock Grid.Column="1" Foreground="Black" Text="{Binding TriGia}"></TextBlock>
+                                        <TextBlock Grid.Column="1" Foreground="Blue" Text="{Binding TriGia, Converter={StaticResource MoneyConverter}}"></TextBlock>
                                     </Grid>
-
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Grid>
-
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                             <ColumnDefinition Width="10"></ColumnDefinition>
@@ -82,7 +76,21 @@
 
                                 </StackPanel>
                                 <TextBlock Text="{Binding NgayLapHoaDon}"></TextBlock>
-                                <TextBlock>Món: Mỳ ý, Beafstack, Cơm trắng, Thịt áp chảo</TextBlock>
+                                <WrapPanel VerticalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center">Món ăn:</TextBlock>
+                                    <ListView ItemsSource="{Binding ChiTietHoaDons}">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel VerticalAlignment="Center"/>
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding MonAn.TenMonAn}" Margin="0" Padding="0" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </WrapPanel>
                             </StackPanel>
                         </ListViewItem>
 
@@ -91,7 +99,7 @@
             </ListView>
 
         </Grid>
-       
+
 
     </Grid>
 </Page>

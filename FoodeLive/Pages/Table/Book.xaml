@@ -3,22 +3,28 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FoodeLive.Pages.Table" xmlns:vmtableslice="clr-namespace:FoodeLive.MVVM.ViewModel.VMTableSlice" xmlns:ucli="clr-namespace:FoodeLive.UserControls" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodel="clr-namespace:FoodeLive.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+      xmlns:local="clr-namespace:FoodeLive.Pages.Table" xmlns:ucli="clr-namespace:FoodeLive.UserControls" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodel="clr-namespace:FoodeLive.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
       mc:Ignorable="d" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{StaticResource MainViewModel}"
       Title="Book">
 
-    <Grid>
-        <StackPanel Width="320" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="True">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel IsEnabled="{Binding TableViewModel.IsBooked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanReflectConverter}}">
             <TextBlock Text="Thời gian" FontSize="14" FontWeight="SemiBold"/>
-            <DatePicker HorizontalAlignment="Stretch" Margin="0 10" SelectedDate="{Binding TableViewModel.ChiTietDatBan.NgayDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker HorizontalAlignment="Stretch" Margin="0 10" SelectedDate="{Binding TableViewModel.ChiTietDatBan.NgayDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding TableViewModel.ChiTietDatBan.NgayDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,TargetNullValue={x:Static System:DateTime.Now}}" IsTodayHighlighted="True"/>
             <ucli:LabelInput Label="Người đặt" Placeholder="Nguyễn Văn A" Icon="Person12" Text="{Binding TableViewModel.ChiTietDatBan.NguoiDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <ucli:LabelInput Label="Số điện thoại" Icon="Phone16" Placeholder="0123456789" Text="{Binding TableViewModel.ChiTietDatBan.SoDienThoai,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <StackPanel Width="{Binding Width,ElementName=LabelInputUc}" Margin="0,0,0,10">
                 <TextBlock Margin="0,0,0,4" FontWeight="SemiBold" FontSize="14" Text="Ghi chú" />
                 <ui:TextBox Icon="Note16" TextWrapping="Wrap" PlaceholderText="Nhập ghi chú..." Text="{Binding TableViewModel.ChiTietDatBan.GhiChu,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <ui:Button HorizontalAlignment="Right" Command="{Binding TableViewModel.BookTableCommand}" Content="Đặt bàn" Background="#FF7A00" PressedBackground="Transparent" FontSize="14" FontWeight="SemiBold" BorderThickness="0" Padding="20 8" Foreground="#fff" PressedForeground="#ff7a00" Icon="Teddy24" IconForeground="#fff" />
         </StackPanel>
-    </Grid>
+        <WrapPanel HorizontalAlignment="Right" Margin="0 20 0 0">
+            <ui:Button HorizontalAlignment="Right" Margin="10 0" Command="{Binding TableViewModel.CancelBookCommand}" Content="Hủy" Background="Transparent" PressedBackground="Transparent" FontSize="14" FontWeight="SemiBold" BorderThickness="0" Padding="0" Foreground="red" PressedForeground="#ff7a00" Icon="Dismiss12" IconForeground="red" />
+            <ui:Button Effect="{StaticResource DropShadow}" HorizontalAlignment="Right" Margin="10 0" Command="{Binding TableViewModel.ApprovalBookCommand}" Content="Tiếp nhận" Background="#fff" PressedBackground="Transparent" FontSize="14" FontWeight="SemiBold" BorderThickness="0" Padding="20 8" Foreground="#000" PressedForeground="#ff7a00" Icon="AnimalTurtle28" IconForeground="#000" />
+            <ui:Button Effect="{StaticResource DropShadow}" HorizontalAlignment="Right" Command="{Binding TableViewModel.BookTableCommand}" Content="Đặt bàn" Background="#FF7A00" PressedBackground="Transparent" FontSize="14" FontWeight="SemiBold" BorderThickness="0" Padding="20 8" Foreground="#fff" PressedForeground="#ff7a00" Icon="Teddy24" IconForeground="#fff" />
+        </WrapPanel>
+    </StackPanel>
 </Page>

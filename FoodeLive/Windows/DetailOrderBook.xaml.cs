@@ -68,7 +68,7 @@ namespace FoodeLive.Windows
 
         private void OrderWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (viewModel.FoodViewModel.Ordered)
+            if (viewModel.ForceRerender)
             {
                 if (viewModel.RefreshCommand.CanExecute(null))
                 {

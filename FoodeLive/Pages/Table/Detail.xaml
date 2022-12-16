@@ -14,7 +14,6 @@
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <TextBlock Text=""/>
         <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpacingMode="BetweenItemsOnly" Margin="0 20" Grid.Row="0" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -24,7 +23,9 @@
                                 <ImageBrush ImageSource="{Binding MonAn.ImgExtension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
                             </ui:CardColor.Brush>
                         </ui:CardColor>
-                        <ui:Badge Content="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Appearance="Info" />
+                        <Canvas>
+                            <ui:Badge Canvas.Bottom="10" Canvas.Right="8" Padding="4 2" FontWeight="SemiBold" Content="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Appearance="Primary" />
+                        </Canvas>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

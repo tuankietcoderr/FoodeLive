@@ -39,8 +39,11 @@ namespace FoodeLive.MVVM.ViewModel
 
         public OrderViewModel()
         {
-            
-            ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons);
+            string s = "";
+            s=NgayHoaDon.ToString();
+            NgayHoaDon= NgayHoaDon.AddMonths(11);
+            s = NgayHoaDon.ToString();
+            ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month));
 
         }
 

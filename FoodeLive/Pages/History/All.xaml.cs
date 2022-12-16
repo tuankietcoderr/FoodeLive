@@ -1,5 +1,8 @@
-﻿using System;
+﻿using FoodeLive.MVVM.Model;
+using FoodeLive.MVVM.ViewModel.VMTableSlice;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace FoodeLive.Pages.History
 {

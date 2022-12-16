@@ -97,6 +97,26 @@ CREATE TABLE ChiTietHoaDon
 	CONSTRAINT FK_MAMONAN FOREIGN KEY (MaMonAn) REFERENCES MONAN (MaMonAn),
 )
 
+CREATE TABLE ChiTietDatBan (
+	MaDatBan int not null PRIMARY KEY,
+	MaBan char(4),
+	NguoiDat varchar(30),
+	SoDienThoai varchar(12),
+	GhiChu varchar(100),
+	NgayDat smalldatetime default GETDATE()
+	constraint FK_ChiTietDatBan_MaBan FOREIGN KEY (MaBan) REFERENCES BanAn(MaBanAn)
+)
+
+SELECT * from ChiTietDatBan
+
+Alter table ChiTietDatBan add constraint FK_ChiTietDatBan_MaBan
+FOREIGN KEY (MaBan) REFERENCES BanAn(MaBanAn)
+
+drop table ChiTietDatBan
+
+Alter table chitietdatban
+add NgayDat smalldatetime
+
 ALTER TABLE ChiTietHoaDon
 ADD SoLuong int DEFAULT 0
 
@@ -116,89 +136,89 @@ ALTER TABLE NHANVIEN ADD CONSTRAINT ngayvaolam_CHECK CHECK(NgayVaoLam>NGaySINH)
 
 ALTER TABLE ChiTietHoaDon ADD CONSTRAINT SoLuong_CHECK CHECK(SoLuong>=1)
 
-CREATE TRIGGER ngaylaphoadon_ngayvaolam_hoad_insert
-ON hoadon 
-AFTER INSERT 
-AS 
-	DECLARE @ng_hoadon smalldatetime 
-	DECLARE @ng_vaolam smalldatetime 
-	SELECT @ng_hoadon=NgayLapHoaDon, @ng_vaolam=NgayVaoLam
-	FROM NHANVIEN, inserted
-	WHERE NHANVIEN.MANV=inserted.MANV
-IF @ng_hoadon< @ng_vaolam
-BEGIN
-	rollback transaction
-	print N'Ngày hóa đơn phải lớn hơn ngày vào làm'
-END
+-- CREATE TRIGGER ngaylaphoadon_ngayvaolam_hoad_insert
+-- ON hoadon 
+-- AFTER INSERT 
+-- AS 
+-- 	DECLARE @ng_hoadon smalldatetime 
+-- 	DECLARE @ng_vaolam smalldatetime 
+-- 	SELECT @ng_hoadon=NgayLapHoaDon, @ng_vaolam=NgayVaoLam
+-- 	FROM NHANVIEN, inserted
+-- 	WHERE NHANVIEN.MANV=inserted.MANV
+-- IF @ng_hoadon< @ng_vaolam
+-- BEGIN
+-- 	rollback transaction
+-- 	print N'Ngày hóa đơn phải lớn hơn ngày vào làm'
+-- END
 
-CREATE TRIGGER ngaylaphoadon_ngayvaolam_hoad_update
-ON hoadon 
-AFTER UPDATE
-AS 
-IF (UPDATE (manv) OR UPDATE (ngaylaphoadon))
-BEGIN
-	DECLARE @ng_hoadon smalldatetime 
-	DECLARE @ng_vaolam smalldatetime 
-	SELECT @ng_hoadon=ngaylaphoadon, @ng_vaolam=ngayvaolam
-	FROM NHANVIEN, inserted
-	WHERE NHANVIEN.MANV=inserted.MANV
-	IF @ng_hoadon< @ng_vaolam
-	BEGIN
-		rollback transaction
-		print  N'Ngày hóa đơn phải lớn hơn ngày vào làm'
-	END
-END
+-- CREATE TRIGGER ngaylaphoadon_ngayvaolam_hoad_update
+-- ON hoadon 
+-- AFTER UPDATE
+-- AS 
+-- IF (UPDATE (manv) OR UPDATE (ngaylaphoadon))
+-- BEGIN
+-- 	DECLARE @ng_hoadon smalldatetime 
+-- 	DECLARE @ng_vaolam smalldatetime 
+-- 	SELECT @ng_hoadon=ngaylaphoadon, @ng_vaolam=ngayvaolam
+-- 	FROM NHANVIEN, inserted
+-- 	WHERE NHANVIEN.MANV=inserted.MANV
+-- 	IF @ng_hoadon< @ng_vaolam
+-- 	BEGIN
+-- 		rollback transaction
+-- 		print  N'Ngày hóa đơn phải lớn hơn ngày vào làm'
+-- 	END
+-- END
 
-CREATE TRIGGER ngaylaphoadon_ngayvaolam_nhanvien_update
-ON nhanvien
-AFTER UPDATE
-AS 
-	DECLARE @ng_vaolam smalldatetime, @manhvien char(4)
-	SELECT @ng_vaolam=ngayvaolam, @manhvien=manv
-	FROM inserted
-IF (UPDATE (ngayvaolam))
-BEGIN
-	IF (EXISTS (SELECT * 
-	FROM hoadon 
-	WHERE manv=@manhvien AND @ng_vaolam>ngaylaphoadon))
-	BEGIN
-		rollback transaction
-	print N' Thao tác sửa ngày vào làm phải nhỏ hơnn gày hóa đơn'
-END
-END
-
-
-CREATE TRIGGER trg_del_ChiTietHoaDon ON ChiTietHoaDon
-FOR Delete
-AS
-BEGIN
-	IF ((SELECT COUNT(*) FROM deleted WHERE SoHoaDon = deleted.SoHoaDon)
-		= (SELECT COUNT(*) FROM HoaDon, deleted WHERE deleted.SoHoaDon = HoaDon.SoHoaDon))
-	BEGIN
-		PRINT N'Error: Mỗi một hóa đơn phải có ít nhất một chi tiết hóa đơn'
-		ROLLBACK TRANSACTION
-	END
-END
+-- CREATE TRIGGER ngaylaphoadon_ngayvaolam_nhanvien_update
+-- ON nhanvien
+-- AFTER UPDATE
+-- AS 
+-- 	DECLARE @ng_vaolam smalldatetime, @manhvien char(4)
+-- 	SELECT @ng_vaolam=ngayvaolam, @manhvien=manv
+-- 	FROM inserted
+-- IF (UPDATE (ngayvaolam))
+-- BEGIN
+-- 	IF (EXISTS (SELECT * 
+-- 	FROM hoadon 
+-- 	WHERE manv=@manhvien AND @ng_vaolam>ngaylaphoadon))
+-- 	BEGIN
+-- 		rollback transaction
+-- 	print N' Thao tác sửa ngày vào làm phải nhỏ hơnn gày hóa đơn'
+-- END
+-- END
 
 
-/*Trị giá của một hóa đơn là tổng thành tiền (số lượng*đơn giá) của các chi tiết thuộc hóa đơn đó.
-*/
+-- CREATE TRIGGER trg_del_ChiTietHoaDon ON ChiTietHoaDon
+-- FOR Delete
+-- AS
+-- BEGIN
+-- 	IF ((SELECT COUNT(*) FROM deleted WHERE SoHoaDon = deleted.SoHoaDon)
+-- 		= (SELECT COUNT(*) FROM HoaDon, deleted WHERE deleted.SoHoaDon = HoaDon.SoHoaDon))
+-- 	BEGIN
+-- 		PRINT N'Error: Mỗi một hóa đơn phải có ít nhất một chi tiết hóa đơn'
+-- 		ROLLBACK TRANSACTION
+-- 	END
+-- END
 
-CREATE TRIGGER trigia_hoad_insert
-ON hoadon 
-AFTER INSERT 
-AS 
-	DECLARE @trigia_hoadon money 
-	DECLARE @SoLuong_ChiTietHoaDon int
-	DECLARE @gia_monan money
-	SELECT @trigia_hoadon=TRIGIA, @SoLuong_ChiTietHoaDon=SoLuong,@gia_monan=GIA
-	FROM ChiTietHoaDon, MONAN,inserted
-	WHERE ChiTietHoaDon.MAMONAN=MONAN.MAMONAN AND ChiTietHoaDon.SoHoaDon=inserted.SoHoaDon
-IF @trigia_hoadon!= SUM(@SoLuong_ChiTietHoaDon*@gia_monan)
-BEGIN
-	rollback transaction
-	print N'Trị giá của một hóa đơn là tổng thành tiền (số lượng*đơn giá) của các chi tiết thuộc hóa đơn đó.'
-END;
+
+-- /*Trị giá của một hóa đơn là tổng thành tiền (số lượng*đơn giá) của các chi tiết thuộc hóa đơn đó.
+-- */
+
+-- CREATE TRIGGER trigia_hoad_insert
+-- ON hoadon 
+-- AFTER INSERT 
+-- AS 
+-- 	DECLARE @trigia_hoadon money 
+-- 	DECLARE @SoLuong_ChiTietHoaDon int
+-- 	DECLARE @gia_monan money
+-- 	SELECT @trigia_hoadon=TRIGIA, @SoLuong_ChiTietHoaDon=SoLuong,@gia_monan=GIA
+-- 	FROM ChiTietHoaDon, MONAN,inserted
+-- 	WHERE ChiTietHoaDon.MAMONAN=MONAN.MAMONAN AND ChiTietHoaDon.SoHoaDon=inserted.SoHoaDon
+-- IF @trigia_hoadon!= SUM(@SoLuong_ChiTietHoaDon*@gia_monan)
+-- BEGIN
+-- 	rollback transaction
+-- 	print N'Trị giá của một hóa đơn là tổng thành tiền (số lượng*đơn giá) của các chi tiết thuộc hóa đơn đó.'
+-- END;
 
 
 
@@ -207,10 +227,15 @@ INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M02',N'Rau bí xào',26000)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M03',N'Nộm rau má',26500)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M04',N'Khoai tây chiên',30000)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M05',N'Bánh bao chiên',30500)
-	INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M06',N'Bánh hỏi',30500)
-	INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M07',N'Gà rán',45000)
-	INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M08',N'Khoai tây chiên',25500)
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M06',N'Bánh hỏi',30500)
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M07',N'Gà rán',45000)
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M08',N'Khoai tây lắc phô mai',25500)
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M09',N'Bò bít tết',80500)
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M10',N'Cá diêu hồng',20000)
 SELECT * FROM MONAN
+
+delete from MonAn
+where MaMonAn='m08'
 
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B01',N'Thường')
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B02',N'Thường')
@@ -237,7 +262,6 @@ insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M04', 2, 3)
 select * from nhanvien
 
 
-delete from nhanvien where TenNguoiDung = 'tuankietcoderr1'
 select * from ChiTietHoaDon
 select * from HoaDon
 
@@ -245,17 +269,21 @@ select * from HoaDon
 select BanAn.TrangThai, MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, BanAn.MaBanAn from ChiTietHoaDon, HoaDon, BanAn
 where ChiTietHoaDon.SoHoaDon = HoaDon.SoHoaDon and BanAn.MaBanAn = HoaDon.MaBanAn
 
--- Them mon an vao ban an => ghi vao hoa don
+
 DROP TRIGGER trg_del_ChiTietHoaDon;
 
 delete from ChiTietHoaDon
 delete from hoadon
 
 select MaMonAn,SoLuong, HoaDon.SoHoaDon, MaBanAn from ChiTietHoaDon, HoaDon
-where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon and MaBanAn='b14'
+where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon and MaBanAn='b001'
+
+select * from ChiTietHoaDon
+where SoHoaDon=1
 
 select * from HoaDon	
 select * from MonAn
+SELECT * from BanAn
 select distinct SoLuong,MaBanAn, TrangThai, MaMonAn from ChiTietHoaDon, BanAn
 where TrangThai=N'Có khách'
 update BanAn set TrangThai=N'Trống'

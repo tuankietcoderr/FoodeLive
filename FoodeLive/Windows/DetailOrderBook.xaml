@@ -8,6 +8,7 @@
         Icon="/src/icon_foode_live.png"
         WindowStartupLocation="CenterScreen"
         x:Name="OrderWindow"
+        Closing="OrderWindow_Closing"
         DataContext="{StaticResource MainViewModel}"
         Title="Order/Đặt bàn" Height="720" Width="1280">
     <Grid>

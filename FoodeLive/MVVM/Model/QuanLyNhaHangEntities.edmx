@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyNhaHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLyNhaHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BanAn">
           <Key>
             <PropertyRef Name="MaBanAn" />
@@ -12,6 +12,17 @@
           <Property Name="MaBanAn" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="Loai" Type="nvarchar" MaxLength="6" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ChiTietDatBan">
+          <Key>
+            <PropertyRef Name="MaDatBan" />
+          </Key>
+          <Property Name="MaDatBan" Type="int" Nullable="false" />
+          <Property Name="MaBan" Type="char" MaxLength="4" />
+          <Property Name="NguoiDat" Type="varchar" MaxLength="30" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="12" />
+          <Property Name="GhiChu" Type="varchar" MaxLength="100" />
+          <Property Name="NgayDat" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="ChiTietDonHang">
           <Key>
@@ -86,6 +97,18 @@
           <Property Name="TenNguoiDung" Type="varchar" MaxLength="20" />
           <Property Name="MatKhau" Type="varchar" MaxLength="30" />
         </EntityType>
+        <Association Name="FK_ChiTietDatBan_MaBan">
+          <End Role="BanAn" Type="Self.BanAn" Multiplicity="0..1" />
+          <End Role="ChiTietDatBan" Type="Self.ChiTietDatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BanAn">
+              <PropertyRef Name="MaBanAn" />
+            </Principal>
+            <Dependent Role="ChiTietDatBan">
+              <PropertyRef Name="MaBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MABANAN">
           <End Role="BanAn" Type="Self.BanAn" Multiplicity="0..1" />
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
@@ -184,6 +207,7 @@
         </Association>
         <EntityContainer Name="QuanLyNhaHangModelStoreContainer">
           <EntitySet Name="BanAn" EntityType="Self.BanAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietDatBan" EntityType="Self.ChiTietDatBan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
@@ -191,6 +215,10 @@
           <EntitySet Name="MonAn" EntityType="Self.MonAn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChiTietDatBan_MaBan" Association="Self.FK_ChiTietDatBan_MaBan">
+            <End Role="BanAn" EntitySet="BanAn" />
+            <End Role="ChiTietDatBan" EntitySet="ChiTietDatBan" />
+          </AssociationSet>
           <AssociationSet Name="FK_MABANAN" Association="Self.FK_MABANAN">
             <End Role="BanAn" EntitySet="BanAn" />
             <End Role="HoaDon" EntitySet="HoaDon" />
@@ -224,8 +252,7 @@
             <End Role="DonHang" EntitySet="DonHang" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyNhaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -237,6 +264,7 @@
           <Property Name="Loai" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="TrangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HoaDons" Relationship="Self.FK_MABANAN" FromRole="BanAn" ToRole="HoaDon" />
+          <NavigationProperty Name="ChiTietDatBans" Relationship="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan" FromRole="BanAn" ToRole="ChiTietDatBan" />
         </EntityType>
         <EntityType Name="ChiTietDonHang">
           <Key>
@@ -463,7 +491,36 @@
             <End Role="NhanVien" EntitySet="NhanViens" />
             <End Role="HoaDon" EntitySet="HoaDons" />
           </AssociationSet>
+          <EntitySet Name="ChiTietDatBans" EntityType="QuanLyNhaHangModel.ChiTietDatBan" />
+          <AssociationSet Name="FK_ChiTietDatBan_MaBan" Association="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan">
+            <End Role="BanAn" EntitySet="BanAns" />
+            <End Role="ChiTietDatBan" EntitySet="ChiTietDatBans" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ChiTietDatBan">
+          <Key>
+            <PropertyRef Name="MaDatBan" />
+          </Key>
+          <Property Name="MaDatBan" Type="Int32" Nullable="false" />
+          <Property Name="MaBan" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="NguoiDat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BanAn" Relationship="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan" FromRole="ChiTietDatBan" ToRole="BanAn" />
+          <Property Name="NgayDat" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_ChiTietDatBan_MaBan">
+          <End Type="QuanLyNhaHangModel.BanAn" Role="BanAn" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.ChiTietDatBan" Role="ChiTietDatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BanAn">
+              <PropertyRef Name="MaBanAn" />
+            </Principal>
+            <Dependent Role="ChiTietDatBan">
+              <PropertyRef Name="MaBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -554,6 +611,18 @@
                 <ScalarProperty Name="NgayVaoLam" ColumnName="NgayVaoLam" />
                 <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietDatBans">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.ChiTietDatBan">
+              <MappingFragment StoreEntitySet="ChiTietDatBan">
+                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="NguoiDat" ColumnName="NguoiDat" />
+                <ScalarProperty Name="MaBan" ColumnName="MaBan" />
+                <ScalarProperty Name="MaDatBan" ColumnName="MaDatBan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,10 +14,10 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView Grid.Row="0" ItemContainerStyle="{StaticResource ClearOutlineListViewItem}" Background="Transparent" x:Name="List" ItemsSource="{Binding FoodViewModel.ListMonAn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Margin="0 20" SelectionMode="Multiple" >
+        <ui:VirtualizingGridView Grid.Row="0" Background="Transparent" x:Name="List" ItemsSource="{Binding FoodViewModel.ListMonAn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Margin="0 20" SelectionMode="Multiple" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:CardColor Margin="0 10" x:Name="card" PreviewMouseDown="card_PreviewMouseDown" BorderThickness="3" Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <ui:CardColor x:Name="card" Tag="{Binding MaMonAn}" BorderThickness="3" Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
                             <ImageBrush ImageSource="{Binding }" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
@@ -25,7 +25,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
-        <ui:Button Grid.Row="1" HorizontalAlignment="Right" Command="{Binding FoodViewModel.AnnounceAddFood}" CommandParameter="{Binding ElementName=List, Path=SelectedItems}" Effect="{StaticResource DropShadow}" Icon="Send28"  Content="Thông báo" FontWeight="Medium" Foreground="Black" Background="White" MouseOverBackground="#fff"  BorderThickness="0" VerticalAlignment="Center" Padding="20 8" FontSize="16">
+        <ui:Button Grid.Row="1" HorizontalAlignment="Right" Command="{Binding FoodViewModel.AnnounceAddFood}" CommandParameter="{Binding ElementName=List, Path=SelectedItems}" Effect="{StaticResource DropShadow}" Icon="Send28"  Content="Thông báo" FontWeight="Medium" Foreground="#Fff" IconForeground="#fff"  Background="#FF7A00" MouseOverBackground="#ff7A00" PressedForeground="#FF7A00" PressedBackground="Transparent" BorderThickness="0" VerticalAlignment="Center" Padding="20 8" FontSize="16">
         </ui:Button>
     </Grid>
 </Page>

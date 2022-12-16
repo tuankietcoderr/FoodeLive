@@ -27,6 +27,7 @@ namespace FoodeLive.MVVM.ViewModel
         private int _soHoaDon;
         public int SoHoaDon { get => _soHoaDon; set { _soHoaDon = value; OnPropertyChanged(); } }
 
+
         private BanAn _selectedItem;
         public BanAn SelectedItem
         {
@@ -37,9 +38,9 @@ namespace FoodeLive.MVVM.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
-                    _maBanAn =_selectedItem.MaBanAn;
+                    _maBanAn = _selectedItem.MaBanAn;
                     if (DataProvider.Ins.DB.BanAns.ToList().Find(t => t.MaBanAn == _maBanAn).TrangThai != "Trống")
-                        _soHoaDon = DataProvider.Ins.DB.HoaDons.ToList().Find(t => t.MaBanAn == _maBanAn).SoHoaDon;
+                        _soHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(t => t.MaBanAn == _maBanAn).SoHoaDon;
                     else
                         _soHoaDon = 0;
                     _tableViewModel.MaBanAn = _maBanAn;
@@ -47,7 +48,6 @@ namespace FoodeLive.MVVM.ViewModel
                     _foodViewModel.SoHoaDon = _soHoaDon;
                     DetailOrderBook detailOrderBook = new DetailOrderBook();
                     detailOrderBook.ShowDialog();
-                    SelectedItem = null;
                 }
             }
         }
@@ -64,17 +64,25 @@ namespace FoodeLive.MVVM.ViewModel
             _tableViewModel.UsingTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Có khách"));
             _tableViewModel.BookedTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Đã đặt"));
             _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns);
+            _tableViewModel.ChiTietDatBan = new ChiTietDatBan();
 
             // khi bam them ban, ban moi se duoc push vao trong trong
             // neu ban duoc order, 
 
-            //RefreshCommand = new RelayCommand<object>(p => true, p =>
-            //{
-            //    ObservableCollection<BanAn> _RefListBanAn = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Trống"));
-            //    _tableViewModel.EmptyTables = _RefListBanAn;
-            //    OnPropertyChanged("EmptyTables");
+            RefreshCommand = new RelayCommand<object>(p => true, p =>
+            {
+                _tableViewModel.ListBanAn.Clear();
+                _tableViewModel.ListBanAn = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns);
+                _tableViewModel.EmptyTables.Clear();
+                _tableViewModel.EmptyTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Trống"));
+                _tableViewModel.UsingTables.Clear();
+                _tableViewModel.UsingTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Có khách"));
+                _tableViewModel.BookedTables.Clear();
+                _tableViewModel.BookedTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Đã đặt"));
+                _foodViewModel.ListMonAn.Clear();
+                _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns);
 
-            //});
+            });
         }
     }
 }

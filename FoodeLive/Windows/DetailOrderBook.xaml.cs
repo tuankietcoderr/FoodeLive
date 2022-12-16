@@ -23,11 +23,15 @@ namespace FoodeLive.Windows
     /// </summary>
     public partial class DetailOrderBook : Window
     {
-
+        public MainViewModel viewModel
+        {
+            get;
+        }
         public DetailOrderBook()
         {
             InitializeComponent();
             detail.IsSelected = true;
+            viewModel = this.DataContext as MainViewModel;
         }
 
         public DetailOrderBook(string MaBanAn, int SoHoaDon)
@@ -59,6 +63,17 @@ namespace FoodeLive.Windows
                 default:
                     navframe.Navigate(new Detail());
                     break;
+            }
+        }
+
+        private void OrderWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (viewModel.FoodViewModel.Ordered)
+            {
+                if (viewModel.RefreshCommand.CanExecute(null))
+                {
+                    viewModel.RefreshCommand.Execute(null);
+                }
             }
         }
     }

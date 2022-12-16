@@ -21,6 +21,8 @@
         <AssociationConnector Association="QuanLyNhaHangModel.FK_MANV_DONHANG" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_TenNguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_MANV" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.ChiTietDatBan" Width="1.5" PointX="6" PointY="11.75" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

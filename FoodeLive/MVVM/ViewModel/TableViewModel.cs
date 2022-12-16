@@ -38,6 +38,11 @@ namespace FoodeLive.MVVM.ViewModel
 
         public ICommand AddTableCommand { get; set; }
         public ICommand DeleteTableCommand { get; set; }
+        public ICommand BookTableCommand { get; set; }
+
+        private ChiTietDatBan _chiTietDatBan;
+        public ChiTietDatBan ChiTietDatBan { get => _chiTietDatBan; set { _chiTietDatBan = value; OnPropertyChanged(); } }
+
 
 
         public TableViewModel()
@@ -98,6 +103,18 @@ namespace FoodeLive.MVVM.ViewModel
                 {
                     MessageBox.Show(e.InnerException.InnerException.Message);
                 }
+            });
+
+            BookTableCommand = new RelayCommand<object>(p =>
+            {
+                MessageBox.Show(_chiTietDatBan.NguoiDat);
+                
+                return false;
+            }, p =>
+            {
+                MessageBox.Show(ChiTietDatBan.NguoiDat);
+                //DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn).TrangThai = "Đã đặt";
+                //DataProvider.Ins.DB.SaveChanges();
             });
         }
     }

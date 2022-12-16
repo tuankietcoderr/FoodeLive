@@ -111,6 +111,9 @@
     <Compile Include="MVVM\Model\BanAn.cs">
       <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\Model\ChiTietDatBan.cs">
+      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Model\ChiTietDonHang.cs">
       <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
     </Compile>

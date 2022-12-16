@@ -1,4 +1,6 @@
-﻿using FoodeLive.MVVM.ViewModel.VMTableSlice;
+﻿using FoodeLive.MVVM.ViewModel;
+using FoodeLive.MVVM.ViewModel.VMTableSlice;
+using IT008_DoAnCuoiKi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,50 +24,19 @@ namespace FoodeLive.Pages.Table
     public partial class Order : Page
     {
 
+        //public MainViewModel ViewModel
+        //{
+        //    get;
+        //}
         private Brush brush { get; set; }
         public Order()
         {
             InitializeComponent();
+            //ViewModel = this.DataContext as MainViewModel;
         }
 
         ~Order() { }
 
-        public Order(VMOrder viewModel)
-        {
-            InitializeComponent();
-        }
-
-        private void AddFoodBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.TableDetail.TableAddFood tableAddFood = new Windows.TableDetail.TableAddFood();
-            tableAddFood.ShowDialog();
-        }
-
-        private void ListViewItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var item = sender as ListViewItem;
-            if (item != null && item.IsSelected)
-            {
-                MessageBox.Show(item.ToString());
-            }
-        }
-
-        private void card_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Wpf.Ui.Controls.CardColor item = sender as Wpf.Ui.Controls.CardColor;
-            if (item != null)
-            {
-                if (item.BorderBrush == Brushes.LightGreen)
-                {
-                    item.BorderBrush = brush;
-                }
-                else
-                {
-                    brush = item.BorderBrush;
-                    item.BorderBrush = Brushes.LightGreen;
-                }
-            }
-        }
 
     }
 }

@@ -33,5 +33,6 @@ namespace FoodeLive.MVVM.Model
         public virtual DbSet<MonAn> MonAns { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
+        public virtual DbSet<ChiTietDatBan> ChiTietDatBans { get; set; }
     }
 }

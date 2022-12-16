@@ -18,11 +18,14 @@
         <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpacingMode="BetweenItemsOnly" Margin="0 20" Grid.Row="0" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:CardColor Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
-                        <ui:CardColor.Brush>
-                            <ImageBrush ImageSource="{Binding ImgExtension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
-                        </ui:CardColor.Brush>
-                    </ui:CardColor>
+                    <StackPanel>
+                        <ui:CardColor Width="150" Subtitle="{Binding MonAn.Gia, Converter={StaticResource MoneyConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SubtitleFontSize="20" Title="{Binding MonAn.TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                            <ui:CardColor.Brush>
+                                <ImageBrush ImageSource="{Binding MonAn.ImgExtension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
+                            </ui:CardColor.Brush>
+                        </ui:CardColor>
+                        <ui:Badge Content="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Appearance="Info" />
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>

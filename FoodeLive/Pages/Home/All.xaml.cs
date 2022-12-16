@@ -33,14 +33,5 @@ namespace FoodeLive.Pages.Home
         }
         ~All() { }
 
-
-        private void table_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Card card = sender as Card;
-            string MaBanAn = card.Tag.ToString();
-            VMBookDetailOrder vMBookDetailOrder = new VMBookDetailOrder(MaBanAn);
-            Windows.DetailOrderBook orderOrBook = new Windows.DetailOrderBook();
-            orderOrBook.ShowDialog();
-        }
     }
 }

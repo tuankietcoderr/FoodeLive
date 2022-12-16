@@ -29,7 +29,7 @@
                             <Separator Grid.Row="1" Width="70" BorderBrush="#000" Opacity="0.5"/>
                             <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
                                 <TextBlock FontSize="10" Foreground="#ABABAB">
-                            Tình trạng: <TextBlock Text="{Binding TrangThai}" />
+                            Tình trạng: <TextBlock Text="{Binding TrangThai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </TextBlock>
                                 <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
                             Loại bàn: <TextBlock Text="{Binding Loai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

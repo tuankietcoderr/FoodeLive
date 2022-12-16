@@ -18,6 +18,7 @@ namespace FoodeLive.MVVM.Model
         public BanAn()
         {
             this.HoaDons = new HashSet<HoaDon>();
+            this.ChiTietDatBans = new HashSet<ChiTietDatBan>();
         }
     
         public string MaBanAn { get; set; }
@@ -26,5 +27,7 @@ namespace FoodeLive.MVVM.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietDatBan> ChiTietDatBans { get; set; }
     }
 }

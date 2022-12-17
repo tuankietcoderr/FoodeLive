@@ -2,6 +2,7 @@
 using FoodeLive.Windows;
 using FoodeLive.Windows.Auth;
 using IT008_DoAnCuoiKi.ViewModel;
+using ScottPlot;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,6 +28,12 @@ namespace FoodeLive.MVVM.ViewModel
         private int _soHoaDon;
         public int SoHoaDon { get => _soHoaDon; set { _soHoaDon = value; OnPropertyChanged(); } }
 
+        private bool _forceRerender = false;
+        public bool ForceRerender { get => _foodViewModel.Ordered || _tableViewModel.IsBooked; set { _forceRerender = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<HoaDon> _ListHoaDon;
+        public ObservableCollection<HoaDon> ListHoaDon { get => _ListHoaDon; set { _ListHoaDon = value; OnPropertyChanged(); } }
+
 
         private BanAn _selectedItem;
         public BanAn SelectedItem
@@ -39,7 +46,7 @@ namespace FoodeLive.MVVM.ViewModel
                 if (SelectedItem != null)
                 {
                     _maBanAn = _selectedItem.MaBanAn;
-                    if (DataProvider.Ins.DB.BanAns.ToList().Find(t => t.MaBanAn == _maBanAn).TrangThai != "Trống")
+                    if (DataProvider.Ins.DB.BanAns.ToList().Find(t => t.MaBanAn == _maBanAn).TrangThai == "Có khách")
                         _soHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(t => t.MaBanAn == _maBanAn).SoHoaDon;
                     else
                         _soHoaDon = 0;
@@ -52,7 +59,14 @@ namespace FoodeLive.MVVM.ViewModel
             }
         }
 
+        private ComboBoxItem _reportMonth;
+        public ComboBoxItem ReportMonth { get => _reportMonth; set { _reportMonth = value; OnPropertyChanged(); } }
+
+        private ComboBoxItem _reportYear;
+        public ComboBoxItem ReportYear { get => _reportYear; set { _reportYear = value; OnPropertyChanged(); } }
+
         public ICommand RefreshCommand { get; set; }
+        public ICommand AnalyzeReportCommand { get; set; }
 
 
         public MainViewModel()
@@ -64,10 +78,8 @@ namespace FoodeLive.MVVM.ViewModel
             _tableViewModel.UsingTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Có khách"));
             _tableViewModel.BookedTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Đã đặt"));
             _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns);
-            _tableViewModel.ChiTietDatBan = new ChiTietDatBan();
+            _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons);
 
-            // khi bam them ban, ban moi se duoc push vao trong trong
-            // neu ban duoc order, 
 
             RefreshCommand = new RelayCommand<object>(p => true, p =>
             {
@@ -82,6 +94,16 @@ namespace FoodeLive.MVVM.ViewModel
                 _foodViewModel.ListMonAn.Clear();
                 _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns);
 
+            });
+            AnalyzeReportCommand = new RelayCommand<WpfPlot>(p =>
+            {
+
+                string monthContent = ReportMonth.Content.ToString();
+                string yearContent = ReportYear.Content.ToString();
+                return monthContent != "Tháng" && yearContent != "Năm";
+            }, p =>
+            {
+                
             });
         }
     }

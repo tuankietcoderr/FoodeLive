@@ -118,13 +118,10 @@ namespace FoodeLive.MVVM.ViewModel
         }
 
 
-        private bool _ordered;
+        private bool _ordered = false;
         public bool Ordered { get => _ordered; set { _ordered = value; OnPropertyChanged(); } }
-
         public ICommand AnnounceAddFood { get; set; }
         public ICommand PayCommand { get; set; }
-
-        public ICommand Test { get; set; }
 
         public FoodViewModel()
         {
@@ -154,11 +151,14 @@ namespace FoodeLive.MVVM.ViewModel
                     // kiem tra ban trong
                     if (DataProvider.Ins.DB.BanAns.ToList().Find(b => _maBanAn == b.MaBanAn).TrangThai != "Trống")
                     {
-                        // Them mon an vao hoa don hien co
+                        if (DataProvider.Ins.DB.ChiTietDatBans.ToList().FindLast(t => t.MaBan == _maBanAn).TrangThai == 2)
+                            _soHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(b => _maBanAn == b.MaBanAn).SoHoaDon;
+                            // Them mon an vao hoa don hien co
                         foreach (MonAn monAn in selectedCollection)
                         {
                             // thay doi so luong
-                            HoaDon currentHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(hd => hd.SoHoaDon == _soHoaDon);
+                            HoaDon currentHoaDon = new HoaDon();
+                            currentHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(hd => hd.SoHoaDon == _soHoaDon);
                             tempSoMon++;
                             if (DataProvider.Ins.DB.ChiTietHoaDons.ToList().Exists(t => t.MaMonAn == monAn.MaMonAn && t.SoHoaDon == _soHoaDon))
                             {
@@ -168,7 +168,6 @@ namespace FoodeLive.MVVM.ViewModel
                             }
                             else
                             {
-
                                 currentHoaDon.TriGia += monAn.Gia;
                                 tempTongTien += (int)monAn.Gia;
                                 ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon() { MonAn = monAn, SoHoaDon = _soHoaDon, SoLuong = 1, MaMonAn = monAn.MaMonAn, HoaDon = currentHoaDon };
@@ -201,7 +200,7 @@ namespace FoodeLive.MVVM.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.InnerException.Message);
+                    MessageBox.Show(ex.Message);
                 }
             });
 
@@ -219,7 +218,7 @@ namespace FoodeLive.MVVM.ViewModel
                 _selectedItems = new ObservableCollection<MoneyWithQuantities>();
                 MessageBox.Show("Đã thanh toán!");
             });
-            
+
         }
     }
 }

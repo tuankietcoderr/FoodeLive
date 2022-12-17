@@ -17,12 +17,14 @@
           <Key>
             <PropertyRef Name="MaDatBan" />
           </Key>
-          <Property Name="MaDatBan" Type="int" Nullable="false" />
+          <Property Name="MaDatBan" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="MaBan" Type="char" MaxLength="4" />
-          <Property Name="NguoiDat" Type="varchar" MaxLength="30" />
+          <Property Name="NguoiDat" Type="nvarchar" MaxLength="30" />
           <Property Name="SoDienThoai" Type="varchar" MaxLength="12" />
-          <Property Name="GhiChu" Type="varchar" MaxLength="100" />
-          <Property Name="NgayDat" Type="smalldatetime" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
+          <Property Name="TrangThai" Type="tinyint" />
+          <Property Name="NgayDat" Type="datetime" />
+          <Property Name="MaNV" Type="char" MaxLength="4" />
         </EntityType>
         <EntityType Name="ChiTietDonHang">
           <Key>
@@ -106,6 +108,18 @@
             </Principal>
             <Dependent Role="ChiTietDatBan">
               <PropertyRef Name="MaBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDatBan_MaNhanVien">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="ChiTietDatBan" Type="Self.ChiTietDatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="ChiTietDatBan">
+              <PropertyRef Name="MaNV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -217,6 +231,10 @@
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ChiTietDatBan_MaBan" Association="Self.FK_ChiTietDatBan_MaBan">
             <End Role="BanAn" EntitySet="BanAn" />
+            <End Role="ChiTietDatBan" EntitySet="ChiTietDatBan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDatBan_MaNhanVien" Association="Self.FK_ChiTietDatBan_MaNhanVien">
+            <End Role="NhanVien" EntitySet="NhanVien" />
             <End Role="ChiTietDatBan" EntitySet="ChiTietDatBan" />
           </AssociationSet>
           <AssociationSet Name="FK_MABANAN" Association="Self.FK_MABANAN">
@@ -353,6 +371,7 @@
           <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DonHangs" Relationship="Self.FK_MANV_DONHANG" FromRole="NhanVien" ToRole="DonHang" />
           <NavigationProperty Name="HoaDons" Relationship="Self.FK_MANV" FromRole="NhanVien" ToRole="HoaDon" />
+          <NavigationProperty Name="ChiTietDatBans" Relationship="QuanLyNhaHangModel.FK_ChiTietDatBan_MaNhanVien" FromRole="NhanVien" ToRole="ChiTietDatBan" />
         </EntityType>
         <Association Name="FK_MABANAN">
           <End Role="BanAn" Type="Self.BanAn" Multiplicity="0..1" />
@@ -496,18 +515,25 @@
             <End Role="BanAn" EntitySet="BanAns" />
             <End Role="ChiTietDatBan" EntitySet="ChiTietDatBans" />
           </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDatBan_MaNhanVien" Association="QuanLyNhaHangModel.FK_ChiTietDatBan_MaNhanVien">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="ChiTietDatBan" EntitySet="ChiTietDatBans" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ChiTietDatBan">
           <Key>
             <PropertyRef Name="MaDatBan" />
           </Key>
-          <Property Name="MaDatBan" Type="Int32" Nullable="false" />
+          <Property Name="MaDatBan" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="MaBan" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="NguoiDat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NguoiDat" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="SoDienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="GhiChu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDat" Type="DateTime" Precision="3" />
           <NavigationProperty Name="BanAn" Relationship="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan" FromRole="ChiTietDatBan" ToRole="BanAn" />
-          <Property Name="NgayDat" Type="DateTime" Precision="0" />
+          <Property Name="TrangThai" Type="Byte" />
+          <Property Name="MaNV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="NhanVien" Relationship="QuanLyNhaHangModel.FK_ChiTietDatBan_MaNhanVien" FromRole="ChiTietDatBan" ToRole="NhanVien" />
         </EntityType>
         <Association Name="FK_ChiTietDatBan_MaBan">
           <End Type="QuanLyNhaHangModel.BanAn" Role="BanAn" Multiplicity="0..1" />
@@ -518,6 +544,18 @@
             </Principal>
             <Dependent Role="ChiTietDatBan">
               <PropertyRef Name="MaBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDatBan_MaNhanVien">
+          <End Type="QuanLyNhaHangModel.NhanVien" Role="NhanVien" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.ChiTietDatBan" Role="ChiTietDatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="ChiTietDatBan">
+              <PropertyRef Name="MaNV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -617,6 +655,8 @@
           <EntitySetMapping Name="ChiTietDatBans">
             <EntityTypeMapping TypeName="QuanLyNhaHangModel.ChiTietDatBan">
               <MappingFragment StoreEntitySet="ChiTietDatBan">
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />

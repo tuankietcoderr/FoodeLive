@@ -53,8 +53,7 @@
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
                     <ui:TextBox Icon="Search20" PlaceholderText="Bàn đông nhất, bàn VIP..." x:Name="search_tb" Height="35"/>
-                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="{Binding Height, ElementName=search_tb}" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
-                        
+                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="{Binding Height, ElementName=search_tb}" Padding="20 8" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
                     </ui:Button>
                 </Grid>
             </Grid>

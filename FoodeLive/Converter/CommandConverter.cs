@@ -44,4 +44,22 @@ namespace FoodeLive.Converter
         }
     }
 
+    public class BooleanReflectConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (targetType == typeof(bool))
+            {
+                bool b = (bool)value;
+                return b != true;
+            }
+            return true;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

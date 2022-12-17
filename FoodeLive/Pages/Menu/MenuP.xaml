@@ -17,35 +17,37 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <Grid Grid.Row="0" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="4*" />
-                </Grid.ColumnDefinitions>
-
-                <WrapPanel Grid.Column="0" x:Name="foodControl" VerticalAlignment="Center">
-                    <ui:Button x:Name="all" Content="Tất cả" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Foreground="White" Background="#ff7a00" Width="94" Height="32" FontSize="14" HorizontalAlignment="Center"/>
-                    <ComboBox x:Name="type" FontWeight="Bold" FontSize="11" BorderBrush="#ff7a00" HorizontalAlignment="Left" Margin="5,0,0,0" Width="120">
-                        <ComboBoxItem>Súp</ComboBoxItem>
-                        <ComboBoxItem>Hản sản</ComboBoxItem>
-                        <ComboBoxItem>Món nướng</ComboBoxItem>
-                        <ComboBoxItem>Tráng miệng</ComboBoxItem>
-                        <ComboBoxItem Content="Phân loại" IsSelected="True" Visibility="Hidden"></ComboBoxItem>
-                    </ComboBox>
-                </WrapPanel>
-                <Grid Grid.Column="2" VerticalAlignment="Center" Height="60">
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            <Grid>
+                <Grid Grid.Row="0" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
-                    <ui:TextBox Icon="Search20" PlaceholderText="Bàn đông nhất, bàn VIP..." x:Name="search_tb" Height="35"/>
-                    <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="35" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
-                    </ui:Button>
+
+                    <WrapPanel Grid.Column="0" VerticalAlignment="Center" x:Name="foodControl" Background="Transparent">
+                        <ui:Button x:Name="all" Content="Tất cả" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Foreground="White" FontWeight="SemiBold" Background="#ff7a00" Padding="20 8" FontSize="12" HorizontalAlignment="Center"/>
+                        <ComboBox x:Name="type" FontWeight="SemiBold" FontSize="12" BorderThickness="0" HorizontalAlignment="Left" Margin="10,0,0,0">
+                            <ComboBoxItem>Súp</ComboBoxItem>
+                            <ComboBoxItem>Hản sản</ComboBoxItem>
+                            <ComboBoxItem>Món nướng</ComboBoxItem>
+                            <ComboBoxItem>Tráng miệng</ComboBoxItem>
+                            <ComboBoxItem Content="Phân loại" IsSelected="True" Visibility="Hidden" Height="0"></ComboBoxItem>
+                        </ComboBox>
+                    </WrapPanel>
+                    <Grid Grid.Column="2" VerticalAlignment="Center" Height="60" Width="300" HorizontalAlignment="Right">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <ui:TextBox Icon="Search20" PlaceholderText="Bàn đông nhất, bàn VIP..." x:Name="search_tb" Height="35"/>
+                        <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="35" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
+                        </ui:Button>
+                    </Grid>
                 </Grid>
             </Grid>
-            <Separator Background="LightGray" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="3" Margin="0,0,0,1"/>
+            <Separator Background="LightGray"/>
         </StackPanel>
 
 

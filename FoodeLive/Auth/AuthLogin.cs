@@ -13,8 +13,9 @@ namespace FoodeLive.Auth
     {
         public static bool HandleLogin(string username, string password)
         {
-            var accCount = DataProvider.Ins.DB.NhanViens.Where(u => u.TenNguoiDung == username & u.MatKhau == password).Count();
-            if (accCount > 0)
+            var nvCount = DataProvider.Ins.DB.NhanViens.Where(u => u.TenNguoiDung == username & u.MatKhau == password).Count();
+            var qlCount = DataProvider.Ins.DB.NguoiQuanLies.Where(u => u.TenNguoiDung == username & u.MatKhau == password).Count();
+            if (nvCount > 0 || qlCount > 0)
             {
                 AuthState.IsLoggedIn = true;
                 return true;

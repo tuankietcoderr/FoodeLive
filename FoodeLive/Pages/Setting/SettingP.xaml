@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:FoodeLive.Pages.Setting"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Pages.Setting.SettingP"
       mc:Ignorable="d" 
+      DataContext="{StaticResource MainViewModel}"
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="SettingP">
 
@@ -73,7 +74,7 @@
         <StackPanel Grid.Row="3">
             <TextBlock Text="Khác" FontWeight="SemiBold" FontSize="20" Margin="0 20"/>
             <WrapPanel>
-                <Button Content="Tạo tài khoản cho nhân viên"/>
+                <Button Command="{Binding AddAccountCommand}" Content="Tạo tài khoản cho nhân viên"/>
                 <Button Content="Xóa tài khoản" BorderThickness="0" Margin="10 0" Foreground="OrangeRed"/>
             </WrapPanel>
         </StackPanel>

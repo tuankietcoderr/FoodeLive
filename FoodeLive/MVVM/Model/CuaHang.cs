@@ -12,28 +12,26 @@ namespace FoodeLive.MVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class NhanVien
+    public partial class CuaHang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NhanVien()
+        public CuaHang()
         {
-            this.DonHangs = new HashSet<DonHang>();
+            this.BanAns = new HashSet<BanAn>();
+            this.NguoiQuanLies = new HashSet<NguoiQuanLy>();
+            this.MonAns = new HashSet<MonAn>();
         }
     
-        public string MaNV { get; set; }
-        public string HoTen { get; set; }
-        public string GioiTinh { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
-        public string DiaChi { get; set; }
-        public Nullable<decimal> Luong { get; set; }
-        public string SoDienThoai { get; set; }
-        public Nullable<System.DateTime> NgayVaoLam { get; set; }
-        public string TenNguoiDung { get; set; }
-        public string MatKhau { get; set; }
+        public string MaCuaHang { get; set; }
         public string MaQuanLy { get; set; }
+        public string TenCuaHang { get; set; }
+        public Nullable<System.DateTime> NgayThanhLap { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHangs { get; set; }
-        public virtual NguoiQuanLy NguoiQuanLy { get; set; }
+        public virtual ICollection<BanAn> BanAns { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NguoiQuanLy> NguoiQuanLies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MonAn> MonAns { get; set; }
     }
 }

@@ -4,9 +4,39 @@ CREATE TABLE CuaHang
 	MaCuaHang CHAR(4) NOT NULL,
 	MaQuanLy CHAR(4) NOT NULL,
 	CONSTRAINT PK_CuaHang PRIMARY KEY (MaCuaHang),
-	CONSTRAINT FK_MaQuanLy FOREIGN KEY (MaQuanLy) REFERENCES NhanVien (MaNV),
 )
 
+
+alter table cuahang
+add TenCuaHang varchar(30)
+
+alter table CuaHang
+add NgayThanhLap datetime
+
+alter table cuahang
+drop constraint FK_CuaHangMaQuanLy
+
+alter table nhanvien
+drop constraint FK_MaNhanVien_CuaHang
+
+alter table nhanvien
+drop column macuahang
+
+create TABLE NguoiQuanLy
+(
+	MaQuanLy Char(4) not null constraint PK_NguoiQuanLy primary key,
+	MaCuaHang char(4) not null,
+	constraint FK_CuaHang FOREIGN key (MaCuaHang) REFERENCES CuaHang(MaCuaHang),
+	TenQuanLy nvarchar(30),
+	SoDienThoai varchar(12),
+	TenNguoiDung varchar(20),
+	MatKhau varchar(30),
+)
+
+alter table NguoiQuanLy
+add NgayThamGia datetime
+
+drop table NguoiQuanLy
 
 CREATE TABLE NhanVien
 (
@@ -24,6 +54,12 @@ CREATE TABLE NhanVien
 	CONSTRAINT PK_NHANVIEN PRIMARY KEY (MANV),
 )
 
+alter table Nhanvien
+add MaQuanLy char(4)
+alter table Nhanvien
+add constraint FK_MaNhanVien_NguoiQuanLy FOREIGN KEY (MaQuanLy) REFERENCES NguoiQuanLy(MaQuanLy)
+
+
 
 CREATE TABLE MonAn
 (
@@ -34,6 +70,11 @@ CREATE TABLE MonAn
 	CONSTRAINT PK_MAMONAN PRIMARY KEY (MAMONAN),
 )
 
+alter table monan
+add MaCuaHang char(4)
+alter table monan
+add constraint FK_MaMonAn_CuaHang FOREIGN KEY (MaCuaHang) REFERENCES CuaHang(MaCuaHang)
+
 CREATE TABLE BanAn
 (
 	MaBanAn CHAR(4) NOT NULL,
@@ -41,6 +82,10 @@ CREATE TABLE BanAn
     TrangThai NVARCHAR(10) DEFAULT N'Trống',
 	CONSTRAINT PK_MABANAN PRIMARY KEY (MABANAN),
 )
+alter table BanAn
+add MaCuaHang char(4)
+alter table BanAn
+add constraint FK_MaBanAn_CuaHang FOREIGN KEY (MaCuaHang) REFERENCES CuaHang(MaCuaHang)
 
 alter table banan add constraint DF_BanAn_TrangThai DEFAULT N'Trống' for Trangthai 
 
@@ -83,17 +128,25 @@ create table HoaDon
 	SoHoaDon int NOT NULL ,
 	NgayLapHoaDon SMALLDATETIME,
 	MaBanAn CHAR(4),
-	MaNV CHAR(4),
 	TriGia MONEY ,
 	CONSTRAINT PK_SoHoaDon PRIMARY KEY (SoHoaDon),
 	CONSTRAINT FK_MABANAN FOREIGN KEY (MaBanAn) REFERENCES BANAN (MaBanAn),
 	CONSTRAINT FK_MANV FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
 )
+SELECT * from hoadon
 
 ALTER TABLE HoaDon
 ADD CONSTRAINT DF_HoaDon_TriGia DEFAULT 0 FOR TriGia
 
-alter table banan drop CONSTRAINT DF__BanAn__TrangThai__29572725
+alter table hoadon
+drop column MaNV
+
+alter table hoadon
+drop constraint FK_HoaDon_NguoiQuanLy FOREIGN KEY (MaQuanLy) REFERENCES NguoiQuanLy(MaQuanLy)
+alter table hoadon
+drop column maquanly
+
+alter table hoadon drop CONSTRAINT FK_MaNV
 
 CREATE TABLE ChiTietHoaDon
 (
@@ -104,6 +157,9 @@ CREATE TABLE ChiTietHoaDon
 	CONSTRAINT FK_SoHoaDon FOREIGN KEY (SoHoaDon) REFERENCES HOADON (SoHoaDon),
 	CONSTRAINT FK_MAMONAN FOREIGN KEY (MaMonAn) REFERENCES MONAN (MaMonAn),
 )
+drop table ChiTietHoaDon
+alter table HoaDon
+Drop column manv
 
 CREATE TABLE ChiTietDatBan (
 	MaDatBan char(4) not null constraint PK_ChiTietDatBan PRIMARY KEY,
@@ -116,13 +172,18 @@ CREATE TABLE ChiTietDatBan (
 	constraint FK_ChiTietDatBan_MaBan FOREIGN KEY (MaBan) REFERENCES BanAn(MaBanAn)
 )
 
+
+
 SELECT * from ChiTietDatBan
 drop table ChiTietDatBan
 
 Alter table ChiTietDatBan add constraint FK_ChiTietDatBan_MaBan
 FOREIGN KEY (MaBan) REFERENCES BanAn(MaBanAn)
 
-drop table ChiTietDatBan
+alter table chitietdatban
+drop constraint FK_ChiTietDatBan_MaNhanVien
+alter table chitietdatban
+drop column manv
 
 
 Alter table chitietdatban
@@ -150,20 +211,9 @@ ALTER TABLE NHANVIEN ADD CONSTRAINT ngayvaolam_CHECK CHECK(NgayVaoLam>NGaySINH)
 
 ALTER TABLE ChiTietHoaDon ADD CONSTRAINT SoLuong_CHECK CHECK(SoLuong>=1)
 
--- CREATE TRIGGER ngaylaphoadon_ngayvaolam_hoad_insert
--- ON hoadon 
--- AFTER INSERT 
--- AS 
--- 	DECLARE @ng_hoadon smalldatetime 
--- 	DECLARE @ng_vaolam smalldatetime 
--- 	SELECT @ng_hoadon=NgayLapHoaDon, @ng_vaolam=NgayVaoLam
--- 	FROM NHANVIEN, inserted
--- 	WHERE NHANVIEN.MANV=inserted.MANV
--- IF @ng_hoadon< @ng_vaolam
--- BEGIN
--- 	rollback transaction
--- 	print N'Ngày hóa đơn phải lớn hơn ngày vào làm'
--- END
+alter table hoadon
+drop trigger ngaylaphoadon_ngayvaolam_hoad_update
+
 
 -- CREATE TRIGGER ngaylaphoadon_ngayvaolam_hoad_update
 -- ON hoadon 
@@ -236,11 +286,11 @@ ALTER TABLE ChiTietHoaDon ADD CONSTRAINT SoLuong_CHECK CHECK(SoLuong>=1)
 
 
 
-INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M01',N'Súp cá hồi',50000)
-INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M02',N'Rau bí xào',26000)
-INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M03',N'Nộm rau má',26500)
-INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M04',N'Khoai tây chiên',30000)
-INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M05',N'Bánh bao chiên',30500)
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA, MaCuaHang) VALUES ('M01',N'Súp cá hồi',50000, 'CH02')
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA, MaCuaHang) VALUES ('M02',N'Rau bí xào',26000, 'CH02')
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA, MaCuaHang) VALUES ('M03',N'Nộm rau má',26500, 'CH02')
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA, MaCuaHang) VALUES ('M04',N'Khoai tây chiên',30000,'CH02')
+INSERT INTO MONAN(MAMONAN,TENMONAN,GIA, MaCuaHang) VALUES ('M05',N'Bánh bao chiên',30500, 'CH02')
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M06',N'Bánh hỏi',30500)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M07',N'Gà rán',45000)
 INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M08',N'Khoai tây lắc phô mai',25500)
@@ -280,11 +330,13 @@ delete from nhanvien
 where MaNV='nv01'
 
 SELECT * from NhanVien
+SELECT * from NguoiQuanlY
 
 
 select * from ChiTietHoaDon
 select * from HoaDon
 DELETE from hoadon
+DELETE from NhanVien
 
 
 select BanAn.TrangThai, MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, BanAn.MaBanAn from ChiTietHoaDon, HoaDon, BanAn
@@ -299,7 +351,7 @@ delete from hoadon
 delete from nhanvien
 
 select MaMonAn,SoLuong, HoaDon.SoHoaDon, MaBanAn from ChiTietHoaDon, HoaDon
-where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon and MaBanAn='b006'
+where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon
 
 select * from ChiTietHoaDon
 where SoHoaDon=1
@@ -307,6 +359,7 @@ where SoHoaDon=1
 select * from HoaDon	
 select * from MonAn
 delete from MonAn
+delete from banan
 where MaMonAn='M15'
 SELECT * from BanAn
 select distinct SoLuong,MaBanAn, TrangThai, MaMonAn from ChiTietHoaDon, BanAn
@@ -316,3 +369,16 @@ update BanAn set TrangThai=N'Trống'
 select * from chitietdatban
 delete from chitietdatban
 
+select * from cuahang
+
+ALTER TABLE CuaHang
+NOCHECK CONSTRAINT FK_CuaHangMaQuanLy
+insert into CuaHang (MaCuaHang, MaQuanLy, TenCuaHang) VALUES ('CH01', 'NV01', 'FoodeLive')
+insert into NhanVien (MaNV, TenNguoiDung, MatKhau, MaCuaHang) VALUES ('NV01', 'tuankietcoder', '1','CH01')
+select * from cuahang
+
+delete from CuaHang
+where MaCuaHang='ch01'
+select * from Nguoiquanly
+
+select * from NhanVien

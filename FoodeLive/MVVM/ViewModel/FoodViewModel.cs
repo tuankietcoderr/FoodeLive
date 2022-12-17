@@ -1,5 +1,6 @@
 ﻿using FoodeLive.MVVM.Model;
 using FoodeLive.utils;
+using FoodeLive.Windows.Menu;
 using IT008_DoAnCuoiKi.ViewModel;
 using Microsoft.SqlServer.Server;
 using System;
@@ -24,6 +25,14 @@ namespace FoodeLive.MVVM.ViewModel
 
     public class FoodViewModel : BaseViewModel
     {
+        private NguoiQuanLy _nguoiQuanLy;
+        public NguoiQuanLy NguoiQuanLy { get => _nguoiQuanLy; set { _nguoiQuanLy = value; OnPropertyChanged(); } }
+
+        private NhanVien _nhanVienHoatDong;
+        public NhanVien NhanVienHoatDong { get => _nhanVienHoatDong; set { _nhanVienHoatDong = value; OnPropertyChanged(); } }
+
+        private CuaHang _cuaHangHoatDong;
+        public CuaHang CuaHangHoatDong { get => _cuaHangHoatDong; set { _cuaHangHoatDong = value; OnPropertyChanged(); } }
 
         private string _maBanAn;
         public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); } }
@@ -57,7 +66,8 @@ namespace FoodeLive.MVVM.ViewModel
             get
             {
                 ObservableCollection<MoneyWithQuantities> temp = new ObservableCollection<MoneyWithQuantities>();
-                foreach (ChiTietHoaDon item in DataProvider.Ins.DB.ChiTietHoaDons.Where(cthd => cthd.SoHoaDon == _soHoaDon))
+                MessageBox.Show(_soHoaDon.ToString());
+                foreach (ChiTietHoaDon item in DataProvider.Ins.DB.ChiTietHoaDons.Where(cthd => cthd.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && cthd.SoHoaDon == _soHoaDon))
                 {
                     MoneyWithQuantities mwq = new MoneyWithQuantities(item.MonAn, (int)item.SoLuong);
                     temp.Add(mwq);
@@ -80,8 +90,18 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 if (_soHoaDon != 0) // co khach chan chac co hoa don
                 {
-                    long temp = (long)DataProvider.Ins.DB.HoaDons.ToList().Find(hd => hd.SoHoaDon == _soHoaDon && hd.MaBanAn == _maBanAn).TriGia;
-                    _tongTien = temp;
+                    try
+                    {
+                        if (DataProvider.Ins.DB.HoaDons.ToList().Find(t => t.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && _soHoaDon == t.SoHoaDon) != null)
+                        {
+                            long temp = (long)DataProvider.Ins.DB.HoaDons.ToList().Find(t => t.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && _soHoaDon == t.SoHoaDon).TriGia;
+                            _tongTien = temp;
+                        }
+                    }
+                    catch
+                    {
+                        _tongTien = 0;
+                    }
                     return _tongTien;
                 }
                 return 0;
@@ -97,7 +117,7 @@ namespace FoodeLive.MVVM.ViewModel
                 if (_soHoaDon != 0) // co khach chan chac co hoa don
                 {
                     int temp = 0;
-                    foreach (ChiTietHoaDon item in DataProvider.Ins.DB.ChiTietHoaDons.Where(hd => hd.SoHoaDon == _soHoaDon))
+                    foreach (ChiTietHoaDon item in DataProvider.Ins.DB.ChiTietHoaDons.Where(hd => hd.SoHoaDon == _soHoaDon && hd.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang))
                         temp += (int)item.SoLuong;
                     _soMon = temp;
                     return _soMon;
@@ -133,11 +153,11 @@ namespace FoodeLive.MVVM.ViewModel
 
         public ICommand AnnounceAddFood { get; set; }
         public ICommand PayCommand { get; set; }
+        public ICommand AddFoodDialogCommand { get; set; }
         public ICommand AddFoodCommand { get; set; }
 
         public FoodViewModel()
         {
-            _ListMonAn = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns);
             _selectedItems = new ObservableCollection<MoneyWithQuantities>();
             _tongTien = 0;
             _themMonAn = new MonAn();
@@ -155,27 +175,29 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 try
                 {
-                    int lastSoHoaDon = DataProvider.Ins.DB.HoaDons.Count();
+                    int lastSoHoaDon = DataProvider.Ins.DB.HoaDons.ToList().Where(t => t.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).Count();
                     HoaDon hoaDon;
                     long tempTongTien = _tongTien;
                     long tempSoMon = _soMon;
                     List<ChiTietHoaDon> chiTietHoaDons = new List<ChiTietHoaDon>();
                     // kiem tra ban trong
-                    if (DataProvider.Ins.DB.BanAns.ToList().Find(b => _maBanAn == b.MaBanAn).TrangThai != "Trống")
+                    if (_cuaHangHoatDong.BanAns.ToList().Find(b => _maBanAn == b.MaBanAn).TrangThai != "Trống")
                     {
-                        if (DataProvider.Ins.DB.ChiTietDatBans.ToList().FindLast(t => t.MaBan == _maBanAn).TrangThai == 2)
-                            _soHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(b => _maBanAn == b.MaBanAn).SoHoaDon;
+                        var chiTietDatBan = new ChiTietDatBan();
+                        chiTietDatBan = DataProvider.Ins.DB.ChiTietDatBans.ToList().FindLast(t => t.MaBan == _maBanAn && t.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang);
+                        if (chiTietDatBan != null && chiTietDatBan.TrangThai == 2)
+                            _soHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(b => _maBanAn == b.MaBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).SoHoaDon;
                         // Them mon an vao hoa don hien co
                         foreach (MonAn monAn in selectedCollection)
                         {
                             // thay doi so luong
                             HoaDon currentHoaDon = new HoaDon();
-                            currentHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(hd => hd.SoHoaDon == _soHoaDon);
+                            currentHoaDon = DataProvider.Ins.DB.HoaDons.ToList().FindLast(hd => hd.SoHoaDon == _soHoaDon && hd.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang);
                             tempSoMon++;
-                            if (DataProvider.Ins.DB.ChiTietHoaDons.ToList().Exists(t => t.MaMonAn == monAn.MaMonAn && t.SoHoaDon == _soHoaDon))
+                            if (DataProvider.Ins.DB.ChiTietHoaDons.ToList().Exists(t => t.MaMonAn == monAn.MaMonAn && t.SoHoaDon == _soHoaDon && t.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang))
                             {
-                                DataProvider.Ins.DB.ChiTietHoaDons.ToList().Find(t => t.MaMonAn == monAn.MaMonAn && t.SoHoaDon == _soHoaDon).SoLuong += 1;
-                                DataProvider.Ins.DB.HoaDons.ToList().Find(hd => hd.SoHoaDon == _soHoaDon && hd.MaBanAn == _maBanAn).TriGia += monAn.Gia;
+                                DataProvider.Ins.DB.ChiTietHoaDons.ToList().Find(t => t.MaMonAn == monAn.MaMonAn && t.SoHoaDon == _soHoaDon && t.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).SoLuong += 1;
+                                DataProvider.Ins.DB.HoaDons.ToList().Find(hd => hd.SoHoaDon == _soHoaDon && hd.MaBanAn == _maBanAn && hd.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TriGia += monAn.Gia;
                                 tempTongTien += (int)monAn.Gia;
                             }
                             else
@@ -190,7 +212,14 @@ namespace FoodeLive.MVVM.ViewModel
                     else
                     {
                         _soHoaDon = lastSoHoaDon + 1;
-                        hoaDon = new HoaDon() { MaBanAn = _maBanAn, MaNV = "NV01", NgayLapHoaDon = DateTime.Now, SoHoaDon = _soHoaDon, TriGia = 0 };
+                        BanAn banAn = new BanAn();
+                        banAn = _cuaHangHoatDong.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn);
+                        string maQuanLy = string.Empty;
+                        if (_nguoiQuanLy != null)
+                            maQuanLy = _nguoiQuanLy.MaQuanLy;
+                        else
+                            maQuanLy = _nhanVienHoatDong.MaQuanLy;
+                        hoaDon = new HoaDon() { MaBanAn = _maBanAn, NgayLapHoaDon = DateTime.Now, SoHoaDon = _soHoaDon, TriGia = 0, BanAn = banAn, ChiTietHoaDons = chiTietHoaDons };
                         DataProvider.Ins.DB.HoaDons.Add(hoaDon);
 
                         foreach (MonAn monAn in selectedCollection)
@@ -201,7 +230,7 @@ namespace FoodeLive.MVVM.ViewModel
                             ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon() { MonAn = monAn, SoHoaDon = _soHoaDon, SoLuong = 1, MaMonAn = monAn.MaMonAn, HoaDon = hoaDon };
                             chiTietHoaDons.Add(chiTietHoaDon);
                         }
-                        DataProvider.Ins.DB.BanAns.ToList().FindLast(b => b.MaBanAn == _maBanAn).TrangThai = "Có khách";
+                        DataProvider.Ins.DB.BanAns.ToList().FindLast(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Có khách";
                     }
                     DataProvider.Ins.DB.ChiTietHoaDons.AddRange(chiTietHoaDons);
                     DataProvider.Ins.DB.SaveChanges();
@@ -221,7 +250,7 @@ namespace FoodeLive.MVVM.ViewModel
                 try
                 {
                     _ordered = true;
-                    DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn).TrangThai = "Trống";
+                    DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Trống";
                     DataProvider.Ins.DB.SaveChanges();
                     _tongTien = 0;
                     _soMon = 0;
@@ -238,6 +267,15 @@ namespace FoodeLive.MVVM.ViewModel
                 }
             });
 
+            AddFoodDialogCommand = new RelayCommand<object>(p =>
+            {
+                return _nguoiQuanLy != null;
+            }, p =>
+            {
+                AddToMenu addToMenu = new AddToMenu();
+                addToMenu.ShowDialog();
+            });
+
             AddFoodCommand = new RelayCommand<Window>(p =>
             {
                 bool isNumber;
@@ -250,26 +288,24 @@ namespace FoodeLive.MVVM.ViewModel
                 {
                     isNumber = false;
                 }
-                return !string.IsNullOrEmpty(_themMonAn.ImgExtension) && _themMonAn.Gia > 0 && !string.IsNullOrEmpty(_themMonAn.TenMonAn) && isNumber;
+                return !string.IsNullOrEmpty(_themMonAn.ImgExtension) && _themMonAn.Gia > 0 && !string.IsNullOrEmpty(_themMonAn.TenMonAn) && isNumber && _nguoiQuanLy != null;
             }, p =>
             {
                 try
                 {
-                    string fileName = _themMonAn.ImgExtension;
-                    int lastMonAn = DataProvider.Ins.DB.MonAns.Count() + 1;
-                    string newMaMonAn = lastMonAn < 10 ? "M0" + lastMonAn.ToString() : "M" + lastMonAn.ToString();
-                    _themMonAn.MaMonAn = newMaMonAn;
-                    if (fileName.Contains(".png"))
-
-                        _themMonAn.ImgExtension = ".png";
-                    else if (fileName.Contains(".jpg"))
-                        _themMonAn.ImgExtension = ".jpg";
+                    string newMaMonAn;
+                    if (DataProvider.Ins.DB.MonAns.Count() == 0)
+                        _themMonAn.MaMonAn = "M01";
                     else
-                        _themMonAn.ImgExtension = ".jpeg";
+                    {
+                        var lastMaMonAn = DataProvider.Ins.DB.MonAns.Last().MaMonAn;
+                        int newIndex = Convert.ToInt32(lastMaMonAn.Substring(1, lastMaMonAn.Length - 1)) + 1;
+                        newMaMonAn = newIndex < 10 ? "N0" + newIndex : "M" + newIndex;
+                        _themMonAn.MaMonAn = newMaMonAn;
+                    }
+                    _themMonAn.MaCuaHang = _cuaHangHoatDong.MaCuaHang;
+                    _themMonAn.CuaHang = _cuaHangHoatDong;
 
-                    _themMonAn.ImgSource = newMaMonAn + _themMonAn.ImgExtension;
-
-                    RenameFileToStandardName(fileName, newMaMonAn, _themMonAn.ImgExtension);
                     DataProvider.Ins.DB.MonAns.Add(_themMonAn);
                     DataProvider.Ins.DB.SaveChanges();
                     _ListMonAn.Add(_themMonAn);
@@ -281,26 +317,6 @@ namespace FoodeLive.MVVM.ViewModel
                     MessageBox.Show(ex.Message);
                 }
             });
-        }
-        private void RenameFileToStandardName(string fileName, string maMonAn, string exts)
-        {
-            if (File.Exists(fileName))
-            {
-                int l = fileName.LastIndexOf('\\');
-                string newFileName = fileName.Substring(0, l + 1) + maMonAn + exts;
-                File.Move(fileName, newFileName);
-                string dir = Directory.GetCurrentDirectory();
-                string root;
-                if (!DevProd.IsProduction)
-                    root = dir.Substring(0, dir.IndexOf("\\bin"));
-                else
-                    root = dir;
-
-                string newPath = root + @"\src\static";
-                string newFileToMove = Path.GetFileName(newFileName);
-                MessageBox.Show(newPath + "\n" + Path.Combine(newPath, newFileToMove) + "\n" + newFileName);
-                File.Copy(newFileName, Path.Combine(newPath, newFileToMove), true);
-            }
         }
     }
 }

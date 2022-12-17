@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:FoodeLive.Pages.Home" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="900"
+      DataContext="{StaticResource MainViewModel}"
       Title="Container">
 
     <Grid>
@@ -60,7 +61,7 @@
             <Separator Background="LightGray" />
         </StackPanel>
         <Frame Grid.Row="1" Padding="0,30,0,0" x:Name="home_navframe"/>
-        <ui:Button Content="Thêm bàn" Icon="Add12" Effect="{StaticResource DropShadow}" x:Name="add_table" Click="add_table_Click" Grid.Row="2" Background="#FF7A00" Foreground="#fff" HorizontalAlignment="Right" Margin="20, 0" IconForeground="#fff" FontWeight="SemiBold" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Padding="20 8" Cursor="Hand">
+        <ui:Button Content="Thêm bàn" Icon="Add12" Effect="{StaticResource DropShadow}" x:Name="add_table" Command="{Binding TableViewModel.AddTableDialogCommand}" Grid.Row="2" Background="#FF7A00" Foreground="#fff" HorizontalAlignment="Right" Margin="20, 0" IconForeground="#fff" FontWeight="SemiBold" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Padding="20 8" Cursor="Hand">
             
         </ui:Button>
     </Grid>

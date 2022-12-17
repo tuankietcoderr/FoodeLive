@@ -26,10 +26,12 @@ namespace FoodeLive.MVVM.Model
         public Nullable<decimal> Gia { get; set; }
         public string ImgExtension { get; set; }
         public string ImgSource { get; set; }
+        public string MaCuaHang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        public virtual CuaHang CuaHang { get; set; }
     }
 }

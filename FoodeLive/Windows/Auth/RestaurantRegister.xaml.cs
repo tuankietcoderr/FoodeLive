@@ -1,8 +1,8 @@
 ﻿using FoodeLive.Auth;
 using FoodeLive.MVVM.ViewModel;
+using ScottPlot.Styles;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,24 +21,18 @@ using Wpf.Ui.Controls;
 namespace FoodeLive.Windows.Auth
 {
     /// <summary>
-    /// Interaction logic for SignUp.xaml
+    /// Interaction logic for RestaurantRegister.xaml
     /// </summary>
-    public partial class SignUp : Window
+    public partial class RestaurantRegister : Window
     {
-
-        MainViewModel viewModel
-        {
-            get;
-        }
         Brush Gray { get; set; }
-        public SignUp()
+        public RestaurantRegister()
         {
             InitializeComponent();
-            viewModel = this.DataContext as MainViewModel;
             Gray = password_length.Foreground;
         }
 
-        ~SignUp() { }
+        ~RestaurantRegister() { }
 
         private void HandleSignUp_Click(object sender, RoutedEventArgs e)
         {
@@ -51,12 +45,20 @@ namespace FoodeLive.Windows.Auth
                 return;
             }
 
-            if(CheckSuccessValidate(password_case) && CheckSuccessValidate(password_length) && CheckSuccessValidate(password_match) && CheckSuccessValidate (password_specha))
+            if(string.IsNullOrEmpty(restaurantName.Text))
             {
-                if(AuthSignUp.CreateAccount(username, password, viewModel.CuaHangHoatDong))
+                System.Windows.MessageBox.Show("Vui lòng nhập tên nhà hàng của bạn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (CheckSuccessValidate(password_case) && CheckSuccessValidate(password_length) && CheckSuccessValidate(password_match) && CheckSuccessValidate(password_specha))
+            {
+                if (AuthSignUp.CreateRestaurant(username, password, restaurantName.Text))
                 {
-                    System.Windows.MessageBox.Show("Tạo tài khoản cho nhân viên thành công!");
+                    System.Windows.MessageBox.Show("Tạo tài khoản cho nhà hàng thành công!");
+                    Login login = new Login();
                     this.Close();
+                    login.ShowDialog();
                 }
             }
             else
@@ -111,7 +113,7 @@ namespace FoodeLive.Windows.Auth
             if (password.CompareTo(confirmPassword) == 0)
                 OnValidateSuccessful(ref password_match_icon, ref password_match);
             else
-                OnValidateFail (ref password_match_icon, ref password_match);
+                OnValidateFail(ref password_match_icon, ref password_match);
         }
 
         private void signup_confirm_password_PasswordChanged(object sender, RoutedEventArgs e)

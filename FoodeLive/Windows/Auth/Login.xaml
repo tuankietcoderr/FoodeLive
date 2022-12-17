@@ -10,7 +10,8 @@
         WindowStartupLocation="CenterScreen"
         Title="Đăng nhập" Height="500" Width="800"
         Icon="/src/icon_foode_live.png"
-        >
+        DataContext="{StaticResource MainViewModel}"    
+    >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -27,7 +28,7 @@
             </StackPanel>
             <ui:Button IsDefault="True" Content="Đăng nhập" x:Name="HandleLogin" Click="HandleLogin_Click" Margin="0,10,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" MouseOverBackground="#FF7A11" BorderThickness="0" PressedForeground="#FF7A11" Cursor="Hand" />
             <TextBlock TextAlignment="Center">
-                Bạn chưa có tài khoản? <Span Foreground="Blue" FontWeight="SemiBold" Cursor="Hand" PreviewMouseDown="LoginToSignUp_PreviewMouseDown" Name="LoginToSignUp">Đăng ký ngay</Span>
+                Bạn là chủ nhà hàng? <Span Foreground="Blue" FontWeight="SemiBold" Cursor="Hand" PreviewMouseDown="LoginToSignUp_PreviewMouseDown" Name="LoginToSignUp">Tạo tài khoản cho nhà hàng ngay</Span>
             </TextBlock>
         </StackPanel>
     </Grid>

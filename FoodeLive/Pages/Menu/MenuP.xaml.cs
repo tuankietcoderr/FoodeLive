@@ -21,18 +21,12 @@ namespace FoodeLive.Pages.Menu
     /// </summary>
     public partial class MenuP : Page
     {
+
         public MenuP()
         {
             InitializeComponent();
         }
 
         ~MenuP() { }
-
-        private void AddFood_Click(object sender, RoutedEventArgs e)
-        {
-            AddToMenu addToMenu = new AddToMenu();
-            addToMenu.ShowDialog();
-
-        }
     }
 }

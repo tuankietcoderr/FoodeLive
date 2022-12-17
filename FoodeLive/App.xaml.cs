@@ -21,5 +21,9 @@ namespace FoodeLive
         //        if (s == s2) return true;
         //    return false;
         //}
+        public App()
+        {
+            this.StartupUri = new Uri("/Windows/Auth/Login.xaml", UriKind.Relative);
+        }
     }
 }

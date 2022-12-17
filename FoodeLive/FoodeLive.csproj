@@ -147,52 +147,59 @@
     <Compile Include="Auth\AuthState.cs" />
     <Compile Include="Converter\CommandConverter.cs" />
     <Compile Include="MVVM\Model\BanAn.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\ChiTietDatBan.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\ChiTietDonHang.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\ChiTietHoaDon.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\CuaHang.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\DataProvider.cs" />
     <Compile Include="MVVM\Model\DonHang.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\HoaDon.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\MonAn.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\NguoiDung.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\NguoiQuanLy.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\NhanVien.cs">
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\Model\QuanLyNhaHangEntities.Context.cs">
+    <Compile Include="MVVM\Model\QuanLyNhaHang.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyNhaHangEntities.Context.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\Model\QuanLyNhaHangEntities.cs">
+    <Compile Include="MVVM\Model\QuanLyNhaHang.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyNhaHangEntities.tt</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\Model\QuanLyNhaHangEntities.Designer.cs">
+    <Compile Include="MVVM\Model\QuanLyNhaHang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyNhaHangEntities.edmx</DependentUpon>
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
     </Compile>
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\FoodViewModel.cs" />
     <Compile Include="MVVM\ViewModel\GuestOrderViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ManagerViewModel.cs" />
     <Compile Include="MVVM\ViewModel\OrderViewModel.cs" />
     <Compile Include="MVVM\ViewModel\TableViewModel.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMBook.cs" />
@@ -237,6 +244,9 @@
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
     <Compile Include="utils\DevProd.cs" />
+    <Compile Include="Windows\Auth\RestaurantRegister.xaml.cs">
+      <DependentUpon>RestaurantRegister.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CRUD\Table\AddTable.xaml.cs">
       <DependentUpon>AddTable.xaml</DependentUpon>
     </Compile>
@@ -293,6 +303,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Auth\RestaurantRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -403,12 +417,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="MVVM\Model\QuanLyNhaHangEntities.edmx">
+    <EntityDeploy Include="MVVM\Model\QuanLyNhaHang.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuanLyNhaHangEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuanLyNhaHang.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="MVVM\Model\QuanLyNhaHangEntities.edmx.diagram">
-      <DependentUpon>QuanLyNhaHangEntities.edmx</DependentUpon>
+    <None Include="MVVM\Model\QuanLyNhaHang.edmx.diagram">
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -432,16 +446,6 @@
     <Resource Include="Pages\Setting\person.png" />
     <Resource Include="src\loading.gif" />
     <Resource Include="icon_foode_live.ico" />
-    <Content Include="MVVM\Model\QuanLyNhaHangEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanLyNhaHangEntities.edmx</DependentUpon>
-      <LastGenOutput>QuanLyNhaHangEntities.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="MVVM\Model\QuanLyNhaHangEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanLyNhaHangEntities.edmx</DependentUpon>
-      <LastGenOutput>QuanLyNhaHangEntities.cs</LastGenOutput>
-    </Content>
     <Resource Include="src\static\M03.png" />
     <Resource Include="src\static\M06.png" />
     <Resource Include="src\static\M05.png" />
@@ -455,6 +459,16 @@
     <Resource Include="src\static\M11.jpg" />
     <Resource Include="src\static\M12.png" />
     <Resource Include="src\static\M13.jpg" />
+    <Content Include="MVVM\Model\QuanLyNhaHang.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyNhaHang.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MVVM\Model\QuanLyNhaHang.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyNhaHang.cs</LastGenOutput>
+    </Content>
     <Content Include="utils\QUANLYNHAHANG.sql" />
   </ItemGroup>
   <ItemGroup>

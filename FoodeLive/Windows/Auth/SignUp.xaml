@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         x:Name="SignUpWindow"
+        DataContext="{StaticResource MainViewModel}"
         Title="Đăng ký" Icon="/src/icon_foode_live.png" Height="700" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -15,7 +16,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Image Source="/src/logo_foode_live_big.png" Grid.Row="0" />
-        <TextBlock Text="Đăng nhập" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+        <TextBlock Text="Đăng ký" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
         <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Name="LoginStackPanel" Width="400">
             <ucli:LabelInput x:Name="signup_username" Width="{Binding Width, ElementName=LoginStackPanel}" Grid.Column="1" Placeholder="Nhập tên tài khoản" Icon="Person24" Label="Tên tài khoản" />
             <StackPanel Width="{Binding Width, ElementName=LoginStackPanel}" Margin="0,0,0,10">
@@ -44,10 +45,7 @@
                     <TextBlock Text="Mật khẩu trùng nhau" Foreground="#8F8F8F" FontSize="10" VerticalAlignment="Center" x:Name="password_match"/>
                 </WrapPanel>
             </StackPanel>
-            <ui:Button Content="Đăng ký" x:Name="HandleSignUp" Click="HandleSignUp_Click" Margin="0,10,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" MouseOverBackground="#FF7A11" BorderThickness="0" PressedForeground="#FF7A11" Cursor="Hand" />
-            <TextBlock TextAlignment="Center">
-                Bạn đã có tài khoản? <Span Foreground="Blue" FontWeight="SemiBold" Cursor="Hand" PreviewMouseDown="SignUpToLogin_PreviewMouseDown" Name="SignUpToLogin">Đăng nhập ngay</Span>
-            </TextBlock>
+            <ui:Button Content="Tạo tài khoản" x:Name="HandleSignUp" Click="HandleSignUp_Click" Margin="0,10,0,6" Width="{Binding Width, ElementName=LoginStackPanel}" Background="#FF7A00" FontWeight="SemiBold" Foreground="#fff" MouseOverBackground="#FF7A11" BorderThickness="0" PressedForeground="#FF7A11" Cursor="Hand" />
         </StackPanel>
     </Grid>
 </Window>

@@ -63,7 +63,7 @@
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
 
-        <ui:Button Click="AddFood_Click" x:Name="AddFood" Content="Thêm món" BorderThickness="0" MouseOverBackground="#FF7A00" PressedForeground="#FF7A00" FontWeight="SemiBold" Icon="Add12" IconForeground="White" Foreground="White" Background="#ff7a00" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Height="34" Padding="20 8" Effect="{StaticResource DropShadow}" FontSize="14" Grid.ColumnSpan="2" />
+        <ui:Button Command="{Binding FoodViewModel.AddFoodDialogCommand}" x:Name="AddFood" Content="Thêm món" BorderThickness="0" MouseOverBackground="#FF7A00" PressedForeground="#FF7A00" FontWeight="SemiBold" Icon="Add12" IconForeground="White" Foreground="White" Background="#ff7a00" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Height="34" Padding="20 8" Effect="{StaticResource DropShadow}" FontSize="14" Grid.ColumnSpan="2" />
 
 
     </Grid>

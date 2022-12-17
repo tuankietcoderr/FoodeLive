@@ -56,11 +56,5 @@ namespace FoodeLive.Pages.Home
                     break;
             }
         }
-
-        private void add_table_Click(object sender, RoutedEventArgs e)
-        {
-            AddTable addTable = new AddTable();
-            addTable.ShowDialog();
-        }
     }
 }

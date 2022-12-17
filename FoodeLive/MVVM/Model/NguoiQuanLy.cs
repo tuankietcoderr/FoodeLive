@@ -12,28 +12,24 @@ namespace FoodeLive.MVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class NhanVien
+    public partial class NguoiQuanLy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NhanVien()
+        public NguoiQuanLy()
         {
-            this.DonHangs = new HashSet<DonHang>();
+            this.NhanViens = new HashSet<NhanVien>();
         }
     
-        public string MaNV { get; set; }
-        public string HoTen { get; set; }
-        public string GioiTinh { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
-        public string DiaChi { get; set; }
-        public Nullable<decimal> Luong { get; set; }
+        public string MaQuanLy { get; set; }
+        public string MaCuaHang { get; set; }
+        public string TenQuanLy { get; set; }
         public string SoDienThoai { get; set; }
-        public Nullable<System.DateTime> NgayVaoLam { get; set; }
         public string TenNguoiDung { get; set; }
         public string MatKhau { get; set; }
-        public string MaQuanLy { get; set; }
+        public Nullable<System.DateTime> NgayThamGia { get; set; }
     
+        public virtual CuaHang CuaHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHangs { get; set; }
-        public virtual NguoiQuanLy NguoiQuanLy { get; set; }
+        public virtual ICollection<NhanVien> NhanViens { get; set; }
     }
 }

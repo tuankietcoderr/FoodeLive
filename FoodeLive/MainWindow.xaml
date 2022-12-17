@@ -10,6 +10,7 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="600" Width="800"
         WindowState="Maximized"
+        x:Name="HomePage"
         DataContext="{StaticResource MainViewModel}"
         >
     <Grid>
@@ -98,7 +99,7 @@
                 </ListBox>
                 <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,10">
                     <ui:Button Content="Làm mới" Icon="ArrowClockwise12" FontWeight="SemiBold" Background="Transparent" BorderThickness="0" Foreground="#000" IconForeground="#000" HorizontalAlignment="Center" Command="{Binding RefreshCommand}"/>
-                    <ui:Button Content="Đăng xuất" Icon="DoorArrowLeft16" FontWeight="SemiBold" Background="Transparent" BorderThickness="0" Foreground="red" IconForeground="red" HorizontalAlignment="Center" Command="{Binding RefreshCommand}"/>
+                    <ui:Button Content="Đăng xuất" Icon="DoorArrowLeft16" FontWeight="SemiBold" Background="Transparent" BorderThickness="0" Foreground="red" IconForeground="red" HorizontalAlignment="Center" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=HomePage}"/>
                 </StackPanel>
             </Grid>
         </Border>

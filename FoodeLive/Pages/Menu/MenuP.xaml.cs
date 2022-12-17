@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodeLive.Windows.Menu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,12 @@ namespace FoodeLive.Pages.Menu
         }
 
         ~MenuP() { }
-        
+
+        private void AddFood_Click(object sender, RoutedEventArgs e)
+        {
+            AddToMenu addToMenu = new AddToMenu();
+            addToMenu.ShowDialog();
+
+        }
     }
 }

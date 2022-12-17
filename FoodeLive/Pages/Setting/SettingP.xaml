@@ -6,84 +6,76 @@
       xmlns:local="clr-namespace:FoodeLive.Pages.Setting"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FoodeLive.Pages.Setting.SettingP"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Title="SettingP">
 
     <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="52*"/>
-            <ColumnDefinition Width="171*"/>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="443*"/>
-            <ColumnDefinition Width="176*"/>
-            <ColumnDefinition Width="50*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="44*"/>
-            <RowDefinition Height="97*"/>
-            <RowDefinition Height="48*"/>
-            <RowDefinition Height="99*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="160*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-
-        <TextBlock Text="Tài khoản" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"    FontSize="26" FontWeight="Bold" Width="173" Height="34"/>
-
-        <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="LightGray" CornerRadius="10" Grid.RowSpan="2" Margin="0,0,9,0">
-            <Image x:Name="Prf_pic" Source="/Pages/Setting/person.png"></Image>
-        </Border>
-
-        <Separator Grid.Row="4" Grid.ColumnSpan="4" Grid.Column="1" Background="LightGray"></Separator>
-
-        <StackPanel Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2">
-            <TextBlock x:Name="update" Text="Cập nhật thông tin" Foreground="gray" FontWeight="Bold" MouseDown="click_upd_inf" MouseEnter="on_mouse" MouseLeave="l_m"></TextBlock>
-            <TextBlock x:Name="change" Text="Đổi mật khẩu" Foreground="gray" FontWeight="Bold" MouseDown="chang_pass" MouseEnter="on_mouse1" MouseLeave="l_m1" ></TextBlock>
+        <TextBlock Grid.Row="0" Text="Tài khoản" FontWeight="Bold" FontSize="34"/>
+        <StackPanel Grid.Row="1" >
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ui:Card Effect="{StaticResource DropShadow}" Margin="0 0 20 0" Background="#fff" BorderThickness="0" HorizontalAlignment="Left"  Width="160" Height="160">
+                    <Image Source="./person.png" Stretch="Uniform"/>
+                </ui:Card>
+                <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom">
+                    <StackPanel Grid.Column="1" Grid.Row="0">
+                        <TextBlock Text="Trần Tuấn Kiệt" FontSize="30" Margin="0 20" FontWeight="Bold" />
+                        <TextBlock FontWeight="Regular" Foreground="LightGray">
+                        Là nhân viên từ <TextBlock Text="11/12/2022" />
+                    </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="0 20 0 0">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Margin" Value="0 0 0 4"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock>
+                    <TextBlock Text="Địa chỉ: " FontWeight="SemiBold"/>
+                    <TextBlock Text="Vinhomes"/>
+                    </TextBlock>
+                    <TextBlock>
+                    <TextBlock Text="Số điện thoại: " FontWeight="SemiBold"/>
+                    <TextBlock Text="0348071412"/>
+                    </TextBlock>
+                    <TextBlock>
+                    <TextBlock Text="Ngày sinh: " FontWeight="SemiBold"/>
+                    <TextBlock Text="11/02/2003"/>
+                    </TextBlock>
+                    <TextBlock>
+                    <TextBlock Text="Giới tính: " FontWeight="SemiBold"/>
+                        <TextBlock Text="Nam"/>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Grid.Column="2">
+                    <Button Content="Cập nhật thông tin" BorderThickness="0" FontWeight="SemiBold" Opacity="0.7" />
+                    <Button Content="Đổi mật khẩu" BorderThickness="0" FontWeight="SemiBold" Opacity="0.7"/>
+                </StackPanel>
+            </Grid>
         </StackPanel>
-
-
-        <StackPanel HorizontalAlignment="Left" Grid.Row="2" Grid.Column="3" Width="369" Margin="1,0,0,0">
-            <TextBlock Text="Trần Tuấn Kiệt" FontWeight="Bold" FontSize="30" Width="383"></TextBlock>
-            <TextBlock Height="7"></TextBlock>
-            <TextBlock Text="Là nhân viên từ 11/12/2022" Width="379"></TextBlock>
+        <Separator Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" />
+        <StackPanel Grid.Row="3">
+            <TextBlock Text="Khác" FontWeight="SemiBold" FontSize="20" Margin="0 20"/>
+            <WrapPanel>
+                <Button Content="Tạo tài khoản cho nhân viên"/>
+                <Button Content="Xóa tài khoản" BorderThickness="0" Margin="10 0" Foreground="OrangeRed"/>
+            </WrapPanel>
         </StackPanel>
-
-        <StackPanel Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3">
-            <WrapPanel>
-                <TextBlock FontSize="15" Text="Địa chỉ:  " FontWeight="Bold"></TextBlock>
-                <TextBlock FontSize="15" Text="Vinhomes Grand Park Quận 9, Nguyễn Xuyến, Long Thành Mỹ, quận 9, thành phố Hồ Chí Minh" ></TextBlock>
-            </WrapPanel>
-
-            <WrapPanel>
-                <TextBlock FontSize="15" Text="Số điện thoại:  " FontWeight="Bold"></TextBlock>
-                <TextBlock FontSize="15" Text="0348071412" ></TextBlock>
-            </WrapPanel>
-
-            <WrapPanel>
-                <TextBlock FontSize="15" Text="Ngày sinh:  " FontWeight="Bold"></TextBlock>
-                <TextBlock FontSize="15" Text="11/02/2003" ></TextBlock>
-            </WrapPanel>
-
-            <WrapPanel>
-                <TextBlock FontSize="15" Text="Giới tính:  " FontWeight="Bold"></TextBlock>
-                <TextBlock FontSize="15" Text="Nam" ></TextBlock>
-            </WrapPanel>
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,175,0">
-            <TextBlock></TextBlock>
-            <TextBlock Text="Khác" FontSize="20" FontWeight="Bold"></TextBlock>
-
-            <TextBlock></TextBlock>
-            <WrapPanel>
-                <TextBlock x:Name="static_" Text="Thống kê tài khoản"  Foreground="Gray" FontWeight="Bold" MouseEnter="on_mouse3" MouseLeave="l_m3"/>
-                <TextBlock Width="50"></TextBlock>
-                <TextBlock x:Name="problem" Text="Báo cáo sai sót"  Foreground="Gray" FontWeight="Bold" MouseEnter="on_mouse4" MouseLeave="l_m4" />
-            </WrapPanel>
-
-
-
-        </StackPanel>
-
     </Grid>
 </Page>

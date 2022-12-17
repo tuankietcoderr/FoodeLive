@@ -25,25 +25,5 @@ namespace FoodeLive.Windows.Setting
         }
 
         ~UpdateForm() { }
-
-        private void chose_pic(object sender, MouseButtonEventArgs e)
-        {
-            var dialog = new Microsoft.Win32.OpenFileDialog();
-
-            dialog.Filter = "Pic (.jpg)| *.jpg*";
-            bool? result = dialog.ShowDialog();
-
-            if (result == true)
-            {
-                string filename = dialog.FileName;
-                pic.Text = filename;
-
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -97,7 +98,6 @@ namespace FoodeLive.MVVM.ViewModel
             });
             AnalyzeReportCommand = new RelayCommand<WpfPlot>(p =>
             {
-
                 string monthContent = ReportMonth.Content.ToString();
                 string yearContent = ReportYear.Content.ToString();
                 return monthContent != "Tháng" && yearContent != "Năm";

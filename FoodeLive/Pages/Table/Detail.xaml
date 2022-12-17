@@ -18,9 +18,9 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <ui:CardColor Width="150" Subtitle="{Binding MonAn.Gia, Converter={StaticResource MoneyConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SubtitleFontSize="20" Title="{Binding MonAn.TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                        <ui:CardColor Width="200" Subtitle="{Binding MonAn.Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding MonAn.TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                             <ui:CardColor.Brush>
-                                <ImageBrush ImageSource="{Binding MonAn.ImgExtension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
+                                <ImageBrush ImageSource="{Binding MonAn.ImgSource, Converter={StaticResource ImageSourceConverter}}" Stretch="Uniform" />
                             </ui:CardColor.Brush>
                         </ui:CardColor>
                         <Canvas>

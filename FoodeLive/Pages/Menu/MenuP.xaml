@@ -51,19 +51,19 @@
         </StackPanel>
 
 
-        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.ListMonAn}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
+        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.ListMonAn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:CardColor Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <ui:CardColor Width="200" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
-                            <ImageBrush ImageSource="{Binding ImgExtension}" Stretch="UniformToFill" />
+                            <ImageBrush ImageSource="{Binding ImgSource, Converter={StaticResource ImageSourceConverter}}" Stretch="Uniform" />
                         </ui:CardColor.Brush>
                     </ui:CardColor>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ui:VirtualizingGridView>
 
-        <ui:Button Content="Thêm món" BorderThickness="0" MouseOverBackground="#FF7A00" PressedForeground="#FF7A00" FontWeight="SemiBold" Icon="Add12" IconForeground="White" Foreground="White" Background="#ff7a00" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Height="34" Padding="20 8" Effect="{StaticResource DropShadow}" FontSize="14" Grid.ColumnSpan="2" />
+        <ui:Button Click="AddFood_Click" x:Name="AddFood" Content="Thêm món" BorderThickness="0" MouseOverBackground="#FF7A00" PressedForeground="#FF7A00" FontWeight="SemiBold" Icon="Add12" IconForeground="White" Foreground="White" Background="#ff7a00" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Height="34" Padding="20 8" Effect="{StaticResource DropShadow}" FontSize="14" Grid.ColumnSpan="2" />
 
 
     </Grid>

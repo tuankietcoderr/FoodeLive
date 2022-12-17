@@ -34,7 +34,6 @@ CREATE TABLE MonAn
 	CONSTRAINT PK_MAMONAN PRIMARY KEY (MAMONAN),
 )
 
-
 CREATE TABLE BanAn
 (
 	MaBanAn CHAR(4) NOT NULL,
@@ -107,24 +106,30 @@ CREATE TABLE ChiTietHoaDon
 )
 
 CREATE TABLE ChiTietDatBan (
-	MaDatBan int not null PRIMARY KEY,
+	MaDatBan char(4) not null constraint PK_ChiTietDatBan PRIMARY KEY,
 	MaBan char(4),
-	NguoiDat varchar(30),
+	NguoiDat nvarchar(30),
 	SoDienThoai varchar(12),
-	GhiChu varchar(100),
-	NgayDat smalldatetime default GETDATE()
+	GhiChu nvarchar(100),
+	TrangThai tinyint constraint DF_ChiTietDatBan_TrangThai DEFAULT 1,
+	NgayDat datetime constraint DF_ChiTietDatBan_NgayDat default GETDATE(),
 	constraint FK_ChiTietDatBan_MaBan FOREIGN KEY (MaBan) REFERENCES BanAn(MaBanAn)
 )
 
 SELECT * from ChiTietDatBan
+drop table ChiTietDatBan
 
 Alter table ChiTietDatBan add constraint FK_ChiTietDatBan_MaBan
 FOREIGN KEY (MaBan) REFERENCES BanAn(MaBanAn)
 
 drop table ChiTietDatBan
 
+
 Alter table chitietdatban
-add NgayDat smalldatetime
+add TrangThai tinyint
+
+Alter table chitietdatban
+add MaNV char(4) constraint FK_ChiTietDatBan_MaNhanVien FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
 
 ALTER TABLE ChiTietHoaDon
 ADD SoLuong int DEFAULT 0
@@ -244,7 +249,10 @@ INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M10',N'Cá diêu hồng',20000)
 SELECT * FROM MONAN
 
 delete from MonAn
-where MaMonAn='m08'
+where MaMonAn='m11'
+
+alter table monan
+add ImgSource varchar(8)
 
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B01',N'Thường')
 INSERT INTO BANAN(MABANAN,LOAI) VALUES ('B02',N'Thường')
@@ -268,11 +276,15 @@ insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M02', 1, 1)
 insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M02', 2, 1)
 insert into ChiTietHoaDon(MaMonAn, SoHoaDon, SoLuong) values ('M04', 2, 3)
 
-select * from nhanvien
+delete from nhanvien
+where MaNV='nv01'
+
+SELECT * from NhanVien
 
 
 select * from ChiTietHoaDon
 select * from HoaDon
+DELETE from hoadon
 
 
 select BanAn.TrangThai, MaMonAn, SoLuong, ChiTietHoaDon.SoHoaDon, BanAn.MaBanAn from ChiTietHoaDon, HoaDon, BanAn
@@ -284,16 +296,23 @@ DROP TRIGGER trg_del_ChiTietHoaDon;
 delete from ChiTietHoaDon
 delete from hoadon
 
+delete from nhanvien
+
 select MaMonAn,SoLuong, HoaDon.SoHoaDon, MaBanAn from ChiTietHoaDon, HoaDon
-where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon and MaBanAn='b001'
+where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon and MaBanAn='b006'
 
 select * from ChiTietHoaDon
 where SoHoaDon=1
 
 select * from HoaDon	
 select * from MonAn
+delete from MonAn
+where MaMonAn='M15'
 SELECT * from BanAn
 select distinct SoLuong,MaBanAn, TrangThai, MaMonAn from ChiTietHoaDon, BanAn
 where TrangThai=N'Có khách'
 update BanAn set TrangThai=N'Trống'
+
+select * from chitietdatban
+delete from chitietdatban
 

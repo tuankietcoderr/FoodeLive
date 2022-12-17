@@ -7,46 +7,35 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:UserControls="clr-namespace:FoodeLive.UserControls"  x:Class="FoodeLive.Windows.Setting.UpdateForm"
         mc:Ignorable="d"
-        Title="UpdateForm" Height="660" Width="360"
+        Icon="/src/icon_foode_live.png"
+        Title="Cập nhật thông tin" Height="600" Width="360"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
     >
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="38*"/>
-            <ColumnDefinition Width="285*"/>
-            <ColumnDefinition Width="34*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="35*"></RowDefinition>
             <RowDefinition Height="549*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="38,4,34,0"  >
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="30 0">
             <TextBlock Text="Cập nhật thông tin" Height="47" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
             <TextBlock Height="32"></TextBlock>
-
-
-            <UserControls:LabelInput Grid.Column="3" Grid.Row="3"  Label="Họ và tên " Placeholder="Nhập vào họ và tên " Grid.ColumnSpan="3" />
-
-            <UserControls:LabelInput Grid.Column="3" Grid.Row="3"  Label="Địa chỉ   " Placeholder="Nhập vào địa chỉ " Grid.ColumnSpan="3" />
-
-            <TextBlock Text="Url ảnh đại diện" Height="22" FontSize="14" FontWeight="DemiBold"/>
-            <ui:TextBox Background="White" Foreground="Gray" FontSize="12" PlaceholderText="Nhấp đôi vào để chọn hình ảnh" x:Name="pic" Height="34" VerticalAlignment="Top" IsReadOnly="True" MouseDoubleClick="chose_pic" SelectionBrush="#FFFF7A00" />
-
+            <UserControls:LabelInput Grid.Column="3" Grid.Row="3"  Label="Họ và tên" Placeholder="Nhập vào họ và tên " Grid.ColumnSpan="3" />
+            <UserControls:LabelInput Grid.Column="3" Grid.Row="3"  Label="Địa chỉ" Placeholder="Nhập vào địa chỉ " Grid.ColumnSpan="3" />
+            <StackPanel Margin="0 0 0 5">
+                <TextBlock Text="Url ảnh đại diện" Height="22" FontSize="14" FontWeight="DemiBold"/>
+                <ui:TextBox Background="White" Foreground="Gray" FontSize="12" PlaceholderText="Nhấp vào URL hình ảnh" Height="34" VerticalAlignment="Top"  SelectionBrush="#FFFF7A00" />
+            </StackPanel>
             <UserControls:LabelInput Grid.Column="3" Grid.Row="3"  Label="Số điện thoại" Placeholder="Nhập vào số điện thoại"  />
-
             <TextBlock Text="Ngày sinh" Height="23" FontSize="14" FontWeight="DemiBold"/>
-
             <DatePicker FontSize="12"/>
-
             <TextBlock Text="Giới tính" Height="23" FontSize="14" FontWeight="DemiBold"/>
-
             <WrapPanel Height="74">
                 <RadioButton FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Height="41" Width="97" IsChecked="True" Background="#FFFF7A00">Nam</RadioButton>
                 <RadioButton FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Height="41" Width="97" Background="#FFFF7A00">Nữ</RadioButton>
             </WrapPanel>
 
-            <ui:Button HorizontalAlignment="Right" Content="Cập nhật" Background="#ff7a00" Foreground="White" Width="111" Click="Button_Click"></ui:Button>
+            <ui:Button HorizontalAlignment="Right" Content="Cập nhật" BorderThickness="0" Padding="20 8" FontWeight="SemiBold" Background="#ff7a00" Foreground="White"></ui:Button>
 
         </StackPanel>
     </Grid>

@@ -3,7 +3,6 @@ using FoodeLive.MVVM.Model;
 using FoodeLive.Pages.Setting;
 using FoodeLive.utils;
 using FoodeLive.Windows.Auth;
-using FoodeLive.Windows.TableDetail;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

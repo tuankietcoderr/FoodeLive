@@ -7,10 +7,12 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:ucli="clr-namespace:FoodeLive.UserControls" x:Class="FoodeLive.Windows.Menu.AddToMenu"
         xmlns:UserControls="clr-namespace:FoodeLive.UserControls"
         mc:Ignorable="d"
-        Title="AddToMenu" Height="426" Width="360"
-        WindowStyle="None"
+        Title="Thêm món" Height="426" Width="360"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
+        Icon="/src/icon_foode_live.png"
+        x:Name="AddFood"
+        DataContext="{StaticResource FoodViewModel}"
         >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,14 +29,13 @@
             <TextBlock Height="32"></TextBlock>
 
 
-            <ucli:LabelInput Grid.Column="3" Grid.Row="3"  Label="Tên món " Placeholder="Nhập vào tên món" Grid.ColumnSpan="3" />
+            <ucli:LabelInput Grid.Column="3" Grid.Row="3" Text="{Binding ThemMonAn.TenMonAn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Label="Tên món " Placeholder="Nhập vào tên món" Grid.ColumnSpan="3" />
 
-            <ucli:LabelInput Grid.Column="3" Grid.Row="3"  Label="Nhập giá món ăn" Placeholder="Giá món ăn" Icon="Money20" Grid.ColumnSpan="3" />
+            <ucli:LabelInput Grid.Column="3" Grid.Row="3" Text="{Binding ThemMonAn.Gia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Label="Nhập giá món ăn" Placeholder="Giá món ăn" Icon="Money20" Grid.ColumnSpan="3" />
 
             <TextBlock Text="Url ảnh của món ăn" Height="22" FontSize="14" FontWeight="DemiBold"/>
-            <ui:TextBox Background="White" Foreground="Gray" FontSize="12" PlaceholderText="Nhấp đôi vào để chọn hình ảnh" x:Name="pic" Height="34" VerticalAlignment="Top" IsReadOnly="True" MouseDoubleClick="chose_pic" SelectionBrush="#FFFF7A00" />
-            <TextBlock Height="47"></TextBlock>
-            <ui:Button HorizontalAlignment="Right" Icon="Add20" IconForeground="White" Content="Thêm món" Background="#ff7a00" Foreground="White" Width="111" Click="Button_Click"></ui:Button>
+            <ui:TextBox Background="White" Text="{Binding ThemMonAn.ImgExtension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Gray" FontSize="12" PlaceholderText="Nhấp đôi vào để chọn hình ảnh" x:Name="pic" Height="34" VerticalAlignment="Top" IsReadOnly="True" MouseDoubleClick="chose_pic" SelectionBrush="#FFFF7A00" />
+            <ui:Button Margin="0 20 0 0" FontSize="12" Command="{Binding AddFoodCommand}" CommandParameter="{Binding  ElementName=AddFood}" HorizontalAlignment="Right" Icon="Add20" BorderThickness="0" FontWeight="SemiBold" IconForeground="White" Content="Thêm món" Background="#ff7a00" Foreground="White" Padding="16 8" Click="Button_Click"></ui:Button>
 
         </StackPanel>
     </Grid>

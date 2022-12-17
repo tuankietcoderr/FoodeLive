@@ -5,4 +5,5 @@
     <command:CommandConverter x:Key="CommandConverter"/>
     <command:MoneyConverter x:Key="MoneyConverter"/>
     <command:BooleanReflectConverter x:Key="BooleanReflectConverter"/>
+    <command:ImageSourceConverter x:Key="ImageSourceConverter"/>
 </ResourceDictionary>

@@ -30,7 +30,7 @@ namespace FoodeLive.Windows.Menu
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
 
-            dialog.Filter = "Pic (.jpg)| *.jpg*";
+            dialog.Filter = "Pic (.jpg, .jpeg, .png,)|*.jpg;*.png;*.jpeg"; ;
             bool ? result = dialog.ShowDialog();
 
             if(result == true)
@@ -48,14 +48,14 @@ namespace FoodeLive.Windows.Menu
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
 
-            dialog.Filter = "Pic (.jpg)| *.jpg*";
+            dialog.Filter = "Picture File (.jpg, .jpeg, .png,)|*.jpg;*.png;*.jpeg";
             bool? result = dialog.ShowDialog();
 
             if (result == true)
             {
                 string filename = dialog.FileName;
                 pic.Text = filename;
-
+                //MessageBox.Show(filename.Substring(filename.Length - 4));
             }
         }
 

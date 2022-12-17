@@ -74,6 +74,7 @@
           <Property Name="TenMonAn" Type="nvarchar" MaxLength="40" />
           <Property Name="Gia" Type="money" />
           <Property Name="ImgExtension" Type="varchar" MaxLength="5" />
+          <Property Name="ImgSource" Type="varchar" MaxLength="8" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -344,6 +345,7 @@
           <Property Name="ImgExtension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK_MAMONAN_ChiTietDonHang" FromRole="MonAn" ToRole="ChiTietDonHang" />
           <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_MAMONAN" FromRole="MonAn" ToRole="ChiTietHoaDon" />
+          <Property Name="ImgSource" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -619,6 +621,7 @@
           <EntitySetMapping Name="MonAns">
             <EntityTypeMapping TypeName="QuanLyNhaHangModel.MonAn">
               <MappingFragment StoreEntitySet="MonAn">
+                <ScalarProperty Name="ImgSource" ColumnName="ImgSource" />
                 <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
                 <ScalarProperty Name="TenMonAn" ColumnName="TenMonAn" />
                 <ScalarProperty Name="Gia" ColumnName="Gia" />

@@ -17,9 +17,9 @@
         <ui:VirtualizingGridView Grid.Row="0" Background="Transparent" x:Name="List" ItemsSource="{Binding FoodViewModel.ListMonAn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SpacingMode="BetweenItemsOnly" Grid.ColumnSpan="5" Margin="0 20" SelectionMode="Multiple" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ui:CardColor x:Name="card" Tag="{Binding MaMonAn}" BorderThickness="3" Width="150" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
+                    <ui:CardColor x:Name="card" Tag="{Binding MaMonAn}" BorderThickness="3" Width="200" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="20" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
-                            <ImageBrush ImageSource="{Binding }" Stretch="UniformToFill" />
+                            <ImageBrush ImageSource="{Binding ImgSource, Converter={StaticResource ImageSourceConverter}}" Stretch="Uniform" />
                         </ui:CardColor.Brush>
                     </ui:CardColor>
                 </DataTemplate>

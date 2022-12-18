@@ -1,6 +1,4 @@
 ﻿using FoodeLive.MVVM.Model;
-using FoodeLive.Windows;
-using FoodeLive.Windows.Auth;
 using IT008_DoAnCuoiKi.ViewModel;
 using System;
 using System.Collections.Generic;

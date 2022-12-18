@@ -1,6 +1,5 @@
 ﻿using FoodeLive.MVVM.Model;
-using FoodeLive.Windows;
-using FoodeLive.Windows.CRUD.Table;
+using FoodeLive.View.Windows.CRUD.Table;
 using IT008_DoAnCuoiKi.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -191,7 +190,7 @@ namespace FoodeLive.MVVM.ViewModel
 
             ApprovalBookCommand = new RelayCommand<object>(p =>
             {
-                return _isBooked && _nguoiQuanLy == null;
+                return _isBooked;
             }, p =>
             {
                 try

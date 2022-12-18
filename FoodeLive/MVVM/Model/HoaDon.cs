@@ -24,6 +24,8 @@ namespace FoodeLive.MVVM.Model
         public Nullable<System.DateTime> NgayLapHoaDon { get; set; }
         public string MaBanAn { get; set; }
         public Nullable<decimal> TriGia { get; set; }
+        public Nullable<byte> TrangThai { get; set; }
+        public Nullable<System.DateTime> ThoiGianThanhToan { get; set; }
     
         public virtual BanAn BanAn { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

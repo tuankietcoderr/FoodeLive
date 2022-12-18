@@ -5,29 +5,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3cbc299d0f214a1ea47f1c5f3546dcfd" Name="Diagram1" ZoomLevel="81">
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.BanAn" Width="1.5" PointX="3" PointY="7.375" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.ChiTietDatBan" Width="1.5" PointX="5.25" PointY="8.625" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.ChiTietDonHang" Width="1.5" PointX="9.75" PointY="7.25" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.BanAn" Width="1.5" PointX="3" PointY="11" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.ChiTietDatBan" Width="1.5" PointX="5.25" PointY="9.5" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.ChiTietDonHang" Width="1.5" PointX="9.75" PointY="3.875" />
         <EntityTypeShape EntityType="QuanLyNhaHangModel.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="9.25" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.CuaHang" Width="1.5" PointX="0.75" PointY="6.875" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.DonHang" Width="1.5" PointX="7.5" PointY="1.75" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.HoaDon" Width="1.5" PointX="5.25" PointY="5.75" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.MonAn" Width="1.5" PointX="3" PointY="12" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.NguoiDung" Width="1.5" PointX="5.25" PointY="12.25" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.NguoiQuanLy" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="QuanLyNhaHangModel.NhanVien" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.CuaHang" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.DonHang" Width="1.5" PointX="7.5" PointY="5.375" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.NguoiDung" Width="1.5" PointX="5.25" PointY="1.875" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan" />
-        <AssociationConnector Association="QuanLyNhaHangModel.FK_MABANAN" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_MaBanAn_CuaHang" />
-        <AssociationConnector Association="QuanLyNhaHangModel.FK_MAMONAN_ChiTietDonHang" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_SoDonHang" />
-        <AssociationConnector Association="QuanLyNhaHangModel.FK_MAMONAN" />
-        <AssociationConnector Association="QuanLyNhaHangModel.FK_SoHoaDon" />
-        <AssociationConnector Association="QuanLyNhaHangModel.FK_CuaHang" />
-        <AssociationConnector Association="QuanLyNhaHangModel.FK_MaMonAn_CuaHang" />
-        <AssociationConnector Association="QuanLyNhaHangModel.FK_MANV_DONHANG" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_TenNguoiDung" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.NguoiQuanLy" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.NhanVien" Width="1.5" PointX="5.25" PointY="16.375" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_CuaHang" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_MANV_DONHANG" />
         <AssociationConnector Association="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.MonAn" Width="1.5" PointX="3" PointY="6.875" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_MAMONAN_ChiTietDonHang" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_MAMONAN" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_MaMonAn_CuaHang" />
+        <EntityTypeShape EntityType="QuanLyNhaHangModel.HoaDon" Width="1.5" PointX="5.625" PointY="13" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_MABANAN" />
+        <AssociationConnector Association="QuanLyNhaHangModel.FK_SoHoaDon" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

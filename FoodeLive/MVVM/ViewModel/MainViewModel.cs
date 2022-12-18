@@ -1,6 +1,6 @@
 ﻿using FoodeLive.MVVM.Model;
-using FoodeLive.Windows;
-using FoodeLive.Windows.Auth;
+using FoodeLive.View.Windows;
+using FoodeLive.View.Windows.Auth;
 using IT008_DoAnCuoiKi.ViewModel;
 using ScottPlot;
 using System;
@@ -63,6 +63,8 @@ namespace FoodeLive.MVVM.ViewModel
                 _tableViewModel = new TableViewModel();
                 _foodViewModel = new FoodViewModel();
 
+                _tableViewModel.NguoiQuanLy = _nguoiQuanLy;
+                _foodViewModel.NguoiQuanLy = _nguoiQuanLy;
                 _foodViewModel.CuaHangHoatDong = _cuaHangHoatDong;
                 _tableViewModel.CuaHangHoatDong = _cuaHangHoatDong;
                 _tableViewModel.ListBanAn = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns);
@@ -70,7 +72,7 @@ namespace FoodeLive.MVVM.ViewModel
                 _tableViewModel.UsingTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Có khách"));
                 _tableViewModel.BookedTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Đã đặt"));
                 _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
-                _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(t => t.BanAn.CuaHang.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
+                _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(t => t.BanAn.CuaHang.MaCuaHang == _cuaHangHoatDong.MaCuaHang && t.TrangThai == 1));
             }
         }
 
@@ -129,7 +131,7 @@ namespace FoodeLive.MVVM.ViewModel
                 {
                     _ngayHoaDon = value;
                     OnPropertyChanged();
-                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang)); OnPropertyChanged("ListHoaDon");
+                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && b.TrangThai == 1)); OnPropertyChanged("ListHoaDon");
                 }
             }
         }
@@ -139,11 +141,51 @@ namespace FoodeLive.MVVM.ViewModel
             public string DiaChi { get; set; }
             public string SoDienThoai { get; set; }
             public string Ten { get; set; }
-            public string NgaySinh { get; set; }
+            public DateTime? NgaySinh { get; set; }
             public string GioiTinh { get; set; }
             public string ImgUrl { get; set; }
-            public string NgayThamGia { get; set; }
+            public DateTime? NgayThamGia { get; set; }
 
+        }
+
+        private UserInformation _getUserInformation;
+        public UserInformation GetUserInformation
+        {
+            get
+            {
+                UserInformation userInformation = new UserInformation();
+                if (_nguoiQuanLy != null)
+                {
+                    NguoiQuanLy nguoiQuanLy = new NguoiQuanLy();
+                    nguoiQuanLy = DataProvider.Ins.DB.NguoiQuanLies.ToList().Find(ql => ql.MaQuanLy == _nguoiQuanLy.MaQuanLy);
+                    userInformation.NgayThamGia = nguoiQuanLy.NgayThamGia;
+                    userInformation.DiaChi = nguoiQuanLy.DiaChi;
+                    userInformation.NgaySinh = nguoiQuanLy.NgaySinh;
+                    userInformation.GioiTinh = nguoiQuanLy.GioiTinh;
+                    userInformation.Ten = nguoiQuanLy.TenQuanLy;
+                    userInformation.ImgUrl = nguoiQuanLy.ImgUrl;
+                    userInformation.SoDienThoai = nguoiQuanLy.SoDienThoai;
+                }
+                else
+                {
+                    NhanVien nhanVien = new NhanVien();
+                    nhanVien = DataProvider.Ins.DB.NhanViens.ToList().Find(nv => nv.MaQuanLy == _cuaHangHoatDong.MaQuanLy);
+                    userInformation.NgayThamGia = nhanVien.NgayVaoLam;
+                    userInformation.DiaChi = nhanVien.DiaChi;
+                    userInformation.NgaySinh = nhanVien.NgaySinh;
+                    userInformation.GioiTinh = nhanVien.GioiTinh;
+                    userInformation.Ten = nhanVien.HoTen;
+                    userInformation.ImgUrl = nhanVien.ImgUrl;
+                    userInformation.SoDienThoai = nhanVien.SoDienThoai;
+                }
+                _getUserInformation = userInformation;
+                return _getUserInformation;
+            }
+            set
+            {
+                _getUserInformation = value;
+                OnPropertyChanged();
+            }
         }
 
         private UserInformation _userInformations;
@@ -151,28 +193,11 @@ namespace FoodeLive.MVVM.ViewModel
         {
             get
             {
-                UserInformation userInformation = new UserInformation();
-                if (_nguoiQuanLy != null)
-                {
-                    userInformation.DiaChi = string.Empty;
-                    userInformation.SoDienThoai = _nguoiQuanLy.SoDienThoai;
-                    DateTime ngayThamGia = _nguoiQuanLy.NgayThamGia.Value;
-                    userInformation.NgayThamGia = ngayThamGia.Day + "/" + ngayThamGia.Month + "/" + ngayThamGia.Year;
-                    userInformation.GioiTinh = string.Empty;
-                    userInformation.Ten = _nguoiQuanLy.TenQuanLy;
-                    userInformation.ImgUrl = _nguoiQuanLy.ImgUrl;
-                }
+                _userInformations = _getUserInformation;
+                if (_gioiTinhNam == true)
+                    _userInformations.GioiTinh = "Nam";
                 else
-                {
-                    userInformation.DiaChi = string.Empty;
-                    userInformation.SoDienThoai = _nhanVienHoatDong.SoDienThoai;
-                    DateTime ngayThamGia = _nhanVienHoatDong.NgayVaoLam.Value;
-                    userInformation.NgayThamGia = ngayThamGia.Day + "/" + ngayThamGia.Month + "/" + ngayThamGia.Year;
-                    userInformation.GioiTinh = string.Empty;
-                    userInformation.Ten = _nhanVienHoatDong.HoTen;
-                    userInformation.ImgUrl = _nhanVienHoatDong.ImgUrl;
-                }
-                _userInformations = userInformation;
+                    _userInformations.GioiTinh = "Nữ";
                 return _userInformations;
             }
             set
@@ -186,6 +211,7 @@ namespace FoodeLive.MVVM.ViewModel
         {
             get
             {
+                OnPropertyChanged("UserInformations");
                 return _gioiTinhNam;
             }
             set
@@ -200,6 +226,7 @@ namespace FoodeLive.MVVM.ViewModel
         {
             get
             {
+                OnPropertyChanged("UserInformations");
                 return _gioiTinhNu;
             }
             set
@@ -228,26 +255,34 @@ namespace FoodeLive.MVVM.ViewModel
         {
             _cuaHangHoatDong = new CuaHang();
             _userInformations = new UserInformation();
+
             RefreshCommand = new RelayCommand<object>(p => true, p =>
             {
-                _cuaHangHoatDong.BanAns.Clear();
-                _cuaHangHoatDong.BanAns = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(nv => nv.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
-                _cuaHangHoatDong.MonAns = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns.Where(nv => nv.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
+                try
+                {
+                    _cuaHangHoatDong.BanAns.Clear();
+                    _cuaHangHoatDong.BanAns = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(nv => nv.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
+                    _cuaHangHoatDong.MonAns = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns.Where(nv => nv.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
 
-                _tableViewModel.ListBanAn.Clear();
-                _tableViewModel.ListBanAn = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns);
+                    _tableViewModel.ListBanAn.Clear();
+                    _tableViewModel.ListBanAn = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns);
 
-                _tableViewModel.EmptyTables.Clear();
-                _tableViewModel.EmptyTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Trống"));
+                    _tableViewModel.EmptyTables.Clear();
+                    _tableViewModel.EmptyTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Trống"));
 
-                _tableViewModel.UsingTables.Clear();
-                _tableViewModel.UsingTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Có khách"));
+                    _tableViewModel.UsingTables.Clear();
+                    _tableViewModel.UsingTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Có khách"));
 
-                _tableViewModel.BookedTables.Clear();
-                _tableViewModel.BookedTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Đã đặt"));
+                    _tableViewModel.BookedTables.Clear();
+                    _tableViewModel.BookedTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Đã đặt"));
 
-                _foodViewModel.ListMonAn.Clear();
-                _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
+                    _foodViewModel.ListMonAn.Clear();
+                    _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
+                }
+                catch
+                {
+
+                }
 
             });
             AnalyzeReportCommand = new RelayCommand<WpfPlot>(p =>
@@ -288,6 +323,46 @@ namespace FoodeLive.MVVM.ViewModel
             p =>
             {
 
+            });
+
+            UpdateInformationCommand = new RelayCommand<Window>(p => true,
+            p =>
+            {
+                try
+                {
+                    if (_nguoiQuanLy != null)
+                    {
+                        NguoiQuanLy nguoiQuanLy = new NguoiQuanLy();
+                        nguoiQuanLy = DataProvider.Ins.DB.NguoiQuanLies.ToList().Find(ql => ql.MaQuanLy == _nguoiQuanLy.MaQuanLy);
+                        nguoiQuanLy.TenQuanLy = _userInformations.Ten;
+                        nguoiQuanLy.ImgUrl = _userInformations.ImgUrl;
+                        nguoiQuanLy.SoDienThoai = _userInformations.SoDienThoai;
+                        nguoiQuanLy.GioiTinh = _userInformations.GioiTinh;
+                        nguoiQuanLy.DiaChi = _userInformations.DiaChi;
+                        nguoiQuanLy.NgaySinh = _userInformations.NgaySinh;
+                    }
+                    else
+                    {
+                        NhanVien nhanVien = new NhanVien();
+                        nhanVien = DataProvider.Ins.DB.NhanViens.ToList().Find(nv => nv.MaQuanLy == _cuaHangHoatDong.MaQuanLy);
+                        nhanVien.HoTen = _userInformations.Ten;
+                        nhanVien.ImgUrl = _userInformations.ImgUrl;
+                        nhanVien.DiaChi = _userInformations.DiaChi;
+                        nhanVien.SoDienThoai = _userInformations.SoDienThoai;
+                        nhanVien.GioiTinh = _userInformations.GioiTinh;
+                        nhanVien.NgaySinh = _userInformations.NgaySinh;
+                    }
+                    DataProvider.Ins.DB.SaveChanges();
+                    OnPropertyChanged("GetUserInformation");
+                    OnPropertyChanged("NguoiQuanLy");
+                    _userInformations = new UserInformation();
+                    MessageBox.Show("Cập nhật thành công!");
+                    p.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
         }
     }

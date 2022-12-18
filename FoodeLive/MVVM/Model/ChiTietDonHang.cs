@@ -18,7 +18,7 @@ namespace FoodeLive.MVVM.Model
         public string MaMonAn { get; set; }
         public Nullable<int> SoLuong { get; set; }
     
-        public virtual MonAn MonAn { get; set; }
         public virtual DonHang DonHang { get; set; }
+        public virtual MonAn MonAn { get; set; }
     }
 }

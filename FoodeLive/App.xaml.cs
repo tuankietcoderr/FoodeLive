@@ -23,7 +23,7 @@ namespace FoodeLive
         //}
         public App()
         {
-            this.StartupUri = new Uri("/Windows/Auth/Login.xaml", UriKind.Relative);
+            this.StartupUri = new Uri("/MVVM/View/Windows/Auth/Login.xaml", UriKind.Relative);
         }
     }
 }

@@ -10,6 +10,11 @@ CREATE TABLE CuaHang
 alter table cuahang
 add TenCuaHang varchar(30)
 
+
+alter table Nguoiquanly
+alter column DiaChi nvarchar(200)
+
+
 alter table CuaHang
 add NgayThanhLap datetime
 
@@ -35,6 +40,14 @@ create TABLE NguoiQuanLy
 
 alter table NguoiQuanLy
 add NgayThamGia datetime
+
+alter table NhanVien
+alter column ImgUrl VARCHAR(MAX)
+
+alter table NguoiQuanLy
+Add NgaySinh datetime
+alter table nhanvien
+alter column diachi varchar(200)
 
 drop table NguoiQuanLy
 
@@ -176,6 +189,7 @@ CREATE TABLE ChiTietDatBan (
 
 SELECT * from ChiTietDatBan
 drop table ChiTietDatBan
+DELETE from chitietdatban
 
 Alter table ChiTietDatBan add constraint FK_ChiTietDatBan_MaBan
 FOREIGN KEY (MaBan) REFERENCES BanAn(MaBanAn)
@@ -299,7 +313,7 @@ INSERT INTO MONAN(MAMONAN,TENMONAN,GIA) VALUES ('M10',N'Cá diêu hồng',20000)
 SELECT * FROM MONAN
 
 delete from MonAn
-where MaMonAn='m11'
+where MaMonAn='m02'
 
 alter table monan
 add ImgSource varchar(8)
@@ -354,10 +368,17 @@ select MaMonAn,SoLuong, HoaDon.SoHoaDon, MaBanAn from ChiTietHoaDon, HoaDon
 where HoaDon.SoHoaDon=ChiTietHoaDon.SoHoaDon
 
 select * from ChiTietHoaDon
+DELETE from ChiTiethoadon
 where SoHoaDon=1
 
-select * from HoaDon	
+select * from HoaDon
+DELETE from HoaDon
+alter table hoadon
+add TrangThai tinyint
+alter table hoadon
+add ThoiGianThanhToan DATETIME
 select * from MonAn
+select * from BanAn
 delete from MonAn
 delete from banan
 where MaMonAn='M15'
@@ -378,7 +399,16 @@ insert into NhanVien (MaNV, TenNguoiDung, MatKhau, MaCuaHang) VALUES ('NV01', 't
 select * from cuahang
 
 delete from CuaHang
+delete from NhanVien
+delete from NguoiQUanLy
+
 where MaCuaHang='ch01'
 select * from Nguoiquanly
 
 select * from NhanVien
+SELECT * from chitiethoadon
+
+select * from monan
+
+alter table monan
+add ImgUrl varchar(Max)

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -59,29 +60,16 @@ namespace FoodeLive.Converter
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (targetType == typeof(bool))
+            {
+                bool b = (bool)value;
+                return b == true;
+            }
+            return false;
         }
     }
 
     public class ImageSourceConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if(targetType.Name =="ImageSource" || targetType.Name == "Source")
-            {
-                string s = (string)value;
-                return "/src/static/" + s;
-            }
-            return "/src/static/M01.png";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class GioiTinhConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -98,5 +86,25 @@ namespace FoodeLive.Converter
             throw new NotImplementedException();
         }
     }
+
+    public class DisplayConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (targetType.Name == "Boolean")
+            {
+                bool b = (bool)value;
+                if (b == true)
+                    return Visibility.Hidden;
+            }
+            return Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 
 }

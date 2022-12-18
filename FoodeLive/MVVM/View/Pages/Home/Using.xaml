@@ -1,0 +1,45 @@
+﻿<Page x:Class="FoodeLive.View.Pages.Home.Using"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FoodeLive.View.Pages.Home" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{StaticResource MainViewModel}"
+      Title="Using">
+
+    <Grid Margin="0,24,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ui:VirtualizingGridView  x:Name="all_table" Height="auto" ItemsSource="{Binding TableViewModel.UsingTables, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="150">
+                        <Grid HorizontalAlignment="Left" Height="100">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*" />
+                                <RowDefinition Height="1"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" FontSize="14" FontWeight="Bold">
+                                    Bàn 
+                                    <TextBlock Text="{Binding MaBanAn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="16" />
+                                </TextBlock>
+                            <Separator Grid.Row="1" Width="70" BorderBrush="#000" Opacity="0.5"/>
+                            <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+                                <TextBlock FontSize="10" Foreground="#ABABAB">
+                            Tình trạng: <TextBlock Text="{Binding TrangThai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </TextBlock>
+                                <TextBlock Margin="0, 4" FontSize="10" Foreground="#ABABAB">
+                            Loại bàn: <TextBlock Text="{Binding Loai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </ui:Card>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ui:VirtualizingGridView>
+    </Grid>
+</Page>

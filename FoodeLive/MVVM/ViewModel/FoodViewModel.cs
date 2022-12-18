@@ -1,6 +1,6 @@
 ﻿using FoodeLive.MVVM.Model;
 using FoodeLive.utils;
-using FoodeLive.Windows.Menu;
+using FoodeLive.View.Windows.CRUD.Menu;
 using IT008_DoAnCuoiKi.ViewModel;
 using Microsoft.SqlServer.Server;
 using System;
@@ -41,7 +41,16 @@ namespace FoodeLive.MVVM.ViewModel
         public int SoHoaDon { get => _soHoaDon; set { _soHoaDon = value; OnPropertyChanged(); } }
 
         private ObservableCollection<MonAn> _ListMonAn;
-        public ObservableCollection<MonAn> ListMonAn { get => _ListMonAn; set { _ListMonAn = value; OnPropertyChanged(); } }
+        public ObservableCollection<MonAn> ListMonAn
+        {
+            get
+            {
+                ObservableCollection<MonAn> monAns;
+                monAns = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
+                return monAns;
+            }
+            set { _ListMonAn = value; OnPropertyChanged(); }
+        }
 
 
         public class MoneyWithQuantities
@@ -218,7 +227,7 @@ namespace FoodeLive.MVVM.ViewModel
                             maQuanLy = _nguoiQuanLy.MaQuanLy;
                         else
                             maQuanLy = _nhanVienHoatDong.MaQuanLy;
-                        hoaDon = new HoaDon() { MaBanAn = _maBanAn, NgayLapHoaDon = DateTime.Now, SoHoaDon = _soHoaDon, TriGia = 0, BanAn = banAn, ChiTietHoaDons = chiTietHoaDons };
+                        hoaDon = new HoaDon() { MaBanAn = _maBanAn, NgayLapHoaDon = DateTime.Now, SoHoaDon = _soHoaDon, TriGia = 0, BanAn = banAn, ChiTietHoaDons = chiTietHoaDons, TrangThai = 0 };
                         DataProvider.Ins.DB.HoaDons.Add(hoaDon);
 
                         foreach (MonAn monAn in selectedCollection)
@@ -250,6 +259,9 @@ namespace FoodeLive.MVVM.ViewModel
                 {
                     _ordered = true;
                     DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Trống";
+                    var payHoaDon = DataProvider.Ins.DB.HoaDons.ToList().Find(b => b.MaBanAn == _maBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && b.SoHoaDon == _soHoaDon);
+                    payHoaDon.TrangThai = 1;
+                    payHoaDon.ThoiGianThanhToan = DateTime.Now;
                     DataProvider.Ins.DB.SaveChanges();
                     _tongTien = 0;
                     _soMon = 0;
@@ -277,17 +289,9 @@ namespace FoodeLive.MVVM.ViewModel
 
             AddFoodCommand = new RelayCommand<Window>(p =>
             {
-                bool isNumber;
-                try
-                {
-                    Convert.ToInt32(_themMonAn.Gia);
-                    isNumber = true;
-                }
-                catch
-                {
-                    isNumber = false;
-                }
-                return !string.IsNullOrEmpty(_themMonAn.ImgExtension) && _themMonAn.Gia > 0 && !string.IsNullOrEmpty(_themMonAn.TenMonAn) && isNumber && _nguoiQuanLy != null;
+                if (string.IsNullOrEmpty(_themMonAn.TenMonAn) || _themMonAn.Gia <= 0)
+                    return false;
+                return true;
             }, p =>
             {
                 try
@@ -297,17 +301,17 @@ namespace FoodeLive.MVVM.ViewModel
                         _themMonAn.MaMonAn = "M01";
                     else
                     {
-                        var lastMaMonAn = DataProvider.Ins.DB.MonAns.Last().MaMonAn;
+                        var lastMaMonAn = DataProvider.Ins.DB.MonAns.ToList().Last().MaMonAn;
                         int newIndex = Convert.ToInt32(lastMaMonAn.Substring(1, lastMaMonAn.Length - 1)) + 1;
-                        newMaMonAn = newIndex < 10 ? "N0" + newIndex : "M" + newIndex;
+                        newMaMonAn = newIndex < 10 ? "M0" + newIndex : "M" + newIndex;
                         _themMonAn.MaMonAn = newMaMonAn;
                     }
                     _themMonAn.MaCuaHang = _cuaHangHoatDong.MaCuaHang;
-                    _themMonAn.CuaHang = _cuaHangHoatDong;
-
                     DataProvider.Ins.DB.MonAns.Add(_themMonAn);
                     DataProvider.Ins.DB.SaveChanges();
                     _ListMonAn.Add(_themMonAn);
+                    _themMonAn = new MonAn();
+                    OnPropertyChanged("ListMonAn");
                     MessageBox.Show("Đã thêm!");
                     p.Close();
                 }

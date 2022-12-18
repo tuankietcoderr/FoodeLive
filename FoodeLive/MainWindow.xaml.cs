@@ -1,8 +1,6 @@
 ﻿using FoodeLive.Auth;
 using FoodeLive.MVVM.Model;
-using FoodeLive.Pages.Setting;
 using FoodeLive.utils;
-using FoodeLive.Windows.Auth;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -18,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FoodeLive.View.Pages;
 
 namespace FoodeLive
 {
@@ -44,25 +43,25 @@ namespace FoodeLive
             switch (name)
             {
                 case "home":
-                    navframe.Navigate(new Pages.Home.Container());
+                    navframe.Navigate(new View.Pages.Home.Container());
                     break;
                 case "menu":
-                    navframe.Navigate(new Pages.Menu.MenuP());
+                    navframe.Navigate(new View.Pages.Menu.MenuP());
                     break;
                 case "history":
-                    navframe.Navigate(new Pages.History.All());
+                    navframe.Navigate(new View.Pages.History.All());
                     break;
                 case "report":
-                    navframe.Navigate(new Pages.Report.All());
+                    navframe.Navigate(new View.Pages.Report.All());
                     break;
                 case "notification":
-                    navframe.Navigate(new Pages.Notification.All());
+                    navframe.Navigate(new View.Pages.Notification.All());
                     break;
                 case "setting":
-                    navframe.Navigate(new Pages.Setting.SettingP());
+                    navframe.Navigate(new View.Pages.Setting.SettingP());
                     break;
                 default:
-                    navframe.Navigate(new Pages.Home.All());
+                    navframe.Navigate(new View.Pages.Home.All());
                     break;
             }
         }

@@ -1,0 +1,38 @@
+﻿<Window x:Class="FoodeLive.View.Windows.CRUD.Menu.AddToMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:ucli="clr-namespace:FoodeLive.UserControls"
+        mc:Ignorable="d"
+        Title="Thêm món" Height="600" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Icon="/src/icon_foode_live.png"
+        x:Name="AddFood"
+        DataContext="{StaticResource MainViewModel}"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="285*"/>
+            <ColumnDefinition Width="34*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"></RowDefinition>
+            <RowDefinition Height="549*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="38,4,34,0">
+            <TextBlock Text="Thêm món" Height="47" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+            <TextBlock Height="32"></TextBlock>
+
+            <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.ThemMonAn.TenMonAn, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  Label="Tên món " Placeholder="Nhập vào tên món" Grid.ColumnSpan="3" />
+            <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.ThemMonAn.Gia, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, TargetNullValue=0}" Label="Nhập giá món ăn" Placeholder="Giá món ăn" Icon="Money20" Grid.ColumnSpan="3" />
+            <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.ThemMonAn.ImgUrl, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Label="Hình ảnh" Placeholder="Nhập URL hình ảnh của món ăn" Icon="Link12" Grid.ColumnSpan="3" />
+            <Button Content="Xem trước ảnh" FontSize="12" />
+            <Image Source="{Binding FoodViewModel.ThemMonAn.ImgUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" Width="120" Height="120"/>
+            <ui:Button Margin="0 20 0 0" FontSize="12" Command="{Binding FoodViewModel.AddFoodCommand}" CommandParameter="{Binding  ElementName=AddFood}" HorizontalAlignment="Right" Icon="Add20" BorderThickness="0" FontWeight="SemiBold" IconForeground="White" Content="Thêm món" Background="#ff7a00" Foreground="White" Padding="16 8"></ui:Button>
+
+        </StackPanel>
+    </Grid>
+</Window>

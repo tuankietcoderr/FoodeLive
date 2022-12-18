@@ -206,76 +206,72 @@
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMBookDetailOrder.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMDetail.cs" />
     <Compile Include="MVVM\ViewModel\VMTableSlice\VMOrder.cs" />
-    <Compile Include="Pages\Menu\Demo.cs" />
-    <Compile Include="Pages\Menu\MenuP.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Menu\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\History\All.xaml.cs">
+    <Compile Include="MVVM\View\Pages\History\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home\All.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Home\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home\Booked.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Home\Booked.xaml.cs">
       <DependentUpon>Booked.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home\Container.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Home\Container.xaml.cs">
       <DependentUpon>Container.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home\Empty.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Home\Empty.xaml.cs">
       <DependentUpon>Empty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home\Using.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Home\Using.xaml.cs">
       <DependentUpon>Using.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Notification\All.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Notification\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Table\Book.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Table\Book.xaml.cs">
       <DependentUpon>Book.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Table\Detail.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Table\Detail.xaml.cs">
       <DependentUpon>Detail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Table\Order.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Table\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Report\All.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Report\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
     <Compile Include="utils\DevProd.cs" />
-    <Compile Include="Windows\Auth\RestaurantRegister.xaml.cs">
+    <Compile Include="MVVM\View\Windows\Auth\RestaurantRegister.xaml.cs">
       <DependentUpon>RestaurantRegister.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\CRUD\Table\AddTable.xaml.cs">
+    <Compile Include="MVVM\View\Windows\CRUD\Table\AddTable.xaml.cs">
       <DependentUpon>AddTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Loading.xaml.cs">
-      <DependentUpon>Loading.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Menu\AddToMenu.xaml.cs">
+    <Compile Include="MVVM\View\Windows\CRUD\Menu\AddToMenu.xaml.cs">
       <DependentUpon>AddToMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Setting\PasswordChange.xaml.cs">
+    <Compile Include="MVVM\View\Windows\Setting\PasswordChange.xaml.cs">
       <DependentUpon>PasswordChange.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setting\SettingP.xaml.cs">
+    <Compile Include="MVVM\View\Pages\Setting\SettingP.xaml.cs">
       <DependentUpon>SettingP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Setting\UpdateForm.xaml.cs">
+    <Compile Include="MVVM\View\Windows\Setting\UpdateForm.xaml.cs">
       <DependentUpon>UpdateForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LabelInput.xaml.cs">
       <DependentUpon>LabelInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="utils\WindowUtils.cs" />
-    <Compile Include="Windows\Auth\Login.xaml.cs">
+    <Compile Include="MVVM\View\Windows\Auth\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Auth\SignUp.xaml.cs">
+    <Compile Include="MVVM\View\Windows\Auth\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\DetailOrderBook.xaml.cs">
+    <Compile Include="MVVM\View\Windows\DetailOrderBook.xaml.cs">
       <DependentUpon>DetailOrderBook.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -290,11 +286,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Notification\All.xaml">
+    <Page Include="MVVM\View\Pages\Notification\All.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Table\Detail.xaml">
+    <Page Include="MVVM\View\Pages\Table\Detail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -306,71 +302,67 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Auth\RestaurantRegister.xaml">
+    <Page Include="MVVM\View\Windows\Auth\RestaurantRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\CRUD\Table\AddTable.xaml">
+    <Page Include="MVVM\View\Windows\CRUD\Table\AddTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Loading.xaml">
+    <Page Include="MVVM\View\Windows\CRUD\Menu\AddToMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Menu\AddToMenu.xaml">
+    <Page Include="MVVM\View\Pages\Menu\MenuP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Menu\MenuP.xaml">
+    <Page Include="MVVM\View\Pages\History\All.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\History\All.xaml">
+    <Page Include="MVVM\View\Pages\Home\All.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home\All.xaml">
+    <Page Include="MVVM\View\Pages\Home\Booked.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home\Booked.xaml">
+    <Page Include="MVVM\View\Pages\Home\Container.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home\Container.xaml">
+    <Page Include="MVVM\View\Pages\Home\Empty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home\Empty.xaml">
+    <Page Include="MVVM\View\Pages\Home\Using.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home\Using.xaml">
+    <Page Include="MVVM\View\Pages\Report\All.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Report\All.xaml">
+    <Page Include="MVVM\View\Pages\Table\Book.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Table\Book.xaml">
+    <Page Include="MVVM\View\Pages\Table\Order.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Table\Order.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Setting\PasswordChange.xaml">
+    <Page Include="MVVM\View\Windows\Setting\PasswordChange.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Setting\SettingP.xaml">
+    <Page Include="MVVM\View\Pages\Setting\SettingP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Setting\UpdateForm.xaml">
+    <Page Include="MVVM\View\Windows\Setting\UpdateForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -386,15 +378,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Auth\Login.xaml">
+    <Page Include="MVVM\View\Windows\Auth\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Auth\SignUp.xaml">
+    <Page Include="MVVM\View\Windows\Auth\SignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\DetailOrderBook.xaml">
+    <Page Include="MVVM\View\Windows\DetailOrderBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -433,32 +425,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MVVM\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="src\icon_foode_live.png" />
     <Resource Include="src\logo_foode_live_big.png" />
     <Resource Include="src\logo_foode_live_small.png" />
-    <Resource Include="Pages\Menu\fooddome.png" />
-    <Resource Include="Pages\Menu\food.png" />
-    <Resource Include="Pages\Menu\edit.png" />
-    <Resource Include="Pages\Setting\person.png" />
     <Resource Include="src\loading.gif" />
     <Resource Include="icon_foode_live.ico" />
-    <Resource Include="src\static\M03.png" />
-    <Resource Include="src\static\M06.png" />
-    <Resource Include="src\static\M05.png" />
-    <Resource Include="src\static\M07.png" />
-    <Resource Include="src\static\M04.png" />
-    <Resource Include="src\static\M02.png" />
-    <Resource Include="src\static\M01.png" />
-    <Resource Include="src\static\M08.png" />
-    <Resource Include="src\static\M09.png" />
-    <Resource Include="src\static\M10.png" />
-    <Resource Include="src\static\M11.jpg" />
-    <Resource Include="src\static\M12.png" />
-    <Resource Include="src\static\M13.jpg" />
     <Content Include="MVVM\Model\QuanLyNhaHang.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>

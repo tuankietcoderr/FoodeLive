@@ -6,4 +6,5 @@
     <command:MoneyConverter x:Key="MoneyConverter"/>
     <command:BooleanReflectConverter x:Key="BooleanReflectConverter"/>
     <command:ImageSourceConverter x:Key="ImageSourceConverter"/>
+    <command:DisplayConverter x:Key="DisplayConverter"/>
 </ResourceDictionary>

@@ -1,7 +1,9 @@
 ﻿using FoodeLive.MVVM.Model;
 using FoodeLive.MVVM.ViewModel.VMTableSlice;
+using IT008_DoAnCuoiKi.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,9 @@ namespace FoodeLive.Pages.Home
         public Empty()
         {
             InitializeComponent();
+            EmptyTable emptyTable =new EmptyTable();
+            this.DataContext= emptyTable;
+
         }
 
         ~Empty() { }
@@ -39,6 +44,20 @@ namespace FoodeLive.Pages.Home
             Windows.DetailOrderBook orderOrBook = new Windows.DetailOrderBook();
             orderOrBook.ShowDialog();
         }
+
+        class EmptyTable: BaseViewModel
+        {
+            private ObservableCollection<BanAn> _EmptyTables;
+            public ObservableCollection<BanAn> EmptyTables { get => _EmptyTables; set { _EmptyTables = value; OnPropertyChanged(); } }
+
+            public EmptyTable()
+            {
+                _EmptyTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Trống"));
+
+            }
+        }
+
+
 
     }
 }

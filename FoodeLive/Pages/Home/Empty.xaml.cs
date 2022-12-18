@@ -29,9 +29,6 @@ namespace FoodeLive.Pages.Home
         public Empty()
         {
             InitializeComponent();
-            EmptyTable emptyTable =new EmptyTable();
-            this.DataContext= emptyTable;
-
         }
 
         ~Empty() { }

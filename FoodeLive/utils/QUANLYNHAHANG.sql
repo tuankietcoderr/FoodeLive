@@ -6,6 +6,11 @@ CREATE TABLE CuaHang
 	CONSTRAINT PK_CuaHang PRIMARY KEY (MaCuaHang),
 )
 
+alter table cuahang
+add MoTa nvarchar(max)
+
+alter table monan
+alter column ImgUrl nvarchar(max)
 
 alter table cuahang
 add TenCuaHang varchar(30)
@@ -66,6 +71,9 @@ CREATE TABLE NhanVien
     MatKhau VARCHAR(30),
 	CONSTRAINT PK_NHANVIEN PRIMARY KEY (MANV),
 )
+
+alter table nhanvien
+alter column gioitinh nvarchar(4)
 
 alter table Nhanvien
 add MaQuanLy char(4)
@@ -315,6 +323,9 @@ SELECT * FROM MONAN
 delete from MonAn
 where MaMonAn='m02'
 
+delete from chitiethoadon
+where mamonan='m02'
+
 alter table monan
 add ImgSource varchar(8)
 
@@ -400,15 +411,27 @@ select * from cuahang
 
 delete from CuaHang
 delete from NhanVien
+where MaNV='nv01'
 delete from NguoiQUanLy
 
 where MaCuaHang='ch01'
 select * from Nguoiquanly
 
 select * from NhanVien
+
+update NhanVien
+set Luong=30000
+where MaNV='nv02'
+
 SELECT * from chitiethoadon
 
+update nguoiquanly set MatKhau='123456789aA@'
+where maquanly='ql01' 
+
 select * from monan
+select * from nguoiquanly
 
 alter table monan
 add ImgUrl varchar(Max)
+
+update nhanvien set NgayVaoLam='2022-12-10 21:49:00'

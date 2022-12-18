@@ -20,7 +20,7 @@ using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
 using Wpf.Ui.Mvvm.Interfaces;
 
-namespace FoodeLive.View.Windows.Setting
+namespace FoodeLive.View.Windows.CRUD.Setting
 {
     /// <summary>
     /// Interaction logic for PasswordChange.xaml

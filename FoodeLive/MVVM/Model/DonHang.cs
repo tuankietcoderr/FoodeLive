@@ -30,7 +30,7 @@ namespace FoodeLive.MVVM.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
-        public virtual NguoiDung NguoiDung { get; set; }
         public virtual NhanVien NhanVien { get; set; }
+        public virtual NguoiDung NguoiDung { get; set; }
     }
 }

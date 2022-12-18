@@ -1,5 +1,4 @@
 ﻿using FoodeLive.MVVM.Model;
-using FoodeLive.MVVM.ViewModel.VMTableSlice;
 using IT008_DoAnCuoiKi.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -32,29 +31,6 @@ namespace FoodeLive.View.Pages.Home
         }
 
         ~Empty() { }
-
-        private void table_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Card card = sender as Card;
-            string MaBanAn = card.Tag.ToString();
-            VMBookDetailOrder vMOrderOrBook = new VMBookDetailOrder(MaBanAn);
-            Windows.DetailOrderBook orderOrBook = new Windows.DetailOrderBook();
-            orderOrBook.ShowDialog();
-        }
-
-        class EmptyTable: BaseViewModel
-        {
-            private ObservableCollection<BanAn> _EmptyTables;
-            public ObservableCollection<BanAn> EmptyTables { get => _EmptyTables; set { _EmptyTables = value; OnPropertyChanged(); } }
-
-            public EmptyTable()
-            {
-                _EmptyTables = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(b => b.TrangThai == "Trống"));
-
-            }
-        }
-
-
 
     }
 }

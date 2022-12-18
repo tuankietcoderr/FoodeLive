@@ -268,6 +268,7 @@ namespace FoodeLive.MVVM.ViewModel
                     _soHoaDon = 0;
                     OnPropertyChanged("SoMon");
                     OnPropertyChanged("TongTien");
+                    OnPropertyChanged("ListHoaDon");
                     _selectedItems.Clear();
                     _selectedItems = new ObservableCollection<MoneyWithQuantities>();
                     MessageBox.Show("Đã thanh toán!");

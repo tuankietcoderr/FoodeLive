@@ -93,6 +93,7 @@ namespace FoodeLive.View.Pages.Report
                     values[i] = 0;
                     if (j < hoaDons.Count)
                     {
+                        MessageBox.Show(hoaDons[j].TriGia.ToString());
                         if (hoaDons[j].NgayLapHoaDon.Value.Day == i + 1)
                         {
                             values[i] = Convert.ToDouble(hoaDons.Where(lhd => lhd.NgayLapHoaDon.Value.Day == i + 1).Sum(t => t.TriGia));

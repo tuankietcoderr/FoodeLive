@@ -1,5 +1,4 @@
 ﻿using FoodeLive.MVVM.ViewModel;
-using FoodeLive.MVVM.ViewModel.VMTableSlice;
 using IT008_DoAnCuoiKi.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -23,16 +22,9 @@ namespace FoodeLive.View.Pages.Table
     /// </summary>
     public partial class Order : Page
     {
-
-        //public MainViewModel ViewModel
-        //{
-        //    get;
-        //}
-        private Brush brush { get; set; }
         public Order()
         {
             InitializeComponent();
-            //ViewModel = this.DataContext as MainViewModel;
         }
 
         ~Order() { }

@@ -1,4 +1,5 @@
 ﻿using FoodeLive.MVVM.Model;
+using FoodeLive.MVVM.View.Windows.CRUD.Setting;
 using FoodeLive.View.Windows;
 using FoodeLive.View.Windows.Auth;
 using IT008_DoAnCuoiKi.ViewModel;
@@ -27,8 +28,10 @@ namespace FoodeLive.MVVM.ViewModel
             set
             {
                 _nguoiQuanLy = value; OnPropertyChanged();
-                _foodViewModel.NguoiQuanLy = _nguoiQuanLy;
+                _tableViewModel = new TableViewModel();
+                _foodViewModel = new FoodViewModel();
                 _tableViewModel.NguoiQuanLy = _nguoiQuanLy;
+                _foodViewModel.NguoiQuanLy = _nguoiQuanLy;
             }
         }
 
@@ -39,6 +42,8 @@ namespace FoodeLive.MVVM.ViewModel
             set
             {
                 _nhanVienHoatDong = value; OnPropertyChanged();
+                _tableViewModel = new TableViewModel();
+                _foodViewModel = new FoodViewModel();
                 _foodViewModel.NhanVienHoatDong = _nhanVienHoatDong;
                 _tableViewModel.NhanVienHoatDong = _nhanVienHoatDong;
             }
@@ -55,16 +60,12 @@ namespace FoodeLive.MVVM.ViewModel
             }
             set
             {
-                _cuaHangHoatDong = value; OnPropertyChanged();
+                _cuaHangHoatDong = value;
+                OnPropertyChanged();
                 _cuaHangHoatDong.BanAns = new ObservableCollection<BanAn>(DataProvider.Ins.DB.BanAns.Where(nv => nv.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
                 _cuaHangHoatDong.MonAns = new ObservableCollection<MonAn>(DataProvider.Ins.DB.MonAns.Where(nv => nv.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
                 _cuaHangHoatDong.NguoiQuanLies = new ObservableCollection<NguoiQuanLy>(DataProvider.Ins.DB.NguoiQuanLies.Where(ql => ql.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
 
-                _tableViewModel = new TableViewModel();
-                _foodViewModel = new FoodViewModel();
-
-                _tableViewModel.NguoiQuanLy = _nguoiQuanLy;
-                _foodViewModel.NguoiQuanLy = _nguoiQuanLy;
                 _foodViewModel.CuaHangHoatDong = _cuaHangHoatDong;
                 _tableViewModel.CuaHangHoatDong = _cuaHangHoatDong;
                 _tableViewModel.ListBanAn = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns);
@@ -236,6 +237,64 @@ namespace FoodeLive.MVVM.ViewModel
             }
         }
 
+        private string _tenCuaHang;
+        public string TenCuaHang
+        {
+            get => DataProvider.Ins.DB.CuaHangs.ToList().Find(ch => ch.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TenCuaHang;
+            set { _tenCuaHang = value; OnPropertyChanged(); }
+        }
+
+        private string _moTa;
+        public string MoTa
+        {
+            get => DataProvider.Ins.DB.CuaHangs.ToList().Find(ch => ch.MaCuaHang == _cuaHangHoatDong.MaCuaHang).MoTa;
+            set { _moTa = value; OnPropertyChanged(); }
+        }
+
+        private string _imgUrl;
+        public string ImgUrl
+        {
+            get => DataProvider.Ins.DB.CuaHangs.ToList().Find(ch => ch.MaCuaHang == _cuaHangHoatDong.MaCuaHang).ImgUrl;
+            set
+            {
+                _imgUrl = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private decimal? _luong;
+        public decimal? Luong
+        {
+            get
+            {
+                if (_nhanVienHoatDong != null)
+                    _luong = DataProvider.Ins.DB.NhanViens.ToList().Find(nv => nv.MaQuanLy == _cuaHangHoatDong.MaQuanLy).Luong;
+                return _luong;
+            }
+
+            set
+            {
+                _luong = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private NhanVien _selectedNhanVien;
+        public NhanVien SelectedNhanVien
+        {
+            get => _selectedNhanVien;
+            set
+            {
+                _selectedNhanVien = value;
+                OnPropertyChanged();
+                if (_selectedNhanVien != null)
+                {
+                    StaffUD staffUD = new StaffUD();
+                    staffUD.ShowDialog();
+                }
+            }
+        }
+
         private ComboBoxItem _reportMonth;
         public ComboBoxItem ReportMonth { get => _reportMonth; set { _reportMonth = value; OnPropertyChanged(); } }
 
@@ -243,6 +302,7 @@ namespace FoodeLive.MVVM.ViewModel
         public ComboBoxItem ReportYear { get => _reportYear; set { _reportYear = value; OnPropertyChanged(); } }
 
         public ICommand RefreshCommand { get; set; }
+        public ICommand RefreshBillCommand { get; set; }
         public ICommand AnalyzeReportCommand { get; set; }
 
         public ICommand AddAccountCommand { get; set; }
@@ -251,10 +311,21 @@ namespace FoodeLive.MVVM.ViewModel
         public ICommand PasswordCommand { get; set; }
         public ICommand UpdateInformationCommand { get; set; }
 
+        public ICommand UpdateInformationDialogCommand { get; set; }
+        public ICommand UpdateRestaurantInformationCommand { get; set; }
+
+        public ICommand StaffManagerDialogCommand { get; set; }
+        public ICommand UpdateWageCommand { get; set; }
+        public ICommand CalculateWageCommand { get; set; }
+        public ICommand DeleteAccountCommand { get; set; }
+        
+
+
         public MainViewModel()
         {
             _cuaHangHoatDong = new CuaHang();
             _userInformations = new UserInformation();
+            _getUserInformation = new UserInformation();
 
             RefreshCommand = new RelayCommand<object>(p => true, p =>
             {
@@ -279,12 +350,20 @@ namespace FoodeLive.MVVM.ViewModel
                     _foodViewModel.ListMonAn.Clear();
                     _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message);
                 }
 
             });
+
+            RefreshBillCommand = new RelayCommand<object>(p => true,
+                p =>
+                {
+                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons);
+                }
+                );
+
             AnalyzeReportCommand = new RelayCommand<WpfPlot>(p =>
             {
                 string monthContent = ReportMonth.Content.ToString();
@@ -364,6 +443,75 @@ namespace FoodeLive.MVVM.ViewModel
                     MessageBox.Show(ex.Message);
                 }
             });
+
+            UpdateInformationDialogCommand = new RelayCommand<object>(p => _nguoiQuanLy != null,
+                p =>
+                {
+                    UpdateRestaurant updateRestaurant = new UpdateRestaurant();
+                    updateRestaurant.ShowDialog();
+                });
+
+            UpdateRestaurantInformationCommand = new RelayCommand<Window>(p =>
+            {
+                return _nguoiQuanLy != null;
+            }, p =>
+            {
+                try
+                {
+                    CuaHang cuaHang = new CuaHang();
+                    cuaHang = DataProvider.Ins.DB.CuaHangs.ToList().Find(r => r.MaCuaHang == _cuaHangHoatDong.MaCuaHang);
+                    cuaHang.TenCuaHang = _tenCuaHang;
+                    cuaHang.MoTa = _moTa;
+                    cuaHang.ImgUrl = _imgUrl;
+                    DataProvider.Ins.DB.SaveChanges();
+                    OnPropertyChanged("ImgUrl");
+                    OnPropertyChanged("TenCuaHang");
+                    MessageBox.Show("Cập nhật thành công!");
+                    p.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            StaffManagerDialogCommand = new RelayCommand<object>(p => _nguoiQuanLy != null,
+                p =>
+                {
+                    try
+                    {
+                        StaffManager staffManager = new StaffManager();
+                        staffManager.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                });
+
+            UpdateWageCommand = new RelayCommand<object>(p => true,
+                p =>
+                {
+                    try
+                    {
+                        DataProvider.Ins.DB.NhanViens.ToList().Find(nv => nv.MaQuanLy == _nguoiQuanLy.MaQuanLy).Luong = _selectedNhanVien.Luong;
+                        DataProvider.Ins.DB.SaveChanges();
+                        OnPropertyChanged("SelectedNhanVien");
+                        MessageBox.Show("Cập nhật lương thành công!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                });
+
+            CalculateWageCommand = new RelayCommand<object>(p => true,
+                p =>
+                {
+                    DateTime now = DateTime.Now;
+                    int tongSoNgayLam = (now - _selectedNhanVien.NgayVaoLam.Value).Days;
+                    MessageBox.Show(tongSoNgayLam.ToString());
+                });
         }
     }
 }

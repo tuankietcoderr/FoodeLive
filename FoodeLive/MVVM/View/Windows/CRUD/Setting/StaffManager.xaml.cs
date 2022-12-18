@@ -11,19 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
-namespace FoodeLive.View.Windows.Setting
+namespace FoodeLive.MVVM.View.Windows.CRUD.Setting
 {
     /// <summary>
-    /// Interaction logic for UpdateForm.xaml
+    /// Interaction logic for StaffManager.xaml
     /// </summary>
-    public partial class UpdateForm : Window
+    public partial class StaffManager : Window
     {
-        public UpdateForm()
+        public StaffManager()
         {
             InitializeComponent();
+            datagrid.BeginningEdit += (s, ss) => ss.Cancel = true;
         }
-
-        ~UpdateForm() { }
     }
 }

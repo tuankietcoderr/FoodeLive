@@ -74,7 +74,10 @@
                                     </Grid>
 
                                 </StackPanel>
-                                <TextBlock Text="{Binding NgayLapHoaDon}"></TextBlock>
+                                <TextBlock>
+                                    <TextBlock Text="{Binding NgayLapHoaDon}" />
+                                    - <TextBlock Text="{Binding ThoiGianThanhToan}" />
+                                </TextBlock>
                                 <WrapPanel VerticalAlignment="Center">
                                     <TextBlock VerticalAlignment="Center">Món ăn:</TextBlock>
                                     <ListView ItemsSource="{Binding ChiTietHoaDons}">

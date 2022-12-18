@@ -52,6 +52,8 @@
           <Property Name="MaQuanLy" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="TenCuaHang" Type="varchar" MaxLength="30" />
           <Property Name="NgayThanhLap" Type="datetime" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="ImgUrl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DonHang">
           <Key>
@@ -84,7 +86,7 @@
           <Property Name="TenMonAn" Type="nvarchar" MaxLength="40" />
           <Property Name="Gia" Type="money" />
           <Property Name="MaCuaHang" Type="char" MaxLength="4" />
-          <Property Name="ImgUrl" Type="varchar(max)" />
+          <Property Name="ImgUrl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -106,7 +108,7 @@
           <Property Name="TenNguoiDung" Type="varchar" MaxLength="20" />
           <Property Name="MatKhau" Type="varchar" MaxLength="30" />
           <Property Name="NgayThamGia" Type="datetime" />
-          <Property Name="ImgUrl" Type="varchar(max)" />
+          <Property Name="ImgUrl" Type="nvarchar(max)" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
           <Property Name="GioiTinh" Type="varchar" MaxLength="10" />
           <Property Name="NgaySinh" Type="datetime" />
@@ -117,7 +119,7 @@
           </Key>
           <Property Name="MaNV" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="40" />
-          <Property Name="GioiTinh" Type="varchar" MaxLength="10" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="4" />
           <Property Name="NgaySinh" Type="smalldatetime" />
           <Property Name="DiaChi" Type="varchar" MaxLength="200" />
           <Property Name="Luong" Type="money" />
@@ -126,7 +128,7 @@
           <Property Name="TenNguoiDung" Type="varchar" MaxLength="20" />
           <Property Name="MatKhau" Type="varchar" MaxLength="30" />
           <Property Name="MaQuanLy" Type="char" MaxLength="4" />
-          <Property Name="ImgUrl" Type="varchar(max)" />
+          <Property Name="ImgUrl" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_ChiTietDatBan_MaBan">
           <End Role="BanAn" Type="Self.BanAn" Multiplicity="0..1" />
@@ -344,58 +346,58 @@
           <EntitySet Name="ChiTietHoaDons" EntityType="QuanLyNhaHangModel.ChiTietHoaDon" />
           <EntitySet Name="CuaHangs" EntityType="QuanLyNhaHangModel.CuaHang" />
           <EntitySet Name="DonHangs" EntityType="QuanLyNhaHangModel.DonHang" />
+          <EntitySet Name="HoaDons" EntityType="QuanLyNhaHangModel.HoaDon" />
+          <EntitySet Name="MonAns" EntityType="QuanLyNhaHangModel.MonAn" />
           <EntitySet Name="NguoiDungs" EntityType="QuanLyNhaHangModel.NguoiDung" />
+          <EntitySet Name="NguoiQuanLies" EntityType="QuanLyNhaHangModel.NguoiQuanLy" />
+          <EntitySet Name="NhanViens" EntityType="QuanLyNhaHangModel.NhanVien" />
           <AssociationSet Name="FK_ChiTietDatBan_MaBan" Association="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan">
             <End Role="BanAn" EntitySet="BanAns" />
             <End Role="ChiTietDatBan" EntitySet="ChiTietDatBans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MABANAN" Association="QuanLyNhaHangModel.FK_MABANAN">
+            <End Role="BanAn" EntitySet="BanAns" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
           </AssociationSet>
           <AssociationSet Name="FK_MaBanAn_CuaHang" Association="QuanLyNhaHangModel.FK_MaBanAn_CuaHang">
             <End Role="CuaHang" EntitySet="CuaHangs" />
             <End Role="BanAn" EntitySet="BanAns" />
           </AssociationSet>
-          <AssociationSet Name="FK_SoDonHang" Association="QuanLyNhaHangModel.FK_SoDonHang">
-            <End Role="DonHang" EntitySet="DonHangs" />
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TenNguoiDung" Association="QuanLyNhaHangModel.FK_TenNguoiDung">
-            <End Role="NguoiDung" EntitySet="NguoiDungs" />
-            <End Role="DonHang" EntitySet="DonHangs" />
-          </AssociationSet>
-          <EntitySet Name="NguoiQuanLies" EntityType="QuanLyNhaHangModel.NguoiQuanLy" />
-          <EntitySet Name="NhanViens" EntityType="QuanLyNhaHangModel.NhanVien" />
-          <AssociationSet Name="FK_CuaHang" Association="QuanLyNhaHangModel.FK_CuaHang">
-            <End Role="CuaHang" EntitySet="CuaHangs" />
-            <End Role="NguoiQuanLy" EntitySet="NguoiQuanLies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MANV_DONHANG" Association="QuanLyNhaHangModel.FK_MANV_DONHANG">
-            <End Role="NhanVien" EntitySet="NhanViens" />
-            <End Role="DonHang" EntitySet="DonHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MaNhanVien_NguoiQuanLy" Association="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy">
-            <End Role="NguoiQuanLy" EntitySet="NguoiQuanLies" />
-            <End Role="NhanVien" EntitySet="NhanViens" />
-          </AssociationSet>
-          <EntitySet Name="MonAns" EntityType="QuanLyNhaHangModel.MonAn" />
           <AssociationSet Name="FK_MAMONAN_ChiTietDonHang" Association="QuanLyNhaHangModel.FK_MAMONAN_ChiTietDonHang">
             <End Role="MonAn" EntitySet="MonAns" />
+            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SoDonHang" Association="QuanLyNhaHangModel.FK_SoDonHang">
+            <End Role="DonHang" EntitySet="DonHangs" />
             <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_MAMONAN" Association="QuanLyNhaHangModel.FK_MAMONAN">
             <End Role="MonAn" EntitySet="MonAns" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
+          <AssociationSet Name="FK_SoHoaDon" Association="QuanLyNhaHangModel.FK_SoHoaDon">
+            <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuaHang" Association="QuanLyNhaHangModel.FK_CuaHang">
+            <End Role="CuaHang" EntitySet="CuaHangs" />
+            <End Role="NguoiQuanLy" EntitySet="NguoiQuanLies" />
+          </AssociationSet>
           <AssociationSet Name="FK_MaMonAn_CuaHang" Association="QuanLyNhaHangModel.FK_MaMonAn_CuaHang">
             <End Role="CuaHang" EntitySet="CuaHangs" />
             <End Role="MonAn" EntitySet="MonAns" />
           </AssociationSet>
-          <EntitySet Name="HoaDons" EntityType="QuanLyNhaHangModel.HoaDon" />
-          <AssociationSet Name="FK_MABANAN" Association="QuanLyNhaHangModel.FK_MABANAN">
-            <End Role="BanAn" EntitySet="BanAns" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
+          <AssociationSet Name="FK_MANV_DONHANG" Association="QuanLyNhaHangModel.FK_MANV_DONHANG">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="DonHang" EntitySet="DonHangs" />
           </AssociationSet>
-          <AssociationSet Name="FK_SoHoaDon" Association="QuanLyNhaHangModel.FK_SoHoaDon">
-            <End Role="HoaDon" EntitySet="HoaDons" />
-            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          <AssociationSet Name="FK_TenNguoiDung" Association="QuanLyNhaHangModel.FK_TenNguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaNhanVien_NguoiQuanLy" Association="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy">
+            <End Role="NguoiQuanLy" EntitySet="NguoiQuanLies" />
+            <End Role="NhanVien" EntitySet="NhanViens" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BanAn">
@@ -407,8 +409,8 @@
           <Property Name="TrangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="MaCuaHang" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="ChiTietDatBans" Relationship="QuanLyNhaHangModel.FK_ChiTietDatBan_MaBan" FromRole="BanAn" ToRole="ChiTietDatBan" />
-          <NavigationProperty Name="CuaHang" Relationship="QuanLyNhaHangModel.FK_MaBanAn_CuaHang" FromRole="BanAn" ToRole="CuaHang" />
           <NavigationProperty Name="HoaDons" Relationship="QuanLyNhaHangModel.FK_MABANAN" FromRole="BanAn" ToRole="HoaDon" />
+          <NavigationProperty Name="CuaHang" Relationship="QuanLyNhaHangModel.FK_MaBanAn_CuaHang" FromRole="BanAn" ToRole="CuaHang" />
         </EntityType>
         <EntityType Name="ChiTietDatBan">
           <Key>
@@ -431,8 +433,8 @@
           <Property Name="SoDonHang" Type="Int32" Nullable="false" />
           <Property Name="MaMonAn" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="SoLuong" Type="Int32" />
-          <NavigationProperty Name="DonHang" Relationship="QuanLyNhaHangModel.FK_SoDonHang" FromRole="ChiTietDonHang" ToRole="DonHang" />
           <NavigationProperty Name="MonAn" Relationship="QuanLyNhaHangModel.FK_MAMONAN_ChiTietDonHang" FromRole="ChiTietDonHang" ToRole="MonAn" />
+          <NavigationProperty Name="DonHang" Relationship="QuanLyNhaHangModel.FK_SoDonHang" FromRole="ChiTietDonHang" ToRole="DonHang" />
         </EntityType>
         <EntityType Name="ChiTietHoaDon">
           <Key>
@@ -453,6 +455,8 @@
           <Property Name="MaQuanLy" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="TenCuaHang" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="NgayThanhLap" Type="DateTime" Precision="3" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BanAns" Relationship="QuanLyNhaHangModel.FK_MaBanAn_CuaHang" FromRole="CuaHang" ToRole="BanAn" />
           <NavigationProperty Name="NguoiQuanLies" Relationship="QuanLyNhaHangModel.FK_CuaHang" FromRole="CuaHang" ToRole="NguoiQuanLy" />
           <NavigationProperty Name="MonAns" Relationship="QuanLyNhaHangModel.FK_MaMonAn_CuaHang" FromRole="CuaHang" ToRole="MonAn" />
@@ -469,8 +473,34 @@
           <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MaNV" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="ChiTietDonHangs" Relationship="QuanLyNhaHangModel.FK_SoDonHang" FromRole="DonHang" ToRole="ChiTietDonHang" />
-          <NavigationProperty Name="NguoiDung" Relationship="QuanLyNhaHangModel.FK_TenNguoiDung" FromRole="DonHang" ToRole="NguoiDung" />
           <NavigationProperty Name="NhanVien" Relationship="QuanLyNhaHangModel.FK_MANV_DONHANG" FromRole="DonHang" ToRole="NhanVien" />
+          <NavigationProperty Name="NguoiDung" Relationship="QuanLyNhaHangModel.FK_TenNguoiDung" FromRole="DonHang" ToRole="NguoiDung" />
+        </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="SoHoaDon" />
+          </Key>
+          <Property Name="SoHoaDon" Type="Int32" Nullable="false" />
+          <Property Name="NgayLapHoaDon" Type="DateTime" Precision="0" />
+          <Property Name="MaBanAn" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="TriGia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TrangThai" Type="Byte" />
+          <Property Name="ThoiGianThanhToan" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BanAn" Relationship="QuanLyNhaHangModel.FK_MABANAN" FromRole="HoaDon" ToRole="BanAn" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="QuanLyNhaHangModel.FK_SoHoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+        </EntityType>
+        <EntityType Name="MonAn">
+          <Key>
+            <PropertyRef Name="MaMonAn" />
+          </Key>
+          <Property Name="MaMonAn" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="TenMonAn" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MaCuaHang" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChiTietDonHangs" Relationship="QuanLyNhaHangModel.FK_MAMONAN_ChiTietDonHang" FromRole="MonAn" ToRole="ChiTietDonHang" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="QuanLyNhaHangModel.FK_MAMONAN" FromRole="MonAn" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="CuaHang" Relationship="QuanLyNhaHangModel.FK_MaMonAn_CuaHang" FromRole="MonAn" ToRole="CuaHang" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -482,6 +512,43 @@
           <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DonHangs" Relationship="QuanLyNhaHangModel.FK_TenNguoiDung" FromRole="NguoiDung" ToRole="DonHang" />
         </EntityType>
+        <EntityType Name="NguoiQuanLy">
+          <Key>
+            <PropertyRef Name="MaQuanLy" />
+          </Key>
+          <Property Name="MaQuanLy" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="MaCuaHang" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="TenQuanLy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="TenNguoiDung" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NgayThamGia" Type="DateTime" Precision="3" />
+          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CuaHang" Relationship="QuanLyNhaHangModel.FK_CuaHang" FromRole="NguoiQuanLy" ToRole="CuaHang" />
+          <NavigationProperty Name="NhanViens" Relationship="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy" FromRole="NguoiQuanLy" ToRole="NhanVien" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="HoTen" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Luong" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NgayVaoLam" Type="DateTime" Precision="0" />
+          <Property Name="TenNguoiDung" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MaQuanLy" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DonHangs" Relationship="QuanLyNhaHangModel.FK_MANV_DONHANG" FromRole="NhanVien" ToRole="DonHang" />
+          <NavigationProperty Name="NguoiQuanLy" Relationship="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy" FromRole="NhanVien" ToRole="NguoiQuanLy" />
+        </EntityType>
         <Association Name="FK_ChiTietDatBan_MaBan">
           <End Type="QuanLyNhaHangModel.BanAn" Role="BanAn" Multiplicity="0..1" />
           <End Type="QuanLyNhaHangModel.ChiTietDatBan" Role="ChiTietDatBan" Multiplicity="*" />
@@ -491,6 +558,18 @@
             </Principal>
             <Dependent Role="ChiTietDatBan">
               <PropertyRef Name="MaBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MABANAN">
+          <End Type="QuanLyNhaHangModel.BanAn" Role="BanAn" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BanAn">
+              <PropertyRef Name="MaBanAn" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaBanAn" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -506,6 +585,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MAMONAN_ChiTietDonHang">
+          <End Type="QuanLyNhaHangModel.MonAn" Role="MonAn" Multiplicity="1" />
+          <End Type="QuanLyNhaHangModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonAn">
+              <PropertyRef Name="MaMonAn" />
+            </Principal>
+            <Dependent Role="ChiTietDonHang">
+              <PropertyRef Name="MaMonAn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SoDonHang">
           <End Type="QuanLyNhaHangModel.DonHang" Role="DonHang" Multiplicity="1" />
           <End Type="QuanLyNhaHangModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
@@ -518,55 +609,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TenNguoiDung">
-          <End Type="QuanLyNhaHangModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
-          <End Type="QuanLyNhaHangModel.DonHang" Role="DonHang" Multiplicity="*" />
+        <Association Name="FK_MAMONAN">
+          <End Type="QuanLyNhaHangModel.MonAn" Role="MonAn" Multiplicity="1" />
+          <End Type="QuanLyNhaHangModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="TenNguoiDung" />
+            <Principal Role="MonAn">
+              <PropertyRef Name="MaMonAn" />
             </Principal>
-            <Dependent Role="DonHang">
-              <PropertyRef Name="TenNguoiDung" />
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="MaMonAn" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="NguoiQuanLy">
-          <Key>
-            <PropertyRef Name="MaQuanLy" />
-          </Key>
-          <Property Name="MaQuanLy" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="MaCuaHang" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="TenQuanLy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="SoDienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="TenNguoiDung" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="NgayThamGia" Type="DateTime" Precision="3" />
-          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CuaHang" Relationship="QuanLyNhaHangModel.FK_CuaHang" FromRole="NguoiQuanLy" ToRole="CuaHang" />
-          <NavigationProperty Name="NhanViens" Relationship="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy" FromRole="NguoiQuanLy" ToRole="NhanVien" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="NhanVien">
-          <Key>
-            <PropertyRef Name="MaNV" />
-          </Key>
-          <Property Name="MaNV" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="HoTen" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
-          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Luong" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NgayVaoLam" Type="DateTime" Precision="0" />
-          <Property Name="TenNguoiDung" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="MaQuanLy" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DonHangs" Relationship="QuanLyNhaHangModel.FK_MANV_DONHANG" FromRole="NhanVien" ToRole="DonHang" />
-          <NavigationProperty Name="NguoiQuanLy" Relationship="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy" FromRole="NhanVien" ToRole="NguoiQuanLy" />
-        </EntityType>
+        <Association Name="FK_SoHoaDon">
+          <End Type="QuanLyNhaHangModel.HoaDon" Role="HoaDon" Multiplicity="1" />
+          <End Type="QuanLyNhaHangModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="SoHoaDon" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="SoHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CuaHang">
           <End Type="QuanLyNhaHangModel.CuaHang" Role="CuaHang" Multiplicity="1" />
           <End Type="QuanLyNhaHangModel.NguoiQuanLy" Role="NguoiQuanLy" Multiplicity="*" />
@@ -575,6 +641,18 @@
               <PropertyRef Name="MaCuaHang" />
             </Principal>
             <Dependent Role="NguoiQuanLy">
+              <PropertyRef Name="MaCuaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaMonAn_CuaHang">
+          <End Type="QuanLyNhaHangModel.CuaHang" Role="CuaHang" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.MonAn" Role="MonAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuaHang">
+              <PropertyRef Name="MaCuaHang" />
+            </Principal>
+            <Dependent Role="MonAn">
               <PropertyRef Name="MaCuaHang" />
             </Dependent>
           </ReferentialConstraint>
@@ -591,6 +669,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TenNguoiDung">
+          <End Type="QuanLyNhaHangModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
+          <End Type="QuanLyNhaHangModel.DonHang" Role="DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="TenNguoiDung" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="TenNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MaNhanVien_NguoiQuanLy">
           <End Type="QuanLyNhaHangModel.NguoiQuanLy" Role="NguoiQuanLy" Multiplicity="0..1" />
           <End Type="QuanLyNhaHangModel.NhanVien" Role="NhanVien" Multiplicity="*" />
@@ -600,92 +690,6 @@
             </Principal>
             <Dependent Role="NhanVien">
               <PropertyRef Name="MaQuanLy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="MonAn">
-          <Key>
-            <PropertyRef Name="MaMonAn" />
-          </Key>
-          <Property Name="MaMonAn" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="TenMonAn" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="MaCuaHang" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ChiTietDonHangs" Relationship="QuanLyNhaHangModel.FK_MAMONAN_ChiTietDonHang" FromRole="MonAn" ToRole="ChiTietDonHang" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="QuanLyNhaHangModel.FK_MAMONAN" FromRole="MonAn" ToRole="ChiTietHoaDon" />
-          <NavigationProperty Name="CuaHang" Relationship="QuanLyNhaHangModel.FK_MaMonAn_CuaHang" FromRole="MonAn" ToRole="CuaHang" />
-        </EntityType>
-        <Association Name="FK_MAMONAN_ChiTietDonHang">
-          <End Type="QuanLyNhaHangModel.MonAn" Role="MonAn" Multiplicity="1" />
-          <End Type="QuanLyNhaHangModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MonAn">
-              <PropertyRef Name="MaMonAn" />
-            </Principal>
-            <Dependent Role="ChiTietDonHang">
-              <PropertyRef Name="MaMonAn" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MAMONAN">
-          <End Type="QuanLyNhaHangModel.MonAn" Role="MonAn" Multiplicity="1" />
-          <End Type="QuanLyNhaHangModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MonAn">
-              <PropertyRef Name="MaMonAn" />
-            </Principal>
-            <Dependent Role="ChiTietHoaDon">
-              <PropertyRef Name="MaMonAn" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MaMonAn_CuaHang">
-          <End Type="QuanLyNhaHangModel.CuaHang" Role="CuaHang" Multiplicity="0..1" />
-          <End Type="QuanLyNhaHangModel.MonAn" Role="MonAn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CuaHang">
-              <PropertyRef Name="MaCuaHang" />
-            </Principal>
-            <Dependent Role="MonAn">
-              <PropertyRef Name="MaCuaHang" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="HoaDon">
-          <Key>
-            <PropertyRef Name="SoHoaDon" />
-          </Key>
-          <Property Name="SoHoaDon" Type="Int32" Nullable="false" />
-          <Property Name="NgayLapHoaDon" Type="DateTime" Precision="0" />
-          <Property Name="MaBanAn" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="TriGia" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="TrangThai" Type="Byte" />
-          <NavigationProperty Name="BanAn" Relationship="QuanLyNhaHangModel.FK_MABANAN" FromRole="HoaDon" ToRole="BanAn" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="QuanLyNhaHangModel.FK_SoHoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
-          <Property Name="ThoiGianThanhToan" Type="DateTime" Precision="3" />
-        </EntityType>
-        <Association Name="FK_MABANAN">
-          <End Type="QuanLyNhaHangModel.BanAn" Role="BanAn" Multiplicity="0..1" />
-          <End Type="QuanLyNhaHangModel.HoaDon" Role="HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BanAn">
-              <PropertyRef Name="MaBanAn" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="MaBanAn" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SoHoaDon">
-          <End Type="QuanLyNhaHangModel.HoaDon" Role="HoaDon" Multiplicity="1" />
-          <End Type="QuanLyNhaHangModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HoaDon">
-              <PropertyRef Name="SoHoaDon" />
-            </Principal>
-            <Dependent Role="ChiTietHoaDon">
-              <PropertyRef Name="SoHoaDon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -739,6 +743,8 @@
           <EntitySetMapping Name="CuaHangs">
             <EntityTypeMapping TypeName="QuanLyNhaHangModel.CuaHang">
               <MappingFragment StoreEntitySet="CuaHang">
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="NgayThanhLap" ColumnName="NgayThanhLap" />
                 <ScalarProperty Name="TenCuaHang" ColumnName="TenCuaHang" />
                 <ScalarProperty Name="MaQuanLy" ColumnName="MaQuanLy" />
@@ -756,6 +762,29 @@
                 <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
                 <ScalarProperty Name="NgayLapDonHang" ColumnName="NgayLapDonHang" />
                 <ScalarProperty Name="SoDonHang" ColumnName="SoDonHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDons">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.HoaDon">
+              <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="ThoiGianThanhToan" ColumnName="ThoiGianThanhToan" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="TriGia" ColumnName="TriGia" />
+                <ScalarProperty Name="MaBanAn" ColumnName="MaBanAn" />
+                <ScalarProperty Name="NgayLapHoaDon" ColumnName="NgayLapHoaDon" />
+                <ScalarProperty Name="SoHoaDon" ColumnName="SoHoaDon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonAns">
+            <EntityTypeMapping TypeName="QuanLyNhaHangModel.MonAn">
+              <MappingFragment StoreEntitySet="MonAn">
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+                <ScalarProperty Name="MaCuaHang" ColumnName="MaCuaHang" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="TenMonAn" ColumnName="TenMonAn" />
+                <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -801,29 +830,6 @@
                 <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="MaNV" ColumnName="MaNV" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MonAns">
-            <EntityTypeMapping TypeName="QuanLyNhaHangModel.MonAn">
-              <MappingFragment StoreEntitySet="MonAn">
-                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
-                <ScalarProperty Name="MaCuaHang" ColumnName="MaCuaHang" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="TenMonAn" ColumnName="TenMonAn" />
-                <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HoaDons">
-            <EntityTypeMapping TypeName="QuanLyNhaHangModel.HoaDon">
-              <MappingFragment StoreEntitySet="HoaDon">
-                <ScalarProperty Name="ThoiGianThanhToan" ColumnName="ThoiGianThanhToan" />
-                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
-                <ScalarProperty Name="TriGia" ColumnName="TriGia" />
-                <ScalarProperty Name="MaBanAn" ColumnName="MaBanAn" />
-                <ScalarProperty Name="NgayLapHoaDon" ColumnName="NgayLapHoaDon" />
-                <ScalarProperty Name="SoHoaDon" ColumnName="SoHoaDon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

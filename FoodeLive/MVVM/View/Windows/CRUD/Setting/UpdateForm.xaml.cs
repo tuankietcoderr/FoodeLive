@@ -10,21 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FoodeLive.View.Pages.Table
+namespace FoodeLive.View.Windows.CRUD.Setting
 {
     /// <summary>
-    /// Interaction logic for Detail.xaml
+    /// Interaction logic for UpdateForm.xaml
     /// </summary>
-    public partial class Detail : Page
+    public partial class UpdateForm : Window
     {
-        public Detail()
+        public UpdateForm()
         {
             InitializeComponent();
         }
 
-        ~Detail() { }
+        ~UpdateForm() { }
     }
 }

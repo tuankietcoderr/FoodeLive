@@ -34,7 +34,7 @@ namespace FoodeLive.Auth
                     newId = newIndex < 10 ? "NV0" + newIndex : "NV" + newIndex;
                 }
 
-                var newUser = new NhanVien() { MaNV = newId, TenNguoiDung = username, MatKhau = password, NgayVaoLam = DateTime.Now, MaQuanLy = cuaHang.MaQuanLy };
+                var newUser = new NhanVien() { MaNV = newId, TenNguoiDung = username, MatKhau = password, NgayVaoLam = DateTime.Now, MaQuanLy = cuaHang.MaQuanLy, Luong = 30000 };
 
                 DataProvider.Ins.DB.NhanViens.Add(newUser);
                 DataProvider.Ins.DB.SaveChanges();

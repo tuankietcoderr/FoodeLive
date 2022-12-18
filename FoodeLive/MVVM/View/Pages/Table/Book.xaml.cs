@@ -1,5 +1,4 @@
-﻿using FoodeLive.MVVM.ViewModel.VMTableSlice;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,17 +26,5 @@ namespace FoodeLive.View.Pages.Table
         }
 
         ~Book() { }
-
-        public VMBook ViewModel
-        {
-            get;
-        }
-
-        public Book(VMBook viewModel)
-        {
-            ViewModel = viewModel;
-            InitializeComponent();
-            this.DataContext = ViewModel;
-        }
     }
 }

@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FoodeLive.MVVM.ViewModel;
-using FoodeLive.MVVM.ViewModel.VMTableSlice;
 using FoodeLive.View.Pages.Table;
 
 namespace FoodeLive.View.Windows
@@ -33,13 +32,6 @@ namespace FoodeLive.View.Windows
             detail.IsSelected = true;
             viewModel = this.DataContext as MainViewModel;
         }
-
-        public DetailOrderBook(string MaBanAn, int SoHoaDon)
-        {
-            InitializeComponent();
-            detail.IsSelected = true;
-        }
-
         ~DetailOrderBook() { }
 
         private void orderOrBook_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -51,15 +51,15 @@ namespace FoodeLive.View.Windows.Auth
                 NhanVien nhanVien = DataProvider.Ins.DB.NhanViens.ToList().Find(nv => nv.TenNguoiDung == username);
                 if (nguoiQuanLy != null)
                 {
-                    viewModel.CuaHangHoatDong = nguoiQuanLy.CuaHang;
                     viewModel.NguoiQuanLy = nguoiQuanLy;
+                    viewModel.CuaHangHoatDong = nguoiQuanLy.CuaHang;
                     //NhanVien nhanVienAlias = new NhanVien() { Ma };
                     //viewModel.NhanVienHoatDong 
                 }
                 else
                 {
-                    viewModel.CuaHangHoatDong = DataProvider.Ins.DB.CuaHangs.ToList().Find(r => r.MaQuanLy == nhanVien.MaQuanLy);
                     viewModel.NhanVienHoatDong = nhanVien;
+                    viewModel.CuaHangHoatDong = DataProvider.Ins.DB.CuaHangs.ToList().Find(r => r.MaQuanLy == nhanVien.MaQuanLy);
                 }
                 MainWindow mainWindow = new MainWindow();
                 this.Close();

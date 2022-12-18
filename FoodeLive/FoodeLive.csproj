@@ -199,13 +199,7 @@
     <Compile Include="MVVM\ViewModel\FoodViewModel.cs" />
     <Compile Include="MVVM\ViewModel\GuestOrderViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
-    <Compile Include="MVVM\ViewModel\ManagerViewModel.cs" />
-    <Compile Include="MVVM\ViewModel\OrderViewModel.cs" />
     <Compile Include="MVVM\ViewModel\TableViewModel.cs" />
-    <Compile Include="MVVM\ViewModel\VMTableSlice\VMBook.cs" />
-    <Compile Include="MVVM\ViewModel\VMTableSlice\VMBookDetailOrder.cs" />
-    <Compile Include="MVVM\ViewModel\VMTableSlice\VMDetail.cs" />
-    <Compile Include="MVVM\ViewModel\VMTableSlice\VMOrder.cs" />
     <Compile Include="MVVM\View\Pages\Menu\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
     </Compile>
@@ -242,6 +236,15 @@
     <Compile Include="MVVM\View\Pages\Report\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\Windows\CRUD\Setting\StaffManager.xaml.cs">
+      <DependentUpon>StaffManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Windows\CRUD\Setting\StaffUD.xaml.cs">
+      <DependentUpon>StaffUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Windows\CRUD\Setting\UpdateRestaurant.xaml.cs">
+      <DependentUpon>UpdateRestaurant.xaml</DependentUpon>
+    </Compile>
     <Compile Include="utils\DevProd.cs" />
     <Compile Include="MVVM\View\Windows\Auth\RestaurantRegister.xaml.cs">
       <DependentUpon>RestaurantRegister.xaml</DependentUpon>
@@ -252,13 +255,13 @@
     <Compile Include="MVVM\View\Windows\CRUD\Menu\AddToMenu.xaml.cs">
       <DependentUpon>AddToMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\Windows\Setting\PasswordChange.xaml.cs">
+    <Compile Include="MVVM\View\Windows\CRUD\Setting\PasswordChange.xaml.cs">
       <DependentUpon>PasswordChange.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\Pages\Setting\SettingP.xaml.cs">
       <DependentUpon>SettingP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\Windows\Setting\UpdateForm.xaml.cs">
+    <Compile Include="MVVM\View\Windows\CRUD\Setting\UpdateForm.xaml.cs">
       <DependentUpon>UpdateForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LabelInput.xaml.cs">
@@ -291,6 +294,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Pages\Table\Detail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Windows\CRUD\Setting\StaffManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Windows\CRUD\Setting\StaffUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Windows\CRUD\Setting\UpdateRestaurant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,7 +369,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\Windows\Setting\PasswordChange.xaml">
+    <Page Include="MVVM\View\Windows\CRUD\Setting\PasswordChange.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -362,7 +377,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\Windows\Setting\UpdateForm.xaml">
+    <Page Include="MVVM\View\Windows\CRUD\Setting\UpdateForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

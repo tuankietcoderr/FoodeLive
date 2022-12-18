@@ -1,0 +1,29 @@
+﻿<Window x:Class="FoodeLive.MVVM.View.Windows.CRUD.Setting.UpdateRestaurant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodeLive.MVVM.View.Windows.CRUD.Setting" xmlns:ucli="clr-namespace:FoodeLive.UserControls"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        DataContext="{StaticResource MainViewModel}"
+        x:Name="UpdateRestaurantInformation"
+        Title="Cập nhật thông tin nhà hàng" Height="450" Width="500">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="3*"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Cập nhật thông tin nhà hàng" FontWeight="Bold" FontSize="30" />
+            <StackPanel Grid.Row="1">
+                <ucli:LabelInput Label="Tên nhà hàng" Icon="HomeMore32" Text="{Binding TenCuaHang,Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Placeholder="Nhập tên nhà hàng của bạn" />
+                <ucli:LabelInput Label="Mô tả" Icon="Notebook20" Text="{Binding MoTa,Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Placeholder="Nhập mô tả nhà hàng của bạn" />
+                <ucli:LabelInput Label="Hình ảnh" Icon="Link16" Text="{Binding ImgUrl,Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Placeholder="URL hình ảnh nhà hàng của bạn"/>
+            </StackPanel>
+            <Button Grid.Row="2" Command="{Binding UpdateRestaurantInformationCommand}" CommandParameter="{Binding ElementName=UpdateRestaurantInformation}" Content="Cập nhật" Background="#ff7a00" Foreground="#fff" BorderThickness="0" HorizontalAlignment="Right" Padding="20 6"/>
+        </Grid>
+    </ScrollViewer>
+</Window>

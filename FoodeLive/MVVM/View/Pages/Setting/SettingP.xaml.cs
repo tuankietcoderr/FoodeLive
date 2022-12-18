@@ -1,4 +1,4 @@
-﻿using FoodeLive.View.Windows.Setting;
+﻿using FoodeLive.View.Windows.CRUD.Setting;
 using System;
 using System.Collections.Generic;
 using System.Linq;

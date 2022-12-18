@@ -36,7 +36,7 @@
                 <RadioButton FontSize="12" FontWeight="Regular" HorizontalAlignment="Center" Height="41" Width="97" IsChecked="{Binding GioiTinhNu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="#FFFF7A00">Nữ</RadioButton>
             </WrapPanel>
 
-            <ui:Button HorizontalAlignment="Right" Content="Cập nhật" BorderThickness="0" Padding="20 8" FontWeight="SemiBold" Background="#ff7a00" Foreground="White"></ui:Button>
+            <ui:Button Command="{Binding UpdateInformation}" HorizontalAlignment="Right" Content="Cập nhật" BorderThickness="0" Padding="20 8" FontWeight="SemiBold" Background="#ff7a00" Foreground="White"></ui:Button>
 
         </StackPanel>
     </Grid>

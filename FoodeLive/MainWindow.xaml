@@ -93,7 +93,7 @@
                             </Grid.ColumnDefinitions>
                             <ui:SymbolIcon Symbol="Settings20" Grid.Column="0"/>
                             <TextBlock Text="Cài đặt" Grid.Column="1">
-                            </TextBlock>
+                            </TextBlock>    
                         </Grid>
                     </ListBoxItem>
                 </ListBox>

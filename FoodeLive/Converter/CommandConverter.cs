@@ -81,4 +81,22 @@ namespace FoodeLive.Converter
         }
     }
 
+    public class GioiTinhConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (targetType.Name == "ImageSource" || targetType.Name == "Source")
+            {
+                string s = (string)value;
+                return "/src/static/" + s;
+            }
+            return "/src/static/M01.png";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

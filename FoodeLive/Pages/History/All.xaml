@@ -8,7 +8,7 @@
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       d:DesignHeight="450" d:DesignWidth="1000"
       Title="All"
-      DataContext="{StaticResource OrderViewModel}"
+      DataContext="{StaticResource MainViewModel}"
       >
 
     <Grid>

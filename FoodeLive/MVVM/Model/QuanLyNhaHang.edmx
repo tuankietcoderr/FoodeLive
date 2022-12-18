@@ -105,6 +105,7 @@
           <Property Name="TenNguoiDung" Type="varchar" MaxLength="20" />
           <Property Name="MatKhau" Type="varchar" MaxLength="30" />
           <Property Name="NgayThamGia" Type="datetime" />
+          <Property Name="ImgUrl" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="NhanVien">
           <Key>
@@ -121,6 +122,7 @@
           <Property Name="TenNguoiDung" Type="varchar" MaxLength="20" />
           <Property Name="MatKhau" Type="varchar" MaxLength="30" />
           <Property Name="MaQuanLy" Type="char" MaxLength="4" />
+          <Property Name="ImgUrl" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_ChiTietDatBan_MaBan">
           <End Role="BanAn" Type="Self.BanAn" Multiplicity="0..1" />
@@ -514,6 +516,7 @@
           <Property Name="NgayThamGia" Type="DateTime" Precision="3" />
           <NavigationProperty Name="CuaHang" Relationship="QuanLyNhaHangModel.FK_CuaHang" FromRole="NguoiQuanLy" ToRole="CuaHang" />
           <NavigationProperty Name="NhanViens" Relationship="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy" FromRole="NguoiQuanLy" ToRole="NhanVien" />
+          <Property Name="ImgUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="NhanVien">
           <Key>
@@ -532,6 +535,7 @@
           <Property Name="MaQuanLy" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="DonHangs" Relationship="QuanLyNhaHangModel.FK_MANV_DONHANG" FromRole="NhanVien" ToRole="DonHang" />
           <NavigationProperty Name="NguoiQuanLy" Relationship="QuanLyNhaHangModel.FK_MaNhanVien_NguoiQuanLy" FromRole="NhanVien" ToRole="NguoiQuanLy" />
+          <Property Name="ImgUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_ChiTietDatBan_MaBan">
           <End Type="QuanLyNhaHangModel.BanAn" Role="BanAn" Multiplicity="0..1" />
@@ -782,6 +786,7 @@
           <EntitySetMapping Name="NguoiQuanLies">
             <EntityTypeMapping TypeName="QuanLyNhaHangModel.NguoiQuanLy">
               <MappingFragment StoreEntitySet="NguoiQuanLy">
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
                 <ScalarProperty Name="NgayThamGia" ColumnName="NgayThamGia" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
@@ -795,6 +800,7 @@
           <EntitySetMapping Name="NhanViens">
             <EntityTypeMapping TypeName="QuanLyNhaHangModel.NhanVien">
               <MappingFragment StoreEntitySet="NhanVien">
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
                 <ScalarProperty Name="MaQuanLy" ColumnName="MaQuanLy" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />

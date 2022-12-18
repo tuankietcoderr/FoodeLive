@@ -13,12 +13,12 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel IsEnabled="{Binding TableViewModel.IsBooked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanReflectConverter}}">
             <TextBlock Text="Thời gian" FontSize="14" FontWeight="SemiBold"/>
-            <DatePicker HorizontalAlignment="Stretch" Margin="0 10" SelectedDate="{Binding TableViewModel.ChiTietDatBan.NgayDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding TableViewModel.ChiTietDatBan.NgayDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,TargetNullValue={x:Static System:DateTime.Now}}" IsTodayHighlighted="True"/>
+            <DatePicker HorizontalAlignment="Stretch" FontSize="12" Margin="0 10" SelectedDate="{Binding TableViewModel.ChiTietDatBan.NgayDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding TableViewModel.ChiTietDatBan.NgayDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,TargetNullValue={x:Static System:DateTime.Now}}" IsTodayHighlighted="True"/>
             <ucli:LabelInput Label="Người đặt" Placeholder="Nguyễn Văn A" Icon="Person12" Text="{Binding TableViewModel.ChiTietDatBan.NguoiDat,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <ucli:LabelInput Label="Số điện thoại" Icon="Phone16" Placeholder="0123456789" Text="{Binding TableViewModel.ChiTietDatBan.SoDienThoai,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <StackPanel Width="{Binding Width,ElementName=LabelInputUc}" Margin="0,0,0,10">
                 <TextBlock Margin="0,0,0,4" FontWeight="SemiBold" FontSize="14" Text="Ghi chú" />
-                <ui:TextBox Icon="Note16" TextWrapping="Wrap" PlaceholderText="Nhập ghi chú..." Text="{Binding TableViewModel.ChiTietDatBan.GhiChu,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ui:TextBox ClearButtonEnabled="False" Icon="Note16" TextWrapping="Wrap" FontSize="12"  PlaceholderText="Nhập ghi chú..." Text="{Binding TableViewModel.ChiTietDatBan.GhiChu,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </StackPanel>
         <WrapPanel HorizontalAlignment="Right" Margin="0 20 0 0">

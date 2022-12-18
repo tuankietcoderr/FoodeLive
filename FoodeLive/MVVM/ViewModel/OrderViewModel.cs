@@ -16,20 +16,6 @@ namespace FoodeLive.MVVM.ViewModel
 {
     public class OrderViewModel : BaseViewModel
     {
-        //private string _soHoaDon;
-        //public string SoHoaDon { get => _soHoaDon; set { _soHoaDon = value; OnPropertyChanged(); } }
-
-        //private string _maBanAn;
-        //public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); } }
-
-        //private string _maNhanVien;
-        //public string MaNhanVien { get => _maNhanVien; set { _maNhanVien = value; OnPropertyChanged(); } }
-
-        //private double _triGia;
-        //public double TriGia { get => _triGia; set { _triGia = value; OnPropertyChanged(); } }
-        //Khong can thiet
-
-
         private DateTime _ngayHoaDon = DateTime.Now;
         public DateTime NgayHoaDon
         {

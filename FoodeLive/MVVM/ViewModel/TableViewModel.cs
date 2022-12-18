@@ -173,13 +173,12 @@ namespace FoodeLive.MVVM.ViewModel
                     ? "0" + lastIndex.ToString()
                     : lastIndex.ToString();
                     _chiTietDatBan.MaDatBan = "DB" + index;
-                    BanAn banAn = new BanAn() { MaCuaHang = _cuaHangHoatDong.MaCuaHang, CuaHang = _cuaHangHoatDong, Loai = _loai, MaBanAn = _maBanAn, TrangThai = "Đã đặt" };
-                    _chiTietDatBan.BanAn = banAn;
+                    DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.TrangThai == "Trống" && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Đã đặt";
                     DataProvider.Ins.DB.ChiTietDatBans.Add(_chiTietDatBan);
                     int lastSoHoaDon = DataProvider.Ins.DB.HoaDons.Count();
-                    HoaDon hoaDon = new HoaDon() { MaBanAn = _maBanAn, SoHoaDon = lastSoHoaDon + 1, NgayLapHoaDon = DateTime.Now, TriGia = 0, BanAn = banAn };
+                    HoaDon hoaDon = new HoaDon() { MaBanAn = _maBanAn, SoHoaDon = lastSoHoaDon + 1, NgayLapHoaDon = DateTime.Now, TriGia = 0 };
                     DataProvider.Ins.DB.HoaDons.Add(hoaDon);
-                    //DataProvider.Ins.DB.SaveChanges();
+                    DataProvider.Ins.DB.SaveChanges();
                     _isBooked = true;
                     OnPropertyChanged("IsBooked");
                     MessageBox.Show("Đã đặt!");

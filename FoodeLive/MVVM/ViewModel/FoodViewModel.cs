@@ -66,7 +66,6 @@ namespace FoodeLive.MVVM.ViewModel
             get
             {
                 ObservableCollection<MoneyWithQuantities> temp = new ObservableCollection<MoneyWithQuantities>();
-                MessageBox.Show(_soHoaDon.ToString());
                 foreach (ChiTietHoaDon item in DataProvider.Ins.DB.ChiTietHoaDons.Where(cthd => cthd.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && cthd.SoHoaDon == _soHoaDon))
                 {
                     MoneyWithQuantities mwq = new MoneyWithQuantities(item.MonAn, (int)item.SoLuong);

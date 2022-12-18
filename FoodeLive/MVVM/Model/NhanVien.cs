@@ -31,6 +31,7 @@ namespace FoodeLive.MVVM.Model
         public string TenNguoiDung { get; set; }
         public string MatKhau { get; set; }
         public string MaQuanLy { get; set; }
+        public string ImgUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHang> DonHangs { get; set; }

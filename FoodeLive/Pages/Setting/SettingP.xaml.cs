@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodeLive.Windows.Setting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,17 @@ namespace FoodeLive.Pages.Setting
         }
 
         ~SettingP() { }
+
+        private void changepassword_dialog_Click(object sender, RoutedEventArgs e)
+        {
+            PasswordChange passwordChange = new PasswordChange();
+            passwordChange.ShowDialog();
+        }
+
+        private void update_inform_dialog_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateForm updateForm = new UpdateForm();
+            updateForm.ShowDialog();
+        }
     }
 }

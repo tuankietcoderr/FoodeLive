@@ -29,14 +29,14 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <ui:Card Effect="{StaticResource DropShadow}" Margin="0 0 20 0" Background="#fff" BorderThickness="0" HorizontalAlignment="Left"  Width="160" Height="160">
-                    <Image Source="./person.png" Stretch="Uniform"/>
+                <ui:Card Effect="{StaticResource DropShadow}" Margin="0 0 20 0" Background="#fff" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center"     Width="160" Height="160">
+                    <Image Source="{Binding User}" Stretch="Uniform" />
                 </ui:Card>
                 <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom">
                     <StackPanel Grid.Column="1" Grid.Row="0">
-                        <TextBlock Text="Trần Tuấn Kiệt" FontSize="30" Margin="0 20" FontWeight="Bold" />
+                        <TextBlock Text="{Binding UserInformations.Ten}" FontSize="30" Margin="0 20" FontWeight="Bold" />
                         <TextBlock FontWeight="Regular" Foreground="LightGray">
-                        Là nhân viên từ <TextBlock Text="11/12/2022" />
+                        Là nhân viên từ <TextBlock Text="{Binding UserInformations.NgayThamGia}" />
                     </TextBlock>
                     </StackPanel>
                 </StackPanel>
@@ -49,24 +49,24 @@
                     </StackPanel.Resources>
                     <TextBlock>
                     <TextBlock Text="Địa chỉ: " FontWeight="SemiBold"/>
-                    <TextBlock Text="Vinhomes"/>
+                    <TextBlock Text="{Binding UserInformations.DiaChi}"/>
                     </TextBlock>
                     <TextBlock>
                     <TextBlock Text="Số điện thoại: " FontWeight="SemiBold"/>
-                    <TextBlock Text="0348071412"/>
+                    <TextBlock Text="{Binding UserInformations.SoDienThoai}"/>
                     </TextBlock>
                     <TextBlock>
                     <TextBlock Text="Ngày sinh: " FontWeight="SemiBold"/>
-                    <TextBlock Text="11/02/2003"/>
+                    <TextBlock Text="{Binding UserInformations.NgaySinh}"/>
                     </TextBlock>
                     <TextBlock>
                     <TextBlock Text="Giới tính: " FontWeight="SemiBold"/>
-                        <TextBlock Text="Nam"/>
+                        <TextBlock Text="{Binding UserInformations.GioiTinh}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Grid.Column="2">
-                    <Button Content="Cập nhật thông tin" BorderThickness="0" FontWeight="SemiBold" Opacity="0.7" />
-                    <Button Content="Đổi mật khẩu" BorderThickness="0" FontWeight="SemiBold" Opacity="0.7"/>
+                    <Button Content="Cập nhật thông tin" x:Name="update_inform_dialog" Click="update_inform_dialog_Click" BorderThickness="0" FontWeight="SemiBold" Opacity="0.7" />
+                    <Button x:Name="changepassword_dialog" Click="changepassword_dialog_Click" Content="Đổi mật khẩu" BorderThickness="0" FontWeight="SemiBold" Opacity="0.7"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

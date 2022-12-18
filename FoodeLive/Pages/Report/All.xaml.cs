@@ -75,7 +75,7 @@ namespace FoodeLive.Pages.Report
             double[] positions = new double[days];
             string[] labels = new string[days];
 
-            ObservableCollection<HoaDon> hoaDons = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year));
+            ObservableCollection<HoaDon> hoaDons = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year && hd.BanAn.MaCuaHang == ViewModel.CuaHangHoatDong.MaCuaHang));
             if (hoaDons.Count == 0)
             {
                 for (int i = 0; i < days; i++)
@@ -92,7 +92,7 @@ namespace FoodeLive.Pages.Report
                 {
                     if (hoaDons[j].NgayLapHoaDon.Value.Day == i + 1)
                     {
-                        values[i] = Convert.ToDouble(DataProvider.Ins.DB.HoaDons.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year && hd.NgayLapHoaDon.Value.Day == i + 1).Sum(t => t.TriGia));
+                        values[i] = Convert.ToDouble(DataProvider.Ins.DB.HoaDons.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year && hd.NgayLapHoaDon.Value.Day == i + 1 && hd.BanAn.MaCuaHang == ViewModel.CuaHangHoatDong.MaCuaHang).Sum(t => t.TriGia));
                         j++;
                     }
                     else

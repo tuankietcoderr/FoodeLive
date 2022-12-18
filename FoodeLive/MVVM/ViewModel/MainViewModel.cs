@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static FoodeLive.MVVM.ViewModel.MainViewModel;
 
 namespace FoodeLive.MVVM.ViewModel
 {
@@ -91,6 +92,8 @@ namespace FoodeLive.MVVM.ViewModel
         private ObservableCollection<HoaDon> _ListHoaDon;
         public ObservableCollection<HoaDon> ListHoaDon { get => _ListHoaDon; set { _ListHoaDon = value; OnPropertyChanged(); } }
 
+        private string _currPassword;
+        public string CurrPassword { get => _currPassword; set { _currPassword = value; OnPropertyChanged(); } }
 
         private BanAn _selectedItem;
         public BanAn SelectedItem
@@ -116,6 +119,96 @@ namespace FoodeLive.MVVM.ViewModel
             }
         }
 
+        private DateTime _ngayHoaDon = DateTime.Now;
+        public DateTime NgayHoaDon
+        {
+            get => _ngayHoaDon;
+            set
+            {
+                if (_ngayHoaDon.Month != value.Month)
+                {
+                    _ngayHoaDon = value;
+                    OnPropertyChanged();
+                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang)); OnPropertyChanged("ListHoaDon");
+                }
+            }
+        }
+
+        public class UserInformation
+        {
+            public string DiaChi { get; set; }
+            public string SoDienThoai { get; set; }
+            public string Ten { get; set; }
+            public string NgaySinh { get; set; }
+            public string GioiTinh { get; set; }
+            public string ImgUrl { get; set; }
+            public string NgayThamGia { get; set; }
+
+        }
+
+        private UserInformation _userInformations;
+        public UserInformation UserInformations
+        {
+            get
+            {
+                UserInformation userInformation = new UserInformation();
+                if (_nguoiQuanLy != null)
+                {
+                    userInformation.DiaChi = string.Empty;
+                    userInformation.SoDienThoai = _nguoiQuanLy.SoDienThoai;
+                    DateTime ngayThamGia = _nguoiQuanLy.NgayThamGia.Value;
+                    userInformation.NgayThamGia = ngayThamGia.Day + "/" + ngayThamGia.Month + "/" + ngayThamGia.Year;
+                    userInformation.GioiTinh = string.Empty;
+                    userInformation.Ten = _nguoiQuanLy.TenQuanLy;
+                    userInformation.ImgUrl = _nguoiQuanLy.ImgUrl;
+                }
+                else
+                {
+                    userInformation.DiaChi = string.Empty;
+                    userInformation.SoDienThoai = _nhanVienHoatDong.SoDienThoai;
+                    DateTime ngayThamGia = _nhanVienHoatDong.NgayVaoLam.Value;
+                    userInformation.NgayThamGia = ngayThamGia.Day + "/" + ngayThamGia.Month + "/" + ngayThamGia.Year;
+                    userInformation.GioiTinh = string.Empty;
+                    userInformation.Ten = _nhanVienHoatDong.HoTen;
+                    userInformation.ImgUrl = _nhanVienHoatDong.ImgUrl;
+                }
+                _userInformations = userInformation;
+                return _userInformations;
+            }
+            set
+            {
+                _userInformations = value; OnPropertyChanged();
+            }
+        }
+
+        private bool _gioiTinhNam = true;
+        public bool GioiTinhNam
+        {
+            get
+            {
+                return _gioiTinhNam;
+            }
+            set
+            {
+                _gioiTinhNam = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _gioiTinhNu = false;
+        public bool GioiTinhNu
+        {
+            get
+            {
+                return _gioiTinhNu;
+            }
+            set
+            {
+                _gioiTinhNu = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ComboBoxItem _reportMonth;
         public ComboBoxItem ReportMonth { get => _reportMonth; set { _reportMonth = value; OnPropertyChanged(); } }
 
@@ -128,10 +221,13 @@ namespace FoodeLive.MVVM.ViewModel
         public ICommand AddAccountCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
+        public ICommand PasswordCommand { get; set; }
+        public ICommand UpdateInformationCommand { get; set; }
 
         public MainViewModel()
         {
             _cuaHangHoatDong = new CuaHang();
+            _userInformations = new UserInformation();
             RefreshCommand = new RelayCommand<object>(p => true, p =>
             {
                 _cuaHangHoatDong.BanAns.Clear();
@@ -181,6 +277,17 @@ namespace FoodeLive.MVVM.ViewModel
                 Login login = new Login();
                 p.Close();
                 login.ShowDialog();
+            });
+
+            PasswordCommand = new RelayCommand<object>(p =>
+            {
+                if (_nguoiQuanLy != null)
+                    return !string.IsNullOrEmpty(_currPassword) && _currPassword == _nguoiQuanLy.MatKhau;
+                return !string.IsNullOrEmpty(_currPassword) && _currPassword == _nhanVienHoatDong.MatKhau;
+            },
+            p =>
+            {
+
             });
         }
     }

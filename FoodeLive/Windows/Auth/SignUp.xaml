@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         x:Name="SignUpWindow"
         DataContext="{StaticResource MainViewModel}"
-        Title="Đăng ký" Icon="/src/icon_foode_live.png" Height="700" Width="800">
+        Title="Đăng ký" Icon="/src/icon_foode_live.png" Height="700" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -21,11 +21,11 @@
             <ucli:LabelInput x:Name="signup_username" Width="{Binding Width, ElementName=LoginStackPanel}" Grid.Column="1" Placeholder="Nhập tên tài khoản" Icon="Person24" Label="Tên tài khoản" />
             <StackPanel Width="{Binding Width, ElementName=LoginStackPanel}" Margin="0,0,0,10">
                 <TextBlock Text="Mật khẩu" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                <ui:PasswordBox x:Name="signup_password" Grid.Column="1" PlaceholderText="Nhập mật khẩu" Icon="Key32" PasswordChanged="signup_password_PasswordChanged" />
+                <ui:PasswordBox ClearButtonEnabled="False" x:Name="signup_password" Grid.Column="1" PlaceholderText="Nhập mật khẩu" Icon="Key32" PasswordChanged="signup_password_PasswordChanged" />
             </StackPanel>
             <StackPanel Width="{Binding Width, ElementName=LoginStackPanel}">
                 <TextBlock Text="Nhập lại mật khẩu" FontSize="14" FontWeight="SemiBold" Margin="0,0,0, 4"/>
-                <ui:PasswordBox x:Name="signup_confirm_password"  Grid.Column="1" PlaceholderText="Nhập lại mật khẩu" PasswordChanged="signup_confirm_password_PasswordChanged" Icon="Key32" />
+                <ui:PasswordBox ClearButtonEnabled="False" x:Name="signup_confirm_password"  Grid.Column="1" PlaceholderText="Nhập lại mật khẩu" PasswordChanged="signup_confirm_password_PasswordChanged" Icon="Key32" />
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
                 <WrapPanel Margin="0,4,0,0">

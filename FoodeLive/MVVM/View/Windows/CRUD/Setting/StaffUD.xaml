@@ -8,6 +8,7 @@
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource MainViewModel}"
         x:Name="StaffInfoName"
+        Icon="/icon_foode_live.ico"
         ResizeMode="NoResize"
         Title="Thông tin nhân viên" MaxHeight="600" MaxWidth="1000">
     <ScrollViewer VerticalScrollBarVisibility="Auto">

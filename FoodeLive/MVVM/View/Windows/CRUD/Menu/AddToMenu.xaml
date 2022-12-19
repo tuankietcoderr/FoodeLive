@@ -8,7 +8,7 @@
         Title="Thêm món" Height="600" Width="500"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Icon="/src/icon_foode_live.png"
+        Icon="/icon_foode_live.ico"
         x:Name="AddFood"
         DataContext="{StaticResource MainViewModel}"
         >

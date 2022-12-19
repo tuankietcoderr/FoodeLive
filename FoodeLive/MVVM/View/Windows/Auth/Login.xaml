@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Đăng nhập" Height="500" Width="800"
-        Icon="/src/icon_foode_live.png"
+        Icon="/icon_foode_live.ico"
         DataContext="{StaticResource MainViewModel}"    
     >
     <Grid>

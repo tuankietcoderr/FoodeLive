@@ -6,9 +6,9 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:i="http://schemas.microsoft.com/expres"
         mc:Ignorable="d"
-        Icon="/src/icon_foode_live.png"
+        Icon="/icon_foode_live.ico"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="600" Width="800"
+        Title="{Binding TenCuaHang,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="600" Width="800"
         WindowState="Maximized"
         x:Name="HomePage"
         DataContext="{StaticResource MainViewModel}"
@@ -93,7 +93,7 @@
                             </Grid.ColumnDefinitions>
                             <ui:SymbolIcon Symbol="Settings20" Grid.Column="0"/>
                             <TextBlock Text="Cài đặt" Grid.Column="1">
-                            </TextBlock>    
+                            </TextBlock>
                         </Grid>
                     </ListBoxItem>
                 </ListBox>

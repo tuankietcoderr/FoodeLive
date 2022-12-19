@@ -9,6 +9,7 @@
         x:Name="StaffManagerName"
         DataContext="{StaticResource MainViewModel}"
         WindowState="Maximized"
+        Icon="/icon_foode_live.ico"
         Title="Quản lí nhân viên" Height="450" Width="800">
     <Grid Margin="20 10">
         <Grid.RowDefinitions>

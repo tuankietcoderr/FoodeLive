@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodeLive.View.Windows.Auth" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:ucli="clr-namespace:FoodeLive.UserControls"
         mc:Ignorable="d"
+        Icon="/icon_foode_live.ico"
         WindowStartupLocation="CenterScreen"
-        Title="RestaurantRegister" Height="800" Width="1000">
+        Title="Đăng ký tài khoản nhân viên" Height="800" Width="1000">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>

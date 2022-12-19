@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodeLive", "FoodeLive\FoodeLive.csproj", "{1822BA6C-0276-41ED-B8D8-EE24EA0ED8F9}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FoodeLiveSetUp", "FoodeLiveSetUp\FoodeLiveSetUp.vdproj", "{A80EB54B-1334-482E-ACF5-0AD04468B3AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1822BA6C-0276-41ED-B8D8-EE24EA0ED8F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1822BA6C-0276-41ED-B8D8-EE24EA0ED8F9}.Release|x86.ActiveCfg = Release|x86
 		{1822BA6C-0276-41ED-B8D8-EE24EA0ED8F9}.Release|x86.Build.0 = Release|x86
+		{A80EB54B-1334-482E-ACF5-0AD04468B3AF}.Debug|Any CPU.ActiveCfg = Debug
+		{A80EB54B-1334-482E-ACF5-0AD04468B3AF}.Debug|x86.ActiveCfg = Debug
+		{A80EB54B-1334-482E-ACF5-0AD04468B3AF}.Release|Any CPU.ActiveCfg = Release
+		{A80EB54B-1334-482E-ACF5-0AD04468B3AF}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

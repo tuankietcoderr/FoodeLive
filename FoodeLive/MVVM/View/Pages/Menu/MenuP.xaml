@@ -27,15 +27,16 @@
                     </Grid.ColumnDefinitions>
 
                     <WrapPanel Grid.Column="0" VerticalAlignment="Center" x:Name="foodControl" Background="Transparent">
-                        <ui:Button x:Name="all" Content="Tất cả" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Foreground="White" FontWeight="SemiBold" Background="#ff7a00" Padding="20 8" FontSize="12" HorizontalAlignment="Center"/>
+                        <ui:Button Command="{Binding FoodViewModel.RefreshAllFoodCommand}" x:Name="all" Content="Tất cả" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0" Foreground="White" FontWeight="SemiBold" Background="#ff7a00" Padding="20 8" FontSize="12" HorizontalAlignment="Center"/>
                     </WrapPanel>
                     <Grid Grid.Column="2" VerticalAlignment="Center" Height="60" Width="300" HorizontalAlignment="Right">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <ui:TextBox Icon="Search20" PlaceholderText="Rau, thịt,..." x:Name="search_tb" Height="35"/>
-                        <ui:Button Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Height="35" Padding="20,0" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
+                        <!--<ui:TextBox Icon="Search20" PlaceholderText="Rau, thịt,..." x:Name="search_tb"/>-->
+                        <ui:AutoSuggestBox ItemsSource="{Binding FoodViewModel.ListTenMonAn}" x:Name="searchfoodtb" PlaceholderText="Rau, thịt,..." />
+                        <ui:Button Command="{Binding FoodViewModel.SearchFoodCommand}" CommandParameter="{Binding ElementName=searchfoodtb, Path=Text}" Grid.Column="1" Content="Tìm kiếm" Background="#FF7A00" Foreground="#fff" FontSize="12" FontWeight="SemiBold" Padding="20,8" HorizontalAlignment="Right" PressedBorderBrush="Transparent" PressedForeground="#FF7A00" MouseOverBackground="#FF7A00" BorderThickness="0">
                         </ui:Button>
                     </Grid>
                 </Grid>
@@ -44,7 +45,7 @@
         </StackPanel>
 
 
-        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.ListMonAn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
+        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SearchResultsForFood, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ui:CardColor Width="200" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="24" FontWeight="Bold" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">

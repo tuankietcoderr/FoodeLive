@@ -34,7 +34,6 @@ namespace FoodeLive.View.Pages.Report
         {
             InitializeComponent();
             ViewModel = this.DataContext as MainViewModel;
-            ReportAnalyze.Plot.SetAxisLimits(yMin: 0, xMin: 0, yMax: 3000000, xMax: 31);
             ReportAnalyze.Plot.XLabel("Ngày");
             ReportAnalyze.Plot.YLabel("Doanh số");
             PieAnalyze.Plot.XLabel("Ngày");
@@ -63,7 +62,6 @@ namespace FoodeLive.View.Pages.Report
         {
             ReportAnalyze.Reset();
             PieAnalyze.Reset();
-            ReportAnalyze.Plot.SetAxisLimits(yMin: 0, xMin: 0, yMax: 3000000, xMax: 32);
             ReportAnalyze.Plot.XLabel("Ngày");
             ReportAnalyze.Plot.YLabel("Doanh số");
             PieAnalyze.Plot.XLabel("Ngày");
@@ -75,7 +73,9 @@ namespace FoodeLive.View.Pages.Report
             double[] positions = new double[days];
             string[] labels = new string[days];
 
-            ObservableCollection<HoaDon> hoaDons = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year && hd.BanAn.MaCuaHang == ViewModel.CuaHangHoatDong.MaCuaHang && hd.TrangThai == 1));
+            double max = 0;
+
+            ObservableCollection<HoaDon> hoaDons = new ObservableCollection<HoaDon>(ViewModel.ListHoaDon.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year && hd.BanAn.MaCuaHang == ViewModel.CuaHangHoatDong.MaCuaHang && hd.TrangThai == 1));
             if (hoaDons.Count == 0)
             {
                 for (int i = 0; i < days; i++)
@@ -90,15 +90,11 @@ namespace FoodeLive.View.Pages.Report
                 int j = 0;
                 for (int i = 0; i < days; i++)
                 {
-                    values[i] = 0;
                     if (j < hoaDons.Count)
                     {
-                        MessageBox.Show(hoaDons[j].TriGia.ToString());
-                        if (hoaDons[j].NgayLapHoaDon.Value.Day == i + 1)
-                        {
-                            values[i] = Convert.ToDouble(hoaDons.Where(lhd => lhd.NgayLapHoaDon.Value.Day == i + 1).Sum(t => t.TriGia));
-                            j++;
-                        }
+                        values[hoaDons[i].NgayLapHoaDon.Value.Day - 1] += Convert.ToDouble(hoaDons[j++].TriGia);
+                        if (max < values[hoaDons[i].NgayLapHoaDon.Value.Day - 1])
+                            max = values[hoaDons[i].NgayLapHoaDon.Value.Day - 1];
                     }
                     positions[i] = i + 1;
                     labels[i] = (i + 1).ToString();
@@ -107,6 +103,9 @@ namespace FoodeLive.View.Pages.Report
 
             var bar = ReportAnalyze.Plot.AddBar(values, positions);
             bar.ShowValuesAboveBars = true;
+            int lengthOfMax = max.ToString().Length;
+            max = Math.Ceiling(max / Math.Pow(10, lengthOfMax - 1)) * Math.Pow(10, lengthOfMax - 1);
+            ReportAnalyze.Plot.SetAxisLimits(yMin: 0, xMin: 0, xMax: Math.Min(days, 31) + 1, yMax: Math.Max(max, 500000));
             ReportAnalyze.Plot.XTicks(positions, labels);
             ReportAnalyze.Render();
 

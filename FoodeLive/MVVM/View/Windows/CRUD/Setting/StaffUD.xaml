@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource MainViewModel}"
+        x:Name="StaffInfoName"
         ResizeMode="NoResize"
         Title="Thông tin nhân viên" MaxHeight="600" MaxWidth="1000">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -78,7 +79,7 @@
                         <Button Margin="10,0,0,10" Background="#ff7a00" BorderBrush="#ff7a00" Foreground="#fff" Padding="20 6" FontWeight="SemiBold" Command="{Binding UpdateWageCommand}" Content="Cập nhật" VerticalAlignment="Bottom"/>
                         <Button Margin="10,0,0,10" Background="#fff" Foreground="#0a0a0a" Padding="20 6" FontWeight="SemiBold" Command="{Binding CalculateWageCommand}" Content="Tính lương" VerticalAlignment="Bottom"/>
                     </WrapPanel>
-                    <ui:Button Icon="Delete48" IconForeground="red" Padding="20 8" HorizontalAlignment="Right" Content="Xóa tài khoản" Margin="0 10 0 0" Command="{Binding DeleteAccountCommand}" Foreground="red" BorderThickness="0" FontWeight="SemiBold" />
+                    <ui:Button Icon="Delete48" IconForeground="red" Padding="20 8" HorizontalAlignment="Right" Content="Xóa tài khoản" Margin="0 10 0 0" Command="{Binding DeleteAccountCommand}" CommandParameter="{Binding ElementName=StaffInfoName}" Foreground="red" BorderThickness="0" FontWeight="SemiBold" />
                 </StackPanel>
             </StackPanel>
         </Grid>

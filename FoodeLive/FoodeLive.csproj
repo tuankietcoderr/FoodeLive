@@ -146,6 +146,7 @@
     <Compile Include="Auth\AuthSignUp.cs" />
     <Compile Include="Auth\AuthState.cs" />
     <Compile Include="Converter\CommandConverter.cs" />
+    <Compile Include="Converter\VietnameseStringConverter.cs" />
     <Compile Include="MVVM\Model\BanAn.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>

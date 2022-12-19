@@ -1,4 +1,5 @@
-﻿using FoodeLive.MVVM.Model;
+﻿using FoodeLive.Converter;
+using FoodeLive.MVVM.Model;
 using FoodeLive.utils;
 using FoodeLive.View.Windows.CRUD.Menu;
 using IT008_DoAnCuoiKi.ViewModel;
@@ -50,6 +51,24 @@ namespace FoodeLive.MVVM.ViewModel
                 return monAns;
             }
             set { _ListMonAn = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<string> _ListTenMonAn;
+        public ObservableCollection<string> ListTenMonAn
+        {
+            get
+            {
+                ObservableCollection<string> tenMonAns = new ObservableCollection<string>();
+                foreach (var item in _ListMonAn)
+                    tenMonAns.Add(item.TenMonAn.ToLower());
+                _ListTenMonAn = tenMonAns;
+                return tenMonAns;
+            }
+            set
+            {
+                _ListTenMonAn = value;
+                OnPropertyChanged();
+            }
         }
 
 
@@ -159,10 +178,28 @@ namespace FoodeLive.MVVM.ViewModel
         private MonAn _themMonAn;
         public MonAn ThemMonAn { get => _themMonAn; set { _themMonAn = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<MonAn> _searchResultsForFood;
+        public ObservableCollection<MonAn> SearchResultsForFood
+        {
+            get
+            {
+                _searchResultsForFood = _ListMonAn;
+                return _searchResultsForFood;
+            }
+            set
+            {
+                _searchResultsForFood = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AnnounceAddFood { get; set; }
         public ICommand PayCommand { get; set; }
         public ICommand AddFoodDialogCommand { get; set; }
         public ICommand AddFoodCommand { get; set; }
+
+        public ICommand SearchFoodCommand { get; set; }
+        public ICommand RefreshAllFoodCommand { get; set; }
 
         public FoodViewModel()
         {
@@ -311,8 +348,10 @@ namespace FoodeLive.MVVM.ViewModel
                     DataProvider.Ins.DB.MonAns.Add(_themMonAn);
                     DataProvider.Ins.DB.SaveChanges();
                     _ListMonAn.Add(_themMonAn);
+                    _ListTenMonAn.Add(_themMonAn.TenMonAn);
                     _themMonAn = new MonAn();
                     OnPropertyChanged("ListMonAn");
+                    OnPropertyChanged("ListTenMonAn");
                     MessageBox.Show("Đã thêm!");
                     p.Close();
                 }
@@ -321,6 +360,30 @@ namespace FoodeLive.MVVM.ViewModel
                     MessageBox.Show(ex.Message);
                 }
             });
+
+            SearchFoodCommand = new RelayCommand<string>(p => true, p =>
+            {
+                if (string.IsNullOrEmpty(p))
+                    return;
+                else
+                {
+
+                    ObservableCollection<MonAn> temp = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns.Where(m => VietnameseStringConverter.LocDau(m.TenMonAn.ToLower()).Contains(VietnameseStringConverter.LocDau(p.ToLower()))));
+                    _ListMonAn = temp;
+                    _searchResultsForFood = _ListMonAn;
+                    OnPropertyChanged("SearchResultsForFood");
+                    OnPropertyChanged("ListMonAn");
+                }
+            });
+
+            RefreshAllFoodCommand = new RelayCommand<object>(p => true, p =>
+            {
+                _ListMonAn = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
+                _searchResultsForFood = _ListMonAn;
+                OnPropertyChanged("SearchResultsForFood");
+                OnPropertyChanged("ListMonAn");
+            });
+
         }
     }
 }

@@ -318,7 +318,7 @@ namespace FoodeLive.MVVM.ViewModel
         public ICommand UpdateWageCommand { get; set; }
         public ICommand CalculateWageCommand { get; set; }
         public ICommand DeleteAccountCommand { get; set; }
-        
+
 
 
         public MainViewModel()
@@ -510,7 +510,23 @@ namespace FoodeLive.MVVM.ViewModel
                 {
                     DateTime now = DateTime.Now;
                     int tongSoNgayLam = (now - _selectedNhanVien.NgayVaoLam.Value).Days;
-                    MessageBox.Show(tongSoNgayLam.ToString());
+                    decimal? tongLuong = _selectedNhanVien.Luong * tongSoNgayLam;
+                    MessageBox.Show(tongLuong.Value.ToString());
+                });
+            DeleteAccountCommand = new RelayCommand<Window>(p => true,
+                p =>
+                {
+                    try
+                    {
+                        DataProvider.Ins.DB.NhanViens.Remove(_selectedNhanVien);
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBox.Show("Đã xóa!");
+                        p.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 });
         }
     }

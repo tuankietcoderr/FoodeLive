@@ -29,6 +29,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListView>
-        <ui:Button Grid.Row="2" Command="{Binding}" Icon="ArrowCounterclockwise12" Content="Tải lại" Background="#FF7A00" Foreground="#fff" IconForeground="#fff" Padding="20 8" HorizontalAlignment="Right" BorderThickness="0" MouseOverBackground="#FF7A00" PressedBackground="Transparent" PressedForeground="#FF7A00"/>
+        <ui:Button Effect="{StaticResource DropShadow}" Grid.Row="2" Command="{Binding}" Icon="ArrowCounterclockwise12" Content="Tải lại" Background="#FF7A00" Foreground="#fff" IconForeground="#fff" Padding="20 8" HorizontalAlignment="Right" BorderThickness="0" MouseOverBackground="#FF7A00" PressedBackground="Transparent" PressedForeground="#FF7A00"/>
     </Grid>
 </Page>

@@ -365,15 +365,12 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 if (string.IsNullOrEmpty(p))
                     return;
-                else
-                {
 
-                    ObservableCollection<MonAn> temp = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns.Where(m => VietnameseStringConverter.LocDau(m.TenMonAn.ToLower()).Contains(VietnameseStringConverter.LocDau(p.ToLower()))));
-                    _ListMonAn = temp;
-                    _searchResultsForFood = _ListMonAn;
-                    OnPropertyChanged("SearchResultsForFood");
-                    OnPropertyChanged("ListMonAn");
-                }
+                ObservableCollection<MonAn> temp = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns.Where(m => VietnameseStringConverter.LocDau(m.TenMonAn.ToLower()).Contains(VietnameseStringConverter.LocDau(p.ToLower()))));
+                _ListMonAn = temp;
+                _searchResultsForFood = _ListMonAn;
+                OnPropertyChanged("SearchResultsForFood");
+                OnPropertyChanged("ListMonAn");
             });
 
             RefreshAllFoodCommand = new RelayCommand<object>(p => true, p =>

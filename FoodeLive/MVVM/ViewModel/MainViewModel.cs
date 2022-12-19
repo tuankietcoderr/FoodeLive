@@ -1,4 +1,5 @@
-﻿using FoodeLive.MVVM.Model;
+﻿using FoodeLive.Converter;
+using FoodeLive.MVVM.Model;
 using FoodeLive.MVVM.View.Windows.CRUD.Setting;
 using FoodeLive.View.Windows;
 using FoodeLive.View.Windows.Auth;
@@ -32,6 +33,7 @@ namespace FoodeLive.MVVM.ViewModel
                 _foodViewModel = new FoodViewModel();
                 _tableViewModel.NguoiQuanLy = _nguoiQuanLy;
                 _foodViewModel.NguoiQuanLy = _nguoiQuanLy;
+                _ListNhanVien = new ObservableCollection<NhanVien>(_nguoiQuanLy.NhanViens);
             }
         }
 
@@ -94,6 +96,23 @@ namespace FoodeLive.MVVM.ViewModel
 
         private ObservableCollection<HoaDon> _ListHoaDon;
         public ObservableCollection<HoaDon> ListHoaDon { get => _ListHoaDon; set { _ListHoaDon = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<NhanVien> _ListNhanVien;
+        public ObservableCollection<NhanVien> ListNhanVien
+        {
+            get
+            {
+                var temp = new ObservableCollection<NhanVien>(_nguoiQuanLy.NhanViens);
+                _ListNhanVien = temp;
+                return _ListNhanVien;
+            }
+            set
+            {
+                _ListNhanVien = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private string _currPassword;
         public string CurrPassword { get => _currPassword; set { _currPassword = value; OnPropertyChanged(); } }
@@ -301,6 +320,43 @@ namespace FoodeLive.MVVM.ViewModel
         private ComboBoxItem _reportYear;
         public ComboBoxItem ReportYear { get => _reportYear; set { _reportYear = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<string> _ListTenNhanVien;
+        public ObservableCollection<string> ListTenNhanVien
+        {
+            get
+            {
+                foreach (var item in _nguoiQuanLy.NhanViens)
+                {
+                    if (!string.IsNullOrEmpty(item.HoTen))
+                        _ListTenNhanVien.Add(item.HoTen.ToLower());
+                    if (!string.IsNullOrEmpty(item.MaNV))
+                        _ListTenNhanVien.Add(item.MaNV.ToLower());
+                    if (!string.IsNullOrEmpty(item.SoDienThoai))
+                        _ListTenNhanVien.Add(item.SoDienThoai.ToLower());
+                    if (!string.IsNullOrEmpty(item.TenNguoiDung))
+                        _ListTenNhanVien.Add(item.TenNguoiDung.ToLower());
+                }
+                return _ListTenNhanVien;
+            }
+
+            set { _ListTenNhanVien = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<NhanVien> _searchResultsForStaff;
+        public ObservableCollection<NhanVien> SearchResultsForStaff
+        {
+            get
+            {
+                _searchResultsForStaff = _ListNhanVien;
+                return _searchResultsForStaff;
+            }
+            set
+            {
+                _searchResultsForStaff = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand RefreshCommand { get; set; }
         public ICommand RefreshBillCommand { get; set; }
         public ICommand AnalyzeReportCommand { get; set; }
@@ -318,6 +374,8 @@ namespace FoodeLive.MVVM.ViewModel
         public ICommand UpdateWageCommand { get; set; }
         public ICommand CalculateWageCommand { get; set; }
         public ICommand DeleteAccountCommand { get; set; }
+        public ICommand SearchStaffCommand { get; set; }
+        public ICommand RefreshStaffCommand { get; set; }
 
 
 
@@ -326,6 +384,7 @@ namespace FoodeLive.MVVM.ViewModel
             _cuaHangHoatDong = new CuaHang();
             _userInformations = new UserInformation();
             _getUserInformation = new UserInformation();
+            _ListTenNhanVien = new ObservableCollection<string>();
 
             RefreshCommand = new RelayCommand<object>(p => true, p =>
             {
@@ -528,6 +587,47 @@ namespace FoodeLive.MVVM.ViewModel
                         MessageBox.Show(ex.Message);
                     }
                 });
+
+            SearchStaffCommand = new RelayCommand<string>(p => true, p =>
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(p))
+                        return;
+                    ObservableCollection<NhanVien> temp = new ObservableCollection<NhanVien>(_nguoiQuanLy.NhanViens.Where(m =>
+                    {
+                        if (!string.IsNullOrEmpty(m.HoTen))
+                            if (VietnameseStringConverter.LocDau(m.HoTen.ToLower()).Contains(VietnameseStringConverter.LocDau(p.ToLower())))
+                                return true;
+                        if (!string.IsNullOrEmpty(m.MaNV))
+                            if (VietnameseStringConverter.LocDau(m.MaNV.ToLower()).Contains(VietnameseStringConverter.LocDau(p.ToLower())))
+                                return true;
+                        if (!string.IsNullOrEmpty(m.TenNguoiDung))
+                            if (VietnameseStringConverter.LocDau(m.TenNguoiDung.ToLower()).Contains(VietnameseStringConverter.LocDau(p.ToLower())))
+                                return true;
+                        if (!string.IsNullOrEmpty(m.SoDienThoai))
+                            if (VietnameseStringConverter.LocDau(m.SoDienThoai.ToLower()).Contains(VietnameseStringConverter.LocDau(p.ToLower())))
+                                return true;
+                        return false;
+                    }));
+                    _ListNhanVien = temp;
+                    _searchResultsForStaff = _ListNhanVien;
+                    OnPropertyChanged("SearchResultsForStaff");
+                    OnPropertyChanged("ListNhanVien");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            RefreshStaffCommand = new RelayCommand<object>(p => true, p =>
+            {
+                _ListNhanVien = new ObservableCollection<NhanVien>(_nguoiQuanLy.NhanViens);
+                _searchResultsForStaff = _ListNhanVien;
+                OnPropertyChanged("SearchResultsForStaff");
+                OnPropertyChanged("ListNhanVien");
+            });
         }
     }
 }

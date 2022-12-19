@@ -16,10 +16,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0" VerticalAlignment="Center">
-            <ui:TextBox FontSize="12" Icon="Search12" Width="300" PlaceholderText="Tìm kiếm nhân viên" ClearButtonEnabled="False"/>
-            <Button Background="#ff7a00" BorderThickness="0" Margin="10 0" FontSize="12" FontWeight="SemiBold" Content="Tìm kiếm" Foreground="#fff" Padding="20 8"/>
+            <ui:AutoSuggestBox ItemsSource="{Binding ListTenNhanVien}" x:Name="staffsearch" FontSize="12" Icon="Search12" Width="300" PlaceholderText="Tìm kiếm nhân viên" ClearButtonEnabled="False"/>
+            <Button Background="#ff7a00" Command="{Binding SearchStaffCommand}" CommandParameter="{Binding ElementName=staffsearch, Path=Text}" BorderThickness="0" Margin="10 0" FontSize="12" FontWeight="SemiBold" Content="Tìm kiếm" Foreground="#fff" Padding="20 8"/>
+            <ui:Button BorderThickness="0" Content="Tải lại" Padding="20 7" Command="{Binding RefreshStaffCommand}" Icon="ArrowClockwise12" />
         </WrapPanel>
-        <ui:DataGrid SelectionMode="Single" TextBlock.TextAlignment="Center" SelectedItem="{Binding SelectedNhanVien,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="datagrid" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1" ItemsSource="{Binding NguoiQuanLy.NhanViens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ui:DataGrid SelectionMode="Single" TextBlock.TextAlignment="Center" SelectedItem="{Binding SelectedNhanVien,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="datagrid" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1" ItemsSource="{Binding SearchResultsForStaff, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="50" Binding="{Binding MaNV}" Header="Mã NV"/>
                 <DataGridTextColumn Binding="{Binding HoTen}" Header="Họ và tên" />

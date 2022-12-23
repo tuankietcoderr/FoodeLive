@@ -15,7 +15,7 @@ namespace FoodeLive.MVVM.Model
     public partial class ChiTietDatBan
     {
         public string MaDatBan { get; set; }
-        public string MaBan { get; set; }
+        public string MaBanAn { get; set; }
         public string NguoiDat { get; set; }
         public string SoDienThoai { get; set; }
         public string GhiChu { get; set; }

@@ -88,8 +88,8 @@ namespace FoodeLive.MVVM.ViewModel
         private string _maBanAn;
         public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); } }
 
-        private int _soHoaDon;
-        public int SoHoaDon { get => _soHoaDon; set { _soHoaDon = value; OnPropertyChanged(); } }
+        private string _maHoaDon;
+        public string MaHoaDon { get => _maHoaDon; set { _maHoaDon = value; OnPropertyChanged(); } }
 
         private bool _forceRerender = false;
         public bool ForceRerender { get => _foodViewModel.Ordered || _tableViewModel.IsBooked; set { _forceRerender = value; OnPropertyChanged(); } }
@@ -129,12 +129,13 @@ namespace FoodeLive.MVVM.ViewModel
                 {
                     _maBanAn = _selectedItem.MaBanAn;
                     if (_cuaHangHoatDong.BanAns.ToList().Find(t => t.MaBanAn == _maBanAn).TrangThai == "Có khách")
-                        _soHoaDon = _cuaHangHoatDong.BanAns.ToList().FindLast(b => b.MaBanAn == _maBanAn).HoaDons.ToList().FindLast(hd => hd.MaBanAn == _maBanAn).SoHoaDon;
+                        _maHoaDon = _cuaHangHoatDong.BanAns.ToList().FindLast(b => b.MaBanAn == _maBanAn).HoaDons.ToList().FindLast(hd => hd.MaBanAn == _maBanAn).MaHoaDon;
                     else
-                        _soHoaDon = 0;
+                        _maHoaDon = _cuaHangHoatDong.MaCuaHang + "HD0000";
                     _tableViewModel.MaBanAn = _maBanAn;
                     _foodViewModel.MaBanAn = _maBanAn;
-                    _foodViewModel.SoHoaDon = _soHoaDon;
+                    _foodViewModel.MaHoaDon = _maHoaDon;
+                    _tableViewModel.TenBanAn = _selectedItem.TenBanAn;
                     DetailOrderBook detailOrderBook = new DetailOrderBook();
                     detailOrderBook.ShowDialog();
                 }
@@ -419,7 +420,8 @@ namespace FoodeLive.MVVM.ViewModel
             RefreshBillCommand = new RelayCommand<object>(p => true,
                 p =>
                 {
-                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons);
+                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(hd => hd.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && hd.TrangThai == 1));
+                    OnPropertyChanged("ListHoaDon");
                 }
                 );
 
@@ -625,6 +627,7 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 _ListNhanVien = new ObservableCollection<NhanVien>(_nguoiQuanLy.NhanViens);
                 _searchResultsForStaff = _ListNhanVien;
+                _selectedNhanVien = null;
                 OnPropertyChanged("SearchResultsForStaff");
                 OnPropertyChanged("ListNhanVien");
             });

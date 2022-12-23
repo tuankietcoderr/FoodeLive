@@ -14,7 +14,7 @@ namespace FoodeLive.MVVM.Model
     
     public partial class ChiTietHoaDon
     {
-        public int SoHoaDon { get; set; }
+        public string MaHoaDon { get; set; }
         public string MaMonAn { get; set; }
         public Nullable<int> SoLuong { get; set; }
     

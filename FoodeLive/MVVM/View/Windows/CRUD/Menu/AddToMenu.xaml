@@ -27,7 +27,7 @@
             <TextBlock Height="32"></TextBlock>
 
             <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.ThemMonAn.TenMonAn, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  Label="Tên món " Placeholder="Nhập vào tên món" Grid.ColumnSpan="3" />
-            <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.ThemMonAn.Gia, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, TargetNullValue=0}" Label="Nhập giá món ăn" Placeholder="Giá món ăn" Icon="Money20" Grid.ColumnSpan="3" />
+            <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.ThemMonAn.Gia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=0}" Label="Nhập giá món ăn" Placeholder="Giá món ăn" Icon="Money20" Grid.ColumnSpan="3" />
             <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.ThemMonAn.ImgUrl, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Label="Hình ảnh" Placeholder="Nhập URL hình ảnh của món ăn" Icon="Link12" Grid.ColumnSpan="3" />
             <Button Content="Xem trước ảnh" FontSize="12" />
             <Image Source="{Binding FoodViewModel.ThemMonAn.ImgUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" Width="120" Height="120"/>

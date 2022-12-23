@@ -126,5 +126,12 @@ namespace FoodeLive.View.Windows.Auth
             else
                 OnValidateFail(ref password_match_icon, ref password_match);
         }
+
+        private void SignUpToLogIn_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Login login = new Login();
+            this.Close();
+            login.ShowDialog();
+        }
     }
 }

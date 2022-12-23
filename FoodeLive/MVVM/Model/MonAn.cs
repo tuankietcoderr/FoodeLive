@@ -24,8 +24,8 @@ namespace FoodeLive.MVVM.Model
         public string MaMonAn { get; set; }
         public string TenMonAn { get; set; }
         public Nullable<decimal> Gia { get; set; }
-        public string MaCuaHang { get; set; }
         public string ImgUrl { get; set; }
+        public string MaCuaHang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }

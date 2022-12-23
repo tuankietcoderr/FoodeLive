@@ -28,11 +28,14 @@ namespace FoodeLive.MVVM.ViewModel
 
         private string _maBanAn;
         public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); } }
+        private string _tenBanAn;
+        public string TenBanAn { get => _tenBanAn; set { _tenBanAn = value; OnPropertyChanged(); } }
+
         private string _loai;
         public string Loai { get { return _loai; } set { _loai = value; OnPropertyChanged(); } }
 
-        private int _soHoaDon;
-        public int SoHoaDon { get => _soHoaDon; set { _soHoaDon = value; OnPropertyChanged(); } }
+        private string _maHoaDon;
+        public string MaHoaDon { get => _maHoaDon; set { _maHoaDon = value; OnPropertyChanged(); } }
 
         private ObservableCollection<BanAn> _ListBanAn;
         public ObservableCollection<BanAn> ListBanAn { get => _ListBanAn; set { _ListBanAn = value; OnPropertyChanged(); } }
@@ -52,8 +55,8 @@ namespace FoodeLive.MVVM.ViewModel
         {
             get
             {
-                if (DataProvider.Ins.DB.ChiTietDatBans.Count(c => c.MaBan == _maBanAn && c.BanAn.TrangThai == "Đã đặt" && _cuaHangHoatDong.MaCuaHang == c.BanAn.MaBanAn) > 0)
-                    _chiTietDatBan = DataProvider.Ins.DB.ChiTietDatBans.ToList().Find(c => c.MaBan == _maBanAn && c.BanAn.TrangThai == "Đã đặt" && _cuaHangHoatDong.MaCuaHang == c.BanAn.MaBanAn);
+                if (DataProvider.Ins.DB.ChiTietDatBans.Count(c => c.MaBanAn == _maBanAn && c.BanAn.TrangThai == "Đã đặt" && _cuaHangHoatDong.MaCuaHang == c.BanAn.MaBanAn) > 0)
+                    _chiTietDatBan = DataProvider.Ins.DB.ChiTietDatBans.ToList().Find(c => c.MaBanAn == _maBanAn && c.BanAn.TrangThai == "Đã đặt" && _cuaHangHoatDong.MaCuaHang == c.BanAn.MaBanAn);
                 return _chiTietDatBan;
             }
             set { _chiTietDatBan = value; OnPropertyChanged(); }
@@ -97,17 +100,25 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 if (_nguoiQuanLy == null)
                     return false;
-                if (string.IsNullOrEmpty(_maBanAn) || _loai == "Chọn loại bàn" || _maBanAn[0] != 'B' || _maBanAn.Length != 4)
-                    return false;
-                var ListMaBanAn = _cuaHangHoatDong.BanAns.Where(b => b.MaBanAn == _maBanAn).ToList();
-                if (ListMaBanAn == null || ListMaBanAn.Count() != 0)
+                if (string.IsNullOrEmpty(_tenBanAn) || _loai == "Chọn loại bàn")
                     return false;
                 return true;
             }, (p) =>
             {
                 try
                 {
-                    var banAn = new BanAn() { MaBanAn = _maBanAn, Loai = Loai, TrangThai = "Trống", CuaHang = _cuaHangHoatDong, MaCuaHang = _cuaHangHoatDong.MaCuaHang };
+                    if (_ListBanAn.Count == 0)
+                        _maBanAn = _cuaHangHoatDong.MaCuaHang + "BA01";
+                    else
+                    {
+                        _maBanAn = _cuaHangHoatDong.MaCuaHang + "BA";
+                        var lastBanAn = _ListBanAn.ToList().Last().MaBanAn;
+                        int newIndex = Convert.ToInt32(lastBanAn.Substring(_cuaHangHoatDong.MaCuaHang.Length + 2)) + 1;
+                        for (int i = 0; i < 8 - _cuaHangHoatDong.MaCuaHang.Length - newIndex.ToString().Length; i++)
+                            _maBanAn += "0";
+                        _maBanAn += newIndex.ToString();
+                    }
+                    var banAn = new BanAn() { MaBanAn = _maBanAn, Loai = Loai, TrangThai = "Trống", MaCuaHang = _cuaHangHoatDong.MaCuaHang, TenBanAn = _tenBanAn };
                     DataProvider.Ins.DB.BanAns.Add(banAn);
                     DataProvider.Ins.DB.SaveChanges();
                     _ListBanAn.Add(banAn);
@@ -164,18 +175,46 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 try
                 {
-                    _chiTietDatBan.MaBan = _maBanAn;
+                    if(DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai == "Có khách")
+                    {
+                        MessageBox.Show("Hiện bàn đang có khách nên không thể đặt bàn!");
+                        return;
+                    }    
+                    _chiTietDatBan.MaBanAn = _maBanAn;
                     _chiTietDatBan.TrangThai = 1;
-                    int cnt = DataProvider.Ins.DB.ChiTietDatBans.Where(ct => ct.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).Count();
-                    int lastIndex = cnt + 1;
-                    string index = lastIndex < 10
-                    ? "0" + lastIndex.ToString()
-                    : lastIndex.ToString();
-                    _chiTietDatBan.MaDatBan = "DB" + index;
+                    var chiTietDatBans = DataProvider.Ins.DB.ChiTietDatBans.Where(ct => ct.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).ToList();
+                    int cnt = chiTietDatBans.Count();
+                    if (cnt > 0)
+                    {
+                        _chiTietDatBan.MaDatBan = _cuaHangHoatDong.MaCuaHang + "DB";
+                        var lastChiTietDatBan = chiTietDatBans.Last();
+                        int lastIndex = Convert.ToInt16(lastChiTietDatBan.MaBanAn.Substring(_cuaHangHoatDong.MaCuaHang.Length + 2)) + 1;
+                        for (int i = 0; i < 8 - _cuaHangHoatDong.MaCuaHang.Length - lastIndex.ToString().Length; i++)
+                            _chiTietDatBan.MaDatBan += "0";
+                        _chiTietDatBan.MaDatBan += lastIndex.ToString();
+                    }
+                    else
+                    {
+                        _chiTietDatBan.MaDatBan = _cuaHangHoatDong.MaCuaHang + "DB01";
+                    }
                     DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.TrangThai == "Trống" && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Đã đặt";
                     DataProvider.Ins.DB.ChiTietDatBans.Add(_chiTietDatBan);
-                    int lastSoHoaDon = DataProvider.Ins.DB.HoaDons.Count();
-                    HoaDon hoaDon = new HoaDon() { MaBanAn = _maBanAn, SoHoaDon = lastSoHoaDon + 1, NgayLapHoaDon = DateTime.Now, TriGia = 0 };
+                    int lastMaHoaDon = DataProvider.Ins.DB.HoaDons.Count();
+                    // ----------------------- //
+                    List<HoaDon> hoaDons = DataProvider.Ins.DB.HoaDons.ToList().Where(t => t.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).ToList();
+                    if (hoaDons.Count == 0)
+                        _maHoaDon = _cuaHangHoatDong.MaCuaHang + "HD0001";
+                    else
+                    {
+                        _maHoaDon = _cuaHangHoatDong.MaCuaHang + "HD";
+                        HoaDon lastHoaDon = DataProvider.Ins.DB.HoaDons.ToList().Where(t => t.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).Last();
+                        int num = Convert.ToInt16(lastHoaDon.MaHoaDon.Substring(_cuaHangHoatDong.MaCuaHang.Length + 2)) + 1;
+                        int lengthOfNum = num.ToString().Length;
+                        for (int i = 0; i < 10 - _cuaHangHoatDong.MaCuaHang.Length - lengthOfNum; i++) // Xu li
+                            _maHoaDon += "0";
+                        _maHoaDon += num.ToString();
+                    }
+                    HoaDon hoaDon = new HoaDon() { MaBanAn = _maBanAn, MaHoaDon = _maHoaDon ,NgayLapHoaDon = DateTime.Now, TriGia = 0 };
                     DataProvider.Ins.DB.HoaDons.Add(hoaDon);
                     DataProvider.Ins.DB.SaveChanges();
                     _isBooked = true;
@@ -196,7 +235,7 @@ namespace FoodeLive.MVVM.ViewModel
                 try
                 {
                     DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Có khách";
-                    DataProvider.Ins.DB.ChiTietDatBans.ToList().FindLast(b => b.MaBan == _maBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = 2;
+                    DataProvider.Ins.DB.ChiTietDatBans.ToList().FindLast(b => b.MaBanAn == _maBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = 2;
                     DataProvider.Ins.DB.SaveChanges();
                     _isBooked = false;
                     _chiTietDatBan = new ChiTietDatBan();
@@ -218,7 +257,7 @@ namespace FoodeLive.MVVM.ViewModel
                 try
                 {
                     DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Trống";
-                    DataProvider.Ins.DB.ChiTietDatBans.ToList().Find(b => b.MaBan == _maBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = 0;
+                    DataProvider.Ins.DB.ChiTietDatBans.ToList().Find(b => b.MaBanAn == _maBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = 0;
                     DataProvider.Ins.DB.SaveChanges();
                     _isBooked = false;
                     _chiTietDatBan = new ChiTietDatBan();

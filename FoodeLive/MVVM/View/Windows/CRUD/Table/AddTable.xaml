@@ -12,7 +12,7 @@
         x:Name="AddTableWindow"
         Title="Thêm bàn" Height="260" Width="400">
     <StackPanel Margin="20" VerticalAlignment="Center">
-        <ucli:LabelInput Placeholder="(bắt đầu với B và có ít hơn 4 kí tự)" Label="Mã bàn" Text="{Binding TableViewModel.MaBanAn, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" x:Name="table_id" FontSize="{Binding FontSize,ElementName=table_type}" />
+        <ucli:LabelInput Placeholder="Bàn 1" Label="Tên bàn" Text="{Binding TableViewModel.TenBanAn, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" x:Name="table_id" FontSize="{Binding FontSize,ElementName=table_type}" />
         <TextBlock Text="Loại bàn" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,4"/>
         <ComboBox FontSize="12" x:Name="table_type" Text="{Binding TableViewModel.Loai, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
             <ComboBoxItem FontSize="{Binding FontSize, ElementName=table_type}" IsSelected="True">Chọn loại bàn</ComboBoxItem>

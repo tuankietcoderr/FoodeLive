@@ -26,9 +26,9 @@ namespace FoodeLive.MVVM.Model
         public string SoDienThoai { get; set; }
         public string TenNguoiDung { get; set; }
         public string MatKhau { get; set; }
+        public string DiaChi { get; set; }
         public Nullable<System.DateTime> NgayThamGia { get; set; }
         public string ImgUrl { get; set; }
-        public string DiaChi { get; set; }
         public string GioiTinh { get; set; }
         public Nullable<System.DateTime> NgaySinh { get; set; }
     

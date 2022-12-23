@@ -21,6 +21,7 @@ namespace FoodeLive.MVVM.Model
         }
     
         public string MaNV { get; set; }
+        public string MaCuaHang { get; set; }
         public string HoTen { get; set; }
         public string GioiTinh { get; set; }
         public Nullable<System.DateTime> NgaySinh { get; set; }
@@ -30,8 +31,8 @@ namespace FoodeLive.MVVM.Model
         public Nullable<System.DateTime> NgayVaoLam { get; set; }
         public string TenNguoiDung { get; set; }
         public string MatKhau { get; set; }
-        public string MaQuanLy { get; set; }
         public string ImgUrl { get; set; }
+        public string MaQuanLy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHang> DonHangs { get; set; }

@@ -234,6 +234,9 @@
     <Compile Include="MVVM\View\Pages\Report\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\Windows\CRUD\Menu\UpdateFood.xaml.cs">
+      <DependentUpon>UpdateFood.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\Windows\CRUD\Setting\StaffManager.xaml.cs">
       <DependentUpon>StaffManager.xaml</DependentUpon>
     </Compile>
@@ -292,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Pages\Table\Detail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Windows\CRUD\Menu\UpdateFood.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

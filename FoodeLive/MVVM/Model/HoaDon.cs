@@ -20,7 +20,7 @@ namespace FoodeLive.MVVM.Model
             this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
     
-        public int SoHoaDon { get; set; }
+        public string MaHoaDon { get; set; }
         public Nullable<System.DateTime> NgayLapHoaDon { get; set; }
         public string MaBanAn { get; set; }
         public Nullable<decimal> TriGia { get; set; }

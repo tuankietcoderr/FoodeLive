@@ -69,8 +69,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel>
-                <TextBlock Text="Bàn " FontSize="44" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Padding="0, 0, 0, 20">
-                    <TextBlock Text="{Binding MaBanAn}"/>
+                <TextBlock Text="{Binding TableViewModel.TenBanAn}" FontSize="44" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Padding="0, 0, 0, 20">
                 </TextBlock>
                 <Separator Width="200" HorizontalAlignment="Left"/>
             </StackPanel>

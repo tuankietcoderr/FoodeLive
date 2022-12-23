@@ -45,7 +45,7 @@
         </StackPanel>
 
 
-        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SearchResultsForFood, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
+        <ui:VirtualizingGridView ItemsSource="{Binding FoodViewModel.SearchResultsForFood, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding FoodViewModel.SelectedMonAn}" x:Name="AllFood"  SpacingMode="BetweenItemsOnly" Grid.Row="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ui:CardColor Width="200" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="24" FontWeight="Bold" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">

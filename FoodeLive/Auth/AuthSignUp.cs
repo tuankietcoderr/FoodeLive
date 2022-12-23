@@ -2,6 +2,7 @@
 using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -19,22 +20,26 @@ namespace FoodeLive.Auth
             {
                 var quanlies = DataProvider.Ins.DB.NguoiQuanLies.ToList();
                 var users = DataProvider.Ins.DB.NhanViens.ToList();
-                if (users.Exists(p => p.TenNguoiDung == username && p.MaQuanLy == cuaHang.MaQuanLy))
+                if (users.Exists(p => p.TenNguoiDung == username))
                 {
                     MessageBox.Show("Người dùng đã tồn tại!");
                     return false;
                 }
                 string newId = string.Empty;
-                if (users.Count() == 0) // User moi
-                    newId = "NV01";
+                var listNhaHang = users.Where(nv => nv.MaQuanLy == cuaHang.MaQuanLy);
+                if (listNhaHang.Count() == 0) // User moi
+                    newId = cuaHang.MaCuaHang + "NV01";
                 else
                 {
-                    var lastMaNV = users.Last().MaNV;
-                    int newIndex = Convert.ToInt32(lastMaNV.Substring(2, lastMaNV.Length - 2)) + 1;
-                    newId = newIndex < 10 ? "NV0" + newIndex : "NV" + newIndex;
+                    newId = cuaHang.MaCuaHang + "NV";
+                    var lastMaNV = listNhaHang.Last().MaNV;
+                    int newIndex = Convert.ToInt32(lastMaNV.Substring(cuaHang.MaCuaHang.Length + 2)) + 1;
+                    for (int i = 0; i < 8 - cuaHang.MaCuaHang.Length - newIndex.ToString().Length; i++)
+                        newId += "0";
+                    newId += newIndex.ToString();
                 }
 
-                var newUser = new NhanVien() { MaNV = newId, TenNguoiDung = username, MatKhau = password, NgayVaoLam = DateTime.Now, MaQuanLy = cuaHang.MaQuanLy, Luong = 30000 };
+                var newUser = new NhanVien() { MaNV = newId, TenNguoiDung = username, MatKhau = password, NgayVaoLam = DateTime.Now, MaQuanLy = cuaHang.MaQuanLy, Luong = 30000, MaCuaHang = cuaHang.MaCuaHang };
 
                 DataProvider.Ins.DB.NhanViens.Add(newUser);
                 DataProvider.Ins.DB.SaveChanges();
@@ -62,23 +67,21 @@ namespace FoodeLive.Auth
 
                 string newMaCuaHang = string.Empty;
                 if (cuaHangs.Count == 0)
-                    newMaCuaHang = "CH01";
+                    newMaCuaHang = "CH0001";
                 else
                 {
-                    var lastMaCH = cuaHangs.Last().MaCuaHang;
-                    int newIndex = Convert.ToInt32(lastMaCH.Substring(2, lastMaCH.Length - 2)) + 1;
-                    newMaCuaHang = newIndex < 10 ? "CH0" + newIndex : "CH" + newIndex;
+                    var lastMaCH = cuaHangs.Last();
+                    newMaCuaHang = "CH";
+
+                    int newIndex = Convert.ToInt32(lastMaCH.MaCuaHang.Substring(2)) + 1;
+                    for (int i = 0; i < 4 - newIndex.ToString().Length; i++)
+                        newMaCuaHang += "0";
+                    newMaCuaHang += newIndex.ToString();
                 }
 
                 string newId = string.Empty;
-                if (quanlies.Count() == 0) // User moi
-                    newId = "QL01";
-                else
-                {
-                    var lastMaNV = quanlies.Last().MaQuanLy;
-                    int newIndex = Convert.ToInt32(lastMaNV.Substring(2, lastMaNV.Length - 2)) + 1;
-                    newId = newIndex < 10 ? "QL0" + newIndex : "QL" + newIndex;
-                }
+                newId = newMaCuaHang + "QL";
+                // chi co 1 quan ly cho moi cua hang
                 CuaHang newCuaHang = new CuaHang() { TenCuaHang = tenCuaHang, MaCuaHang = newMaCuaHang, MaQuanLy = newId, NgayThanhLap = DateTime.Now };
                 var newQuanLy = new NguoiQuanLy() { MaQuanLy = newId, CuaHang = newCuaHang, MatKhau = password, TenNguoiDung = username, NgayThamGia = DateTime.Now, MaCuaHang = newMaCuaHang };
                 DataProvider.Ins.DB.NguoiQuanLies.Add(newQuanLy);

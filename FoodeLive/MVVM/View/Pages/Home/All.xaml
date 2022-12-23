@@ -22,10 +22,7 @@
                                 <RowDefinition Height="1"/>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" FontSize="14" FontWeight="Bold">
-                                    Bàn 
-                                    <TextBlock Text="{Binding MaBanAn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="16" />
-                                </TextBlock>
+                            <TextBlock Grid.Row="0" FontSize="14" FontWeight="Bold" Text="{Binding TenBanAn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <Separator Grid.Row="1" Width="70" BorderBrush="#000" Opacity="0.5"/>
                             <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
                                 <TextBlock FontSize="10" Foreground="#ABABAB">

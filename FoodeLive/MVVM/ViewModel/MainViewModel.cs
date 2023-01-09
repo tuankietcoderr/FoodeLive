@@ -148,11 +148,20 @@ namespace FoodeLive.MVVM.ViewModel
             get => _ngayHoaDon;
             set
             {
-                if (_ngayHoaDon.Month != value.Month)
+               /* if (_ngayHoaDon.Month != value.Month)
                 {
                     _ngayHoaDon = value;
                     OnPropertyChanged();
                     _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && b.TrangThai == 1)); OnPropertyChanged("ListHoaDon");
+                }*/
+
+                if (_ngayHoaDon.Date != value.Date)
+                {
+                    _ngayHoaDon = value;
+                    OnPropertyChanged();
+                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Year == _ngayHoaDon.Year &&
+                                                                                                            b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month &&
+                                                                                                             b.NgayLapHoaDon.Value.Day == _ngayHoaDon.Day && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && b.TrangThai == 1)); OnPropertyChanged("ListHoaDon");
                 }
             }
         }

@@ -429,7 +429,9 @@ namespace FoodeLive.MVVM.ViewModel
             RefreshBillCommand = new RelayCommand<object>(p => true,
                 p =>
                 {
-                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(hd => hd.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && hd.TrangThai == 1));
+                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(hd => hd.NgayLapHoaDon.Value.Year == _ngayHoaDon.Year &&
+                                                                                                            hd.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month &&
+                                                                                                             hd.NgayLapHoaDon.Value.Day == _ngayHoaDon.Day && hd.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && hd.TrangThai == 1));
                     OnPropertyChanged("ListHoaDon");
                 }
                 );

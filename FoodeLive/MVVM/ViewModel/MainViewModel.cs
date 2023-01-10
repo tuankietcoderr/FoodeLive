@@ -31,6 +31,8 @@ namespace FoodeLive.MVVM.ViewModel
                 _nguoiQuanLy = value; OnPropertyChanged();
                 _tableViewModel = new TableViewModel();
                 _foodViewModel = new FoodViewModel();
+                _notificationViewModel = new NotificationViewModel();
+
                 _tableViewModel.NguoiQuanLy = _nguoiQuanLy;
                 _foodViewModel.NguoiQuanLy = _nguoiQuanLy;
                 _ListNhanVien = new ObservableCollection<NhanVien>(_nguoiQuanLy.NhanViens);
@@ -46,6 +48,8 @@ namespace FoodeLive.MVVM.ViewModel
                 _nhanVienHoatDong = value; OnPropertyChanged();
                 _tableViewModel = new TableViewModel();
                 _foodViewModel = new FoodViewModel();
+                _notificationViewModel = new NotificationViewModel();
+                _notificationViewModel.CuaHangHoatDong = _cuaHangHoatDong;
                 _foodViewModel.NhanVienHoatDong = _nhanVienHoatDong;
                 _tableViewModel.NhanVienHoatDong = _nhanVienHoatDong;
             }
@@ -70,6 +74,9 @@ namespace FoodeLive.MVVM.ViewModel
 
                 _foodViewModel.CuaHangHoatDong = _cuaHangHoatDong;
                 _tableViewModel.CuaHangHoatDong = _cuaHangHoatDong;
+                _notificationViewModel.CuaHangHoatDong = _cuaHangHoatDong;
+                _notificationViewModel.ListThongBaoDonHang = new ObservableCollection<ThongBao>(DataProvider.Ins.DB.ThongBaos.Where(t => t.ChiTietDonHang.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
+                _notificationViewModel.ListThongBaoDatBan = new ObservableCollection<ThongBao>(DataProvider.Ins.DB.ThongBaos.Where(n => n.ChiTietDatBan.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
                 _tableViewModel.ListBanAn = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns);
                 _tableViewModel.EmptyTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Trống"));
                 _tableViewModel.UsingTables = new ObservableCollection<BanAn>(_cuaHangHoatDong.BanAns.Where(b => b.TrangThai == "Có khách"));
@@ -84,6 +91,10 @@ namespace FoodeLive.MVVM.ViewModel
 
         private FoodViewModel _foodViewModel;
         public FoodViewModel FoodViewModel { get => _foodViewModel; set { _foodViewModel = value; OnPropertyChanged(); } }
+
+        private NotificationViewModel _notificationViewModel;
+        public NotificationViewModel NotificationViewModel { get => _notificationViewModel; set { _notificationViewModel = value; OnPropertyChanged(); } }
+
 
         private string _maBanAn;
         public string MaBanAn { get => _maBanAn; set { _maBanAn = value; OnPropertyChanged(); } }
@@ -418,6 +429,7 @@ namespace FoodeLive.MVVM.ViewModel
 
                     _foodViewModel.ListMonAn.Clear();
                     _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
+                    _foodViewModel.SelectedMonAn = null;
                 }
                 catch (Exception ex)
                 {
@@ -533,6 +545,7 @@ namespace FoodeLive.MVVM.ViewModel
                     CuaHang cuaHang = new CuaHang();
                     cuaHang = DataProvider.Ins.DB.CuaHangs.ToList().Find(r => r.MaCuaHang == _cuaHangHoatDong.MaCuaHang);
                     cuaHang.TenCuaHang = _tenCuaHang;
+                    cuaHang.TenCuaHangKhongDau = VietnameseStringConverter.LocDau(_tenCuaHang);
                     cuaHang.MoTa = _moTa;
                     cuaHang.ImgUrl = _imgUrl;
                     DataProvider.Ins.DB.SaveChanges();

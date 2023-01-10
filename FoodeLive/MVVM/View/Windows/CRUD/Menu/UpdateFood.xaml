@@ -30,7 +30,12 @@
             <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.SelectedMonAn.ImgUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Label="Hình ảnh" Placeholder="Nhập URL hình ảnh của món ăn" Icon="Link12" Grid.ColumnSpan="3" />
             <Button Content="Xem trước ảnh" FontSize="12" />
             <Image Source="{Binding FoodViewModel.SelectedMonAn.ImgUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" Width="120" Height="120"/>
+            <WrapPanel HorizontalAlignment="Right">
+                
+            <ui:Button Margin="0 20 10 0" FontSize="12" Command="{Binding FoodViewModel.DeleteFoodCommand}" CommandParameter="{Binding ElementName=UpdateFoodName}" HorizontalAlignment="Right" BorderThickness="0" FontWeight="SemiBold" IconForeground="White" Content="Xóa món" Background="Transparent" Foreground="red" Padding="16 8"></ui:Button>
             <ui:Button Margin="0 20 0 0" FontSize="12" Command="{Binding FoodViewModel.UpdateFoodCommand}" CommandParameter="{Binding ElementName=UpdateFoodName}" HorizontalAlignment="Right" BorderThickness="0" FontWeight="SemiBold" IconForeground="White" Content="Cập nhật" Background="#ff7a00" Foreground="White" Padding="16 8"></ui:Button>
+            </WrapPanel>
+
 
         </StackPanel>
     </Grid>

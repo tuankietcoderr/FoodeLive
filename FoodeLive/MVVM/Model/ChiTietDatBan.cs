@@ -14,6 +14,12 @@ namespace FoodeLive.MVVM.Model
     
     public partial class ChiTietDatBan
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ChiTietDatBan()
+        {
+            this.ThongBaos = new HashSet<ThongBao>();
+        }
+    
         public string MaDatBan { get; set; }
         public string MaBanAn { get; set; }
         public string NguoiDat { get; set; }
@@ -21,7 +27,11 @@ namespace FoodeLive.MVVM.Model
         public string GhiChu { get; set; }
         public Nullable<byte> TrangThai { get; set; }
         public Nullable<System.DateTime> NgayDat { get; set; }
+        public string email { get; set; }
     
         public virtual BanAn BanAn { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThongBao> ThongBaos { get; set; }
+        public virtual user user { get; set; }
     }
 }

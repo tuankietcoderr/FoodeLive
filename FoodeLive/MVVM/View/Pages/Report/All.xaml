@@ -37,6 +37,10 @@
                     <ComboBoxItem>2020</ComboBoxItem>
                     <ComboBoxItem>2021</ComboBoxItem>
                     <ComboBoxItem>2022</ComboBoxItem>
+                    <ComboBoxItem>2023</ComboBoxItem>
+                    <ComboBoxItem>2024</ComboBoxItem>
+                    <ComboBoxItem>2025</ComboBoxItem>
+                    <ComboBoxItem>2026</ComboBoxItem>
                     <ComboBoxItem Content="Năm" IsSelected="True" Visibility="Hidden" Height="0"></ComboBoxItem>
                 </ComboBox>
                 <ui:Button Command="{Binding AnalyzeReportCommand}" Content="Phân tích" x:Name="analyze" Padding="20 8" Click="analyze_Click" Background="#ff7a00" Foreground="#fff" Icon="Flowchart20" IconForeground="#fff" FontWeight="SemiBold" BorderThickness="0" Effect="{StaticResource DropShadow}" MouseOverBackground="#ff7a00" PressedForeground="#ff7a00" PressedBackground="Transparent" />

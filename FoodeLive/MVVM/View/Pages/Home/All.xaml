@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView x:Name="all_table" SelectionMode="Single" ItemsSource="{Binding TableViewModel.ListBanAn,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="auto" Grid.Row="0" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly">
+        <ui:VirtualizingGridView x:Name="all_table" SelectionMode="Single" ItemsSource="{Binding TableViewModel.ListBanAn,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Height="auto" Grid.Row="0" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="150">

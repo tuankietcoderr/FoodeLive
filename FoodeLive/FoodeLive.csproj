@@ -144,6 +144,9 @@
     <Compile Include="Auth\AuthState.cs" />
     <Compile Include="Converter\CommandConverter.cs" />
     <Compile Include="Converter\VietnameseStringConverter.cs" />
+    <Compile Include="MVVM\Model\account.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Model\BanAn.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
@@ -169,9 +172,6 @@
     <Compile Include="MVVM\Model\MonAn.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\Model\NguoiDung.cs">
-      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
-    </Compile>
     <Compile Include="MVVM\Model\NguoiQuanLy.cs">
       <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
     </Compile>
@@ -193,10 +193,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyNhaHang.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\Model\session.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\ThongBao.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\user.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\verificationtoken.cs">
+      <DependentUpon>QuanLyNhaHang.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\FoodViewModel.cs" />
     <Compile Include="MVVM\ViewModel\GuestOrderViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\NotificationViewModel.cs" />
     <Compile Include="MVVM\ViewModel\TableViewModel.cs" />
     <Compile Include="MVVM\View\Pages\Menu\MenuP.xaml.cs">
       <DependentUpon>MenuP.xaml</DependentUpon>
@@ -222,6 +235,12 @@
     <Compile Include="MVVM\View\Pages\Notification\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\Pages\Notification\DatBan.xaml.cs">
+      <DependentUpon>DatBan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Pages\Notification\DonHang.xaml.cs">
+      <DependentUpon>DonHang.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\Pages\Table\Book.xaml.cs">
       <DependentUpon>Book.xaml</DependentUpon>
     </Compile>
@@ -236,6 +255,12 @@
     </Compile>
     <Compile Include="MVVM\View\Windows\CRUD\Menu\UpdateFood.xaml.cs">
       <DependentUpon>UpdateFood.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Windows\CRUD\Notification\ConfirmFood.xaml.cs">
+      <DependentUpon>ConfirmFood.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Windows\CRUD\Notification\ConfirmTable.xaml.cs">
+      <DependentUpon>ConfirmTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\Windows\CRUD\Setting\StaffManager.xaml.cs">
       <DependentUpon>StaffManager.xaml</DependentUpon>
@@ -294,11 +319,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\Pages\Notification\DatBan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Pages\Notification\DonHang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\Pages\Table\Detail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Windows\CRUD\Menu\UpdateFood.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Windows\CRUD\Notification\ConfirmFood.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Windows\CRUD\Notification\ConfirmTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

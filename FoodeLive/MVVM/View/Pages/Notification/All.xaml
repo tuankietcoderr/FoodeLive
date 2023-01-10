@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:FoodeLive.View.Pages.Notification" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{StaticResource MainViewModel}"
       Title="Notification">
 
     <Grid Margin="20 0">
@@ -19,16 +20,28 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Tất cả thông báo" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
-            <ui:Button Cursor="Hand" HorizontalAlignment="Right" Icon="FilterDismiss20" Content="Xóa hết thông báo" Foreground="Gray" Padding="20 8" FontSize="12" IconForeground="Gray" PressedForeground="#000" BorderThickness="0" Background="Transparent" MouseOverBackground="#CECCCC" Grid.Column="1"/>
+            <ListBox Background="Transparent" x:Name="container_nav" BorderThickness="0" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel VerticalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="SemiBold" />
+                        <Setter Property="Padding" Value="20,2,20,2" />
+                    </Style>
+                </ListBox.Resources>
+                <ListBoxItem Background="#FF7A00" x:Name="notification_dh" Margin="10,0">
+                    <TextBlock Text="Đơn hàng" />
+                </ListBoxItem>
+                <ListBoxItem Background="#FF7A00" x:Name="notification_db" Margin="10,0">
+                    <TextBlock Text="Đặt bàn" />
+                </ListBoxItem>
+            </ListBox>
         </Grid>
-        <ListView Grid.Row="1">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ListView>
-        <ui:Button Effect="{StaticResource DropShadow}" Grid.Row="2" Command="{Binding}" Icon="ArrowCounterclockwise12" Content="Tải lại" Background="#FF7A00" Foreground="#fff" IconForeground="#fff" Padding="20 8" HorizontalAlignment="Right" BorderThickness="0" MouseOverBackground="#FF7A00" PressedBackground="Transparent" PressedForeground="#FF7A00"/>
+        <Frame Grid.Row="1" x:Name="notification_navframe" />
+        <ui:Button Effect="{StaticResource DropShadow}" Grid.Row="2" Command="{Binding NotificationViewModel.RefreshFoodCommand}" Icon="ArrowCounterclockwise12" Content="Tải lại" Background="#FF7A00" Foreground="#fff" IconForeground="#fff" Padding="20 8" HorizontalAlignment="Right" BorderThickness="0" MouseOverBackground="#FF7A00" PressedBackground="Transparent" PressedForeground="#FF7A00"/>
     </Grid>
 </Page>

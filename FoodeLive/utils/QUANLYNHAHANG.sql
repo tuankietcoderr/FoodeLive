@@ -66,28 +66,47 @@ CREATE TABLE BanAn
     MaCuaHang char(6) not null constraint FK_MaBanAn_CuaHang FOREIGN key (MaCuaHang) REFERENCES CuaHang(MaCuaHang),
 )
 
-CREATE TABLE NguoiDung
+create table Account (
+	userId char(10) not null,
+	type varchar(20),
+	provider varchar(100) unique,
+	providerAccountId varchar(200) UNIQUE,
+	refresh_token text,
+	access_token text,
+	expires_at int,
+	token_type varchar(20),
+	scope varchar(100),
+	id_token text,
+	session_state varchar(20)
+	constraint FK_Account_User FOREIGN KEY (userId) REFERENCES GoogleUser(id)
+)
+
+CREATE TABLE GoogleUser
 (
-	HoTen NVARCHAR(40),
-	SoDienThoai VARCHAR(12),
-	CONSTRAINT PK_MANGUOIDUNG PRIMARY KEY (TenNguoiDung),
-	TenNguoiDung VARCHAR(20) UNIQUE,
-    MatKhau VARCHAR(30),
+	id char(10),
+	fullName varchar(100),
+	phone_number VARCHAR(12),
+	CONSTRAINT PK_userId PRIMARY KEY (id),
+	email VARCHAR(100) unique,
+	emailVerified DATETIME,
+	image varchar(max),
 )
 
 create table DonHang
 (
 	MaDonHang varchar(12) NOT NULL ,
 	NgayLapDonHang DATETIME,
-	TenNguoiDung VARCHAR(20) UNIQUE,
+	userId CHAR(10) not null,
 	TriGia MONEY,
 	TieuDe NVARCHAR(50),
 	GhiChu NVARCHAR(50),
 	MaNV CHAR(10),
 	CONSTRAINT PK_SoDonHang PRIMARY KEY (MaDonHang),
-	CONSTRAINT FK_TenNguoiDung FOREIGN KEY (TenNguoiDung) REFERENCES NGUOIDUNG (TenNguoiDung),
+	CONSTRAINT FK_userId FOREIGN KEY (userId) REFERENCES GoogleUser (id),
 	CONSTRAINT FK_MANV_DONHANG FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
 )
+
+drop table DonHang
 
 CREATE TABLE ChiTietDonHang
 (
@@ -139,4 +158,9 @@ SELECT * from BanAn
 SELECT * from MonAn
 SELECT * from HoaDon
 SELECT * from ChiTietHoaDon
+SELECT * from ChiTietDonHang
+SELECT * from DonHang
+select * from ThongBao
 SELECT * from ChiTietDatBan
+
+-- xp_readerrorlog 0, 1, N'Server is listening on', N'any', NULL, NULL, N'asc' 

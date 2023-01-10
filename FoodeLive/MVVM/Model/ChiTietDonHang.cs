@@ -14,11 +14,20 @@ namespace FoodeLive.MVVM.Model
     
     public partial class ChiTietDonHang
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ChiTietDonHang()
+        {
+            this.ThongBaos = new HashSet<ThongBao>();
+        }
+    
         public string MaDonHang { get; set; }
         public string MaMonAn { get; set; }
         public Nullable<int> SoLuong { get; set; }
+        public Nullable<byte> TrangThai { get; set; }
     
         public virtual MonAn MonAn { get; set; }
         public virtual DonHang DonHang { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThongBao> ThongBaos { get; set; }
     }
 }

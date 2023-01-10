@@ -22,15 +22,16 @@ namespace FoodeLive.MVVM.Model
     
         public string MaDonHang { get; set; }
         public Nullable<System.DateTime> NgayLapDonHang { get; set; }
-        public string TenNguoiDung { get; set; }
         public Nullable<decimal> TriGia { get; set; }
-        public string TieuDe { get; set; }
         public string GhiChu { get; set; }
         public string MaNV { get; set; }
+        public string DiaChi { get; set; }
+        public Nullable<byte> TrangThai { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
+        public virtual user user { get; set; }
         public virtual NhanVien NhanVien { get; set; }
-        public virtual NguoiDung NguoiDung { get; set; }
     }
 }

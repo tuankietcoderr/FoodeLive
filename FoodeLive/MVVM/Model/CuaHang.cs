@@ -20,6 +20,7 @@ namespace FoodeLive.MVVM.Model
             this.BanAns = new HashSet<BanAn>();
             this.NguoiQuanLies = new HashSet<NguoiQuanLy>();
             this.MonAns = new HashSet<MonAn>();
+            this.users = new HashSet<user>();
         }
     
         public string MaCuaHang { get; set; }
@@ -28,6 +29,8 @@ namespace FoodeLive.MVVM.Model
         public string TenCuaHang { get; set; }
         public Nullable<System.DateTime> NgayThanhLap { get; set; }
         public string ImgUrl { get; set; }
+        public string DiaChi { get; set; }
+        public string TenCuaHangKhongDau { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BanAn> BanAns { get; set; }
@@ -35,5 +38,7 @@ namespace FoodeLive.MVVM.Model
         public virtual ICollection<NguoiQuanLy> NguoiQuanLies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MonAn> MonAns { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user> users { get; set; }
     }
 }

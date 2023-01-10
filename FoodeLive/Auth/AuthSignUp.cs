@@ -1,4 +1,5 @@
-﻿using FoodeLive.MVVM.Model;
+﻿using FoodeLive.Converter;
+using FoodeLive.MVVM.Model;
 using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
@@ -82,7 +83,7 @@ namespace FoodeLive.Auth
                 string newId = string.Empty;
                 newId = newMaCuaHang + "QL";
                 // chi co 1 quan ly cho moi cua hang
-                CuaHang newCuaHang = new CuaHang() { TenCuaHang = tenCuaHang, MaCuaHang = newMaCuaHang, MaQuanLy = newId, NgayThanhLap = DateTime.Now };
+                CuaHang newCuaHang = new CuaHang() { TenCuaHang = tenCuaHang, MaCuaHang = newMaCuaHang, MaQuanLy = newId, NgayThanhLap = DateTime.Now, TenCuaHangKhongDau = VietnameseStringConverter.LocDau(tenCuaHang) };
                 var newQuanLy = new NguoiQuanLy() { MaQuanLy = newId, CuaHang = newCuaHang, MatKhau = password, TenNguoiDung = username, NgayThamGia = DateTime.Now, MaCuaHang = newMaCuaHang };
                 DataProvider.Ins.DB.NguoiQuanLies.Add(newQuanLy);
                 DataProvider.Ins.DB.CuaHangs.Add(newCuaHang);

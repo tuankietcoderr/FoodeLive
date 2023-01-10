@@ -7,4 +7,6 @@
     <command:BooleanReflectConverter x:Key="BooleanReflectConverter"/>
     <command:ImageSourceConverter x:Key="ImageSourceConverter"/>
     <command:DisplayConverter x:Key="DisplayConverter"/>
+    <command:TableStatusConverter x:Key="TableStatusConverter"/>
+    <command:FoodStatusConverter x:Key="FoodStatusConverter"/>
 </ResourceDictionary>

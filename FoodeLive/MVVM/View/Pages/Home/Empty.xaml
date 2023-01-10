@@ -14,7 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ui:VirtualizingGridView  x:Name="all_table" Height="auto" ItemsSource="{Binding TableViewModel.EmptyTables, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
+        <ui:VirtualizingGridView  x:Name="all_table" Height="auto" ItemsSource="{Binding TableViewModel.EmptyTables, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" SpacingMode="BetweenItemsOnly" SelectionMode="Single">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ui:Card x:Name="table" Effect="{StaticResource DropShadow}" Background="#fff" BorderThickness="0" Width="150">

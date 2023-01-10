@@ -202,8 +202,11 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 _selectedMonAn = value;
                 OnPropertyChanged();
-                UpdateFood updateFood = new UpdateFood();
-                updateFood.ShowDialog();
+                if (_selectedMonAn != null)
+                {
+                    UpdateFood updateFood = new UpdateFood();
+                    updateFood.ShowDialog();
+                }
             }
         }
 
@@ -216,6 +219,8 @@ namespace FoodeLive.MVVM.ViewModel
 
         public ICommand SearchFoodCommand { get; set; }
         public ICommand RefreshAllFoodCommand { get; set; }
+        public ICommand DeleteFoodCommand { get; set; }
+
 
         public FoodViewModel()
         {
@@ -374,6 +379,7 @@ namespace FoodeLive.MVVM.ViewModel
                             _themMonAn.MaMonAn += "0";
                         _themMonAn.MaMonAn += newIndex.ToString();
                     }
+                    _themMonAn.TenMonAnKhongDau = VietnameseStringConverter.LocDau(_themMonAn.TenMonAn);
                     _themMonAn.MaCuaHang = _cuaHangHoatDong.MaCuaHang;
                     DataProvider.Ins.DB.MonAns.Add(_themMonAn);
                     DataProvider.Ins.DB.SaveChanges();
@@ -398,6 +404,7 @@ namespace FoodeLive.MVVM.ViewModel
                     MonAn monAn = new MonAn();
                     monAn = _cuaHangHoatDong.MonAns.ToList().Find(v => v.MaMonAn == _selectedMonAn.MaMonAn);
                     monAn.TenMonAn = _selectedMonAn.TenMonAn;
+                    monAn.TenMonAnKhongDau = VietnameseStringConverter.LocDau(_selectedMonAn.TenMonAn);
                     monAn.Gia = _selectedMonAn.Gia;
                     monAn.ImgUrl = _selectedMonAn.ImgUrl;
                     DataProvider.Ins.DB.SaveChanges();
@@ -430,6 +437,27 @@ namespace FoodeLive.MVVM.ViewModel
                 _searchResultsForFood = _ListMonAn;
                 OnPropertyChanged("SearchResultsForFood");
                 OnPropertyChanged("ListMonAn");
+            });
+
+            DeleteFoodCommand = new RelayCommand<Window>(p =>
+            {
+                return p != null;
+            }, p =>
+            {
+                try
+                {
+
+                    MonAn monAn = _cuaHangHoatDong.MonAns.ToList().Find(v => v.MaMonAn == _selectedMonAn.MaMonAn);
+                    _cuaHangHoatDong.MonAns.Remove(monAn);
+                    DataProvider.Ins.DB.MonAns.Remove(monAn);
+                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBox.Show("Đã xóa!");
+                    p.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
 
         }

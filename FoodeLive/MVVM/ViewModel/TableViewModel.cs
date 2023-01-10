@@ -198,6 +198,7 @@ namespace FoodeLive.MVVM.ViewModel
                         _chiTietDatBan.MaDatBan = _cuaHangHoatDong.MaCuaHang + "DB01";
                     }
                     DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.TrangThai == "Trống" && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Đã đặt";
+                    DataProvider.Ins.DB.ChiTietDatBans.ToList().FindLast(b => b.MaBanAn == _maBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = 1;
                     DataProvider.Ins.DB.ChiTietDatBans.Add(_chiTietDatBan);
                     int lastMaHoaDon = DataProvider.Ins.DB.HoaDons.Count();
                     // ----------------------- //

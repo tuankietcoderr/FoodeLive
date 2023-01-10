@@ -12,29 +12,33 @@ namespace FoodeLive.MVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class MonAn
+    public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MonAn()
+        public user()
         {
-            this.ChiTietDonHangs = new HashSet<ChiTietDonHang>();
-            this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
-            this.users = new HashSet<user>();
+            this.DonHangs = new HashSet<DonHang>();
+            this.MonAns = new HashSet<MonAn>();
+            this.CuaHangs = new HashSet<CuaHang>();
+            this.ChiTietDatBans = new HashSet<ChiTietDatBan>();
         }
     
-        public string MaMonAn { get; set; }
-        public string TenMonAn { get; set; }
-        public Nullable<decimal> Gia { get; set; }
-        public string ImgUrl { get; set; }
-        public string MaCuaHang { get; set; }
-        public string TenMonAnKhongDau { get; set; }
+        public string id { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public Nullable<System.DateTime> email_verified { get; set; }
+        public string image { get; set; }
+        public string phone_number { get; set; }
+        public string full_name { get; set; }
+        public string address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
+        public virtual ICollection<DonHang> DonHangs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual CuaHang CuaHang { get; set; }
+        public virtual ICollection<MonAn> MonAns { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<CuaHang> CuaHangs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietDatBan> ChiTietDatBans { get; set; }
     }
 }

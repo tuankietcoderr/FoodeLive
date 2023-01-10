@@ -1,0 +1,47 @@
+﻿<Page x:Class="FoodeLive.MVVM.View.Pages.Notification.DonHang"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FoodeLive.MVVM.View.Pages.Notification"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{StaticResource MainViewModel}"
+      Title="DonHang">
+
+    <Grid>
+        <ListView ItemsSource="{Binding NotificationViewModel.ListThongBaoDonHang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding NotificationViewModel.SelectedThongBao,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="auto" Height="auto" HorizontalAlignment="Left">
+                        <TextBlock Grid.Column="2" Text="{Binding ChiTietDonHang.MonAn.TenMonAn}" FontWeight="Bold"></TextBlock>
+                        <WrapPanel VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Số lượng:
+                             <TextBlock Text="{Binding ChiTietDonHang.SoLuong}" FontWeight="SemiBold" />
+                            </TextBlock>
+                        </WrapPanel>
+                        <WrapPanel VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Người đặt:
+                             <TextBlock Text="{Binding ChiTietDonHang.DonHang.user.name}" FontWeight="SemiBold" />
+                            </TextBlock>
+                        </WrapPanel>
+                        <WrapPanel VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Số điện thoại:
+                             <TextBlock Text="{Binding ChiTietDonHang.DonHang.user.phone_number}" FontWeight="SemiBold" />
+                            </TextBlock>
+                        </WrapPanel>
+                        <WrapPanel VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Địa chỉ:
+                             <TextBlock Text="{Binding ChiTietDonHang.DonHang.DiaChi}" FontWeight="SemiBold" />
+                            </TextBlock>
+                        </WrapPanel>
+                        <TextBlock>
+                            Trạng thái: 
+                        <TextBlock Text="{Binding ChiTietDonHang.TrangThai,Converter={StaticResource FoodStatusConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="SemiBold" />
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

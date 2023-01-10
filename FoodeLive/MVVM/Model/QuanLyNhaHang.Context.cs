@@ -25,6 +25,7 @@ namespace FoodeLive.MVVM.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<account> accounts { get; set; }
         public virtual DbSet<BanAn> BanAns { get; set; }
         public virtual DbSet<ChiTietDatBan> ChiTietDatBans { get; set; }
         public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
@@ -33,8 +34,11 @@ namespace FoodeLive.MVVM.Model
         public virtual DbSet<DonHang> DonHangs { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<MonAn> MonAns { get; set; }
-        public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<NguoiQuanLy> NguoiQuanLies { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
+        public virtual DbSet<session> sessions { get; set; }
+        public virtual DbSet<ThongBao> ThongBaos { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<verificationtoken> verificationtokens { get; set; }
     }
 }

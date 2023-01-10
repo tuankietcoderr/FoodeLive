@@ -50,7 +50,7 @@
                 <DataTemplate>
                     <ui:CardColor Width="200" Subtitle="{Binding Gia, Converter={StaticResource MoneyConverter}}" SubtitleFontSize="24" FontWeight="Bold" Title="{Binding TenMonAn}" Background="#fff" BorderBrush="#f0f0f0" Effect="{StaticResource DropShadow}">
                         <ui:CardColor.Brush>
-                            <ImageBrush ImageSource="{Binding ImgUrl}" Stretch="UniformToFill" />
+                            <ImageBrush ImageSource="{Binding ImgUrl, Mode=TwoWay}" Stretch="UniformToFill" />
                         </ui:CardColor.Brush>
                     </ui:CardColor>
                 </DataTemplate>

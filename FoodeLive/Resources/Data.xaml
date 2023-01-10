@@ -8,4 +8,5 @@
     <viewmodel:TableViewModel x:Key="TableViewModel"/>
     <viewmodel:FoodViewModel x:Key="FoodViewModel" />
     <viewmodel:MainViewModel x:Key="MainViewModel" />
+    <viewmodel:NotificationViewModel x:Key="NotificationViewModel" />
 </ResourceDictionary>

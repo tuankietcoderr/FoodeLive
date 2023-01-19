@@ -1,166 +1,279 @@
-create database QuanLyNhaHang
+BEGIN TRY
 
-CREATE TABLE CuaHang
-(
-	MaCuaHang CHAR(6) NOT NULL,
-	MaQuanLy CHAR(8) NOT NULL,
-    MoTa NVARCHAR(MAX),
-    TenCuaHang NVARCHAR(30),
-    NgayThanhLap DATETIME,
-    ImgUrl nvarchar(max),
-	CONSTRAINT PK_CuaHang PRIMARY KEY (MaCuaHang),
-)
+BEGIN TRAN;
 
--- Ma quan ly = QL + ma cua hang
-create TABLE NguoiQuanLy
-(
-	MaQuanLy Char(8) not null constraint PK_NguoiQuanLy primary key,
-	MaCuaHang char(6) not null,
-	constraint FK_CuaHang FOREIGN key (MaCuaHang) REFERENCES CuaHang(MaCuaHang),
-	TenQuanLy nvarchar(30),
-	SoDienThoai varchar(12),
-	TenNguoiDung varchar(20) UNIQUE,
-	MatKhau varchar(30),
-    DiaChi nvarchar(max),
-    NgayThamGia DATETIME,
-    ImgUrl nvarchar(max),
-    GioiTinh nvarchar(4),
-    NgaySinh datetime,
-)
+-- CreateTable
+CREATE TABLE [dbo].[BanAn] (
+    [MaBanAn] CHAR(10) NOT NULL,
+    [Loai] NVARCHAR(6),
+    [TrangThai] NVARCHAR(10) CONSTRAINT [DF__BanAn__TrangThai__4AB81AF0] DEFAULT 'N''Trống''',
+    [TenBanAn] NVARCHAR(20),
+    [MaCuaHang] CHAR(6) NOT NULL,
+    CONSTRAINT [PK_MABANAN] PRIMARY KEY CLUSTERED ([MaBanAn])
+);
 
-CREATE TABLE NhanVien
-(
-	MaNV CHAR(10) NOT NULL,
-	MaCuaHang CHAR(6) NOT NULL,
-	HoTen NVARCHAR(40),
-	GioiTinh nVARCHAR(4),
-	NgaySinh DATETIME,
-	DiaChi nVARCHAR(max),
-	Luong MONEY,
-	SoDienThoai VARCHAR(12),
-	NgayVaoLam DATETIME,
-    TenNguoiDung VARCHAR(20) UNIQUE,
-    MatKhau VARCHAR(30),
-    ImgUrl nvarchar(max),
-    MaQuanLy char(8) not null constraint FK_MaNhanVien_NguoiQuanLy FOREIGN key (MaQuanLy) REFERENCES NguoiQuanLy(MaQuanLy),
-	CONSTRAINT PK_NHANVIEN PRIMARY KEY (MANV),
-)
+-- CreateTable
+CREATE TABLE [dbo].[ChiTietDatBan] (
+    [MaDatBan] CHAR(10) NOT NULL,
+    [MaBanAn] CHAR(10),
+    [NguoiDat] NVARCHAR(30),
+    [SoDienThoai] VARCHAR(12),
+    [GhiChu] NVARCHAR(200),
+    [TrangThai] TINYINT,
+    [NgayDat] DATETIME,
+    [email] NVARCHAR(1000),
+    CONSTRAINT [PK_ChiTietDatBan] PRIMARY KEY CLUSTERED ([MaDatBan])
+);
 
-CREATE TABLE MonAn
-(
-	MaMonAn CHAR(10) NOT NULL,
-	TenMonAn NVARCHAR(60),
-	Gia MONEY,
-	ImgUrl NVARCHAR(MAX),
-	CONSTRAINT PK_MAMONAN PRIMARY KEY (MAMONAN),
-    MaCuaHang char(6) not null CONSTRAINT FK_MaMonAn_CuaHang FOREIGN KEY (MaCuaHang) REFERENCES CuaHang(MaCuaHang),
-)
+-- CreateTable
+CREATE TABLE [dbo].[ChiTietDonHang] (
+    [MaDonHang] NVARCHAR(1000) NOT NULL,
+    [MaMonAn] CHAR(10) NOT NULL,
+    [SoLuong] INT,
+    [TrangThai] TINYINT CONSTRAINT [ChiTietDonHang_TrangThai_df] DEFAULT 0,
+    CONSTRAINT [PK_SoDonHang_MAMONAN] PRIMARY KEY CLUSTERED ([MaDonHang],[MaMonAn])
+);
 
-CREATE TABLE BanAn
-(
-	MaBanAn CHAR(10) NOT NULL,
-	Loai NVARCHAR(6),
-    TrangThai NVARCHAR(10) DEFAULT N'Trống',
-	CONSTRAINT PK_MABANAN PRIMARY KEY (MABANAN),
-    TenBanAn NVARCHAR(20),
-    MaCuaHang char(6) not null constraint FK_MaBanAn_CuaHang FOREIGN key (MaCuaHang) REFERENCES CuaHang(MaCuaHang),
-)
+-- CreateTable
+CREATE TABLE [dbo].[ChiTietHoaDon] (
+    [MaHoaDon] VARCHAR(12) NOT NULL,
+    [MaMonAn] CHAR(10) NOT NULL,
+    [SoLuong] INT,
+    [TrangThai] TINYINT,
+    CONSTRAINT [PK_SoHoaDon_MAMONAN] PRIMARY KEY CLUSTERED ([MaHoaDon],[MaMonAn])
+);
 
-create table Account (
-	userId char(10) not null,
-	type varchar(20),
-	provider varchar(100) unique,
-	providerAccountId varchar(200) UNIQUE,
-	refresh_token text,
-	access_token text,
-	expires_at int,
-	token_type varchar(20),
-	scope varchar(100),
-	id_token text,
-	session_state varchar(20)
-	constraint FK_Account_User FOREIGN KEY (userId) REFERENCES GoogleUser(id)
-)
+-- CreateTable
+CREATE TABLE [dbo].[CuaHang] (
+    [MaCuaHang] CHAR(6) NOT NULL,
+    [MaQuanLy] CHAR(8) NOT NULL,
+    [MoTa] NVARCHAR(max),
+    [TenCuaHang] NVARCHAR(30),
+    [NgayThanhLap] DATETIME,
+    [ImgUrl] NVARCHAR(max),
+    [DiaChi] NVARCHAR(200),
+    [TenCuaHangKhongDau] NVARCHAR(30),
+    CONSTRAINT [PK_CuaHang] PRIMARY KEY CLUSTERED ([MaCuaHang])
+);
 
-CREATE TABLE GoogleUser
-(
-	id char(10),
-	fullName varchar(100),
-	phone_number VARCHAR(12),
-	CONSTRAINT PK_userId PRIMARY KEY (id),
-	email VARCHAR(100) unique,
-	emailVerified DATETIME,
-	image varchar(max),
-)
+-- CreateTable
+CREATE TABLE [dbo].[ThongBao] (
+    [MaThongBao] NVARCHAR(1000) NOT NULL,
+    [MaDonHang] NVARCHAR(1000),
+    [MaMonAn] CHAR(10),
+    [MaDatBan] CHAR(10),
+    CONSTRAINT [PK_MaThongBao] PRIMARY KEY CLUSTERED ([MaThongBao])
+);
 
-create table DonHang
-(
-	MaDonHang varchar(12) NOT NULL ,
-	NgayLapDonHang DATETIME,
-	userId CHAR(10) not null,
-	TriGia MONEY,
-	TieuDe NVARCHAR(50),
-	GhiChu NVARCHAR(50),
-	MaNV CHAR(10),
-	CONSTRAINT PK_SoDonHang PRIMARY KEY (MaDonHang),
-	CONSTRAINT FK_userId FOREIGN KEY (userId) REFERENCES GoogleUser (id),
-	CONSTRAINT FK_MANV_DONHANG FOREIGN KEY (MaNV) REFERENCES NHANVIEN (MaNV),
-)
+-- CreateTable
+CREATE TABLE [dbo].[DonHang] (
+    [MaDonHang] NVARCHAR(1000) NOT NULL,
+    [NgayLapDonHang] DATETIME,
+    [TriGia] MONEY,
+    [GhiChu] NVARCHAR(50),
+    [MaNV] CHAR(10),
+    [DiaChi] NVARCHAR(200),
+    [TrangThai] TINYINT,
+    [email] NVARCHAR(1000) NOT NULL,
+    CONSTRAINT [PK_SoDonHang] PRIMARY KEY CLUSTERED ([MaDonHang])
+);
 
-drop table DonHang
+-- CreateTable
+CREATE TABLE [dbo].[HoaDon] (
+    [MaHoaDon] VARCHAR(12) NOT NULL,
+    [NgayLapHoaDon] SMALLDATETIME,
+    [MaBanAn] CHAR(10),
+    [TriGia] MONEY,
+    [TrangThai] TINYINT,
+    [ThoiGianThanhToan] DATETIME,
+    CONSTRAINT [PK_SoHoaDon] PRIMARY KEY CLUSTERED ([MaHoaDon])
+);
 
-CREATE TABLE ChiTietDonHang
-(
-	MaDonHang varchar(12) NOT NULL,
-	MaMonAn CHAR(10) NOT NULL,
-	SoLuong INT,
-	CONSTRAINT PK_SoDonHang_MAMONAN PRIMARY KEY (MaDonHang,MaMonAn),
-	CONSTRAINT FK_SoDonHang FOREIGN KEY (MaDonHang) REFERENCES DonHang (MaDonHang),
-	CONSTRAINT FK_MAMONAN_ChiTietDonHang FOREIGN KEY (MaMonAn) REFERENCES MONAN (MaMonAn),
-)
+-- CreateTable
+CREATE TABLE [dbo].[MonAn] (
+    [MaMonAn] CHAR(10) NOT NULL,
+    [TenMonAn] NVARCHAR(60),
+    [Gia] MONEY,
+    [ImgUrl] NVARCHAR(max),
+    [MaCuaHang] CHAR(6) NOT NULL,
+    [TenMonAnKhongDau] NVARCHAR(60),
+    CONSTRAINT [PK_MAMONAN] PRIMARY KEY CLUSTERED ([MaMonAn])
+);
 
-create table HoaDon
-(
-	MaHoaDon varchar(12) NOT NULL ,
-	NgayLapHoaDon SMALLDATETIME,
-	MaBanAn CHAR(10),
-	TriGia MONEY ,
-    TrangThai TINYINT,
-    ThoiGianThanhToan datetime,
-	CONSTRAINT PK_maHoaDon PRIMARY KEY (MaHoaDon),
-	CONSTRAINT FK_MABANAN FOREIGN KEY (MaBanAn) REFERENCES BANAN (MaBanAn),
-)
+-- CreateTable
+CREATE TABLE [dbo].[NguoiQuanLy] (
+    [MaQuanLy] CHAR(8) NOT NULL,
+    [MaCuaHang] CHAR(6) NOT NULL,
+    [TenQuanLy] NVARCHAR(30),
+    [SoDienThoai] VARCHAR(12),
+    [TenNguoiDung] VARCHAR(20),
+    [MatKhau] VARCHAR(30),
+    [DiaChi] NVARCHAR(max),
+    [NgayThamGia] DATETIME,
+    [ImgUrl] NVARCHAR(max),
+    [GioiTinh] NVARCHAR(4),
+    [NgaySinh] DATETIME,
+    CONSTRAINT [PK_NguoiQuanLy] PRIMARY KEY CLUSTERED ([MaQuanLy]),
+    CONSTRAINT [UQ__NguoiQua__57E5A81D1FAD7BE8] UNIQUE NONCLUSTERED ([TenNguoiDung])
+);
 
-CREATE TABLE ChiTietHoaDon
-(
-	MaHoaDon varchar(12) NOT NULL,
-	MaMonAn CHAR(10) NOT NULL,
-	SoLuong INT,
-	CONSTRAINT PK_maHoaDon_MAMONAN PRIMARY KEY (MaHoaDon,MaMonAn),
-	CONSTRAINT FK_maHoaDon FOREIGN KEY (MaHoaDon) REFERENCES HOADON (MaHoaDon),
-	CONSTRAINT FK_MAMONAN FOREIGN KEY (MaMonAn) REFERENCES MONAN (MaMonAn),
-)
+-- CreateTable
+CREATE TABLE [dbo].[NhanVien] (
+    [MaNV] CHAR(10) NOT NULL,
+    [MaCuaHang] CHAR(6) NOT NULL,
+    [HoTen] NVARCHAR(40),
+    [GioiTinh] NVARCHAR(4),
+    [NgaySinh] DATETIME,
+    [DiaChi] NVARCHAR(max),
+    [Luong] MONEY,
+    [SoDienThoai] VARCHAR(12),
+    [NgayVaoLam] DATETIME,
+    [TenNguoiDung] VARCHAR(20),
+    [MatKhau] VARCHAR(30),
+    [ImgUrl] NVARCHAR(max),
+    [MaQuanLy] CHAR(8) NOT NULL,
+    CONSTRAINT [PK_NHANVIEN] PRIMARY KEY CLUSTERED ([MaNV]),
+    CONSTRAINT [UQ__NhanVien__57E5A81D2390083C] UNIQUE NONCLUSTERED ([TenNguoiDung])
+);
 
-CREATE TABLE ChiTietDatBan (
-	MaDatBan char(10) not null constraint PK_ChiTietDatBan PRIMARY KEY,
-	MaBanAn char(10),
-	NguoiDat nvarchar(30),
-	SoDienThoai varchar(12),
-	GhiChu nvarchar(200),
-	TrangThai tinyint,
-	NgayDat datetime,
-	constraint FK_ChiTietDatBan_MaBan FOREIGN KEY (MaBanAn) REFERENCES BanAn(MaBanAn)
-)
+-- CreateTable
+CREATE TABLE [dbo].[accounts] (
+    [id] NVARCHAR(1000) NOT NULL,
+    [user_id] NVARCHAR(1000) NOT NULL,
+    [type] NVARCHAR(1000) NOT NULL,
+    [provider] NVARCHAR(1000) NOT NULL,
+    [provider_account_id] NVARCHAR(1000) NOT NULL,
+    [refresh_token] TEXT,
+    [access_token] TEXT,
+    [expires_at] INT,
+    [token_type] NVARCHAR(1000),
+    [scope] NVARCHAR(1000),
+    [id_token] TEXT,
+    [session_state] NVARCHAR(1000),
+    CONSTRAINT [accounts_pkey] PRIMARY KEY CLUSTERED ([id]),
+    CONSTRAINT [accounts_provider_provider_account_id_key] UNIQUE NONCLUSTERED ([provider],[provider_account_id])
+);
 
-SELECT * from CuaHang
-SELECT * from NguoiQuanLy
-SELECT * from NhanVien
-SELECT * from BanAn
-SELECT * from MonAn
-SELECT * from HoaDon
-SELECT * from ChiTietHoaDon
-SELECT * from ChiTietDonHang
-SELECT * from DonHang
-select * from ThongBao
-SELECT * from ChiTietDatBan
+-- CreateTable
+CREATE TABLE [dbo].[sessions] (
+    [id] NVARCHAR(1000) NOT NULL,
+    [session_token] NVARCHAR(1000) NOT NULL,
+    [user_id] NVARCHAR(1000) NOT NULL,
+    [expires] DATETIME2 NOT NULL,
+    CONSTRAINT [sessions_pkey] PRIMARY KEY CLUSTERED ([id]),
+    CONSTRAINT [sessions_session_token_key] UNIQUE NONCLUSTERED ([session_token])
+);
 
--- xp_readerrorlog 0, 1, N'Server is listening on', N'any', NULL, NULL, N'asc' 
+-- CreateTable
+CREATE TABLE [dbo].[users] (
+    [id] NVARCHAR(1000) NOT NULL,
+    [name] NVARCHAR(1000),
+    [email] NVARCHAR(1000) NOT NULL,
+    [email_verified] DATETIME2,
+    [image] NVARCHAR(1000),
+    [phone_number] VARCHAR(12),
+    [full_name] NVARCHAR(50),
+    [address] NVARCHAR(200),
+    CONSTRAINT [users_pkey] PRIMARY KEY CLUSTERED ([email]),
+    CONSTRAINT [users_id_key] UNIQUE NONCLUSTERED ([id]),
+    CONSTRAINT [users_email_key] UNIQUE NONCLUSTERED ([email])
+);
+
+-- CreateTable
+CREATE TABLE [dbo].[verificationtokens] (
+    [identifier] NVARCHAR(1000) NOT NULL,
+    [token] NVARCHAR(1000) NOT NULL,
+    [expires] DATETIME2 NOT NULL,
+    CONSTRAINT [verificationtokens_token_key] UNIQUE NONCLUSTERED ([token]),
+    CONSTRAINT [verificationtokens_identifier_token_key] UNIQUE NONCLUSTERED ([identifier],[token])
+);
+
+-- CreateTable
+CREATE TABLE [dbo].[LikedFood] (
+    [MaMonAn] CHAR(10) NOT NULL,
+    [email] NVARCHAR(1000) NOT NULL,
+    CONSTRAINT [LikedFood_pkey] PRIMARY KEY CLUSTERED ([MaMonAn],[email])
+);
+
+-- CreateTable
+CREATE TABLE [dbo].[LikedRestaurant] (
+    [MaCuaHang] CHAR(6) NOT NULL,
+    [email] NVARCHAR(1000) NOT NULL,
+    CONSTRAINT [LikedRestaurant_pkey] PRIMARY KEY CLUSTERED ([MaCuaHang],[email])
+);
+
+-- AddForeignKey
+ALTER TABLE [dbo].[BanAn] ADD CONSTRAINT [FK_MaBanAn_CuaHang] FOREIGN KEY ([MaCuaHang]) REFERENCES [dbo].[CuaHang]([MaCuaHang]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ChiTietDatBan] ADD CONSTRAINT [FK_ChiTietDatBan_MaBan] FOREIGN KEY ([MaBanAn]) REFERENCES [dbo].[BanAn]([MaBanAn]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ChiTietDatBan] ADD CONSTRAINT [FK_ChiTietDatBan_NguoiDat] FOREIGN KEY ([email]) REFERENCES [dbo].[users]([email]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ChiTietDonHang] ADD CONSTRAINT [FK_MAMONAN_ChiTietDonHang] FOREIGN KEY ([MaMonAn]) REFERENCES [dbo].[MonAn]([MaMonAn]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ChiTietDonHang] ADD CONSTRAINT [FK_SoDonHang] FOREIGN KEY ([MaDonHang]) REFERENCES [dbo].[DonHang]([MaDonHang]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ChiTietHoaDon] ADD CONSTRAINT [FK_MAMONAN] FOREIGN KEY ([MaMonAn]) REFERENCES [dbo].[MonAn]([MaMonAn]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ChiTietHoaDon] ADD CONSTRAINT [FK_SoHoaDon] FOREIGN KEY ([MaHoaDon]) REFERENCES [dbo].[HoaDon]([MaHoaDon]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ThongBao] ADD CONSTRAINT [FK_MaDatBan_ThongBao] FOREIGN KEY ([MaDatBan]) REFERENCES [dbo].[ChiTietDatBan]([MaDatBan]) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[ThongBao] ADD CONSTRAINT [FK_SoDonHang_ThongBao] FOREIGN KEY ([MaDonHang], [MaMonAn]) REFERENCES [dbo].[ChiTietDonHang]([MaDonHang],[MaMonAn]) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[DonHang] ADD CONSTRAINT [FK_EMAIL_DONHANG] FOREIGN KEY ([email]) REFERENCES [dbo].[users]([email]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[DonHang] ADD CONSTRAINT [FK_MANV_DONHANG] FOREIGN KEY ([MaNV]) REFERENCES [dbo].[NhanVien]([MaNV]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[HoaDon] ADD CONSTRAINT [FK_MABANAN] FOREIGN KEY ([MaBanAn]) REFERENCES [dbo].[BanAn]([MaBanAn]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[MonAn] ADD CONSTRAINT [FK_MaMonAn_CuaHang] FOREIGN KEY ([MaCuaHang]) REFERENCES [dbo].[CuaHang]([MaCuaHang]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[NguoiQuanLy] ADD CONSTRAINT [FK_CuaHang] FOREIGN KEY ([MaCuaHang]) REFERENCES [dbo].[CuaHang]([MaCuaHang]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[NhanVien] ADD CONSTRAINT [FK_MaNhanVien_NguoiQuanLy] FOREIGN KEY ([MaQuanLy]) REFERENCES [dbo].[NguoiQuanLy]([MaQuanLy]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[accounts] ADD CONSTRAINT [FK_USER_ID_ACCOUNT] FOREIGN KEY ([user_id]) REFERENCES [dbo].[users]([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[sessions] ADD CONSTRAINT [FK_USER_ID_SESSION] FOREIGN KEY ([user_id]) REFERENCES [dbo].[users]([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[LikedFood] ADD CONSTRAINT [LikedFood_email_fkey] FOREIGN KEY ([email]) REFERENCES [dbo].[users]([email]) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[LikedFood] ADD CONSTRAINT [LikedFood_MaMonAn_fkey] FOREIGN KEY ([MaMonAn]) REFERENCES [dbo].[MonAn]([MaMonAn]) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[LikedRestaurant] ADD CONSTRAINT [LikedRestaurant_email_fkey] FOREIGN KEY ([email]) REFERENCES [dbo].[users]([email]) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE [dbo].[LikedRestaurant] ADD CONSTRAINT [LikedRestaurant_MaCuaHang_fkey] FOREIGN KEY ([MaCuaHang]) REFERENCES [dbo].[CuaHang]([MaCuaHang]) ON DELETE CASCADE ON UPDATE CASCADE;
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH

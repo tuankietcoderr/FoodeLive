@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -198,7 +199,6 @@ namespace FoodeLive.MVVM.ViewModel
                         _chiTietDatBan.MaDatBan = _cuaHangHoatDong.MaCuaHang + "DB01";
                     }
                     DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.TrangThai == "Trống" && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = "Đã đặt";
-                    DataProvider.Ins.DB.ChiTietDatBans.ToList().FindLast(b => b.MaBanAn == _maBanAn && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai = 1;
                     DataProvider.Ins.DB.ChiTietDatBans.Add(_chiTietDatBan);
                     int lastMaHoaDon = DataProvider.Ins.DB.HoaDons.Count();
                     // ----------------------- //
@@ -222,9 +222,18 @@ namespace FoodeLive.MVVM.ViewModel
                     OnPropertyChanged("IsBooked");
                     MessageBox.Show("Đã đặt!");
                 }
-                catch (Exception e)
+                catch (DbEntityValidationException e)
                 {
-                    MessageBox.Show(e.Message);
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
                 }
             });
 

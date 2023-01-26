@@ -105,9 +105,10 @@ namespace FoodeLive.MVVM.ViewModel
             });
             RefreshFoodCommand = new RelayCommand<object>(p => true, p =>
             {
+                _listThongBaoDonHang.Clear();
+                _listThongBaoDatBan.Clear();
                 _listThongBaoDonHang = new ObservableCollection<ThongBao>(DataProvider.Ins.DB.ThongBaos.Where(t => t.ChiTietDonHang.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
                 _listThongBaoDatBan = new ObservableCollection<ThongBao>(DataProvider.Ins.DB.ThongBaos.Where(n => n.ChiTietDatBan.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
-                _selectedThongBao = null;
                 OnPropertyChanged("ListThongBaoDonHang");
                 OnPropertyChanged("ListThongBaoDatBan");
                 OnPropertyChanged("SelectedThongBao");

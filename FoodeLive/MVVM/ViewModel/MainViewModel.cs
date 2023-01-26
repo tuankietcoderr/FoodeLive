@@ -430,6 +430,12 @@ namespace FoodeLive.MVVM.ViewModel
                     _foodViewModel.ListMonAn.Clear();
                     _foodViewModel.ListMonAn = new ObservableCollection<MonAn>(_cuaHangHoatDong.MonAns);
                     _foodViewModel.SelectedMonAn = null;
+
+                    _notificationViewModel.SelectedThongBao = null;
+                    _notificationViewModel.ListThongBaoDonHang.Clear();
+                    _notificationViewModel.ListThongBaoDatBan.Clear();
+                    _notificationViewModel.ListThongBaoDonHang = new ObservableCollection<ThongBao>(DataProvider.Ins.DB.ThongBaos.Where(t => t.ChiTietDonHang.MonAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
+                    _notificationViewModel.ListThongBaoDatBan = new ObservableCollection<ThongBao>(DataProvider.Ins.DB.ThongBaos.Where(n => n.ChiTietDatBan.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang));
                 }
                 catch (Exception ex)
                 {

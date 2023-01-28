@@ -1,12 +1,12 @@
-Mỗi cửa hàng có mã duy nhất để phân biệt, tên cửa hàng, mô tả, ngày thành lập, ImgUrl, địa chỉ. Mỗi của hàng thuộc chỉ được quản lý bởi một người.
-Cửa hàng có nhiều món ăn , bàn ăn khác nhau. Mỗi món ăn có mã món ăn duy nhất để phân biệt, tên món ăn, giá, hình ảnh món ăn.  Mỗi bàn ăn có mã bàn ăn duy nhất để phân biệt, tên bàn ăn, loại bàn ăn, tình trạng , mã món ăn của bàn ăn (nếu có). Một cửa hàng có nhiều nhân viên, 
+Mỗi cửa hàng có mã duy nhất để phân biệt, tên cửa hàng, mô tả, ngày thành lập, ImgUrl, địa chỉ. Mỗi của hàng chỉ được quản lý bởi một người.
+Cửa hàng có nhiều món ăn , bàn ăn khác nhau. Mỗi món ăn có mã món ăn duy nhất để phân biệt, tên món ăn, giá, hình ảnh món ăn.  Mỗi bàn ăn có mã bàn ăn duy nhất để phân biệt, tên bàn ăn, loại bàn ăn, tình trạng , mã món ăn của bàn ăn (nếu có).Một bàn ăn chỉ thuộc một cửa hàng duy nhất. Một cửa hàng có nhiều nhân viên, 
 Mỗi người quản lý có mã duy nhất để phân biệt, họ tên, địa chỉ và số điện thoại liên lạc, tên tài khoản duy nhất, mật khẩu. Mỗi người quản lý chỉ quản lý duy nhất một cửa hàng.
 Người quản lý được quyền tạo tài khoản cho nhân viên.
 Mỗi nhân viên có mã duy nhất để phân biệt, họ tên, địa chỉ và số điện thoại liên lạc, tên tài khoản duy nhất, mật khẩu.Mỗi nhân viên thuộc về 1 cửa hàng duy nhất.
-Khi nhân viên muốn đặt món cho bàn ăn , một hóa đơn sẽ được lập với những thông tin gồm mã hóa đơn duy nhất để phân biệt, ngày lập hóa đơn, mã bàn ăn, trị giá, thời gian thanh toán. Mỗi chi tiết hóa đơn có mã hóa đơn, mã món ăn, mã bàn ăn, số lượng . Một hóa đơn có nhiều chi tiết hóa đơn. 
-Khi nhân viên muốn đặt bàn trước cho khách hàng ,một chi tiết đặt bàn sẽ được lập với những thông tin gồm mã đặt bàn duy nhất để phân biệt, mã bàn ăn, ngày đặt ,họ tên người đặt, số điện thoại, ghi chú, trạng thái, email. 
-Mỗi đơn hàng có mã đơn hàng duy nhất để phân biệt, ngày lập đơn hàng, trị giá, số điện thoại, ghi chú, mã nhân viên, trạng thái, email. 
-Mỗi chi tiết đơn hàng có mã đơn hàng, mã món ăn, số lượng . Một đơn hàng có nhiều chi tiết đơn hàng.
+Khi nhân viên muốn đặt món cho bàn ăn , một hóa đơn sẽ được lập với những thông tin gồm mã hóa đơn duy nhất để phân biệt, ngày lập hóa đơn, trị giá, thời gian thanh toán. Mỗi chi tiết hóa đơn có mã hóa đơn, mã món ăn, số lượng, trang thai . Một hóa đơn có nhiều chi tiết hóa đơn. 
+Khi nhân viên muốn đặt bàn trước cho khách hàng ,một chi tiết đặt bàn sẽ được lập với những thông tin gồm mã đặt bàn duy nhất để phân biệt, ngày đặt ,họ tên người đặt, số điện thoại, ghi chú, trạng thái, email. 
+Khi nhân viên muốn lập đơn hàng cho khách hàng.Mỗi đơn hàng có mã đơn hàng duy nhất để phân biệt, ngày lập đơn hàng, trị giá, số điện thoại, ghi chú, trạng thái, email. 
+Mỗi chi tiết đơn hàng có mã đơn hàng, mã món ăn, số lượng.
 Mỗi thông báo có mã thông báo, mã đơn hàng, mã đặt bàn, mã món ăn. Mỗi đơn hàng có duy nhất một thông báo
 
 

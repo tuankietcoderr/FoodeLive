@@ -24,6 +24,7 @@ namespace FoodeLive.View.Pages.Menu
         public MenuP()
         {
             InitializeComponent();
+            
         }
 
         ~MenuP() { }

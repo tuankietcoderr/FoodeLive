@@ -446,13 +446,16 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 try
                 {
-
-                    MonAn monAn = _cuaHangHoatDong.MonAns.ToList().Find(v => v.MaMonAn == _selectedMonAn.MaMonAn);
-                    _cuaHangHoatDong.MonAns.Remove(monAn);
-                    DataProvider.Ins.DB.MonAns.Remove(monAn);
-                    DataProvider.Ins.DB.SaveChanges();
-                    MessageBox.Show("Đã xóa!");
-                    p.Close();
+                    MessageBoxResult res = MessageBox.Show("Bạn có chắc chắn muốn xóa món ăn này chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        MonAn monAn = _cuaHangHoatDong.MonAns.ToList().Find(v => v.MaMonAn == _selectedMonAn.MaMonAn);
+                        _cuaHangHoatDong.MonAns.Remove(monAn);
+                        DataProvider.Ins.DB.MonAns.Remove(monAn);
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBox.Show("Đã xóa!");
+                        p.Close();
+                    }
                 }
                 catch (Exception ex)
                 {

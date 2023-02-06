@@ -22,7 +22,7 @@
             <RowDefinition Height="549*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="38,4,34,0">
-            <TextBlock Text="Thêm món" Height="47" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+            <TextBlock Text="Cập nhật món ăn" Height="47" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
             <TextBlock Height="32"></TextBlock>
 
             <ucli:LabelInput Grid.Column="3" Text="{Binding FoodViewModel.SelectedMonAn.TenMonAn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Label="Tên món " Placeholder="Nhập vào tên món" Grid.ColumnSpan="3" />

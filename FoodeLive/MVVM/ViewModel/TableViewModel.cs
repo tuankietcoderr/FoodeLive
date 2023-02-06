@@ -142,21 +142,24 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 try
                 {
-                    foreach (BanAn item in _cuaHangHoatDong.BanAns)
+                    if (MessageBox.Show("Bạn có chắc chắc muốn xóa bàn ăn này chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        if (item.MaBanAn == _maBanAn)
+                        foreach (BanAn item in _cuaHangHoatDong.BanAns)
                         {
-                            DataProvider.Ins.DB.BanAns.Remove(item);
-                            _ListBanAn.Remove(item);
-                            _UsingTables.Remove(item);
-                            _EmptyTables.Remove(item);
-                            _BookedTables.Remove(item);
-                            break;
+                            if (item.MaBanAn == _maBanAn)
+                            {
+                                DataProvider.Ins.DB.BanAns.Remove(item);
+                                _ListBanAn.Remove(item);
+                                _UsingTables.Remove(item);
+                                _EmptyTables.Remove(item);
+                                _BookedTables.Remove(item);
+                                break;
+                            }
                         }
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBox.Show("Đã xóa!");
+                        p.Close();
                     }
-                    DataProvider.Ins.DB.SaveChanges();
-                    MessageBox.Show("Đã xóa!");
-                    p.Close();
                 }
                 catch (Exception e)
                 {
@@ -176,11 +179,11 @@ namespace FoodeLive.MVVM.ViewModel
             {
                 try
                 {
-                    if(DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai == "Có khách")
+                    if (DataProvider.Ins.DB.BanAns.ToList().Find(b => b.MaBanAn == _maBanAn && b.MaCuaHang == _cuaHangHoatDong.MaCuaHang).TrangThai == "Có khách")
                     {
                         MessageBox.Show("Hiện bàn đang có khách nên không thể đặt bàn!");
                         return;
-                    }    
+                    }
                     _chiTietDatBan.MaBanAn = _maBanAn;
                     _chiTietDatBan.TrangThai = 1;
                     var chiTietDatBans = DataProvider.Ins.DB.ChiTietDatBans.Where(ct => ct.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang).ToList();
@@ -215,7 +218,7 @@ namespace FoodeLive.MVVM.ViewModel
                             _maHoaDon += "0";
                         _maHoaDon += num.ToString();
                     }
-                    HoaDon hoaDon = new HoaDon() { MaBanAn = _maBanAn, MaHoaDon = _maHoaDon ,NgayLapHoaDon = DateTime.Now, TriGia = 0 };
+                    HoaDon hoaDon = new HoaDon() { MaBanAn = _maBanAn, MaHoaDon = _maHoaDon, NgayLapHoaDon = DateTime.Now, TriGia = 0 };
                     DataProvider.Ins.DB.HoaDons.Add(hoaDon);
                     DataProvider.Ins.DB.SaveChanges();
                     _isBooked = true;

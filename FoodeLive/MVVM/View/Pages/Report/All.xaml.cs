@@ -75,7 +75,7 @@ namespace FoodeLive.View.Pages.Report
 
             double max = 0;
 
-            ObservableCollection<HoaDon> hoaDons = new ObservableCollection<HoaDon>(ViewModel.ListHoaDon.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year && hd.BanAn.MaCuaHang == ViewModel.CuaHangHoatDong.MaCuaHang && hd.TrangThai == 1));
+            ObservableCollection<HoaDon> hoaDons = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(hd => hd.NgayLapHoaDon.Value.Month == month && hd.NgayLapHoaDon.Value.Year == year && hd.BanAn.MaCuaHang == ViewModel.CuaHangHoatDong.MaCuaHang && hd.TrangThai == 1));
             if (hoaDons.Count == 0)
             {
                 for (int i = 0; i < days; i++)

@@ -159,12 +159,12 @@ namespace FoodeLive.MVVM.ViewModel
             get => _ngayHoaDon;
             set
             {
-               /* if (_ngayHoaDon.Month != value.Month)
-                {
-                    _ngayHoaDon = value;
-                    OnPropertyChanged();
-                    _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && b.TrangThai == 1)); OnPropertyChanged("ListHoaDon");
-                }*/
+                /* if (_ngayHoaDon.Month != value.Month)
+                 {
+                     _ngayHoaDon = value;
+                     OnPropertyChanged();
+                     _ListHoaDon = new ObservableCollection<HoaDon>(DataProvider.Ins.DB.HoaDons.Where(b => b.NgayLapHoaDon.Value.Month == _ngayHoaDon.Month && b.BanAn.MaCuaHang == _cuaHangHoatDong.MaCuaHang && b.TrangThai == 1)); OnPropertyChanged("ListHoaDon");
+                 }*/
 
                 if (_ngayHoaDon.Date != value.Date)
                 {
@@ -609,10 +609,13 @@ namespace FoodeLive.MVVM.ViewModel
                 {
                     try
                     {
-                        DataProvider.Ins.DB.NhanViens.Remove(_selectedNhanVien);
-                        DataProvider.Ins.DB.SaveChanges();
-                        MessageBox.Show("Đã xóa!");
-                        p.Close();
+                        if (MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản nhân viên này chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            DataProvider.Ins.DB.NhanViens.Remove(_selectedNhanVien);
+                            DataProvider.Ins.DB.SaveChanges();
+                            MessageBox.Show("Đã xóa!");
+                            p.Close();
+                        }
                     }
                     catch (Exception ex)
                     {

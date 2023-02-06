@@ -24,26 +24,7 @@ namespace FoodeLive.View.Pages.Menu
         public MenuP()
         {
             InitializeComponent();
-            /*
-             ListBoxItem selected = container_nav.SelectedItem as ListBoxItem;
-            if (selected == null)
-            {
-                return;
-            }
-            string name = selected.Name;
-            switch (name)
-            {
-                case "notification_dh":
-                    notification_navframe.Navigate(new MVVM.View.Pages.Notification.DonHang());
-                    break;
-                case "notification_db":
-                    notification_navframe.Navigate(new DatBan());
-                    break;
-                default:
-                    notification_navframe.Navigate(new MVVM.View.Pages.Notification.DonHang());
-                    break;
-            }
-             */
+            
         }
 
         ~MenuP() { }

@@ -31,7 +31,7 @@
                 <DataGridTextColumn Binding="{Binding Luong}" Header="Lương (VND/giờ)" />
                 <DataGridTextColumn Binding="{Binding SoDienThoai}" Header="Số điện thoại" />
                 <DataGridTextColumn Binding="{Binding NgayVaoLam}" Header="Ngày vào làm" />
-                <DataGridTextColumn Binding="{Binding NgayVaoLam}" Header="Đã làm được" />
+                <DataGridTextColumn Binding="{Binding NgayVaoLam, Converter={StaticResource DateCountConverter}}" Header="Đã làm được" />
                 <DataGridTextColumn Binding="{Binding TenNguoiDung}" Header="Tên người dùng" />
                 <DataGridTextColumn Binding="{Binding MatKhau}" Header="Mật khẩu" />
             </DataGrid.Columns>

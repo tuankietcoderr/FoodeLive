@@ -9,4 +9,5 @@
     <command:DisplayConverter x:Key="DisplayConverter"/>
     <command:TableStatusConverter x:Key="TableStatusConverter"/>
     <command:FoodStatusConverter x:Key="FoodStatusConverter"/>
+    <command:DateCountConverter x:Key="DateCountConverter" />
 </ResourceDictionary>

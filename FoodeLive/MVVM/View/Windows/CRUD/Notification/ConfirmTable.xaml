@@ -9,7 +9,7 @@
         DataContext="{StaticResource MainViewModel}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Title="ConfirmTable" Height="200" Width="500">
+        Title="Trạng thái đặt bàn" Height="200" Width="500">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>

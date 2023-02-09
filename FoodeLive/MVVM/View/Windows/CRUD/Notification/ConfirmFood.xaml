@@ -10,7 +10,7 @@
         x:Name="ConfirmFoodName"
         MaxHeight="500"
         ResizeMode="NoResize"
-        Title="ConfirmFood" Height="500" Width="800" DataContext="{StaticResource MainViewModel}" >
+        Title="Trạng thái đặt hàng" Height="500" Width="800" DataContext="{StaticResource MainViewModel}" >
     <ui:DynamicScrollViewer>
         <Grid Margin="10">
             <Grid.RowDefinitions>

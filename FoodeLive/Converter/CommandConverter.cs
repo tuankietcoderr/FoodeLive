@@ -26,6 +26,24 @@ namespace FoodeLive.Converter
         }
     }
 
+    public class DateCountConverter : IValueConverter
+    {
+
+        public object Convert(object values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if(targetType.Name == "String")
+            {
+                return (DateTime.Now - System.Convert.ToDateTime(values)).ToString();
+            }
+            return DateTime.Now;
+        }
+
+        public object ConvertBack(object value, Type targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class MoneyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

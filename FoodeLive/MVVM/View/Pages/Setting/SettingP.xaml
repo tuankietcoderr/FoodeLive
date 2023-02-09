@@ -31,7 +31,7 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <ui:Card Effect="{StaticResource DropShadow}" Margin="0 0 20 0" Padding="0" Background="#fff" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center"     Width="160" Height="160">
-                        <Image Source="{Binding GetUserInformation.ImgUrl,UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" />
+                        <Image Source="{Binding GetUserInformation.ImgUrl,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullAvatarConverter}}" Stretch="Uniform" />
                     </ui:Card>
                     <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom">
                         <StackPanel Grid.Column="1" Grid.Row="0">
@@ -88,6 +88,7 @@
                             <Button Command="{Binding AddAccountCommand}" Margin="0 0 10 10" Content="Tạo tài khoản cho nhân viên"/>
                             <Button Command="{Binding UpdateInformationDialogCommand}" Margin="0 0 10 10" Content="Cập nhật thông tin nhà hàng"/>
                             <Button Command="{Binding StaffManagerDialogCommand}" Margin="0 0 0 10" Content="Quản lý nhân viên"/>
+                            <Button Margin="10 0 0 10" Content="Yêu cầu hỗ trợ" Click="Button_Click"/>
                         </WrapPanel>
                         <!--<Button Content="Xóa tài khoản" BorderThickness="0" Foreground="OrangeRed"/>-->
                     </StackPanel>

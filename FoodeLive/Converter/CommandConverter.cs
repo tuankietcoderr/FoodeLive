@@ -181,4 +181,22 @@ namespace FoodeLive.Converter
             throw new NotImplementedException();
         }
     }
+
+    public class NullAvatarConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string src = System.Convert.ToString(value);
+            if(targetType.Name == "ImageSource" && !string.IsNullOrEmpty(src))
+            {
+                return System.Convert.ToString(value);
+            }
+            return "https://static.thenounproject.com/png/212110-200.png";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

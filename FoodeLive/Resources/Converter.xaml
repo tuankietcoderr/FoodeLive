@@ -10,4 +10,5 @@
     <command:TableStatusConverter x:Key="TableStatusConverter"/>
     <command:FoodStatusConverter x:Key="FoodStatusConverter"/>
     <command:DateCountConverter x:Key="DateCountConverter" />
+    <command:NullAvatarConverter x:Key="NullAvatarConverter" />
 </ResourceDictionary>

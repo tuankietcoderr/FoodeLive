@@ -475,12 +475,15 @@ namespace FoodeLive.MVVM.ViewModel
             LogOutCommand = new RelayCommand<Window>(p => true,
             p =>
             {
-                _cuaHangHoatDong = null;
-                _nguoiQuanLy = null;
-                _nhanVienHoatDong = null;
-                Login login = new Login();
-                p.Close();
-                login.ShowDialog();
+                if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất chứ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    _cuaHangHoatDong = null;
+                    _nguoiQuanLy = null;
+                    _nhanVienHoatDong = null;
+                    Login login = new Login();
+                    p.Close();
+                    login.ShowDialog();
+                }
             });
 
             PasswordCommand = new RelayCommand<object>(p =>

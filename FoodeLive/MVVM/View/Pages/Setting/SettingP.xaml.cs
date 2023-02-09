@@ -39,5 +39,10 @@ namespace FoodeLive.View.Pages.Setting
             UpdateForm updateForm = new UpdateForm();
             updateForm.ShowDialog();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Thông tin hỗ trợ xin vui lòng gửi qua địa chỉ email: support@foodelive.com\nhoặc qua số điện thoại: 0123456789", "Liên hệ hỗ trợ", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
